@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.tpgame.demo.butchobjects.InputManager;
 import com.tpgame.demo.butchobjects.Player;
+import com.badlogic.gdx.audio.Music;
 
 public class PlayScreen implements Screen {
     public OrthographicCamera camera;
@@ -38,7 +39,9 @@ public class PlayScreen implements Screen {
         playerObject.update(delta);
         playerObject.render(sb);
         sb.end();
+
     }
+
 
     @Override
     public void resize(int width, int height){

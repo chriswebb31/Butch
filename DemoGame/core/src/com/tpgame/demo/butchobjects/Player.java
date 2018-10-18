@@ -15,8 +15,8 @@ public class Player {
         this.playerSprite = s;
         this.playerPosition =  p;
         this.playerVelocity = new Vector2(0,0);
-        this.playerSpeedH = 30;
-        this.playerSpeedV = 30;
+        this.playerSpeedH = 60;
+        this.playerSpeedV = 60;
         this.inputManager = inputManager;
         playerSprite.scale(2);
     }

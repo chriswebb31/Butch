@@ -3,6 +3,7 @@ package com.butch.game.gameobjects;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.components.Collider;
+import com.butch.game.gamemanagers.ColliderManager;
 import com.butch.game.input.InputHandler;
 
 
@@ -25,11 +26,19 @@ public class Player {
 
     //MANAGERS
     private InputHandler IH;
+    private ColliderManager CM;
 
-    public Player(){
-        position = Vector2.Zero;
-        velocity = Vector2.Zero;
-        speed = 0.0f;
+    public Player(InputHandler IH, ColliderManager CM){
+        this.position = Vector2.Zero;
+        this.velocity = Vector2.Zero;
+        this.speed = 0.0f;
+        this.IH = IH;
+        this.CM = CM;
+
+        CM.addCollider(TCollider);
+        CM.addCollider(BCollider);
+        CM.addCollider(LCollider);
+        CM.addCollider(RCollider);
     }
 
     public void render(){

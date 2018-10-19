@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.butch.game.gamemanagers.AssetManagement;
+import com.butch.game.gamemanagers.ColliderManager;
 import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.input.InputHandler;
 import com.butch.game.screens.LoadingScreen;
@@ -12,23 +13,25 @@ public class ButchGame extends Game {
 	public static final boolean DEBUG = true;
 	public static final float TARGET_WIDTH = 1920;
 	public static final float TARGET_HEIGHT = 1080;
-	public static final Engine ashleyEngine = new Engine();
+	public static Engine ashleyEngine;
 	public static AssetManagement assets;
 	public static GameStateManager GSM;
 	public static InputHandler IH;
-	private FPSLogger log;
+	public static ColliderManager CM;
+
+	private static FPSLogger log;
 
 	public ButchGame() {
-
+		this.assets = new AssetManagement();
+		this.log = new FPSLogger();
+		this.ashleyEngine = new Engine();
+		this.GSM = new GameStateManager();
+		this.IH = new InputHandler();
+		this.CM = new ColliderManager();
 	}
 
 	@Override
 	public void create () {
-		this.assets = new AssetManagement();
-		this.log = new FPSLogger();
-		this.GSM = new GameStateManager();
-		this.IH = new InputHandler();
-
 		this.setScreen(new LoadingScreen(this));
 	}
 

@@ -1,6 +1,5 @@
 package com.butch.game.screens;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Screen;
 import com.butch.game.ButchGame;
 

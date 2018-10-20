@@ -17,10 +17,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(ButchGame game){
         this.game = game;
-//        this.assets = game.assets;
         this.player = new Player(this);
-        player.setIH(game.IH);
-        player.setCM(game.CM);
         this.batch = new SpriteBatch();
 
     }
@@ -35,6 +32,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
         batch.begin();
         // Drawing goes here!
+        player.update();
         player.sprite.draw(batch);
         batch.end();
     }

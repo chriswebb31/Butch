@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.butch.game.gamemanagers.AssetManagement;
 import com.butch.game.gamemanagers.ColliderManager;
 import com.butch.game.gamemanagers.GameStateManager;
-import com.butch.game.input.InputHandler;
 import com.butch.game.screens.LoadingScreen;
 
 public class ButchGame extends Game {
@@ -16,7 +15,6 @@ public class ButchGame extends Game {
 	public static Engine ashleyEngine;
 	public static AssetManagement assets;
 	public static GameStateManager GSM;
-	public static InputHandler IH;
 	public static ColliderManager CM;
 
 	private static FPSLogger log;
@@ -26,7 +24,6 @@ public class ButchGame extends Game {
 		this.log = new FPSLogger();
 		this.ashleyEngine = new Engine();
 		this.GSM = new GameStateManager();
-		this.IH = new InputHandler();
 		this.CM = new ColliderManager();
 	}
 
@@ -39,7 +36,6 @@ public class ButchGame extends Game {
 	public void render () {
 		log.log();
 		GSM.update();
-		IH.update();
 		super.render();
 	}
 

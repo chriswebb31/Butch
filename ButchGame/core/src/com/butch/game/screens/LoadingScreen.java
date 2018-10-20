@@ -6,6 +6,7 @@ import com.butch.game.ButchGame;
 public class LoadingScreen implements Screen {
     private ButchGame game;
 
+
     public LoadingScreen(ButchGame game){
         this.game = game;
     }
@@ -20,6 +21,8 @@ public class LoadingScreen implements Screen {
         if(game.assets.update()){
             game.setScreen(new GameScreen(game));
         }
+
+
     }
 
     @Override

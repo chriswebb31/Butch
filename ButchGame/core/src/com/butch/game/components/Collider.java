@@ -17,24 +17,22 @@ public class Collider {
         this.x = x;
         this.y = y;
         this.CM = CM;
-
+        //CREATE COLLIDER WITH BOUND DIMENSIONS
         boundingRectangle = new Rectangle(this.x, this.y, this.width, this.height);
 
     }
 
     public Rectangle getBoundingRectangle() {
+        //COLLIDER BOUNDS
         return boundingRectangle;
     }
 
     public boolean isColliding(){
+        // COULD AND SHOULD BE IMPROVED VERY INEFFICIENT
         boolean isCol = false;
         for(int i=0; i < CM.getColliders().size(); i++){
-            if(this.boundingRectangle.overlaps(CM.getColliders().get(i).boundingRectangle)){
+            if(this.boundingRectangle.overlaps(CM.getColliders().get(i).boundingRectangle))
                 isCol = true;
-            }
-            else{
-                isCol = false;
-            }
         }
         return isCol;
     }

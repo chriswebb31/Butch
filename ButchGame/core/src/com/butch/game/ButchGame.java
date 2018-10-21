@@ -20,11 +20,11 @@ public class ButchGame extends Game {
 	private static FPSLogger log;
 
 	public ButchGame() {
-		this.assets = new AssetManagement();
-		this.log = new FPSLogger();
-		this.ashleyEngine = new Engine();
-		this.GSM = new GameStateManager();
-		this.CM = new ColliderManager();
+		assets = new AssetManagement();
+		log = new FPSLogger();
+		ashleyEngine = new Engine();
+		GSM = new GameStateManager();
+		CM = new ColliderManager();
 	}
 
 	@Override

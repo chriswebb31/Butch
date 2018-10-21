@@ -1,24 +1,17 @@
 package com.butch.game.components;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ColliderManager;
 
-public class Collider {
-    private int width;
-    private int height;
-    private float x;
-    private float y;
-    private Rectangle boundingRectangle;
-    private static ColliderManager CM;
+import static com.butch.game.ButchGame.CM;
 
-    public Collider(int width, int height, float x, float y, ColliderManager CM){
-        this.width = width;
-        this.height = height;
-        this.x = x;
-        this.y = y;
-        this.CM = CM;
+public class Collider {
+    private Rectangle boundingRectangle;
+
+    public Collider(int width, int height, float x, float y){
         //CREATE COLLIDER WITH BOUND DIMENSIONS
-        boundingRectangle = new Rectangle(this.x, this.y, this.width, this.height);
+        boundingRectangle = new Rectangle(x, y, width, height);
 
     }
 
@@ -30,10 +23,11 @@ public class Collider {
     public boolean isColliding(){
         // COULD AND SHOULD BE IMPROVED VERY INEFFICIENT
         boolean isCol = false;
-        for(int i=0; i < CM.getColliders().size(); i++){
-            if(this.boundingRectangle.overlaps(CM.getColliders().get(i).boundingRectangle))
+        for(int i = 0; i < ButchGame.CM.getColliders().size(); i++){
+            if(!(this.boundingRectangle == ButchGame.CM.getColliders().get(i).boundingRectangle) && this.boundingRectangle.overlaps(ButchGame.CM.getColliders().get(i).boundingRectangle))
                 isCol = true;
         }
+        System.out.println(isCol);
         return isCol;
     }
 }

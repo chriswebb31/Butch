@@ -2,9 +2,6 @@ package com.butch.game.components;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.butch.game.ButchGame;
-import com.butch.game.gamemanagers.ColliderManager;
-
-import static com.butch.game.ButchGame.CM;
 
 public class Collider {
     private Rectangle boundingRectangle;
@@ -24,7 +21,7 @@ public class Collider {
         // COULD AND SHOULD BE IMPROVED VERY INEFFICIENT
         boolean isCol = false;
         for(int i = 0; i < ButchGame.CM.getColliders().size(); i++){
-            if(!(this.boundingRectangle == ButchGame.CM.getColliders().get(i).boundingRectangle) && this.boundingRectangle.overlaps(ButchGame.CM.getColliders().get(i).boundingRectangle))
+            if(!(this.boundingRectangle == ButchGame.CM.getColliders().get(i).boundingRectangle) && this.boundingRectangle.overlaps(ButchGame.CM.getColliders().get(i).boundingRectangle)) //IF OVERLAPS WITH ANY EXCEPT ITSELF
                 isCol = true;
         }
         System.out.println(isCol);

@@ -1,14 +1,17 @@
 package com.butch.game.screens;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 
 public class LoadingScreen implements Screen {
     private ButchGame game;
+    private FitViewport gameViewPort;
 
 
-    public LoadingScreen(ButchGame game){
+    public LoadingScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
+        this.gameViewPort = gameViewPort;
     }
 
     @Override
@@ -19,7 +22,7 @@ public class LoadingScreen implements Screen {
     @Override
     public void render(float delta) {
         if(game.assets.update()){
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new GameScreen(game, gameViewPort));
         }
 
 

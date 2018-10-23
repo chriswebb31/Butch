@@ -52,13 +52,13 @@ public class Rifle extends Weapon {
 
     @Override
     public void updatePosition(Vector2 direction){
-            if(direction.x >= 0) {
+            if(direction.x > 0) {
                 this.position =  player.rightHandIK();
                 sprite.setFlip(false,false);
             }
-            else {
+            else if(direction.x < 0){
                 this.position =  player.leftHandIK();
-                sprite.setFlip(true,false);
+                sprite.setFlip(false,true);
             }
             this.sprite.setPosition(this.position.x, this.position.y);
 
@@ -66,7 +66,13 @@ public class Rifle extends Weapon {
 
     @Override
     public void updateRotation(Vector2 targetDirection){
-        float angle = (float) Math.atan2(targetDirection.x - sprite.getX(), targetDirection.y - sprite.getY());
+         float angle = 0;
+         sprite.setOriginCenter();
+         if(this.sprite.isFlipX()){
+             angle = (float) Math.atan2(targetDirection.y - sprite.getY(), targetDirection.x - sprite.getX());
+         } else{
+             angle = (float) Math.atan2(targetDirection.y - sprite.getY(), targetDirection.x - sprite.getX());
+         }
 
         angle = (float) Math.toDegrees(angle);
         this.sprite.setRotation(angle);

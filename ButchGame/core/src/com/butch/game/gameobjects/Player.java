@@ -78,7 +78,7 @@ public class Player {
         movementHandler();
         flipHandler();
         sprite.setPosition(position.x, position.y);
-        activeWeapon.updatePosition(velocity); //cast float to int if negative dir is left
+        activeWeapon.updatePosition(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y)); //cast float to int if negative dir is left
         activeWeapon.updateRotation(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y));
     }
 
@@ -86,7 +86,7 @@ public class Player {
         if(velocity.x > 0){
             sprite.setFlip(false,false);
         }
-        else{
+        else if(velocity.x < 0){
             sprite.setFlip(true,false);
         }
     }

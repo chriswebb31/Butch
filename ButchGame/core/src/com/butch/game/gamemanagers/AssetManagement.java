@@ -1,6 +1,8 @@
 package com.butch.game.gamemanagers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Music;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
@@ -8,7 +10,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String gunSprite = "weapon.png";
     public final String bulletSprite = "bullet.png";
     //SOUNDS
-
+    public final Music mainTheme = Gdx.audio.newMusic(Gdx.files.internal("music/Town1.mp3"));
     //PARTICLES
 
     //FONTS

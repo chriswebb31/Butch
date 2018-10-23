@@ -31,7 +31,7 @@ public class GameScreen implements Screen {
         //Setup camera and viewport
         this.camera = new OrthographicCamera();
         camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2, 40);
-        camera.zoom = 2;
+        camera.zoom = 1.5f;
 
         gameViewPort.setCamera(camera);
         gameViewPort.apply();
@@ -44,7 +44,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        System.out.println(ButchGame.mousePosition());
         updateCameraPosition();
         camera.update();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
@@ -54,17 +53,17 @@ public class GameScreen implements Screen {
         batch.begin();
         player.sprite.draw(batch);
         batch.end(); //no more sprites to render
-        colliderRenderer.setProjectionMatrix(camera.combined);
-        colliderRenderer.begin(ShapeRenderer.ShapeType.Filled); //collider rendering for debug
-        colliderRenderer.setColor(255,0,0,0.5f); //MAKE DAT RED
-        colliderRenderer.rect(player.TCollider.getBoundingRectangle().x,player.TCollider.getBoundingRectangle().y, player.TCollider.getBoundingRectangle().width, player.TCollider.getBoundingRectangle().height);
-        colliderRenderer.rect(player.BCollider.getBoundingRectangle().x,player.BCollider.getBoundingRectangle().y, player.BCollider.getBoundingRectangle().width, player.BCollider.getBoundingRectangle().height);
-        colliderRenderer.rect(player.LCollider.getBoundingRectangle().x,player.LCollider.getBoundingRectangle().y, player.LCollider.getBoundingRectangle().width, player.LCollider.getBoundingRectangle().height);
-        colliderRenderer.rect(player.RCollider.getBoundingRectangle().x,player.RCollider.getBoundingRectangle().y, player.RCollider.getBoundingRectangle().width, player.RCollider.getBoundingRectangle().height);
-
-        colliderRenderer.end();
-        System.out.print("PLAYER : " + player.getPosition());
-        System.out.print("CAMERA : " + camera.position);
+//        colliderRenderer.setProjectionMatrix(camera.combined);
+//        colliderRenderer.begin(ShapeRenderer.ShapeType.Filled); //collider rendering for debug
+//        colliderRenderer.setColor(255,0,0,0.5f); //MAKE DAT RED
+//        colliderRenderer.rect(player.TCollider.getBoundingRectangle().x,player.TCollider.getBoundingRectangle().y, player.TCollider.getBoundingRectangle().width, player.TCollider.getBoundingRectangle().height);
+//        colliderRenderer.rect(player.BCollider.getBoundingRectangle().x,player.BCollider.getBoundingRectangle().y, player.BCollider.getBoundingRectangle().width, player.BCollider.getBoundingRectangle().height);
+//        colliderRenderer.rect(player.LCollider.getBoundingRectangle().x,player.LCollider.getBoundingRectangle().y, player.LCollider.getBoundingRectangle().width, player.LCollider.getBoundingRectangle().height);
+//        colliderRenderer.rect(player.RCollider.getBoundingRectangle().x,player.RCollider.getBoundingRectangle().y, player.RCollider.getBoundingRectangle().width, player.RCollider.getBoundingRectangle().height);
+//
+//        colliderRenderer.end();
+//        System.out.print("PLAYER : " + player.getPosition());
+//        System.out.print("CAMERA : " + camera.position);
     }
 
     private void updateCameraPosition(){

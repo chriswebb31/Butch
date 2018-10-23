@@ -7,7 +7,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.components.Collider;
+import com.butch.game.gameobjects.abstracts.Weapon;
+import com.butch.game.gameobjects.weapons.Rifle;
 import com.butch.game.screens.GameScreen;
+
+import java.util.ArrayList;
 
 
 public class Player {
@@ -33,6 +37,8 @@ public class Player {
     //CHARACTER VARS
     private boolean canMove = true;
     private float speed;
+    private ArrayList<Weapon> weaponInventory;
+    private Weapon activeWeapon;
 
     //MANAGERS
     private static GameScreen gameScreen;
@@ -52,6 +58,9 @@ public class Player {
         this.bottomOffset = new Vector2(-35, -100);
         this.leftOffset = new Vector2(-50, -20);
         this.rightOffset = new Vector2(35, -20);
+        this.weaponInventory = new ArrayList<Weapon>();
+        this.weaponInventory.add(new Rifle());
+        this.activeWeapon = weaponInventory.get(0);
 
         ButchGame.CM.addCollider(TCollider); //FOR DISABLING POSITIVE Y AXIS
         ButchGame.CM.addCollider(BCollider); //FOR DISABLING NEGATIVE Y AXIS
@@ -141,9 +150,9 @@ public class Player {
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             xAxis = 1;
         }
-
-
-        System.out.println(xAxis + " " + yAxis);
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+            activeWeapon.Attack();
+        }
     }
 
     public Vector2 getPosition() {

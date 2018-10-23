@@ -24,7 +24,6 @@ public class Collider {
             if(!(this.boundingRectangle == ButchGame.CM.getColliders().get(i).boundingRectangle) && this.boundingRectangle.overlaps(ButchGame.CM.getColliders().get(i).boundingRectangle)) //IF OVERLAPS WITH ANY EXCEPT ITSELF
                 isCol = true;
         }
-        System.out.println(isCol);
         return isCol;
     }
 }

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.components.Collider;
-import com.butch.game.gameobjects.abstracts.Weapon;
+import com.butch.game.gameobjects.abstractinterface.Weapon;
 import com.butch.game.gameobjects.weapons.Rifle;
 import com.butch.game.screens.GameScreen;
 
@@ -38,7 +38,7 @@ public class Player {
     private boolean canMove = true;
     private float speed;
     private ArrayList<Weapon> weaponInventory;
-    private Weapon activeWeapon;
+    public Weapon activeWeapon;
 
     //MANAGERS
     private static GameScreen gameScreen;
@@ -59,8 +59,9 @@ public class Player {
         this.leftOffset = new Vector2(-50, -20);
         this.rightOffset = new Vector2(35, -20);
         this.weaponInventory = new ArrayList<Weapon>();
-        this.weaponInventory.add(new Rifle());
+        this.weaponInventory.add(new Rifle(this));
         this.activeWeapon = weaponInventory.get(0);
+        System.out.println("weapon:" + activeWeapon);
 
         ButchGame.CM.addCollider(TCollider); //FOR DISABLING POSITIVE Y AXIS
         ButchGame.CM.addCollider(BCollider); //FOR DISABLING NEGATIVE Y AXIS
@@ -152,6 +153,8 @@ public class Player {
         }
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
             activeWeapon.Attack();
+            System.out.print("CLIP: " + this.activeWeapon.clip + " ");
+            System.out.print("RESERVE: " + this.activeWeapon.reserve);
         }
     }
 
@@ -161,5 +164,10 @@ public class Player {
 
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public Vector2 getAimDirection() {
+        Vector2 aimDirection = new Vector2(ButchGame.mousePosition().x - this.position.x, ButchGame.mousePosition().y - this.position.y);
+        return aimDirection;
     }
 }

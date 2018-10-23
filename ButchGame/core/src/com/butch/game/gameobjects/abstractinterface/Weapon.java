@@ -1,15 +1,22 @@
-package com.butch.game.gameobjects.abstracts;
+package com.butch.game.gameobjects.abstractinterface;
+
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.butch.game.gameobjects.Player;
 
 public abstract class Weapon {
+    public Player player;
     public int type;
-    public Bullet bullet;
     private float range;
     private float damage;
     private float accuracy;
-    private float clip;
+    public float clip;
     public float clipSize;
     public float reserve;
-    private boolean isShootingActive;
+    public boolean isShootingActive = false;
+    public Bullet bullet;
+    public long fireRate;
+    public long reloadSpeed;
+    public Sprite sprite;
 
     public Weapon(){
 
@@ -26,32 +33,23 @@ public abstract class Weapon {
         }
     }
 
-    public void Reload(){
+    public void Reload() {
         System.out.println("RELOADING!");
         if(reserve > clipSize){
             clip = clipSize;
             reserve -= clipSize;
+            try {
+                Thread.sleep(reloadSpeed);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             clip = reserve;
             reserve = 0;
         }
     }
 
-    private void MeleeAttack(){
+    public abstract void MeleeAttack();
 
-    }
-
-    private void Shoot(){
-        if(clip > 0 && !isShootingActive){
-            isShootingActive = true;
-
-            clip -= 1;
-            System.out.println("RESERVE : " + reserve + " CLIP : " + clip);
-            System.out.println("BANG");
-            isShootingActive = false;
-        } else{
-            isShootingActive = false;
-            Reload();
-        }
-    }
+    public abstract void Shoot();
 }

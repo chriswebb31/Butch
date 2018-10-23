@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Player;
+import com.butch.game.gameobjects.abstractinterface.Bullet;
 
 public class GameScreen implements Screen {
     public ButchGame game;
@@ -44,6 +45,9 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        for (Bullet bullet: Bullet.bullets) {
+            bullet.update();
+        }
         updateCameraPosition();
         camera.update();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
@@ -52,6 +56,7 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         player.sprite.draw(batch);
+        player.activeWeapon.sprite.draw(batch);
         batch.end(); //no more sprites to render
 //        colliderRenderer.setProjectionMatrix(camera.combined);
 //        colliderRenderer.begin(ShapeRenderer.ShapeType.Filled); //collider rendering for debug

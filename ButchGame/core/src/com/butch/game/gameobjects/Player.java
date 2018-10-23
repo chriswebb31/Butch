@@ -39,6 +39,8 @@ public class Player {
     private float speed;
     private ArrayList<Weapon> weaponInventory;
     public Weapon activeWeapon;
+    private Vector2 leftHandIKoffset = new Vector2().setZero();
+    private Vector2 rightHandIKoffset = new Vector2().setZero();
 
     //MANAGERS
     private static GameScreen gameScreen;
@@ -61,6 +63,8 @@ public class Player {
         this.weaponInventory = new ArrayList<Weapon>();
         this.weaponInventory.add(new Rifle(this));
         this.activeWeapon = weaponInventory.get(0);
+        this.rightHandIKoffset = new Vector2(-60,0);
+        this.leftHandIKoffset = new Vector2(50,0);
         System.out.println("weapon:" + activeWeapon);
 
         ButchGame.CM.addCollider(TCollider); //FOR DISABLING POSITIVE Y AXIS
@@ -72,8 +76,21 @@ public class Player {
     public void update(){
         inputHandler();
         movementHandler();
+        flipHandler();
         sprite.setPosition(position.x, position.y);
+        activeWeapon.updatePosition(velocity); //cast float to int if negative dir is left
+        activeWeapon.updateRotation(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y));
     }
+
+    private void flipHandler() {
+        if(velocity.x > 0){
+            sprite.setFlip(false,false);
+        }
+        else{
+            sprite.setFlip(true,false);
+        }
+    }
+
     private void movementHandler(){
         if(canMove){
             if(yAxis > 0){
@@ -160,6 +177,18 @@ public class Player {
 
     public Vector2 getPosition() {
         return position;
+    }
+
+    public Vector2 leftHandIK(){
+        float x = this.position.x;
+        float y = this.position.y;
+        return new Vector2(x - leftHandIKoffset.x, y - leftHandIKoffset.y);
+    }
+
+    public Vector2 rightHandIK(){
+        float x = this.position.x;
+        float y = this.position.y;
+        return new Vector2(x - rightHandIKoffset.x, y - rightHandIKoffset.y);
     }
 
     public void setPosition(Vector2 position) {

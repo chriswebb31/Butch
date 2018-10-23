@@ -1,6 +1,7 @@
 package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.Player;
 
 public abstract class Weapon {
@@ -17,6 +18,7 @@ public abstract class Weapon {
     public long fireRate;
     public long reloadSpeed;
     public Sprite sprite;
+    public Vector2 position;
 
     public Weapon(){
 
@@ -48,6 +50,10 @@ public abstract class Weapon {
             reserve = 0;
         }
     }
+
+    public abstract void updatePosition(Vector2 direction);
+
+    public abstract void updateRotation(Vector2 targetDirection);
 
     public abstract void MeleeAttack();
 

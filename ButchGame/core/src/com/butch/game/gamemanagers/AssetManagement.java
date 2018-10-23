@@ -10,7 +10,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String gunSprite = "weapon.png";
     public final String bulletSprite = "bullet.png";
     //SOUNDS
-    public final Music mainTheme = Gdx.audio.newMusic(Gdx.files.internal("music/Town1.mp3"));
+    public final String mainTheme = "music/TitleScreen.mp3";
+    public final String townTheme = "music/Town1.mp3";
     //PARTICLES
 
     //FONTS
@@ -22,5 +23,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public void includeAssets(){
         load(cowboySprite, Texture.class);
         load(gunSprite, Texture.class);
+        load(mainTheme, Music.class);
+        load(townTheme, Music.class);
     }
 }

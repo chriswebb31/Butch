@@ -38,7 +38,7 @@ public class Rifle extends Weapon {
          System.out.println(!this.isShootingActive);
         if((this.clip > 0) && (!this.isShootingActive)){
             System.out.println("Bang!");
-            gunShot.play(1.0f);
+            gunShot.play(0.8f);
             isShootingActive = true;
             Bullet bullet = new RifleBullet();
             bullet.init(new Vector2(player.activeWeapon.sprite.getX(), player.activeWeapon.sprite.getY()), player.getAimDirection(), player);

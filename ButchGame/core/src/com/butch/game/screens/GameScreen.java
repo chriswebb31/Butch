@@ -18,6 +18,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.audio.Music;
 import com.butch.game.ButchGame;
 import com.butch.game.components.Collider;
 import com.butch.game.gameobjects.Player;
@@ -33,6 +34,7 @@ public class GameScreen implements Screen {
     private Player player;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
+    private Music music;
 
     public GameScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
@@ -51,6 +53,10 @@ public class GameScreen implements Screen {
 
         gameViewPort.setCamera(camera);
         gameViewPort.apply();
+        music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
+        music.setVolume(0.5f);
+        music.setLooping(true);
+        music.play();
     }
 
     @Override

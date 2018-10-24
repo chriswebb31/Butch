@@ -2,6 +2,7 @@ package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.audio.Sound;
 import com.butch.game.gameobjects.Player;
 
 public abstract class Weapon {
@@ -20,6 +21,7 @@ public abstract class Weapon {
     public Sprite sprite;
     public Vector2 position;
     public int targetPos;
+    public Sound gunShot;
 
     public Weapon(){
 

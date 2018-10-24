@@ -9,6 +9,7 @@ import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Bullet;
 import com.butch.game.gameobjects.abstractinterface.Weapon;
 import com.butch.game.gameobjects.weapons.Ammo.RifleBullet;
+import com.badlogic.gdx.audio.Sound;
 
 public class Rifle extends Weapon {
 
@@ -24,6 +25,7 @@ public class Rifle extends Weapon {
          this.sprite.setScale(10);
          this.position = player.rightHandIK();
          this.targetPos = 0;
+         this.gunShot = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
      }
 
     @Override
@@ -36,6 +38,7 @@ public class Rifle extends Weapon {
          System.out.println(!this.isShootingActive);
         if((this.clip > 0) && (!this.isShootingActive)){
             System.out.println("Bang!");
+            gunShot.play(1.0f);
             isShootingActive = true;
             Bullet bullet = new RifleBullet();
             bullet.init(new Vector2(player.activeWeapon.sprite.getX(), player.activeWeapon.sprite.getY()), player.getAimDirection(), player);

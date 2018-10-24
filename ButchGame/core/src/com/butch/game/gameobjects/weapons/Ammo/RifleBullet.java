@@ -1,12 +1,12 @@
 package com.butch.game.gameobjects.weapons.Ammo;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Bullet;
-
 public class RifleBullet extends Bullet {
     private float spawnTime;
     private float speed = 5;

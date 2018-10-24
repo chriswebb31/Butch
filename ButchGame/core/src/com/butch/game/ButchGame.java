@@ -3,7 +3,10 @@ package com.butch.game;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -26,6 +29,8 @@ public class ButchGame extends Game {
 	public ButchGame() {
 		gameViewPort = new FitViewport(1920, 1080);
 		assets = new AssetManagement();
+		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+		assets.load(assets.tilemap1, TiledMap.class);
 		log = new FPSLogger();
 		ashleyEngine = new Engine();
 		GSM = new GameStateManager();

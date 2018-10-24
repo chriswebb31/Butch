@@ -14,11 +14,12 @@ public abstract class Weapon {
     public float clipSize;
     public float reserve;
     public boolean isShootingActive = false;
-    public Bullet bullet;
+    public Class bulletType;
     public long fireRate;
     public long reloadSpeed;
     public Sprite sprite;
     public Vector2 position;
+    public int targetPos;
 
     public Weapon(){
 
@@ -51,7 +52,7 @@ public abstract class Weapon {
         }
     }
 
-    public abstract void updatePosition(Vector2 direction);
+    public abstract void updatePosition(Vector2 targetDirection);
 
     public abstract void updateRotation(Vector2 targetDirection);
 

@@ -7,19 +7,23 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.components.Collider;
+import com.butch.game.gameobjects.abstractinterface.Bullet;
 import com.butch.game.gameobjects.abstractinterface.Weapon;
 import com.butch.game.gameobjects.weapons.Rifle;
 import com.butch.game.screens.GameScreen;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 
 public class Player {
     //COLLISION DETECTION
+    public ArrayList<Collider> playerColliders;
     public Collider TCollider;
     public Collider BCollider;
     public Collider LCollider;
     public Collider RCollider;
+    public ArrayList<Bullet> playerBullets;
     private Vector2 topOffset = new Vector2().setZero();
     private Vector2 bottomOffset = new Vector2().setZero();
     private Vector2 leftOffset = new Vector2().setZero();
@@ -56,6 +60,11 @@ public class Player {
         this.BCollider = new Collider(100,50, this.position.x + bottomOffset.x, this.position.y + bottomOffset.y);
         this.LCollider = new Collider(50,100, this.position.x + leftOffset.x, this.position.y + leftOffset.y);
         this.RCollider = new Collider(50,100, this.position.x + rightOffset.x, this.position.y + rightOffset.y);
+        playerColliders = new ArrayList<Collider>();
+        playerColliders.add(TCollider);
+        playerColliders.add(BCollider);
+        playerColliders.add(LCollider);
+        playerColliders.add(RCollider);
         this.topOffset = new Vector2(-35, 100); //MOVE COLLIDER TO SUITABLE LOCATION
         this.bottomOffset = new Vector2(-35, -100);
         this.leftOffset = new Vector2(-50, -20);
@@ -63,8 +72,9 @@ public class Player {
         this.weaponInventory = new ArrayList<Weapon>();
         this.weaponInventory.add(new Rifle(this));
         this.activeWeapon = weaponInventory.get(0);
-        this.rightHandIKoffset = new Vector2(-60,0);
+        this.rightHandIKoffset = new Vector2(-50,0);
         this.leftHandIKoffset = new Vector2(50,0);
+        this.playerBullets = new ArrayList<Bullet>();
         System.out.println("weapon:" + activeWeapon);
 
         ButchGame.CM.addCollider(TCollider); //FOR DISABLING POSITIVE Y AXIS
@@ -80,14 +90,18 @@ public class Player {
         sprite.setPosition(position.x, position.y);
         activeWeapon.updatePosition(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y)); //cast float to int if negative dir is left
         activeWeapon.updateRotation(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y));
+        for (Bullet bullet : this.playerBullets) {
+            bullet.update();
+        }
     }
 
     private void flipHandler() {
-        if(velocity.x > 0){
+        if(ButchGame.mousePosition().x >= this.position.x){
             sprite.setFlip(false,false);
-        }
-        else if(velocity.x < 0){
+            activeWeapon.sprite.setFlip(false,false);
+        } else {
             sprite.setFlip(true,false);
+            activeWeapon.sprite.setFlip(false, true); // very buggy?!?
         }
     }
 

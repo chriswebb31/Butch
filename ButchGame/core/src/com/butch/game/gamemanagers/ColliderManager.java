@@ -25,7 +25,6 @@ public class ColliderManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public ArrayList<Collider> getColliders(){

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 public class GameStateManager {
     //CLASS USED TO MANAGE PLAYER STATE AND GAME STATE
     private static int GAME_STATE = 0; //0:RUN
-    private static int PLAYER_STATE = 0; //0:ALIVE 1:DEAD
+    private static int PLAYER_STATE = 0; //0:ALIVE 1:DEAD //YourMumGay.exe Program Has Crashed
 
     public  GameStateManager(){
 

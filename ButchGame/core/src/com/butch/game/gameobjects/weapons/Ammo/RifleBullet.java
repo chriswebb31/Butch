@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Bullet;
+
 public class RifleBullet extends Bullet {
     private float spawnTime;
     private float speed = 5;
@@ -17,7 +18,6 @@ public class RifleBullet extends Bullet {
 
     @Override
     public void update() {
-        System.out.println("ping");
         this.position = new Vector2(this.position.x + this.velocity.x * speed, this.position.y + this.velocity.y * speed);
         this.sprite.setPosition(this.position.x, this.position.y);
         Vector2 targetDirection = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);

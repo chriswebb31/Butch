@@ -9,10 +9,9 @@ import com.butch.game.ButchGame;
 import com.butch.game.components.Collider;
 import com.butch.game.gameobjects.abstractinterface.Bullet;
 import com.butch.game.gameobjects.abstractinterface.Weapon;
-import com.butch.game.gameobjects.weapons.Rifle;
+import com.butch.game.gameobjects.weapons.Revolver;
 import com.butch.game.screens.GameScreen;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 
@@ -23,7 +22,9 @@ public class Player {
     public Collider BCollider;
     public Collider LCollider;
     public Collider RCollider;
+
     public ArrayList<Bullet> playerBullets;
+
     private Vector2 topOffset = new Vector2().setZero();
     private Vector2 bottomOffset = new Vector2().setZero();
     private Vector2 leftOffset = new Vector2().setZero();
@@ -70,7 +71,7 @@ public class Player {
         this.leftOffset = new Vector2(-50, -20);
         this.rightOffset = new Vector2(35, -20);
         this.weaponInventory = new ArrayList<Weapon>();
-        this.weaponInventory.add(new Rifle(this));
+        this.weaponInventory.add(new Revolver(this));
         this.activeWeapon = weaponInventory.get(0);
         this.rightHandIKoffset = new Vector2(-50,0);
         this.leftHandIKoffset = new Vector2(50,0);
@@ -87,6 +88,7 @@ public class Player {
         inputHandler();
         movementHandler();
         flipHandler();
+
         sprite.setPosition(position.x, position.y);
         activeWeapon.updatePosition(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y)); //cast float to int if negative dir is left
         activeWeapon.updateRotation(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y));

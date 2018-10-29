@@ -1,9 +1,9 @@
 package com.butch.game.gameobjects.weapons;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Bullet;
@@ -11,15 +11,16 @@ import com.butch.game.gameobjects.abstractinterface.Weapon;
 import com.butch.game.gameobjects.weapons.Ammo.RifleBullet;
 import com.badlogic.gdx.audio.Sound;
 
-public class Rifle extends Weapon {
+public class Revolver extends Weapon {
 
-     public Rifle(Player player){
+     public Revolver(Player player){
+         this.clip = 6;
          this.type = 2;
-         this.clipSize = 5;
-         this.reserve = 45;
+         this.clipSize = 6;
+         this.reserve = 120;
          this.player = player;
-         this.reloadSpeed = 5;
-         this.fireRate = 1;
+         this.reloadSpeed = 3;
+         this.fireRate = 0.4f;
          this.isShootingActive = false;
          this.sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.gunSprite, Texture.class));
          this.sprite.setScale(10);
@@ -44,16 +45,33 @@ public class Rifle extends Weapon {
             bullet.init(new Vector2(player.activeWeapon.sprite.getX(), player.activeWeapon.sprite.getY()), player.getAimDirection(), player);
             float bulletAngle = (float) Math.atan2(player.getAimDirection().y - sprite.getY(), player.getAimDirection().x - sprite.getX());
             bullet.sprite.setRotation(bulletAngle);
-            try {
-                Thread.sleep(this.fireRate);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            isShootingActive = false;
+            Timer.schedule(new Timer.Task(){
+                @Override
+                public void run(){
+                    clip -= 1;
+                    isShootingActive = false;
+                }
+            }, fireRate);
+
         }
         else if(this.clip <= 0){
-            System.out.println("RELOAD!");
-            this.Reload();
+            Timer.schedule(new Timer.Task(){
+                @Override
+                public void run(){
+                    Reload();
+                }
+            }, reloadSpeed);
+        }
+    }
+
+    public void Reload(){
+        System.out.println("RELOADING!");
+        if(reserve >= clipSize){
+            clip = clipSize;
+            reserve -= clipSize;
+        } else {
+            clip = reserve;
+            reserve = 0;
         }
     }
 

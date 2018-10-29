@@ -44,7 +44,7 @@ public class ButchGame extends Game {
 
 	@Override
 	public void render () {
-//		log.log();
+		log.log();
 		GSM.update();
 		super.render();
 	}

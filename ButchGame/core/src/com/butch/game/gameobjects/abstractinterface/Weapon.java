@@ -16,7 +16,7 @@ public abstract class Weapon {
     public float reserve;
     public boolean isShootingActive = false;
     public Class bulletType;
-    public long fireRate;
+    public float fireRate;
     public long reloadSpeed;
     public Sprite sprite;
     public Vector2 position;
@@ -38,21 +38,7 @@ public abstract class Weapon {
         }
     }
 
-    public void Reload() {
-        System.out.println("RELOADING!");
-        if(reserve > clipSize){
-            clip = clipSize;
-            reserve -= clipSize;
-            try {
-                Thread.sleep(reloadSpeed);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } else {
-            clip = reserve;
-            reserve = 0;
-        }
-    }
+    public abstract void Reload();
 
     public abstract void updatePosition(Vector2 targetDirection);
 

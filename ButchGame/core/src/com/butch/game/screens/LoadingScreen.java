@@ -8,7 +8,6 @@ public class LoadingScreen implements Screen {
     private ButchGame game;
     private FitViewport gameViewPort;
 
-
     public LoadingScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -24,8 +23,6 @@ public class LoadingScreen implements Screen {
         if(game.assets.update()){
             game.setScreen(new GameScreen(game, gameViewPort));
         }
-
-
     }
 
     @Override

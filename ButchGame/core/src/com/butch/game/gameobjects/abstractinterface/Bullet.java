@@ -17,4 +17,5 @@ public abstract class Bullet {
 
     public abstract void init(Vector2 start, Vector2 dir, Player player);
 
+
 }

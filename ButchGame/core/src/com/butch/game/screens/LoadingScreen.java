@@ -20,7 +20,7 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if(game.assets.update()){
+        if(ButchGame.assets.update()){
             game.setScreen(new GameScreen(game, gameViewPort));
         }
     }

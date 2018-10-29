@@ -15,6 +15,7 @@ public abstract class Weapon {
     public float clipSize;
     public float reserve;
     public boolean isShootingActive = false;
+    public boolean isReloading = false;
     public Class bulletType;
     public float fireRate;
     public long reloadSpeed;
@@ -34,7 +35,8 @@ public abstract class Weapon {
                 MeleeAttack();
             case 2:
                 //firearm
-                Shoot();
+                if(!isReloading)
+                    Shoot();
         }
     }
 

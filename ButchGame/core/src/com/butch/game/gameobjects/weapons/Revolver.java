@@ -37,7 +37,7 @@ public class Revolver extends Weapon {
     @Override
     public void Shoot() {
          System.out.println(!this.isShootingActive);
-        if((this.clip > 0) && (!this.isShootingActive)){
+        if((this.clip > 0) && (!this.isShootingActive) && (!this.isReloading)){
             System.out.println("Bang!");
             gunShot.play(0.8f);
             isShootingActive = true;
@@ -55,6 +55,7 @@ public class Revolver extends Weapon {
 
         }
         else if(this.clip <= 0){
+            isReloading = true;
             Timer.schedule(new Timer.Task(){
                 @Override
                 public void run(){
@@ -65,7 +66,6 @@ public class Revolver extends Weapon {
     }
 
     public void Reload(){
-        System.out.println("RELOADING!");
         if(reserve >= clipSize){
             clip = clipSize;
             reserve -= clipSize;
@@ -73,6 +73,8 @@ public class Revolver extends Weapon {
             clip = reserve;
             reserve = 0;
         }
+        isReloading = false;
+        isShootingActive = false;
     }
 
     @Override

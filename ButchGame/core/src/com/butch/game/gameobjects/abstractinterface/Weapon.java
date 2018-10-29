@@ -24,18 +24,18 @@ public abstract class Weapon {
     public int targetPos;
     public Sound gunShot;
 
-    public Weapon(){
+    public Weapon() {
 
     }
 
-    public void Attack(){
-        switch (type){
+    public void Attack() {
+        switch (type) {
             case 1:
                 //melee
                 MeleeAttack();
             case 2:
                 //firearm
-                if(!isReloading)
+                if (!isReloading)
                     Shoot();
         }
     }

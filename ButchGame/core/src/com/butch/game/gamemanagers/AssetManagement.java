@@ -1,12 +1,8 @@
 package com.butch.game.gamemanagers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
@@ -25,12 +21,12 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String tilemap1 = "TiledFiles/desertdoodles.tmx";
     public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
 
-    public AssetManagement(){
+    public AssetManagement() {
 
         includeAssets();
     }
 
-    public void includeAssets(){
+    public void includeAssets() {
         load(cowboySprite, Texture.class);
         load(gunSprite, Texture.class);
         load(bulletSprite, Texture.class);

@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.Player;
 
-import java.util.ArrayList;
-
 public abstract class Bullet {
     public Vector2 position = new Vector2();
     public Vector2 direction;

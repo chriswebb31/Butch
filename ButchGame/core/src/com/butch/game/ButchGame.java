@@ -7,15 +7,20 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.gamemanagers.AssetManagement;
-import com.butch.game.gamemanagers.ColliderManager;
 import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.screens.LoadingScreen;
 
 public class ButchGame extends Game {
+    /*
+        CLASS : BUTCHGAME
+
+        This is the main LLibGDX class, it extends game, and could be described as the 'active window' enwhich the scene changes
+        all game constants go here. Such as managers and viewports
+
+     */
 	public static final boolean DEBUG = true;
 	public static final float TARGET_WIDTH = 1920;
 	public static final float TARGET_HEIGHT = 1080;
@@ -23,7 +28,6 @@ public class ButchGame extends Game {
 	public static Engine ashleyEngine;
 	public static AssetManagement assets;
 	public static GameStateManager GSM;
-	public static ColliderManager CM;
 	private static FPSLogger log;
 
 	public ButchGame() {
@@ -34,7 +38,6 @@ public class ButchGame extends Game {
 		log = new FPSLogger();
 		ashleyEngine = new Engine();
 		GSM = new GameStateManager();
-		CM = new ColliderManager();
 	}
 
 	@Override

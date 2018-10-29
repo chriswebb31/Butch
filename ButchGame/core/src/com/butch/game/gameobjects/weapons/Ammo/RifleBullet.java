@@ -9,7 +9,6 @@ import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Bullet;
 
 public class RifleBullet extends Bullet {
-    private float spawnTime;
     private float speed = 5;
 
     public RifleBullet(){

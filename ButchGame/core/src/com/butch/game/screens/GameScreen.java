@@ -24,7 +24,7 @@ public class GameScreen implements Screen {
 
      */
     public ButchGame game; //reference to libgdx main game class
-    private SpriteBatch batch; //sprite renderer
+    public SpriteBatch batch; //sprite renderer
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     private OrthographicCamera camera; //camera for height position of render
     private float distanceDivisor = 1.5f;
@@ -76,14 +76,8 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         batch.begin();// begin rendering sprites
         player.sprite.draw(batch);//after updateing position and the plauer settings, render sprite to screen
-        player.activeWeapon.sprite.draw(batch); //draw weapon of player
-        for (Bullet bullet: player.playerBullets) {
-            try {
-                bullet.sprite.draw(batch); //draw all active bullets
-            } catch (NullPointerException e) {
-                System.out.println(e); //no bullets so error
-            }
-        }
+        player.activeWeapon.gunSprite.draw(batch); //draw weapon of player
+        Bullet.update(batch);
         batch.end(); //no more sprites to render
     }
 

@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Bullet;
-import com.butch.game.gameobjects.abstractinterface.Weapon;
-import com.butch.game.gameobjects.weapons.Revolver;
+import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.weapons.Colt;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
@@ -21,10 +21,11 @@ public class Player {
     this class holds all the information about the player object
 
     */
-    public ArrayList < Bullet > playerBullets; //need so that we can loop through and update them
+    public ArrayList<Bullet> playerAmmoInventory;
+    public ArrayList <Bullet> playerBulletsFired; //need so that we can loop through and update them
 
     //POSITION VARS
-    private Vector2 position; //player position used to update sprite pos
+    public Vector2 position; //player position used to update sprite pos
     private Vector2 velocity; //velocity is direction of input times speed scalar
     private float xAxis = 0; //x input  =  A | D
     private float yAxis = 0; //y input = W | S
@@ -35,8 +36,9 @@ public class Player {
     //CHARACTER VARS
     private boolean canMove = true; //Possible reason to block input receiving
     private float speed;
-    private ArrayList < Weapon > weaponInventory; //current weapons, will create weapon cycle function
-    public Weapon activeWeapon;
+    private ArrayList <Gun> gunInventory; //current weapons, will create weapon cycle function
+
+    public Gun activeWeapon;
     private Vector2 leftHandIKoffset = new Vector2().setZero();
     private Vector2 rightHandIKoffset = new Vector2().setZero();
 
@@ -52,14 +54,14 @@ public class Player {
         this.sprite.setScale(10); //mulitply sprite size by 10 as larger numbers are easier to deal with / could move camera down and scale movemmen?
 
 
-        this.weaponInventory = new ArrayList < Weapon > (); //clear player weapons
-        this.weaponInventory.add(new Revolver(this)); //give player a new gun
+        this.gunInventory = new ArrayList <Gun> (); //clear player weapons
+        this.gunInventory.add(new Colt(this)); //give player a new colt
 
 
-        this.activeWeapon = weaponInventory.get(0); //revolver as nothing else in array
+        this.activeWeapon = gunInventory.get(0); //revolver as nothing else in array
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
-        this.playerBullets = new ArrayList < Bullet > (); // set bullet list to empty
+        this.playerBulletsFired = new ArrayList <Bullet> (); // set bullet list to empty
     }
 
     public void update() {
@@ -68,20 +70,19 @@ public class Player {
         flipHandler(); //USE VELOCITY TO DECIDE ON DIRECTION
 
         sprite.setPosition(position.x, position.y); // after updating local position, apply to sprite
-        activeWeapon.updatePosition(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y)); //move hand
-        activeWeapon.updateRotation(new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y)); //rotate weapon sprite
-        for (Bullet bullet: this.playerBullets) { //for all fired bullets update them
-            bullet.update();
+        activeWeapon.Update(); //move hand
+        for (Bullet bullet: this.playerBulletsFired) { //for all fired bullets update them
+            bullet.update(gameScreen.batch);
         }
     }
 
     private void flipHandler() {
         if (ButchGame.mousePosition().x >= this.position.x) { // if direction is right
             sprite.setFlip(false, false);
-            activeWeapon.sprite.setFlip(false, false);
+            activeWeapon.gunSprite.setFlip(false, false);
         } else { //if direction is left or not right
             sprite.setFlip(true, false);
-            activeWeapon.sprite.setFlip(false, true); //
+            activeWeapon.gunSprite.setFlip(false, true); //
         }
     }
 
@@ -133,9 +134,9 @@ public class Player {
             xAxis = 1;
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-            activeWeapon.Attack();
-            System.out.print("CLIP: " + this.activeWeapon.clip + " ");
-            System.out.print("RESERVE: " + this.activeWeapon.reserve);
+            activeWeapon.Shoot();
+//            System.out.print("CLIP: " + this.activeWeapon.clip + " ");
+//            System.out.print("RESERVE: " + this.activeWeapon.reserve);
         }
     }
 
@@ -143,17 +144,26 @@ public class Player {
         return position;
     }
 
-    public Vector2 leftHandIK() { //vector 2 method returns vector 2 value on where left hand currently is for weapon
-        float x = this.position.x;
-        float y = this.position.y;
-        return new Vector2(x - leftHandIKoffset.x, y - leftHandIKoffset.y);
-    }
-
-    public Vector2 rightHandIK() { //vector 2 method returns vector 2 value on where right hand currently is for weapon
-        float x = this.position.x;
-        float y = this.position.y;
-        return new Vector2(x - rightHandIKoffset.x, y - rightHandIKoffset.y);
-    }
+   public Vector2 weaponPosition(){
+        Vector2 pos;
+        if(ButchGame.mousePosition().x >= position.x){
+            if(this.activeWeapon.oneHanded){
+                pos = new Vector2(position.x + leftHandIKoffset.x, position.y + leftHandIKoffset.y);
+            }
+            else{
+                pos = new Vector2(position);
+            }
+        }
+        else{
+            if(this.activeWeapon.oneHanded){
+                pos = new Vector2(position.x + rightHandIKoffset.x, position.y + rightHandIKoffset.y);
+            }
+            else{
+                pos = new Vector2(position);
+            }
+        }
+        return pos;
+   }
 
     public void setPosition(Vector2 position) {
         this.position = position;

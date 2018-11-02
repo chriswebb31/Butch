@@ -9,6 +9,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String cowboySprite = "Anim/IdleDown/Idle_1_32x32.png";
     public final String gunSprite = "weapon.png";
     public final String bulletSprite = "bullet.png";
+    public final String coltSprite = "colt.png";
     //SOUNDS
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
@@ -29,6 +30,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public void includeAssets() {
         load(cowboySprite, Texture.class);
         load(gunSprite, Texture.class);
+        load(coltSprite, Texture.class);
         load(bulletSprite, Texture.class);
         load(tilemap1Tilseset, Texture.class);
         load(mainTheme, Music.class);

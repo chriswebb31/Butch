@@ -36,6 +36,7 @@ public class ButchGame extends Game {
      //doit();
   }
 	public void doit(){
+          //create2();
 		gameViewPort = new FitViewport(1920, 1080);
 		assets = new AssetManagement();
 		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
@@ -49,24 +50,29 @@ public class ButchGame extends Game {
 	public void create () {
 		game_screen = new MainMenuScreen(this);
 		setScreen(game_screen);
-		//this.setScreen(new LoadingScreen(this, gameViewPort));
+
 	}
 
-	/**@Override
-	public void render () {
+	public void create2(){
+
+		this.setScreen(new LoadingScreen(this, gameViewPort));
+	}
+
+	//@Override
+        public void render2 () {
 		log.log();
 		GSM.update();
 		super.render();
 	}
-	*/
+
 
 	public static Vector3 mousePosition(){
 		return gameViewPort.getCamera().unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 	}
-	/**@Override
+	@Override
 	public void dispose() {
 		super.dispose();
 		assets.dispose();
 	}
-	*/
+
 }

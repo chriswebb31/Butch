@@ -18,7 +18,7 @@ public class DesktopLauncher {
 		config.useGL30 = false;
 		config.width = Math.round(ButchGame.TARGET_WIDTH);
 		config.height = Math.round(ButchGame.TARGET_HEIGHT);
-		//config.resizable = false;
+		config.resizable = false;
 		new LwjglApplication(new ButchGame(), config);
 	}
 }

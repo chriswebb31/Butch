@@ -23,8 +23,8 @@ public class ButchGame extends Game {
 
      */
 	public static final boolean DEBUG = true;
-	public static final float TARGET_WIDTH = 1600;
-	public static final float TARGET_HEIGHT = 800;
+	public static final float TARGET_WIDTH = 1920;
+	public static final float TARGET_HEIGHT = 1080;
 	private static FitViewport gameViewPort;
 	public static Engine ashleyEngine;
 	public static AssetManagement assets;

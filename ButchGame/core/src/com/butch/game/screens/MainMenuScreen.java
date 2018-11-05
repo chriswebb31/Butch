@@ -28,8 +28,8 @@ public class MainMenuScreen implements Screen {
     SpriteBatch batch;
     Texture texture_back;
     Sprite sprite_back;
-    Texture playButtonActive;
-    Texture aboutButton;
+    Sprite playButtonActive;
+    Sprite aboutButton;
     Texture needHelpButton;
     Texture settingsButton;
     int playButtonX = 809; //location where the play button will start drawing in x axis
@@ -62,10 +62,13 @@ public class MainMenuScreen implements Screen {
         sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
         sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
 
-        playButtonActive = new Texture ("Buttons/playButton.png"); // locating the play button
-        aboutButton = new Texture("Buttons/aboutButton.png"); // locating the about button
-        needHelpButton = new Texture("Buttons/needHelpButton.png"); //locating the need help button
-        settingsButton = new Texture("Buttons/settingsButton.png"); // locating the setting button
+        playButtonActive = new Sprite (new Texture("Buttons/playButtonActive.png")); // locating the play button
+        playButtonActive.flip(false, true);
+        aboutButton = new Sprite(new Texture ("Buttons/aboutButtonActive.png")); // locating the about button
+        aboutButton.flip(false,true);
+
+        needHelpButton = new Texture("Buttons/aboutButtonActive.png"); //locating the need help button
+        settingsButton = new Texture("Buttons/settingsButtonActive.png"); // locating the setting button
     }
     @Override
     public void show() {

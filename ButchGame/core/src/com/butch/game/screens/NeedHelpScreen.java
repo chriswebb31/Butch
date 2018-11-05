@@ -14,8 +14,9 @@ public class NeedHelpScreen implements Screen {
     private ButchGame game;
     private OrthographicCamera camera;
     private Texture exitButton;
+    private Texture exitButtonInactive;
     private int exitButtonX = 100; //location where the exit button will start drawing in x axis
-    private int  exitButtonY = 100; //location where the exit button will start drawing in y axis reversed!
+    private int  exitButtonY = 50; //location where the exit button will start drawing in y axis reversed!
     private int exitButtonWidth = 300; // width of exit Button
     private int exitButtonHeight = 100; // height of exit button
     private Sound sound;
@@ -24,7 +25,8 @@ public class NeedHelpScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();
-        exitButton = new Texture("Buttons/exitButton.png");
+        exitButton = new Texture("Buttons/exitButtonActive.png");
+        exitButtonInactive = new Texture("Buttons/exitButtonInactive.png");
         sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
 
     }
@@ -54,7 +56,7 @@ public class NeedHelpScreen implements Screen {
         }
 
         else{
-            batch.draw(exitButton, 100, 100, 215,71);
+            batch.draw(exitButtonInactive, 100, 100, 215,71);
         }
 
         batch.end();

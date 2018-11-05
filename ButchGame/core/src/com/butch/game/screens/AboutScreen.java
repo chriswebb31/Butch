@@ -16,16 +16,18 @@ import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 public class AboutScreen implements Screen {
     private SpriteBatch batch;
     private ButchGame game;
-    //String aboutText;
+
     private OrthographicCamera camera;
     private Texture exitButton;
+    private Texture exitButtonInactive;
     private int exitButtonX = 100; //location where the exit button will start drawing in x axis
-    private int  exitButtonY = 970; //location where the exit button will start drawing in y axis reversed!
+    private int  exitButtonY = 950; //location where the exit button will start drawing in y axis reversed!
     private int exitButtonWidth = 300; // width of exit Button
     private int exitButtonHeight = 100; // height of exit button
     private Sound sound;
     Texture back;
     Sprite backS;
+
     public AboutScreen(ButchGame game){
         this.game = game;
         camera = new OrthographicCamera();
@@ -38,8 +40,9 @@ public class AboutScreen implements Screen {
         backS.setRegionWidth(1920);
         backS.setRegionHeight(1080);
         backS.flip(false,true);
-        //aboutText = new String("bye world");
-        exitButton = new Texture("Buttons/exitButton.png");
+
+        exitButton = new Texture("Buttons/exitButtonActive.png");
+        exitButtonInactive = new Texture("Buttons/exitButtonInactive.png");
         sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
 
     }
@@ -71,7 +74,7 @@ public class AboutScreen implements Screen {
         }
 
         else{
-            batch.draw(exitButton, 100, 1080- 100, 215,71);
+            batch.draw(exitButtonInactive, 100, 980, 215,71);
         }
 
       batch.end();

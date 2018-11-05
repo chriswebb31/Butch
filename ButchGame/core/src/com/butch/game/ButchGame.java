@@ -72,7 +72,7 @@ public class ButchGame extends Game {
 	@Override
 	public void dispose() {
 		super.dispose();
-		assets.dispose();
+//		assets.dispose();
 	}
 
 }

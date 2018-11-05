@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.abstractinterface.Bullet;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.weapons.Colt;
 import com.butch.game.screens.GameScreen;

@@ -12,8 +12,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.audio.Music;
 import com.butch.game.ButchGame;
+import com.butch.game.gameobjects.BasicEnemy;
 import com.butch.game.gameobjects.Player;
-import com.butch.game.gameobjects.abstractinterface.Bullet;
+import com.butch.game.gameobjects.Bullet;
+import com.butch.game.gameobjects.abstractinterface.Enemy;
 
 public class GameScreen implements Screen {
     /*
@@ -29,6 +31,7 @@ public class GameScreen implements Screen {
     private OrthographicCamera camera; //camera for height position of render
     private float distanceDivisor = 1.5f;
     private Player player;
+    private BasicEnemy enemy;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     private Music music;
@@ -38,6 +41,7 @@ public class GameScreen implements Screen {
         this.gameViewPort = gameViewPort;
         player = new Player(this); //create new player for screen
         player.setPosition(new Vector2(0, 0)); //initilize player position
+        enemy = new BasicEnemy();
         batch = new SpriteBatch(); //create new sprite renderer
 
         //Setup camera and viewport
@@ -75,6 +79,7 @@ public class GameScreen implements Screen {
         player.update(); //player has a sprite so update then draw
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         batch.begin();// begin rendering sprites
+        Enemy.update(batch);
         player.sprite.draw(batch);//after updateing position and the plauer settings, render sprite to screen
         player.activeWeapon.gunSprite.draw(batch); //draw weapon of player
         Bullet.update(batch);

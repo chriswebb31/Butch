@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 import com.butch.game.ButchGame;
+import com.butch.game.gameobjects.Bullet;
 import com.butch.game.gameobjects.Player;
 
 public abstract class Gun {

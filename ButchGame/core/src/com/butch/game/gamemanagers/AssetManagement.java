@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
+import javax.xml.soap.Text;
+
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
     public final String cowboySprite = "Anim/IdleDown/Idle_1_32x32.png";
@@ -21,6 +23,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TileMapData
     public final String tilemap1 = "TiledFiles/desertdoodles.tmx";
     public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
+    public final String enemySprite = "enemy.png";
 
     public AssetManagement() {
 
@@ -33,6 +36,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(coltSprite, Texture.class);
         load(bulletSprite, Texture.class);
         load(tilemap1Tilseset, Texture.class);
+        load(enemySprite, Texture.class);
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
         load(gunShot, Sound.class);

@@ -1,4 +1,4 @@
-package com.butch.game.gameobjects.abstractinterface;
+package com.butch.game.gameobjects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

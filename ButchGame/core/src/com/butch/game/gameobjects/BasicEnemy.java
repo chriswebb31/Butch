@@ -1,0 +1,56 @@
+package com.butch.game.gameobjects;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.butch.game.ButchGame;
+import com.butch.game.gameobjects.abstractinterface.Enemy;
+
+public class BasicEnemy extends Enemy {
+    public boolean hasMoveTarget = false;
+    public boolean completedMove = false;
+
+    public BasicEnemy(){
+        sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
+        sprite.setScale(10);
+        position = new Vector2(0,0);
+        speed = 4;
+        moveRadius = 400;
+    }
+
+    @Override
+    public void attack() {
+
+    }
+
+    @Override
+    public void createMove() {
+        Vector2 randomMoveAmount = randomV2(moveRadius);
+        moveTarget = new Vector2(this.position.x + randomMoveAmount.x, this.position.y + randomMoveAmount.y);
+        hasMoveTarget = true;
+        completedMove = false;
+    }
+
+    @Override
+    public void render(SpriteBatch spriteBatch) {
+        if(completedMove || !hasMoveTarget){
+            createMove();
+        }
+        if(hasMoveTarget && !completedMove){
+            float distance = (float) Math.hypot(this.position.x-moveTarget.x, this.position.y-moveTarget.y);
+            if(distance <= 5){
+                completedMove = true;
+            }else{
+                move();
+            }
+        }
+        sprite.draw(spriteBatch);
+    }
+
+    private void move() {
+        Vector2 velocity = new Vector2(moveTarget.x - this.position.x, moveTarget.y - this.position.y).nor();
+        this.position = new Vector2(this.position.x + (velocity.x * speed), this.position.y + (velocity.y * speed));
+        sprite.setPosition(this.position.x, this.position.y);
+    }
+}

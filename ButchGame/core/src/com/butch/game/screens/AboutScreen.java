@@ -58,8 +58,8 @@ public class AboutScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-      batch.begin();
-       batch.draw(backS, 0, 0 );
+        batch.begin();
+        batch.draw(backS, 0, 0 );
         if(Gdx.input.getX()>=  exitButtonX && Gdx.input.getX() <= exitButtonWidth + exitButtonX && Gdx.input.getY()
                 >= exitButtonY && Gdx.input.getY() < exitButtonY + exitButtonHeight ) {
 

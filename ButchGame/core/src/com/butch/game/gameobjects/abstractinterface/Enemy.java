@@ -2,6 +2,7 @@ package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Random;
 
 public abstract class Enemy {
     public static ArrayList<Enemy> enemies;
+    public Rectangle collider;
     public Sprite sprite;
     public Vector2 position;
     public Vector2 playerTarget;
@@ -27,7 +29,11 @@ public abstract class Enemy {
 
     public abstract void attack();
 
+    public abstract void takeDamage(int ammoType);
+
     public  abstract void createMove();
+
+    public abstract void handleMovement();
 
     public abstract void render(SpriteBatch spriteBatch);
 

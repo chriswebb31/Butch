@@ -3,13 +3,16 @@ package com.butch.game.gameobjects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
+import com.butch.game.gameobjects.abstractinterface.Enemy;
 
 import java.util.ArrayList;
 
 public class Bullet {
     public static ArrayList<Bullet> bullets;
+    public Rectangle collider;
     public Vector2 position;
     public Vector2 direction;
     public Vector2 velocity;
@@ -41,7 +44,9 @@ public class Bullet {
                 activeSprite = shotgunBulletSprite;
                 this.velocity = new Vector2(this.direction.x * shotgunSpeed, this.direction.y * shotgunSpeed);
         }
-        activeSprite.setScale(5);
+        activeSprite.setScale(10);
+        this.collider = new Rectangle(this.position.x, this.position.y, this.activeSprite.getWidth() * 10, this.activeSprite.getHeight() * 10);
+
         addBullet(this);
     }
 
@@ -56,7 +61,13 @@ public class Bullet {
             for (Bullet bullet: bullets) {
                 bullet.position = new Vector2(bullet.position.x + bullet.velocity.x, bullet.position.y + bullet.velocity.y);
                 bullet.activeSprite.setPosition(bullet.position.x, bullet.position.y);
+                bullet.collider.setPosition(bullet.position.x, bullet.position.y);
                 bullet.activeSprite.draw(spriteBatch);
+                for (Enemy enemy: Enemy.enemies) {
+                    if(bullet.collider.overlaps(enemy.collider)){
+                        enemy.takeDamage(bullet.ammoType);
+                    }
+                }
             }
         } catch (NullPointerException e){
             e.printStackTrace();

@@ -16,9 +16,10 @@ public class BasicEnemy extends Enemy {
         sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
         sprite.setScale(10);
         position = new Vector2(0,0);
-        collider = new Rectangle(this.position.x, this.position.y, sprite.getWidth() * 10, sprite.getHeight() * 10);
+        collider = new Rectangle(this.position.x, this.position.y, sprite.getWidth() * 5, sprite.getHeight() * 5);
         speed = 4;
         moveRadius = 400;
+        health = 100;
     }
 
     @Override
@@ -52,12 +53,23 @@ public class BasicEnemy extends Enemy {
     @Override
     public void render(SpriteBatch spriteBatch) {
         handleMovement();
-        sprite.draw(spriteBatch);
+        if(health > 0){
+            sprite.draw(spriteBatch);
+        }
     }
 
     @Override
     public void takeDamage(int ammoType){
         System.out.println("OUCHIE");
+
+//        switch (ammoType){
+//            case 0:
+//                health -= 15;
+//            case 1:
+//                health -= 40;
+//            case 2:
+//                health -= 100;
+//        }
     }
 
     private void move() {

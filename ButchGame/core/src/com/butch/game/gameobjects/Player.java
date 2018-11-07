@@ -63,7 +63,7 @@ public class Player {
         this.playerBulletsFired = new ArrayList <Bullet> (); // set bullet list to empty
     }
 
-    public void update() {
+    public void update(float delta) {
         inputHandler(); //GET NEW INPUT EVENTS RELATED TO THIS CLASS
         movementHandler(); //UPDATE PLAYER VELOCITY AND POSITION
         flipHandler(); //USE VELOCITY TO DECIDE ON DIRECTION
@@ -134,8 +134,6 @@ public class Player {
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             activeWeapon.Shoot();
-//            System.out.print("CLIP: " + this.activeWeapon.clip + " ");
-//            System.out.print("RESERVE: " + this.activeWeapon.reserve);
         }
     }
 

@@ -3,7 +3,6 @@ package com.butch.game.gameobjects.abstractinterface;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Timer;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Bullet;
 import com.butch.game.gameobjects.Player;
@@ -17,7 +16,8 @@ public abstract class Gun {
     public int reserve = 0;
     public float fireRate = 0;
     public float reloadSpeed = 0;
-    public int gunType = 1;
+    public int gunType = 0;
+
 
     //VARS FOR METHODS
     public int clip = 0;
@@ -27,6 +27,10 @@ public abstract class Gun {
 
     public Sound gunShotSound;
     public boolean oneHanded;
+
+    private long lastShot = System.currentTimeMillis() - (long) (fireRate * 1000);
+    private long lastReload = System.currentTimeMillis() - (long) (reloadSpeed * 1000);
+
 //    public Sound reloadSound;
 
     public Gun(Player player){
@@ -34,38 +38,33 @@ public abstract class Gun {
     }
 
     public void Shoot(){
-        try{
-            if((clip > 0) && (!isShooting) && (!isReloading)){
-                System.out.println((clip > 0) + " " + (!isShooting) + " " + (!isReloading));
-//                gunShotSound.play(0.8f);
-                isShooting = true;
-                switch (gunType){
-                    case 0:
-                        break;
-                    case 1:
-                        Bullet newShot = new Bullet(this.position,player.getAimDirection(),true, 0);
-                        System.out.println("BANG");
-                }
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        clip -= 1;
-                        isShooting = false;
-                    }
-                }, fireRate);
-            }
-            else if(clip <= 0){
-                isReloading = true;
-//            reloadSound.play(0.8f);
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
+        long thisShot = System.currentTimeMillis();
+        long thisReload = System.currentTimeMillis();
+
+        if ((thisShot - lastShot) >= (long) (fireRate *1000)) {
+
+            try {
+                if ((clip > 0) && (!isReloading)) {
+                    System.out.println((clip > 0) + " " + (!isReloading));
+                    gunShotSound.play(0.8f);
+                    Bullet newShot = new Bullet(this.position, player.getAimDirection(), true, gunType);
+                    lastShot = thisShot;
+                    clip -= 1;
+
+                    System.out.println("BANG");
+                    System.out.println("clip:"+clip);
+                } else if (clip <= 0) {
+                    isReloading = true;
+
+                    if((thisReload - lastReload) >= (long) (reloadSpeed * 1000)){
                         Reload();
+                        isReloading = false;
+                        lastReload = thisReload;
                     }
-                }, reloadSpeed);
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
-        } catch (NullPointerException e){
-            System.out.println(e.getCause());
         }
     }
 
@@ -78,7 +77,6 @@ public abstract class Gun {
             reserve = 0;
         }
         isReloading = false;
-        isShooting = false;
     }
 
     public void Update(){
@@ -90,7 +88,6 @@ public abstract class Gun {
             this.gunSprite.setRotation(angle);
             this.gunSprite.setPosition(position.x, position.y);
         } catch (NullPointerException e){
-            System.out.println("here m8");
             System.out.println(e);
         }
     }

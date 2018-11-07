@@ -32,6 +32,7 @@ public class GameScreen implements Screen {
     private float distanceDivisor = 1.5f;
     private Player player;
     private BasicEnemy enemy;
+    private BasicEnemy enemy2;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     private Music music;
@@ -42,6 +43,7 @@ public class GameScreen implements Screen {
         player = new Player(this); //create new player for screen
         player.setPosition(new Vector2(0, 0)); //initilize player position
         enemy = new BasicEnemy();
+        enemy2 = new BasicEnemy();
         batch = new SpriteBatch(); //create new sprite renderer
 
         //Setup camera and viewport
@@ -76,7 +78,7 @@ public class GameScreen implements Screen {
         orthogonalTiledMapRenderer.render();//draw tilemap before sprites to save correct z-index of sprites
 
         //batch is sprite renderer, other sprites go here
-        player.update(); //player has a sprite so update then draw
+        player.update(delta); //player has a sprite so update then draw
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         batch.begin();// begin rendering sprites
         Enemy.update(batch);

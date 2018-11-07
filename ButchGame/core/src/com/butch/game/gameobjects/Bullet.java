@@ -24,7 +24,8 @@ public class Bullet {
     public Sprite rifleBulletSprite = new Sprite(ButchGame.assets.get(ButchGame.assets.bulletSprite, Texture.class));; // 1
     public Sprite shotgunBulletSprite = new Sprite(ButchGame.assets.get(ButchGame.assets.bulletSprite, Texture.class));; // 2
     public Sprite activeSprite;
-    public int ammoType;
+    public int ammoType; //0:pistol 1:rifle 2:shotgun
+    public boolean active = true;
 
     public Bullet(Vector2 start, Vector2 direction, boolean freindly, int ammoType){
         if(bullets == null)
@@ -59,18 +60,23 @@ public class Bullet {
             initArray();
         try{
             for (Bullet bullet: bullets) {
-                bullet.position = new Vector2(bullet.position.x + bullet.velocity.x, bullet.position.y + bullet.velocity.y);
-                bullet.activeSprite.setPosition(bullet.position.x, bullet.position.y);
-                bullet.collider.setPosition(bullet.position.x, bullet.position.y);
-                bullet.activeSprite.draw(spriteBatch);
-                for (Enemy enemy: Enemy.enemies) {
-                    if(bullet.collider.overlaps(enemy.collider)){
-                        enemy.takeDamage(bullet.ammoType);
+                if(bullet.active){
+                    bullet.position = new Vector2(bullet.position.x + bullet.velocity.x, bullet.position.y + bullet.velocity.y);
+                    bullet.activeSprite.setPosition(bullet.position.x, bullet.position.y);
+                    bullet.collider.setPosition(bullet.position.x, bullet.position.y);
+                    bullet.activeSprite.draw(spriteBatch);
+                    for (Enemy enemy: Enemy.enemies) {
+                        if(bullet.collider.overlaps(enemy.collider)){
+                            enemy.takeDamage(bullet.ammoType);
+                            bullet.active = false;
+                        }
                     }
                 }
             }
         } catch (NullPointerException e){
-            e.printStackTrace();
+            e.printStackTrace();//                            bullets.remove(bullet);
+            System.out.println("ping");
+
         }
     }
 

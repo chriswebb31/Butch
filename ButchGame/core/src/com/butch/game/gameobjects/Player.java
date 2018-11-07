@@ -9,9 +9,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.weapons.MachineGun;
+import com.butch.game.gameobjects.weapons.Colt;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Player {
@@ -37,6 +39,7 @@ public class Player {
     private boolean canMove = true; //Possible reason to block input receiving
     private float speed;
     private ArrayList <Gun> gunInventory; //current weapons, will create weapon cycle function
+    private Iterator <Gun> gunInvIterator;
 
     public Gun activeWeapon;
     private Vector2 leftHandIKoffset = new Vector2().setZero();
@@ -56,10 +59,12 @@ public class Player {
         this.playerCollider = new Rectangle(this.position.x, this.position.y, this.sprite.getWidth(), this.sprite.getHeight());
 
         this.gunInventory = new ArrayList <Gun> (); //clear player weapons
-        this.gunInventory.add(new MachineGun(this)); //give player a new colt
+        this.gunInventory.add(new MachineGun(this)); //give player a new machine gun
+        this.gunInventory.add(new Colt(this));
 
 
         this.activeWeapon = gunInventory.get(0); //revolver as nothing else in array
+        this.gunInvIterator = gunInventory.iterator();
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
         this.playerBulletsFired = new ArrayList <Bullet> (); // set bullet list to empty
@@ -69,6 +74,7 @@ public class Player {
         inputHandler(); //GET NEW INPUT EVENTS RELATED TO THIS CLASS
         movementHandler(); //UPDATE PLAYER VELOCITY AND POSITION
         flipHandler(); //USE VELOCITY TO DECIDE ON DIRECTION
+
 
         sprite.setPosition(position.x, position.y); // after updating local position, apply to sprite
         activeWeapon.Update(); //move hand
@@ -118,6 +124,7 @@ public class Player {
     }
 
     private void inputHandler() {
+
         if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 0;
         }
@@ -145,6 +152,15 @@ public class Player {
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             activeWeapon.Shoot();
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+            if (gunInvIterator.hasNext()) {
+                System.out.println(gunInvIterator.next());
+                activeWeapon = gunInvIterator.next();
+            } else {
+                gunInvIterator = gunInventory.iterator();
+                activeWeapon = gunInventory.get(0);
+            }
         }
     }
 

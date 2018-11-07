@@ -112,6 +112,7 @@ public class Player {
             } else {
                 velocity.x = 0;
             }
+//            this.playerCollider.setPosition(this.position.x + velocity.x, this.position.y + velocity.y); //velocity add to current position, to simulate movement
 
             for (Rectangle rectangle:gameScreen.getColliders()) {
                 if (playerCollider.overlaps(rectangle)){
@@ -130,11 +131,11 @@ public class Player {
                         velocity.x = clamp(velocity.x, 0, 1);
                     }
                     if(intersector.y + intersector.height < playerCollider.y + playerCollider.height){
-                        velocity.x = clamp(velocity.y, 0, 1);
+                        velocity.y = clamp(velocity.y, 0, 1);
                     }
                 }
             }
-
+//            this.playerCollider.setPosition(this.position.x + velocity.x, this.position.y + velocity.y); //velocity add to current position, to simulate movement
             this.position = new Vector2(this.position.x + velocity.x * speed, this.position.y + velocity.y * speed); //velocity add to current position, to simulate movement
 
         }

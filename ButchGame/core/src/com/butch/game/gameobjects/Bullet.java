@@ -7,10 +7,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Enemy;
+import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
 
 public class Bullet {
+    public static GameScreen game;
     public static ArrayList<Bullet> bullets;
     public Rectangle collider;
     public Vector2 position;
@@ -27,10 +29,11 @@ public class Bullet {
     public int ammoType; //0:pistol 1:rifle 2:shotgun
     public boolean active = true;
 
-    public Bullet(Vector2 start, Vector2 direction, boolean freindly, int ammoType){
+    public Bullet(GameScreen game, Vector2 start, Vector2 direction, boolean freindly, int ammoType){
         if(bullets == null)
             initArray();
-        
+
+        this.game = game;
         this.position = start;
         this.direction = direction.nor();
         this.ammoType = ammoType;
@@ -76,7 +79,7 @@ public class Bullet {
                 }
             }
         } catch (NullPointerException e){
-            e.printStackTrace();//                            bullets.remove(bullet);
+            e.printStackTrace();
             System.out.println("ping");
 
         }

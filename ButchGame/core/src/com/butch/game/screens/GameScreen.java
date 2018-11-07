@@ -34,6 +34,7 @@ public class GameScreen implements Screen {
      */
     public ButchGame game; //reference to libgdx main game class
     public SpriteBatch batch; //sprite renderer
+    public SpriteBatch hudBatch;
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     private OrthographicCamera camera; //camera for height position of render
     private float distanceDivisor = 1.5f;
@@ -58,6 +59,7 @@ public class GameScreen implements Screen {
         enemy2 = new BasicEnemy();
         enemy2.position = new Vector2(6960.0f,8630.0f);
         batch = new SpriteBatch(); //create new sprite renderer
+        hudBatch = new SpriteBatch();
 
         //Setup camera and viewport
         camera = new OrthographicCamera(); //create new camera
@@ -65,9 +67,7 @@ public class GameScreen implements Screen {
         camera.zoom = 1.5f; //set camera height
         tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
-
         shapeRenderer = new ShapeRenderer();
-
 
         MapObjects mapObjects = tiledMap.getLayers().get(3).getObjects();
         mapColliders = new ArrayList<Rectangle>();
@@ -122,6 +122,17 @@ public class GameScreen implements Screen {
         shapeRenderer.setColor(Color.CYAN);
         for (Rectangle collider: mapColliders) {
             shapeRenderer.rect(collider.x,collider.y,collider.width,collider.height);
+        }
+        shapeRenderer.setColor(Color.LIME);
+        shapeRenderer.rect(player.playerCollider.x, player.playerCollider.y, player.playerCollider.width, player.playerCollider.height);
+
+        try{
+            if(player.intersector != null){
+                shapeRenderer.setColor(Color.PINK);
+                shapeRenderer.rect(player.intersector.x, player.intersector.y, player.intersector.width, player.intersector.height);
+            }
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
         shapeRenderer.end();
     }

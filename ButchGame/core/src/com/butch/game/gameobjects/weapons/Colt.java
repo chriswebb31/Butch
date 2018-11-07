@@ -6,11 +6,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.screens.GameScreen;
 
 public class Colt extends Gun {
 
-    public Colt(Player player) {
-        super(player);
+    public Colt(Player player, GameScreen game) {
+        super(player, game);
         this.clipSize = 6;
         this.gunType = 0;
         this.reserve = 80;

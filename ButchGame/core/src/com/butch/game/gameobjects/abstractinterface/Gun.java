@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Bullet;
 import com.butch.game.gameobjects.Player;
+import com.butch.game.screens.GameScreen;
 
 import java.util.Random;
 
@@ -34,10 +35,11 @@ public abstract class Gun {
 
     private long lastShot = System.currentTimeMillis() - (long) (fireRate * 1000);
     private long lastReload = System.currentTimeMillis() - (long) (reloadSpeed * 1000);
+    private GameScreen game;
 
 //    public Sound reloadSound;
 
-    public Gun(Player player){
+    public Gun(Player player, GameScreen game){
         this.player = player;
     }
 
@@ -62,7 +64,7 @@ public abstract class Gun {
             try {
                 if ((clip > 0) && (!isReloading)) {
                     gunShotSound.play(0.8f);
-                    Bullet newShot = new Bullet(this.position, this.aimDirection(), true, gunType);
+                    Bullet newShot = new Bullet(this.game, this.position, this.aimDirection(), true, gunType);
                     lastShot = thisShot;
                     clip -= 1;
                 } else if (clip <= 0) {
@@ -70,6 +72,9 @@ public abstract class Gun {
                         lastReload = System.currentTimeMillis();
 
                     isReloading = true;
+                    Reload();
+                } else if((clip < 0) && isReloading){
+                    lastReload = System.currentTimeMillis();
                     Reload();
                 }
             } catch (NullPointerException e) {

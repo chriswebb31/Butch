@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
@@ -14,6 +15,7 @@ import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class Player {
@@ -44,8 +46,8 @@ public class Player {
     public Gun activeWeapon;
     private Vector2 leftHandIKoffset = new Vector2().setZero();
     private Vector2 rightHandIKoffset = new Vector2().setZero();
-    private Rectangle playerCollider;
-
+    public Rectangle playerCollider;
+    public Rectangle intersector;
     //MANAGERS
     private static GameScreen gameScreen;
 
@@ -56,11 +58,11 @@ public class Player {
         this.speed = 5.0f; //PLAYER SPEED MODIFIER
         this.sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class)); //GET ASSETS FROM ASSET MANAGER
         this.sprite.setScale(10); //mulitply sprite size by 10 as larger numbers are easier to deal with / could move camera down and scale movemmen?
-        this.playerCollider = new Rectangle(this.position.x, this.position.y, this.sprite.getWidth(), this.sprite.getHeight());
-
+        this.playerCollider = new Rectangle(this.sprite.getOriginX(), this.sprite.getOriginY(), this.sprite.getBoundingRectangle().width / 3, this.sprite.getBoundingRectangle().height / 1.5f);
         this.gunInventory = new ArrayList <Gun> (); //clear player weapons
-        this.gunInventory.add(new MachineGun(this)); //give player a new machine gun
-        this.gunInventory.add(new Colt(this));
+        this.gunInventory.add(new MachineGun(this, gameScreen)); //give player a new machine gun
+        this.gunInventory.add(new Colt(this, gameScreen));
+        this.gunInventory.add(new MachineGun(this, gameScreen)); //give player a new colt
 
 
         this.activeWeapon = gunInventory.get(0); //revolver as nothing else in array
@@ -77,6 +79,7 @@ public class Player {
 
 
         sprite.setPosition(position.x, position.y); // after updating local position, apply to sprite
+        this.playerCollider.setPosition(sprite.getBoundingRectangle().x + (sprite.getBoundingRectangle().width/3), sprite.getBoundingRectangle().y + (sprite.getBoundingRectangle().height/4.5f));
         activeWeapon.Update(); //move hand
         for (Bullet bullet: this.playerBulletsFired) { //for all fired bullets update them
             bullet.update(gameScreen.batch);
@@ -110,17 +113,35 @@ public class Player {
                 velocity.x = 0;
             }
 
-            this.position = new Vector2(this.position.x + velocity.x * speed, this.position.y + velocity.y * speed); //velocity add to current position, to simulate movement
-            this.playerCollider.setPosition(this.position.x,this.position.y);
-
             for (Rectangle rectangle:gameScreen.getColliders()) {
                 if (playerCollider.overlaps(rectangle)){
-                    System.out.println("oopsie");
+                    intersector = new Rectangle();
+                    Intersector.intersectRectangles(playerCollider,rectangle,intersector);
+                    if(intersector.x > playerCollider.x){
+                        //Intersects with right side
+                        velocity.x = clamp(velocity.x, -1, 0);
+                    }
+                    if(intersector.y > playerCollider.y){
+                            //Intersects with top side
+                        velocity.y = clamp(velocity.y, -1, 0);
+                    }
+                    if(intersector.x + intersector.width < playerCollider.x + playerCollider.width) {
+                        //Intersects with left side
+                        velocity.x = clamp(velocity.x, 0, 1);
+                    }
+                    if(intersector.y + intersector.height < playerCollider.y + playerCollider.height){
+                        velocity.x = clamp(velocity.y, 0, 1);
+                    }
                 }
             }
 
+            this.position = new Vector2(this.position.x + velocity.x * speed, this.position.y + velocity.y * speed); //velocity add to current position, to simulate movement
 
         }
+    }
+
+    public static float clamp(float val, float min, float max) {
+        return Math.max(min, Math.min(max, val));
     }
 
     private void inputHandler() {
@@ -154,12 +175,16 @@ public class Player {
             activeWeapon.Shoot();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            if (gunInvIterator.hasNext()) {
-                System.out.println(gunInvIterator.next());
-                activeWeapon = gunInvIterator.next();
-            } else {
-                gunInvIterator = gunInventory.iterator();
-                activeWeapon = gunInventory.get(0);
+            try {
+                if (gunInvIterator.hasNext()) {
+                    System.out.println(gunInvIterator.next());
+                    activeWeapon = gunInvIterator.next();
+                } else {
+                    gunInvIterator = gunInventory.iterator();
+                    activeWeapon = gunInventory.get(0);
+                }
+            } catch (NoSuchElementException w){
+                w.printStackTrace();
             }
         }
     }

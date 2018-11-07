@@ -7,6 +7,8 @@ import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Bullet;
 import com.butch.game.gameobjects.Player;
 
+import java.util.Random;
+
 public abstract class Gun {
     //VARS FROM CONSTRUCTOR
     public Player player;
@@ -28,6 +30,8 @@ public abstract class Gun {
     public Sound gunShotSound;
     public boolean oneHanded;
 
+    public float accuracy;
+
     private long lastShot = System.currentTimeMillis() - (long) (fireRate * 1000);
     private long lastReload = System.currentTimeMillis() - (long) (reloadSpeed * 1000);
 
@@ -37,19 +41,30 @@ public abstract class Gun {
         this.player = player;
     }
 
+    public Vector2 aimDirection(){
+        Vector2 aimDir = player.getAimDirection();
+        System.out.println(aimDir);
+        Random random = new Random();
+        float min = -accuracy;
+        float max = accuracy;
+        float x = min + random.nextFloat() * (max - min);
+        float y = min + random.nextFloat() * (max - min);
+
+        aimDir = new Vector2(aimDir.x + x, aimDir.y + y);
+        System.out.println(aimDir);
+        return aimDir;
+    }
+
     public void Shoot(){
         long thisShot = System.currentTimeMillis();
 
         if ((thisShot - lastShot) >= (long) (fireRate *1000)) {
             try {
                 if ((clip > 0) && (!isReloading)) {
-                    System.out.println((clip > 0) + " " + (!isReloading));
                     gunShotSound.play(0.8f);
-                    Bullet newShot = new Bullet(this.position, player.getAimDirection(), true, gunType);
+                    Bullet newShot = new Bullet(this.position, this.aimDirection(), true, gunType);
                     lastShot = thisShot;
                     clip -= 1;
-                    System.out.println("BANG");
-                    System.out.println("clip:"+clip);
                 } else if (clip <= 0) {
                     if (!isReloading)
                         lastReload = System.currentTimeMillis();
@@ -65,11 +80,8 @@ public abstract class Gun {
 
     public void Reload(){
         long thisReload = System.currentTimeMillis();
-        System.out.println("this reload:" + thisReload);
-        System.out.println("last reload:" + lastReload);
         System.out.println(reloadSpeed * 1000);
         if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
-            System.out.println("reload!");
             if(this.reserve >= clipSize){
                 clip = clipSize;
                 reserve -= clipSize;
@@ -86,7 +98,11 @@ public abstract class Gun {
         Vector2 targetDir = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         float angle = (float) Math.atan2(targetDir.y - gunSprite.getY(), targetDir.x - gunSprite.getX());
         angle = (float) Math.toDegrees(angle);
-        position = player.weaponPosition();
+        if(this.oneHanded)
+            position = player.weaponPosition();
+        else{
+            position = player.position;
+        }
         try{
             this.gunSprite.setRotation(angle);
             this.gunSprite.setPosition(position.x, position.y);

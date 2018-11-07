@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
-import com.butch.game.gameobjects.weapons.Colt;
+import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class Player {
 
 
         this.gunInventory = new ArrayList <Gun> (); //clear player weapons
-        this.gunInventory.add(new Colt(this)); //give player a new colt
+        this.gunInventory.add(new MachineGun(this)); //give player a new colt
 
 
         this.activeWeapon = gunInventory.get(0); //revolver as nothing else in array

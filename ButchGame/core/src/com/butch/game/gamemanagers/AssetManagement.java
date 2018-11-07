@@ -1,10 +1,8 @@
 package com.butch.game.gamemanagers;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-
-import javax.xml.soap.Text;
+import com.badlogic.gdx.graphics.Texture;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
@@ -12,6 +10,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String gunSprite = "weapon.png";
     public final String bulletSprite = "bullet.png";
     public final String coltSprite = "colt.png";
+    public final String machineGunSprite = "machineGun.png";
     //SOUNDS
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
@@ -34,6 +33,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(cowboySprite, Texture.class);
         load(gunSprite, Texture.class);
         load(coltSprite, Texture.class);
+        load(machineGunSprite, Texture.class);
         load(bulletSprite, Texture.class);
         load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);

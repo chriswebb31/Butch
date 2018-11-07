@@ -7,20 +7,21 @@ import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 
-public class Colt extends Gun {
+public class MachineGun extends Gun {
 
-    public Colt(Player player) {
+    public MachineGun(Player player) {
         super(player);
-        this.clipSize = 6;
+        this.clipSize = 25;
         this.gunType = 0;
-        this.reserve = 80;
-        this.fireRate = 0.25f;
-        this.reloadSpeed = 1.5f;
-        this.clip = 6;
+        this.reserve = 100;
+        this.clip = 25;
+        this.fireRate = 0.2f;
+        this.reloadSpeed = 2;
         this.isReloading = false;
+        this.accuracy = 100;
         this.isShooting = false;
-        this.oneHanded = true;
-        this.gunSprite = new Sprite(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class));
+        this.oneHanded = false;
+        this.gunSprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
         this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
         this.gunSprite.setScale(10);
     }

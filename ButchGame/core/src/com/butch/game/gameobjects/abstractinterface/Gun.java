@@ -39,10 +39,8 @@ public abstract class Gun {
 
     public void Shoot(){
         long thisShot = System.currentTimeMillis();
-        long thisReload = System.currentTimeMillis();
 
         if ((thisShot - lastShot) >= (long) (fireRate *1000)) {
-
             try {
                 if ((clip > 0) && (!isReloading)) {
                     System.out.println((clip > 0) + " " + (!isReloading));
@@ -50,17 +48,14 @@ public abstract class Gun {
                     Bullet newShot = new Bullet(this.position, player.getAimDirection(), true, gunType);
                     lastShot = thisShot;
                     clip -= 1;
-
                     System.out.println("BANG");
                     System.out.println("clip:"+clip);
                 } else if (clip <= 0) {
-                    isReloading = true;
+                    if (!isReloading)
+                        lastReload = System.currentTimeMillis();
 
-                    if((thisReload - lastReload) >= (long) (reloadSpeed * 1000)){
-                        Reload();
-                        isReloading = false;
-                        lastReload = thisReload;
-                    }
+                    isReloading = true;
+                    Reload();
                 }
             } catch (NullPointerException e) {
                 e.printStackTrace();
@@ -69,14 +64,22 @@ public abstract class Gun {
     }
 
     public void Reload(){
-        if(this.reserve >= clipSize){
-            clip = clipSize;
-            reserve -= clipSize;
-        } else{
-            clip = reserve;
-            reserve = 0;
+        long thisReload = System.currentTimeMillis();
+        System.out.println("this reload:" + thisReload);
+        System.out.println("last reload:" + lastReload);
+        System.out.println(reloadSpeed * 1000);
+        if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
+            System.out.println("reload!");
+            if(this.reserve >= clipSize){
+                clip = clipSize;
+                reserve -= clipSize;
+            } else{
+                clip = reserve;
+                reserve = 0;
+            }
+            isReloading = false;
+            lastReload = thisReload;
         }
-        isReloading = false;
     }
 
     public void Update(){

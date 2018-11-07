@@ -118,7 +118,7 @@ public class GameScreen implements Screen {
         batch.end(); //no more sprites to render
 
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.CYAN);
         for (Rectangle collider: mapColliders) {
             shapeRenderer.rect(collider.x,collider.y,collider.width,collider.height);

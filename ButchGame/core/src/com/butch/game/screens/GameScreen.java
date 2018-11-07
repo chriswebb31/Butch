@@ -2,20 +2,27 @@ package com.butch.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.audio.Music;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.BasicEnemy;
-import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.Bullet;
+import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Enemy;
+
+import java.util.ArrayList;
 
 public class GameScreen implements Screen {
     /*
@@ -35,6 +42,8 @@ public class GameScreen implements Screen {
     private BasicEnemy enemy2;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
+    private ArrayList<Rectangle> mapColliders;
+    private ShapeRenderer shapeRenderer;
     private Music music;
 
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
@@ -42,6 +51,8 @@ public class GameScreen implements Screen {
         this.gameViewPort = gameViewPort;
         player = new Player(this); //create new player for screen
         player.setPosition(new Vector2(6960.0f,8630.0f)); //initilize player position
+//        player.setPosition(new Vector2(0,0)); //initilize player position
+
         enemy = new BasicEnemy();
         enemy.position = new Vector2(6960.0f,8630.0f);
         enemy2 = new BasicEnemy();
@@ -54,6 +65,23 @@ public class GameScreen implements Screen {
         camera.zoom = 1.5f; //set camera height
         tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
+
+        shapeRenderer = new ShapeRenderer();
+
+
+        MapObjects mapObjects = tiledMap.getLayers().get(3).getObjects();
+        mapColliders = new ArrayList<Rectangle>();
+        for(RectangleMapObject rectangleMapObject : mapObjects.getByType(RectangleMapObject.class)){
+            float newX = rectangleMapObject.getRectangle().x * 10;
+            float newY = rectangleMapObject.getRectangle().y * 10;
+            float newWidth = rectangleMapObject.getRectangle().width * 10;
+            float newHeight = rectangleMapObject.getRectangle().height * 10;
+            Rectangle collider = new Rectangle(newX, newY, newWidth, newHeight);
+
+            mapColliders.add(collider);
+            System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
+        }
+
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
 
         gameViewPort.setCamera(camera); //set main camera
@@ -88,7 +116,14 @@ public class GameScreen implements Screen {
         player.activeWeapon.gunSprite.draw(batch); //draw weapon of player
         Bullet.update(batch);
         batch.end(); //no more sprites to render
-        System.out.println("pos:" + player.position);
+
+        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.CYAN);
+        for (Rectangle collider: mapColliders) {
+            shapeRenderer.rect(collider.x,collider.y,collider.width,collider.height);
+        }
+        shapeRenderer.end();
     }
 
     private void updateCameraPosition() {
@@ -123,5 +158,9 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public ArrayList<Rectangle> getColliders() {
+        return mapColliders;
     }
 }

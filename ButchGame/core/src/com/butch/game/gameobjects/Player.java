@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -40,6 +41,7 @@ public class Player {
     public Gun activeWeapon;
     private Vector2 leftHandIKoffset = new Vector2().setZero();
     private Vector2 rightHandIKoffset = new Vector2().setZero();
+    private Rectangle playerCollider;
 
     //MANAGERS
     private static GameScreen gameScreen;
@@ -51,7 +53,7 @@ public class Player {
         this.speed = 5.0f; //PLAYER SPEED MODIFIER
         this.sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class)); //GET ASSETS FROM ASSET MANAGER
         this.sprite.setScale(10); //mulitply sprite size by 10 as larger numbers are easier to deal with / could move camera down and scale movemmen?
-
+        this.playerCollider = new Rectangle(this.position.x, this.position.y, this.sprite.getWidth(), this.sprite.getHeight());
 
         this.gunInventory = new ArrayList <Gun> (); //clear player weapons
         this.gunInventory.add(new MachineGun(this)); //give player a new colt
@@ -103,6 +105,15 @@ public class Player {
             }
 
             this.position = new Vector2(this.position.x + velocity.x * speed, this.position.y + velocity.y * speed); //velocity add to current position, to simulate movement
+            this.playerCollider.setPosition(this.position.x,this.position.y);
+
+            for (Rectangle rectangle:gameScreen.getColliders()) {
+                if (playerCollider.overlaps(rectangle)){
+                    System.out.println("oopsie");
+                }
+            }
+
+
         }
     }
 

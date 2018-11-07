@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-up" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#eabe5c" nextlayerid="10" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-up" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#eabe5c" nextlayerid="12" nextobjectid="10">
  <tileset firstgid="1" name="desertdoodles" tilewidth="16" tileheight="16" tilecount="108" columns="12">
   <image source="desertdoodles.png" width="192" height="144"/>
  </tileset>
@@ -315,4 +315,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="11" name="collision">
+  <object id="3" x="628.5" y="597.75" width="38.5" height="33.5"/>
+  <object id="4" x="694.5" y="596.5" width="50.25" height="53"/>
+  <object id="5" x="772" y="709" width="40" height="35.5"/>
+  <object id="6" x="772" y="757.75" width="39.25" height="35.25"/>
+  <object id="7" x="625.25" y="721.5" width="13.25" height="13"/>
+  <object id="8" x="624.75" y="705.25" width="13.5" height="12.5"/>
+  <object id="9" x="545" y="640.5" width="45.75" height="46.25"/>
+ </objectgroup>
 </map>

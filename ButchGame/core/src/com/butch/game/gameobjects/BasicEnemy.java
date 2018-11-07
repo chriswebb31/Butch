@@ -56,20 +56,22 @@ public class BasicEnemy extends Enemy {
         if(health > 0){
             sprite.draw(spriteBatch);
         }
+        else{
+            this.active = false;
+        }
     }
 
     @Override
     public void takeDamage(int ammoType){
-        System.out.println("OUCHIE");
-
-//        switch (ammoType){
-//            case 0:
-//                health -= 15;
-//            case 1:
-//                health -= 40;
-//            case 2:
-//                health -= 100;
-//        }
+        switch (ammoType){
+            case 0:
+                health -= 15;
+            case 1:
+                health -= 40;
+            case 2:
+                health -= 100;
+        }
+        System.out.println("Health:" + health);
     }
 
     private void move() {

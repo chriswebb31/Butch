@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public abstract class Enemy {
     public static ArrayList<Enemy> enemies;
@@ -19,12 +18,14 @@ public abstract class Enemy {
     public float speed;
     public float health;
     public float stamina;
+    public boolean active;
 
     public Enemy(){
         if(enemies == null)
             enemies = new ArrayList<Enemy>();
 
         enemies.add(this);
+        this.active = true;
     }
 
     public abstract void attack();

@@ -58,6 +58,7 @@ public class Bullet {
     public static void update(SpriteBatch spriteBatch){
         if(bullets == null)
             initArray();
+
         try{
             for (Bullet bullet: bullets) {
                 if(bullet.active){
@@ -66,8 +67,9 @@ public class Bullet {
                     bullet.collider.setPosition(bullet.position.x, bullet.position.y);
                     bullet.activeSprite.draw(spriteBatch);
                     for (Enemy enemy: Enemy.enemies) {
-                        if(bullet.collider.overlaps(enemy.collider)){
+                        if(bullet.collider.overlaps(enemy.collider) && enemy.active){
                             enemy.takeDamage(bullet.ammoType);
+                            System.out.println(bullet.ammoType);
                             bullet.active = false;
                         }
                     }

@@ -41,9 +41,11 @@ public class GameScreen implements Screen {
         this.game = game;
         this.gameViewPort = gameViewPort;
         player = new Player(this); //create new player for screen
-        player.setPosition(new Vector2(0, 0)); //initilize player position
+        player.setPosition(new Vector2(6960.0f,8630.0f)); //initilize player position
         enemy = new BasicEnemy();
+        enemy.position = new Vector2(6960.0f,8630.0f);
         enemy2 = new BasicEnemy();
+        enemy2.position = new Vector2(6960.0f,8630.0f);
         batch = new SpriteBatch(); //create new sprite renderer
 
         //Setup camera and viewport
@@ -86,6 +88,7 @@ public class GameScreen implements Screen {
         player.activeWeapon.gunSprite.draw(batch); //draw weapon of player
         Bullet.update(batch);
         batch.end(); //no more sprites to render
+        System.out.println("pos:" + player.position);
     }
 
     private void updateCameraPosition() {

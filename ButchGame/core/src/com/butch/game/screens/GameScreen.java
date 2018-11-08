@@ -43,7 +43,7 @@ public class GameScreen implements Screen {
     private BasicEnemy enemy2;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
-    private ArrayList<Rectangle> mapColliders;
+    public ArrayList<Rectangle> mapColliders;
     private ShapeRenderer shapeRenderer;
     private Music music;
 
@@ -119,9 +119,19 @@ public class GameScreen implements Screen {
 
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
         shapeRenderer.setColor(Color.CYAN);
+
         for (Rectangle collider: mapColliders) {
+            shapeRenderer.setColor(Color.ORANGE);
             shapeRenderer.rect(collider.x,collider.y,collider.width,collider.height);
+            shapeRenderer.setColor(Color.RED);
+            for (int i = 0; i < Bullet.bullets.size(); i++) {
+                shapeRenderer.rect(Bullet.bullets.get(i).collider.x, Bullet.bullets.get(i).collider.y, Bullet.bullets.get(i).collider.width, Bullet.bullets.get(i).collider.height);
+                if(Bullet.bullets.get(i).collider.overlaps(collider)){
+                    Bullet.bullets.get(i).active = false;
+                }
+            }
         }
         shapeRenderer.setColor(Color.LIME);
         shapeRenderer.rect(player.playerCollider.x, player.playerCollider.y, player.playerCollider.width, player.playerCollider.height);

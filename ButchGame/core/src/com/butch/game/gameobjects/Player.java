@@ -131,6 +131,7 @@ public class Player {
                         velocity.x = clamp(velocity.x, 0, 1);
                     }
                     if(intersector.y + intersector.height < playerCollider.y + playerCollider.height){
+                        //intersects with bottom side
                         velocity.y = clamp(velocity.y, 0, 1);
                     }
                 }
@@ -141,11 +142,11 @@ public class Player {
         }
     }
 
-    public static float clamp(float val, float min, float max) {
+    public static float clamp(float val, float min, float max) { //simple clamp function
         return Math.max(min, Math.min(max, val));
     }
 
-    private void inputHandler() {
+    private void inputHandler() { // handle inputs
 
         if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 0;

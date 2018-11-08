@@ -49,7 +49,7 @@ public class Bullet {
                 this.velocity = new Vector2(this.direction.x * shotgunSpeed, this.direction.y * shotgunSpeed);
         }
         activeSprite.setScale(10);
-        this.collider = new Rectangle(this.position.x, this.position.y, this.activeSprite.getWidth() * 10, this.activeSprite.getHeight() * 10);
+        this.collider = new Rectangle(this.position.x, this.position.y, this.activeSprite.getWidth(), this.activeSprite.getHeight());
 
         addBullet(this);
     }

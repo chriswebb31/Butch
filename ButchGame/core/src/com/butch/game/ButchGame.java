@@ -31,12 +31,8 @@ public class ButchGame extends Game {
 	public static GameStateManager GSM;
 	private static FPSLogger log;
     public MainMenuScreen game_screen;
-	public ButchGame() {
 
-     //doit();
-  }
-	public void doit(){
-          //create2();
+	public ButchGame() {
 		gameViewPort = new FitViewport(1920, 1080);
 		assets = new AssetManagement();
 		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
@@ -44,35 +40,28 @@ public class ButchGame extends Game {
 		log = new FPSLogger();
 		ashleyEngine = new Engine();
 		GSM = new GameStateManager();
-	}
+  	}
 
 	@Override
 	public void create () {
-		game_screen = new MainMenuScreen(this);
-		setScreen(game_screen);
-
+        this.setScreen(new LoadingScreen(this, gameViewPort));
 	}
 
-	public void create2(){
-
-		this.setScreen(new LoadingScreen(this, gameViewPort));
-	}
-
-	//@Override
-        public void render2 () {
+	@Override
+        public void render () {
 		log.log();
 		GSM.update();
 		super.render();
 	}
 
-
-	public static Vector3 mousePosition(){
-		return gameViewPort.getCamera().unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-	}
 	@Override
 	public void dispose() {
 		super.dispose();
-//		assets.dispose();
+		assets.dispose();
 	}
+
+    public static Vector3 mousePosition(){
+        return gameViewPort.getCamera().unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+    }
 
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 
 public class SettingsScreen implements Screen {
@@ -20,7 +21,10 @@ public class SettingsScreen implements Screen {
     private int exitButtonWidth = 300; // width of exit Button
     private int exitButtonHeight = 100; // height of exit button
     private Sound sound;
-    public SettingsScreen(ButchGame game){
+    FitViewport gameViewPort;
+
+    public SettingsScreen(ButchGame game, FitViewport gameViewPort){
+        this.gameViewPort = gameViewPort;
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
@@ -49,9 +53,7 @@ public class SettingsScreen implements Screen {
             if (Gdx.input.isTouched()) {
                 sound.play(); // clicking sound will be played;
                 this.dispose();
-                game.setScreen(new MainMenuScreen(game));
-
-
+                game.setScreen(new MainMenuScreen(game, gameViewPort));
             }
         }
 

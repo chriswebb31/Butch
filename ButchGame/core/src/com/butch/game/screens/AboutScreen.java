@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 
 import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
@@ -27,9 +27,11 @@ public class AboutScreen implements Screen {
     private Sound sound;
     Texture back;
     Sprite backS;
+    FitViewport gameViewPort;
 
-    public AboutScreen(ButchGame game){
+    public AboutScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
+        this.gameViewPort = gameViewPort;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         // import picture to sprite and then using sprite to render background image with canvas dimensions
@@ -67,9 +69,7 @@ public class AboutScreen implements Screen {
             if (Gdx.input.isTouched()) {
                 sound.play(); // clicking sound will be played;
                 this.dispose();
-                game.setScreen(new MainMenuScreen(game));
-
-
+                game.setScreen(new MainMenuScreen(game, gameViewPort));
             }
         }
 

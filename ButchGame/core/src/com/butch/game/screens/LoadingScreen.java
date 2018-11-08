@@ -2,10 +2,7 @@ package com.butch.game.screens;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.AssetManagement;
@@ -49,7 +46,7 @@ public class LoadingScreen implements Screen {
   if(game.assets.update()){
       if(ButchGame.assets.update()){
 
-          game.setScreen(new GameScreen(game, gameViewPort));
+          game.setScreen(new MainMenuScreen(game, gameViewPort));
       }
   }
     }

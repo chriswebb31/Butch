@@ -1,25 +1,22 @@
 package com.butch.game.screens;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-//import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.butch.game.ButchGame;
+
+import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
+
+//import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 ///import com.badlogic.gdx.graphics.g2d.TextureRegion;
 //import com.badlogic.gdx.maps.tiled.TiledMap;
 //import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.butch.game.ButchGame;
-import com.butch.game.gamemanagers.AssetManagement;
-import com.butch.game.gamemanagers.GameStateManager;
-
-import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 
 public class MainMenuScreen implements Screen {
     ButchGame game;
@@ -48,9 +45,11 @@ public class MainMenuScreen implements Screen {
     int  settingsButtonY = 0; //location where the settings button will start drawing in y axis reversed!
     int settingsButtonWidth = 70; // width of settings Button
     int settingsButtonHeight = 70; // height of settings button
+    private FitViewport gameViewPort;
 
-    public MainMenuScreen(ButchGame game){
+    public MainMenuScreen(ButchGame game, FitViewport gameViewport){
         this.game = game;
+        this.gameViewPort = gameViewport;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();
@@ -99,10 +98,8 @@ public class MainMenuScreen implements Screen {
                 sound.play();
 
                 this.dispose();
-                game.doit();
-                game.create2();
 
-                game.render2();
+                game.setScreen(new GameScreen(game, gameViewPort));
 
             }
             //if above conditions are met then once play button is clicked the game will load
@@ -119,9 +116,7 @@ public class MainMenuScreen implements Screen {
             if (Gdx.input.isTouched()) {
                 sound.play();
                 this.dispose();
-                game.setScreen(new AboutScreen(game));
-
-
+                game.setScreen(new AboutScreen(game, gameViewPort));
             }
         }
 
@@ -135,7 +130,7 @@ public class MainMenuScreen implements Screen {
             if (Gdx.input.isTouched()) {
                 sound.play();
                 this.dispose();
-                game.setScreen(new NeedHelpScreen(game));
+                game.setScreen(new NeedHelpScreen(game, gameViewPort));
             }
         }
 
@@ -150,7 +145,7 @@ public class MainMenuScreen implements Screen {
             if (Gdx.input.isTouched()) {
                 sound.play();
                 this.dispose();
-                game.setScreen(new SettingsScreen(game));
+                game.setScreen(new SettingsScreen(game, gameViewPort));
             }
         }
 

@@ -11,10 +11,17 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String bulletSprite = "bullet.png";
     public final String coltSprite = "colt.png";
     public final String machineGunSprite = "machineGun.png";
+    public final String backgroundTexture = "Butch Title 2 FINAL.png";
+    public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
+    public final String aboutButtonActiveSprite = "Buttons/aboutButtonActive.png";
+    public final String needHelpButtonActiveSprite = "Buttons/aboutButtonActive.png";
+    public final String settingsButtonActiveSprite = "Buttons/settingsButtonActive.png";
+
     //SOUNDS
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
     public final String gunShot = "SoundFX/gunShot1.mp3";
+    public final String menuClick = "SoundFX/clickingSound.mp3";
     //PARTICLES
 
     //FONTS
@@ -37,8 +44,14 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(bulletSprite, Texture.class);
         load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);
+        load(backgroundTexture, Texture.class);
+        load(playButtonActiveSprite, Texture.class);
+        load(aboutButtonActiveSprite, Texture.class);
+        load(needHelpButtonActiveSprite, Texture.class);
+        load(settingsButtonActiveSprite, Texture.class);
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
         load(gunShot, Sound.class);
+        load(menuClick, Sound.class);
     }
 }

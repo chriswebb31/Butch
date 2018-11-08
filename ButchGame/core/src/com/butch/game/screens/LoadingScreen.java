@@ -24,14 +24,6 @@ public class LoadingScreen implements Screen {
     public LoadingScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
-        /** gameViewPort = new FitViewport(1920, 1080);
-        /**assets = new AssetManagement();
-        assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        assets.load(assets.tilemap1, TiledMap.class);
-        log = new FPSLogger();
-        ashleyEngine = new Engine();
-        GSM = new GameStateManager();
-         */
     }
 
     @Override
@@ -41,14 +33,13 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        //log.log();
-       // GSM.update();
-  if(game.assets.update()){
-      if(ButchGame.assets.update()){
-
-          game.setScreen(new MainMenuScreen(game, gameViewPort));
-      }
-  }
+//        log.log();
+//        GSM.update();
+        if(game.assets.update()){
+            if(ButchGame.assets.update()){
+                 game.setScreen(new MainMenuScreen(game, gameViewPort));
+            }
+        }
     }
 
     @Override

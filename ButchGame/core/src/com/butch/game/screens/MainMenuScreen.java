@@ -26,7 +26,7 @@ public class MainMenuScreen implements Screen {
     Texture texture_back;
     Sprite sprite_back;
     Sprite playButtonActive;
-    Sprite aboutButton;
+    Sprite aboutButtonActive;
     Texture needHelpButton;
     Texture settingsButton;
     int playButtonX = 809; //location where the play button will start drawing in x axis
@@ -53,21 +53,21 @@ public class MainMenuScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();
-        texture_back = new Texture(Gdx.files.internal("Butch Title 2 Final.png")); // locating the background
+        texture_back = ButchGame.assets.get(ButchGame.assets.backgroundTexture, Texture.class); // locating the background
         texture_back.setFilter(Linear,Linear);
         sprite_back = new Sprite(texture_back);
         sprite_back.setRegionWidth(1920);
         sprite_back.setRegionHeight(1080);
         sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
-        sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
+        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
 
-        playButtonActive = new Sprite (new Texture("Buttons/playButtonActive.png")); // locating the play button
+        playButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonActiveSprite, Texture.class)); // locating the play button
         playButtonActive.flip(false, true);
-        aboutButton = new Sprite(new Texture ("Buttons/aboutButtonActive.png")); // locating the about button
-        aboutButton.flip(false,true);
+        aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class)); // locating the about button
+        aboutButtonActive.flip(false,true);
 
-        needHelpButton = new Texture("Buttons/aboutButtonActive.png"); //locating the need help button
-        settingsButton = new Texture("Buttons/settingsButtonActive.png"); // locating the setting button
+        needHelpButton = ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class); //locating the need help button
+        settingsButton = ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class); // locating the setting button
     }
     @Override
     public void show() {
@@ -111,7 +111,7 @@ public class MainMenuScreen implements Screen {
         if(Gdx.input.getX()>=  aboutButtonX && Gdx.input.getX() <= aboutButtonWidth + aboutButtonX && Gdx.input.getY()
                 >= aboutButtonY  && Gdx.input.getY() < aboutButtonY + aboutButtonHeight ) {
 
-            batch.draw(aboutButton, aboutButtonX, aboutButtonY , aboutButtonWidth,aboutButtonHeight);
+            batch.draw(aboutButtonActive, aboutButtonX, aboutButtonY , aboutButtonWidth,aboutButtonHeight);
 
             if (Gdx.input.isTouched()) {
                 sound.play();
@@ -121,7 +121,7 @@ public class MainMenuScreen implements Screen {
         }
 
         else{
-            batch.draw(aboutButton, 839, 780, 215,71);
+            batch.draw(aboutButtonActive, 839, 780, 215,71);
         }
         if(Gdx.input.getX()>=  needHelpButtonX && Gdx.input.getX() <= needHelpButtonWidth + needHelpButtonX &&
                 Gdx.input.getY() >= needHelpButtonY  && Gdx.input.getY() < needHelpButtonY + needHelpButtonHeight ) {

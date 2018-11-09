@@ -66,8 +66,7 @@ public abstract class Gun {
             try {
                 if ((clip > 0) && (!isReloading)) {
                     Random r = new Random();
-                    double random = 0.6f + r.nextDouble() * (0.8 - 0.6f);
-
+                    double random = 0.6f + r.nextDouble() * (0.6 - 0.4f);
                     gunShotSound.play((float) random);
                     Bullet newShot = new Bullet(this.game, this.position, this.aimDirection(), true, gunType);
                     lastShot = thisShot;

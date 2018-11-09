@@ -34,9 +34,11 @@ public class Bullet {
     public Bullet(GameScreen game, Vector2 start, Vector2 direction, boolean freindly, int ammoType){
         Random r = new Random();
         double random = 0.6f + r.nextDouble() * (1.2 - 0.7f);
-
-        Sound shellBounce = ButchGame.assets.get(ButchGame.assets.shellBounceEffect);
-        shellBounce.play((float) random);
+        boolean shellPing = r.nextBoolean();
+        if(shellPing){
+            Sound shellBounce = ButchGame.assets.get(ButchGame.assets.shellBounceEffect);
+            shellBounce.play((float) random);
+        }
         if(bullets == null)
             initArray();
 

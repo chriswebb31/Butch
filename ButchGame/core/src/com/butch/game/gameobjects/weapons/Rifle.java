@@ -15,7 +15,7 @@ public class Rifle extends Gun {
         this.gunType = 0;
         this.reserve = 50;
         this.fireRate = 0.1f;
-        this.reloadSpeed = 0.6f;
+        this.reloadSpeed = 0.85f;
         this.accuracy = 50;
         this.isShooting=false;
         this.isReloading = false;

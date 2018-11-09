@@ -18,7 +18,7 @@ public class BasicEnemy extends Enemy {
         sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
         sprite.setScale(10);
         position = new Vector2(0,0);
-        collider = new Rectangle(this.position.x, this.position.y, sprite.getWidth() * 5, sprite.getHeight() * 5);
+        collider = new Rectangle(this.sprite.getBoundingRectangle().x, this.sprite.getBoundingRectangle().y, sprite.getBoundingRectangle().width, sprite.getBoundingRectangle().height);
         speed = 4;
         moveRadius = 400;
         health = 100;

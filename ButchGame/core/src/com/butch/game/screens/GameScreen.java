@@ -44,10 +44,12 @@ public class GameScreen implements Screen {
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     public ArrayList<Rectangle> mapColliders;
+    public ArrayList<BasicEnemy> enemies;
     private ShapeRenderer shapeRenderer;
     private Music music;
 
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
+        enemies = new ArrayList<BasicEnemy>();
         this.game = game;
         this.gameViewPort = gameViewPort;
         player = new Player(this); //create new player for screen
@@ -58,6 +60,8 @@ public class GameScreen implements Screen {
         enemy.position = new Vector2(6960.0f,8630.0f);
         enemy2 = new BasicEnemy();
         enemy2.position = new Vector2(6960.0f,8630.0f);
+        enemies.add(enemy);
+        enemies.add(enemy2);
         batch = new SpriteBatch(); //create new sprite renderer
         hudBatch = new SpriteBatch();
 
@@ -133,6 +137,12 @@ public class GameScreen implements Screen {
                 }
             }
         }
+
+        shapeRenderer.setColor(Color.SCARLET);
+        for (BasicEnemy e:enemies) {
+            shapeRenderer.rect(e.collider.x, e.collider.y, e.collider.width, e.collider.height);
+        }
+
         shapeRenderer.setColor(Color.LIME);
         shapeRenderer.rect(player.playerCollider.x, player.playerCollider.y, player.playerCollider.width, player.playerCollider.height);
 

@@ -26,9 +26,11 @@ public abstract class Gun {
     public int clip = 0;
     public boolean isShooting = false;
     public boolean isReloading = false;
+    boolean hasCalledReload = false;
     public Vector2 position;
 
     public Sound gunShotSound;
+    public Sound reloadSoundEffect;
     public boolean oneHanded;
 
     public float accuracy;
@@ -63,7 +65,10 @@ public abstract class Gun {
         if ((thisShot - lastShot) >= (long) (fireRate *1000)) {
             try {
                 if ((clip > 0) && (!isReloading)) {
-                    gunShotSound.play(0.8f);
+                    Random r = new Random();
+                    double random = 0.6f + r.nextDouble() * (0.8 - 0.6f);
+
+                    gunShotSound.play((float) random);
                     Bullet newShot = new Bullet(this.game, this.position, this.aimDirection(), true, gunType);
                     lastShot = thisShot;
                     clip -= 1;
@@ -84,7 +89,12 @@ public abstract class Gun {
     }
 
     public void Reload(){
+        if (!hasCalledReload){
+            reloadSoundEffect.play(1);
+            hasCalledReload = true;
+        }
         long thisReload = System.currentTimeMillis();
+
         System.out.println(reloadSpeed * 1000);
         if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
             if(this.reserve >= clipSize){
@@ -95,6 +105,7 @@ public abstract class Gun {
                 reserve = 0;
             }
             isReloading = false;
+            hasCalledReload = false;
             lastReload = thisReload;
         }
     }

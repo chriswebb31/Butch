@@ -1,5 +1,6 @@
 package com.butch.game.gameobjects;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,6 +11,7 @@ import com.butch.game.gameobjects.abstractinterface.Enemy;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Bullet {
     public static GameScreen game;
@@ -30,6 +32,11 @@ public class Bullet {
     public boolean active = true;
 
     public Bullet(GameScreen game, Vector2 start, Vector2 direction, boolean freindly, int ammoType){
+        Random r = new Random();
+        double random = 0.6f + r.nextDouble() * (1.2 - 0.7f);
+
+        Sound shellBounce = ButchGame.assets.get(ButchGame.assets.shellBounceEffect);
+        shellBounce.play((float) random);
         if(bullets == null)
             initArray();
 

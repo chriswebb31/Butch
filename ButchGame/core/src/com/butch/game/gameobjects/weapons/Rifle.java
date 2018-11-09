@@ -22,6 +22,7 @@ public class Rifle extends Gun {
         this.oneHanded = false;
         this.gunSprite = new Sprite(ButchGame.assets.get(ButchGame.assets.rifleSprite, Texture.class));
         this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
+        this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
         this.gunSprite.setScale(10);
     }
 }

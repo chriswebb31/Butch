@@ -23,6 +23,7 @@ public class Colt extends Gun {
         this.oneHanded = true;
         this.gunSprite = new Sprite(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class));
         this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
+        this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
         this.gunSprite.setScale(10);
     }
 }

@@ -24,6 +24,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String gunShot = "SoundFX/gunShot1.mp3";
     public final String menuClick = "SoundFX/clickingSound.mp3";
     public final String hitEffect = "SoundFX/hit.mp3";
+    public final String revolverReloadEeffect = "SoundFX/revolverReload.mp3";
+    public final String otherReloadEffect = "SoundFX/OtherReload.mp3";
+    public final String shellBounceEffect = "SoundFX/shellBounce.mp3";
     //PARTICLES
 
     //FONTS
@@ -57,5 +60,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(gunShot, Sound.class);
         load(menuClick, Sound.class);
         load(hitEffect, Sound.class);
+        load(revolverReloadEeffect, Sound.class);
+        load(otherReloadEffect, Sound.class);
+        load(shellBounceEffect, Sound.class);
     }
 }

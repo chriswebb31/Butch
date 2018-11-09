@@ -1,5 +1,6 @@
 package com.butch.game.gameobjects;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,6 +12,7 @@ import com.butch.game.gameobjects.abstractinterface.Enemy;
 public class BasicEnemy extends Enemy {
     public boolean hasMoveTarget = false;
     public boolean completedMove = false;
+    public Sound hitSound = ButchGame.assets.get(ButchGame.assets.hitEffect, Sound.class);
 
     public BasicEnemy(){
         sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
@@ -63,14 +65,16 @@ public class BasicEnemy extends Enemy {
 
     @Override
     public void takeDamage(int ammoType){
-        switch (ammoType){
-            case 0:
-                health -= 15;
-            case 1:
-                health -= 40;
-            case 2:
-                health -= 100;
-        }
+//        switch (ammoType){
+//            case 0:
+//                health -= 15;
+//            case 1:
+//                health -= 40;
+//            case 2:
+//                health -= 100;
+//        }
+        hitSound.play(0.7f);
+
         System.out.println("Health:" + health);
     }
 

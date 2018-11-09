@@ -11,6 +11,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.gameobjects.weapons.Colt;
+import com.butch.game.gameobjects.weapons.Rifle;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class Player {
         this.gunInventory.add(new MachineGun(this, gameScreen)); //give player a new machine gun
         this.gunInventory.add(new Colt(this, gameScreen));
         this.gunInventory.add(new MachineGun(this, gameScreen)); //give player a new colt
-
+        this.gunInventory.add(new Rifle(this, gameScreen));
 
         this.activeWeapon = gunInventory.get(0); //revolver as nothing else in array
         this.gunInvIterator = gunInventory.iterator();

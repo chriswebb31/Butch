@@ -19,6 +19,8 @@ import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 //import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class MainMenuScreen implements Screen {
+    //Change to use actual buttons maybe? Scene2D is used for menus etc
+
     ButchGame game;
     Sound sound;
     OrthographicCamera camera;

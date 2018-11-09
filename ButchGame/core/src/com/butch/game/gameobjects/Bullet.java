@@ -81,7 +81,6 @@ public class Bullet {
                     for (Enemy enemy: Enemy.enemies) {
                         if(bullet.collider.overlaps(enemy.collider) && enemy.active){
                             enemy.takeDamage(bullet.ammoType);
-                            System.out.println(bullet.ammoType);
                             bullet.active = false;
                         }
                     }
@@ -91,6 +90,8 @@ public class Bullet {
             e.printStackTrace();
             System.out.println("ping");
 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

@@ -12,13 +12,18 @@ import com.butch.game.gameobjects.abstractinterface.Enemy;
 public class BasicEnemy extends Enemy {
     public boolean hasMoveTarget = false;
     public boolean completedMove = false;
+    public boolean takingHit = false;
     public Sound hitSound = ButchGame.assets.get(ButchGame.assets.hitEffect, Sound.class);
+    long now = System.currentTimeMillis();
+    long expectedTime = 200;
+    long lastHit = System.currentTimeMillis();
 
     public BasicEnemy(){
         sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
         sprite.setScale(10);
         position = new Vector2(0,0);
-        collider = new Rectangle(this.sprite.getBoundingRectangle().x, this.sprite.getBoundingRectangle().y, sprite.getBoundingRectangle().width, sprite.getBoundingRectangle().height);
+        sprite.setOriginCenter();
+        collider = new Rectangle(this.sprite.getX(), this.sprite.getOriginY(), (sprite.getBoundingRectangle().width / 3) + 10, (sprite.getBoundingRectangle().height / 1.5f) + 10);
         speed = 4;
         moveRadius = 400;
         health = 100;
@@ -54,8 +59,8 @@ public class BasicEnemy extends Enemy {
 
     @Override
     public void render(SpriteBatch spriteBatch) {
-        handleMovement();
         if(health > 0){
+            handleMovement();
             sprite.draw(spriteBatch);
         }
         else{
@@ -64,24 +69,22 @@ public class BasicEnemy extends Enemy {
     }
 
     @Override
-    public void takeDamage(int ammoType){
-//        switch (ammoType){
-//            case 0:
-//                health -= 15;
-//            case 1:
-//                health -= 40;
-//            case 2:
-//                health -= 100;
-//        }
-        hitSound.play(0.7f);
-
-        System.out.println("Health:" + health);
+    public void takeDamage(int ammoType) throws InterruptedException {
+        long thisHit = System.currentTimeMillis();
+        if((thisHit - lastHit) >= 200) {
+            takingHit = true;
+            health -= 10;
+            takingHit = false;
+            hitSound.play(0.7f);
+            System.out.println("Health:" + health);
+            lastHit = thisHit;
+        }
     }
 
     private void move() {
         Vector2 velocity = new Vector2(moveTarget.x - this.position.x, moveTarget.y - this.position.y).nor();
         this.position = new Vector2(this.position.x + (velocity.x * speed), this.position.y + (velocity.y * speed));
         sprite.setPosition(this.position.x, this.position.y);
-        collider.setPosition(this.position.x, this.position.y);
+        collider.setPosition(this.sprite.getX() - sprite.getWidth(), this.sprite.getY() - sprite.getHeight() * 3);
     }
 }

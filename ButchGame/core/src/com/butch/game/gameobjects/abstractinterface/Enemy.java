@@ -30,7 +30,7 @@ public abstract class Enemy {
 
     public abstract void attack();
 
-    public abstract void takeDamage(int ammoType);
+    public abstract void takeDamage(int ammoType) throws InterruptedException;
 
     public  abstract void createMove();
 
@@ -40,7 +40,9 @@ public abstract class Enemy {
 
     public static void update(SpriteBatch spriteBatch){
         for (Enemy enemy: enemies) {
-            enemy.render(spriteBatch);
+            if(enemy.active){
+                enemy.render(spriteBatch);
+            }
         }
     }
 

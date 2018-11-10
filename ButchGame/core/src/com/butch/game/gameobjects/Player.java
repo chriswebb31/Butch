@@ -180,7 +180,6 @@ public class Player {
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try {
                 if (gunInvIterator.hasNext()) {
-                    System.out.println(gunInvIterator.next());
                     activeWeapon = gunInvIterator.next();
                 } else {
                     gunInvIterator = gunInventory.iterator();

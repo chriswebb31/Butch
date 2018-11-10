@@ -2,6 +2,7 @@ package com.butch.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.audio.Music;
 import com.butch.game.ButchGame;
 
 import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
@@ -48,6 +50,7 @@ public class MainMenuScreen implements Screen {
     int settingsButtonWidth = 70; // width of settings Button
     int settingsButtonHeight = 70; // height of settings button
     private FitViewport gameViewPort;
+    private Music music;
 
     public MainMenuScreen(ButchGame game, FitViewport gameViewport){
         this.game = game;
@@ -70,6 +73,11 @@ public class MainMenuScreen implements Screen {
 
         needHelpButton = ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class); //locating the need help button
         settingsButton = ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class); // locating the setting button
+
+        music = ButchGame.assets.get(ButchGame.assets.mainTheme, Music.class);
+        music.setVolume(0.3f);
+        music.setLooping(true);
+        music.play();
     }
     @Override
     public void show() {

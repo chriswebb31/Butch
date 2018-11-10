@@ -91,7 +91,7 @@ public class GameScreen implements Screen {
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
-        music.setVolume(0.5f);
+        music.setVolume(0.3f);
         music.setLooping(true);
         music.play();
     }

@@ -16,7 +16,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
     public final String aboutButtonActiveSprite = "Buttons/aboutButtonActive.png";
     public final String needHelpButtonActiveSprite = "Buttons/aboutButtonActive.png";
-    public final String settingsButtonActiveSprite = "Buttons/settingsButtonActive.png";
+    public final String settingsButtonActiveSprite = "Buttons/settingsButton.png";
+    public final String exitButtonActive = "Buttons/exitButtonActive.png";
+    public final String exitButtonInactive = "Buttons/exitButtonInactive.png";
 
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
@@ -58,6 +60,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(aboutButtonActiveSprite, Texture.class);
         load(needHelpButtonActiveSprite, Texture.class);
         load(settingsButtonActiveSprite, Texture.class);
+        load(exitButtonActive,Texture.class);
+        load(exitButtonInactive,Texture.class);
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
         load(gunShot, Sound.class);
@@ -66,5 +70,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
+
     }
 }

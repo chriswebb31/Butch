@@ -1,6 +1,7 @@
 package com.butch.game.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -31,8 +32,8 @@ public class MainMenuScreen implements Screen {
     Sprite sprite_back;
     Sprite playButtonActive;
     Sprite aboutButtonActive;
-    Texture needHelpButton;
-    Texture settingsButton;
+   Sprite needHelpButton;
+    Sprite settingsButton;
     int playButtonX = 809; //location where the play button will start drawing in x axis
     int  playButtonY = 598; //location where the play button will start drawing in y axis reversed!
     int playButtonWidth = 276; // width of play Button
@@ -45,12 +46,19 @@ public class MainMenuScreen implements Screen {
     int  needHelpButtonY = 900; //location where the needHelp button will start drawing in y axis reversed!
     int needHelpButtonWidth = 276; // width of needHelp Button
     int needHelpButtonHeight = 124; // height of needHelp button
+    private Sprite exitButtonActive;
+    private Sprite exitButtonInactive;
+    private int exitButtonX = 100; //location where the exit button will start drawing in x axis
+    private int  exitButtonY = 50; //location where the exit button will start drawing in y axis reversed!
+    private int exitButtonWidth = 300; // width of exit Button
+    private int exitButtonHeight = 100; // height of exit button
     int settingsButtonX = 0; //location where the settings button will start drawing in x axis
     int  settingsButtonY = 0; //location where the settings button will start drawing in y axis reversed!
     int settingsButtonWidth = 70; // width of settings Button
     int settingsButtonHeight = 70; // height of settings button
     private FitViewport gameViewPort;
     private Music music;
+
 
     public MainMenuScreen(ButchGame game, FitViewport gameViewport){
         this.game = game;
@@ -71,8 +79,13 @@ public class MainMenuScreen implements Screen {
         aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class)); // locating the about button
         aboutButtonActive.flip(false,true);
 
-        needHelpButton = ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class); //locating the need help button
-        settingsButton = ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class); // locating the setting button
+        needHelpButton = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class)); //locating the need help button
+        needHelpButton.flip(false, true);
+        settingsButton = new Sprite(ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class)); // locating the setting button
+        exitButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
+        exitButtonInactive.flip(false, true);
+        exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
+        exitButtonActive.flip(false,true);
 
         music = ButchGame.assets.get(ButchGame.assets.mainTheme, Music.class);
         music.setVolume(0.3f);
@@ -162,6 +175,22 @@ public class MainMenuScreen implements Screen {
         else {
             batch.draw(settingsButton, 0, 0, 60, 60);
         }
+        if(Gdx.input.getX()>=  exitButtonX && Gdx.input.getX() <= exitButtonWidth + exitButtonX && Gdx.input.getY()
+                <1080 - exitButtonY && Gdx.input.getY() > 1080 - exitButtonY - exitButtonHeight ) {
+
+            batch.draw(exitButtonActive, exitButtonX, 1000-exitButtonY , exitButtonWidth,exitButtonHeight);
+            if (Gdx.input.isTouched()) {
+                sound.play(); // clicking sound will be played;
+                this.dispose();
+                Gdx.app.exit();
+
+            }
+        }
+
+        else{
+            batch.draw(exitButtonInactive, 100, 1080 - 100, 215,71);
+        }
+
         batch.end(); // end rendering
     }
 

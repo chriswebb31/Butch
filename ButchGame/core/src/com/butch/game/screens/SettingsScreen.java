@@ -1,12 +1,16 @@
 package com.butch.game.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 
@@ -14,25 +18,27 @@ public class SettingsScreen implements Screen {
     private SpriteBatch batch;
     private ButchGame game;
     private OrthographicCamera camera;
-    private Texture exitButton;
-    public Texture exitButtonInactive;
+    private Sprite exitButtonActive;
+    public Sprite exitButtonInactive;
     private int exitButtonX = 100; //location where the exit button will start drawing in x axis
     private int  exitButtonY = 100; //location where the exit button will start drawing in y axis reversed!
     private int exitButtonWidth = 300; // width of exit Button
     private int exitButtonHeight = 100; // height of exit button
     private Sound sound;
     FitViewport gameViewPort;
-
+    ImageButton exitImage;
     public SettingsScreen(ButchGame game, FitViewport gameViewPort){
         this.gameViewPort = gameViewPort;
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();
-        exitButton = new Texture("Buttons/exitButtonActive.png");
-        exitButtonInactive = new Texture("Buttons/exitButtonInactive.png");
-        sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
-
+        exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
+        exitButtonActive.setSize(100,100);
+        exitButtonActive.setPosition(300,100);
+        exitButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
+        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
+       exitImage = new ImageButton(new SpriteDrawable(exitButtonInactive));
     }
     @Override
     public void show() {
@@ -49,11 +55,13 @@ public class SettingsScreen implements Screen {
         if(Gdx.input.getX()>=  exitButtonX && Gdx.input.getX() <= exitButtonWidth + exitButtonX && Gdx.input.getY()
                 <1080 - exitButtonY && Gdx.input.getY() > 1080 - exitButtonY - exitButtonHeight ) {
 
-            batch.draw(exitButton, exitButtonX, exitButtonY , exitButtonWidth,exitButtonHeight);
-            if (Gdx.input.isTouched()) {
+            batch.draw(exitButtonActive, exitButtonX, exitButtonY , exitButtonWidth,exitButtonHeight);
+            if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
                 sound.play(); // clicking sound will be played;
-                this.dispose();
+
+
                 game.setScreen(new MainMenuScreen(game, gameViewPort));
+
             }
         }
 
@@ -86,6 +94,8 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        this.dispose();
+        exitButtonActive.getTexture().dispose();
+        exitButtonInactive.getTexture().dispose();
     }
 }

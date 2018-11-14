@@ -3,7 +3,6 @@ package com.butch.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,9 +17,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.BasicEnemy;
-import com.butch.game.gameobjects.Bullet;
-import com.butch.game.gameobjects.Player;
-import com.butch.game.gameobjects.abstractinterface.Enemy;
+import com.butch.game.gameobjects.abstractinterface.SpriteRenderable;
+import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
 import java.util.ArrayList;
 
@@ -38,7 +36,7 @@ public class GameScreen implements Screen {
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     private OrthographicCamera camera; //camera for height position of render
     private float distanceDivisor = 1.5f;
-    private Player player;
+    private NewPlayer player;
     private BasicEnemy enemy;
     private BasicEnemy enemy2;
     private TiledMap tiledMap;
@@ -52,8 +50,8 @@ public class GameScreen implements Screen {
         enemies = new ArrayList<BasicEnemy>();
         this.game = game;
         this.gameViewPort = gameViewPort;
-        player = new Player(this); //create new player for screen
-        player.setPosition(new Vector2(6960.0f,8630.0f)); //initilize player position
+        player = new NewPlayer(new Vector2(6960.0f,8630.0f)); //create new player for screen
+//        player.position = (); //initilize player position
 //        player.setPosition(new Vector2(0,0)); //initilize player position
 
         enemy = new BasicEnemy();
@@ -111,56 +109,59 @@ public class GameScreen implements Screen {
         orthogonalTiledMapRenderer.setView(camera); //update view of renderers to camera
         orthogonalTiledMapRenderer.render();//draw tilemap before sprites to save correct z-index of sprites
 
+
         //batch is sprite renderer, other sprites go here
-        player.update(delta); //player has a sprite so update then draw
+//        player.update(delta); //player has a sprite so update then draw
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         batch.begin();// begin rendering sprites
-        Enemy.update(batch);
-        player.sprite.draw(batch);//after updateing position and the plauer settings, render sprite to screen
-        player.activeWeapon.gunSprite.draw(batch); //draw weapon of player
-        Bullet.update(batch);
+//        Enemy.update(batch);
+//        player.sprite.draw(batch);//after updateing position and the plauer settings, render sprite to screen
+//        player.activeWeapon.gunSprite.draw(batch); //draw weapon of player
+//        Bullet.update(batch);
+        SpriteRenderable.Render(batch, delta);
+
         batch.end(); //no more sprites to render
 
-        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+//        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+//
+//        shapeRenderer.setColor(Color.CYAN);
 
-        shapeRenderer.setColor(Color.CYAN);
+//        for (Rectangle collider: mapColliders) {
+//            shapeRenderer.setColor(Color.ORANGE);
+//            shapeRenderer.rect(collider.x,collider.y,collider.width,collider.height);
+//            shapeRenderer.setColor(Color.RED);
+//            for (int i = 0; i < Bullet.bullets.size(); i++) {
+//                shapeRenderer.rect(Bullet.bullets.get(i).collider.x, Bullet.bullets.get(i).collider.y, Bullet.bullets.get(i).collider.width, Bullet.bullets.get(i).collider.height);
+//                if(Bullet.bullets.get(i).collider.overlaps(collider)){
+//                    Bullet.bullets.get(i).active = false;
+//                }
+//            }
+//        }
 
-        for (Rectangle collider: mapColliders) {
-            shapeRenderer.setColor(Color.ORANGE);
-            shapeRenderer.rect(collider.x,collider.y,collider.width,collider.height);
-            shapeRenderer.setColor(Color.RED);
-            for (int i = 0; i < Bullet.bullets.size(); i++) {
-                shapeRenderer.rect(Bullet.bullets.get(i).collider.x, Bullet.bullets.get(i).collider.y, Bullet.bullets.get(i).collider.width, Bullet.bullets.get(i).collider.height);
-                if(Bullet.bullets.get(i).collider.overlaps(collider)){
-                    Bullet.bullets.get(i).active = false;
-                }
-            }
-        }
-
-        shapeRenderer.setColor(Color.SCARLET);
-        for (BasicEnemy e:enemies) {
-            shapeRenderer.rect(e.collider.x, e.collider.y, e.collider.width, e.collider.height);
-        }
-
-        shapeRenderer.setColor(Color.LIME);
-        shapeRenderer.rect(player.playerCollider.x, player.playerCollider.y, player.playerCollider.width, player.playerCollider.height);
-
-        try{
-            if(player.intersector != null){
-                shapeRenderer.setColor(Color.PINK);
-                shapeRenderer.rect(player.intersector.x, player.intersector.y, player.intersector.width, player.intersector.height);
-            }
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        shapeRenderer.end();
+//        shapeRenderer.setColor(Color.SCARLET);
+//        for (BasicEnemy e:enemies) {
+//            shapeRenderer.rect(e.collider.x, e.collider.y, e.collider.width, e.collider.height);
+//        }
+//
+//        shapeRenderer.setColor(Color.LIME);
+//        shapeRenderer.rect(player.playerCollider.x, player.playerCollider.y, player.playerCollider.width, player.playerCollider.height);
+//
+//        try{
+//            if(player.intersector != null){
+//                shapeRenderer.setColor(Color.PINK);
+//                shapeRenderer.rect(player.intersector.x, player.intersector.y, player.intersector.width, player.intersector.height);
+//            }
+//        } catch (NullPointerException e){
+//            e.printStackTrace();
+//        }
+//        shapeRenderer.end();
     }
 
     private void updateCameraPosition() {
         Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
-        float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
-        float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
+        float newX = mousePosition.x + (player.position.x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
+        float newY = mousePosition.y + (player.position.y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
         camera.position.set(new Vector3(newX, newY, camera.position.z));
     }
 

@@ -5,14 +5,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.Bullet;
-import com.butch.game.gameobjects.Player;
-import com.butch.game.screens.GameScreen;
+import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
 import java.util.Random;
 
 public abstract class Gun {
     //VARS FROM CONSTRUCTOR
-    public Player player;
+    public NewPlayer player;
     public Sprite gunSprite;
 
     public int clipSize = 0;
@@ -37,11 +36,10 @@ public abstract class Gun {
 
     private long lastShot = System.currentTimeMillis() - (long) (fireRate * 1000);
     private long lastReload = System.currentTimeMillis() - (long) (reloadSpeed * 1000);
-    private GameScreen game;
 
 //    public Sound reloadSound;
 
-    public Gun(Player player, GameScreen game){
+    public Gun(NewPlayer player){
         this.player = player;
     }
 
@@ -68,7 +66,7 @@ public abstract class Gun {
                     Random r = new Random();
                     double random = 0.6f + r.nextDouble() * (0.6 - 0.4f);
                     gunShotSound.play((float) random);
-                    Bullet newShot = new Bullet(this.game, this.position, this.aimDirection(), true, gunType);
+                    Bullet newShot = new Bullet(this.position, this.aimDirection(), true, gunType);
                     lastShot = thisShot;
                     clip -= 1;
                 } else if (clip <= 0) {
@@ -114,7 +112,7 @@ public abstract class Gun {
         float angle = (float) Math.atan2(targetDir.y - gunSprite.getY(), targetDir.x - gunSprite.getX());
         angle = (float) Math.toDegrees(angle);
         if(this.oneHanded)
-            position = player.weaponPosition();
+            position = player.getWeaponPosition();
         else{
             position = player.position;
         }

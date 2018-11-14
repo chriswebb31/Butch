@@ -1,7 +1,6 @@
 package com.butch.game.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -11,7 +10,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.audio.Music;
 import com.butch.game.ButchGame;
 
 import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
@@ -216,6 +214,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        music.dispose();
     }
 }

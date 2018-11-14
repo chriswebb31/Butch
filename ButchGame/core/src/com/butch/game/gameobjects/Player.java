@@ -9,9 +9,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
-import com.butch.game.gameobjects.weapons.MachineGun;
-import com.butch.game.gameobjects.weapons.Colt;
-import com.butch.game.gameobjects.weapons.Rifle;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
@@ -61,13 +58,13 @@ public class Player {
         this.sprite.setScale(10); //mulitply sprite size by 10 as larger numbers are easier to deal with / could move camera down and scale movemmen?
         this.playerCollider = new Rectangle(this.sprite.getOriginX(), this.sprite.getOriginY(), this.sprite.getBoundingRectangle().width / 3, this.sprite.getBoundingRectangle().height / 1.5f);
         this.gunInventory = new ArrayList <Gun> (); //clear player weapons
-        this.gunInventory.add(new MachineGun(this, gameScreen)); //give player a new machine gun
-        this.gunInventory.add(new Colt(this, gameScreen));
-        this.gunInventory.add(new MachineGun(this, gameScreen)); //give player a new colt
-        this.gunInventory.add(new Rifle(this, gameScreen));
-
-        this.activeWeapon = gunInventory.get(0); //revolver as nothing else in array
-        this.gunInvIterator = gunInventory.iterator();
+//        this.gunInventory.add(new MachineGun(this)); //give player a new machine gun
+//        this.gunInventory.add(new Colt(this, gameScreen));
+//        this.gunInventory.add(new MachineGun(this)); //give player a new colt
+//        this.gunInventory.add(new Rifle(this, gameScreen));
+//
+//        this.activeWeapon = gunInventory.get(0); //revolver as nothing else in array
+//        this.gunInvIterator = gunInventory.iterator();
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
         this.playerBulletsFired = new ArrayList <Bullet> (); // set bullet list to empty

@@ -4,13 +4,12 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.Player;
 import com.butch.game.gameobjects.abstractinterface.Gun;
-import com.butch.game.screens.GameScreen;
+import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
 public class Rifle extends Gun {
-    public Rifle(Player player, GameScreen game) {
-        super(player, game);
+    public Rifle(NewPlayer player) {
+        super(player);
         this.clipSize = 1;
         this.gunType = 0;
         this.reserve = 50;

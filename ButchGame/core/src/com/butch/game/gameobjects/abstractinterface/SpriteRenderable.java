@@ -40,7 +40,11 @@ public abstract class SpriteRenderable {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.RED);
         for (SpriteRenderable spriteRenderable : spriteRenderables) {
-            shapeRenderer.rect(spriteRenderable.collider.x, spriteRenderable.collider.y, spriteRenderable.collider.width, spriteRenderable.collider.height);
+            try {
+                shapeRenderer.rect(spriteRenderable.collider.x, spriteRenderable.collider.y, spriteRenderable.collider.width, spriteRenderable.collider.height);
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
         }
         shapeRenderer.end();
     }

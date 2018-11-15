@@ -45,9 +45,6 @@ public class GameScreen implements Screen {
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
         this.gameViewPort = gameViewPort;
-        player = new NewPlayer(new Vector2(6960.0f,8630.0f)); //create new player for screen
-//        player.position = (); //initilize player position
-//        player.setPosition(new Vector2(0,0)); //initilize player position
 
         batch = new SpriteBatch(); //create new sprite renderer
         hudBatch = new SpriteBatch();
@@ -72,6 +69,8 @@ public class GameScreen implements Screen {
             mapColliders.add(collider);
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
         }
+
+        player = new NewPlayer(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
 
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
 
@@ -102,7 +101,7 @@ public class GameScreen implements Screen {
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
 
         SpriteRenderable.Render(batch, shapeRenderer, delta);
-        
+
     }
 
     private void updateCameraPosition() {

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -15,7 +16,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class NewPlayer extends SpriteRenderable {
-    float xAxis, yAxis = 0;
+    float xAxis, yAxis, speed = 0;
     private ArrayList<Gun> gunInventory;
     private Gun activeWeapon;
     private Iterator<Gun> gunInvIterator;
@@ -27,9 +28,13 @@ public class NewPlayer extends SpriteRenderable {
 
     public NewPlayer(Vector2 startPosition){
         this.position = startPosition;
+        this.velocity = new Vector2().setZero();
         this.gunInventory = new ArrayList<Gun>();
         this.sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class));
         this.sprite.setScale(10);
+
+        this.canMove = true;
+        this.speed = 10;
 
         this.gunInventory = new ArrayList<Gun>();
         this.gunInventory.add(new MachineGun(this));
@@ -38,6 +43,8 @@ public class NewPlayer extends SpriteRenderable {
 
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
+
+        this.collider = new Rectangle(position.x, position.y, this.sprite.getBoundingRectangle().width/2.5f, this.sprite.getBoundingRectangle().height/1.5f);
     }
 
     @Override
@@ -45,8 +52,10 @@ public class NewPlayer extends SpriteRenderable {
         inputHandler();
         movementHandler();
         flipHandler();
+
         System.out.println("position: "+position);
         this.sprite.setPosition(this.position.x, this.position.y);
+        this.collider.setCenter(position.x, position.y);
     }
 
     private void inputHandler() { // handle inputs
@@ -75,13 +84,13 @@ public class NewPlayer extends SpriteRenderable {
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 1;
         }
-        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-            try{
-                activeWeapon.Shoot();
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
+//        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+//            try{
+//                activeWeapon.Shoot();
+//            } catch (NullPointerException e){
+//                e.printStackTrace();
+//            }
+//        }
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try {
                 if (gunInvIterator.hasNext()) {
@@ -111,7 +120,10 @@ public class NewPlayer extends SpriteRenderable {
             } else {
                 velocity.x = 0;
             }
+            System.out.println("Velocity: " + velocity);
 
+            //interpolate this for clean movement
+            this.position = new Vector2(this.position.x + this.velocity.x * speed, this.position.y + this.velocity.y * speed);
         }
     }
     private void flipHandler() {
@@ -154,10 +166,5 @@ public class NewPlayer extends SpriteRenderable {
         }
         return pos;
     }
-
-    public static float clamp(float val, float min, float max) { //simple clamp function
-        return Math.max(min, Math.min(max, val));
-    }
-
 
 }

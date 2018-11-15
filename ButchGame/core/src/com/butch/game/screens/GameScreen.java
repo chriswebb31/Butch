@@ -16,7 +16,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.BasicEnemy;
 import com.butch.game.gameobjects.abstractinterface.SpriteRenderable;
 import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
@@ -37,29 +36,19 @@ public class GameScreen implements Screen {
     private OrthographicCamera camera; //camera for height position of render
     private float distanceDivisor = 1.5f;
     private NewPlayer player;
-    private BasicEnemy enemy;
-    private BasicEnemy enemy2;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     public ArrayList<Rectangle> mapColliders;
-    public ArrayList<BasicEnemy> enemies;
     private ShapeRenderer shapeRenderer;
     private Music music;
 
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
-        enemies = new ArrayList<BasicEnemy>();
         this.game = game;
         this.gameViewPort = gameViewPort;
         player = new NewPlayer(new Vector2(6960.0f,8630.0f)); //create new player for screen
 //        player.position = (); //initilize player position
 //        player.setPosition(new Vector2(0,0)); //initilize player position
 
-        enemy = new BasicEnemy();
-        enemy.position = new Vector2(6960.0f,8630.0f);
-        enemy2 = new BasicEnemy();
-        enemy2.position = new Vector2(6960.0f,8630.0f);
-        enemies.add(enemy);
-        enemies.add(enemy2);
         batch = new SpriteBatch(); //create new sprite renderer
         hudBatch = new SpriteBatch();
 
@@ -109,53 +98,11 @@ public class GameScreen implements Screen {
         orthogonalTiledMapRenderer.setView(camera); //update view of renderers to camera
         orthogonalTiledMapRenderer.render();//draw tilemap before sprites to save correct z-index of sprites
 
-
-        //batch is sprite renderer, other sprites go here
-//        player.update(delta); //player has a sprite so update then draw
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
-        batch.begin();// begin rendering sprites
-//        Enemy.update(batch);
-//        player.sprite.draw(batch);//after updateing position and the plauer settings, render sprite to screen
-//        player.activeWeapon.gunSprite.draw(batch); //draw weapon of player
-//        Bullet.update(batch);
-        SpriteRenderable.Render(batch, delta);
+        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
 
-        batch.end(); //no more sprites to render
-
-//        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-//
-//        shapeRenderer.setColor(Color.CYAN);
-
-//        for (Rectangle collider: mapColliders) {
-//            shapeRenderer.setColor(Color.ORANGE);
-//            shapeRenderer.rect(collider.x,collider.y,collider.width,collider.height);
-//            shapeRenderer.setColor(Color.RED);
-//            for (int i = 0; i < Bullet.bullets.size(); i++) {
-//                shapeRenderer.rect(Bullet.bullets.get(i).collider.x, Bullet.bullets.get(i).collider.y, Bullet.bullets.get(i).collider.width, Bullet.bullets.get(i).collider.height);
-//                if(Bullet.bullets.get(i).collider.overlaps(collider)){
-//                    Bullet.bullets.get(i).active = false;
-//                }
-//            }
-//        }
-
-//        shapeRenderer.setColor(Color.SCARLET);
-//        for (BasicEnemy e:enemies) {
-//            shapeRenderer.rect(e.collider.x, e.collider.y, e.collider.width, e.collider.height);
-//        }
-//
-//        shapeRenderer.setColor(Color.LIME);
-//        shapeRenderer.rect(player.playerCollider.x, player.playerCollider.y, player.playerCollider.width, player.playerCollider.height);
-//
-//        try{
-//            if(player.intersector != null){
-//                shapeRenderer.setColor(Color.PINK);
-//                shapeRenderer.rect(player.intersector.x, player.intersector.y, player.intersector.width, player.intersector.height);
-//            }
-//        } catch (NullPointerException e){
-//            e.printStackTrace();
-//        }
-//        shapeRenderer.end();
+        SpriteRenderable.Render(batch, shapeRenderer, delta);
+        
     }
 
     private void updateCameraPosition() {

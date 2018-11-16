@@ -2,6 +2,7 @@ package com.butch.game.gameobjects.spriterenderables.abstracts;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
+import com.butch.game.gameobjects.abstractinterface.EquipableItem;
 import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
 import java.util.Random;
@@ -9,6 +10,7 @@ import java.util.Random;
 public abstract class NewGun extends EquipableItem {
     private long lastShot;
     public float fireRate;
+    public float speed;
     public Sound gunShotSound;
     public float damage;
     public float accuracy;
@@ -33,7 +35,7 @@ public abstract class NewGun extends EquipableItem {
             try {
                 if((clip > 0) && (!isReloading)) {
                     gunShotSound.play();
-                    NewBullet shot = new NewBullet(this.getPosition(), this.aimDirection(), 0.3f);
+                    NewBullet shot = new NewBullet(this.getPosition(), this.aimDirection().nor(), speed);
                     lastShot = thisShot;
                     clip -= 1;
                 }

@@ -4,26 +4,27 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.NewPlayer;
+import com.butch.game.gameobjects.spriterenderables.abstracts.NewGun;
 
-public class MachineGun extends Gun {
+public class CHOPPER extends NewGun {
 
-    public MachineGun(NewPlayer player) {
+    public CHOPPER(NewPlayer player) {
         super(player);
-        this.clipSize = 25;
-        this.gunType = 0;
-        this.reserve = 100;
-        this.clip = 25;
-        this.fireRate = 0.15f;
-        this.reloadSpeed = 2.5f;
-        this.isReloading = false;
         this.accuracy = 100;
-        this.isShooting = false;
+        this.clip = 25;
+        this.clipSize = 25;
+        this.damage = 25;
         this.oneHanded = false;
-        this.gunSprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
+        this.reserve = 125;
+        this.fireRate = 0.25f;
+        this.reloadSpeed = 0.5f;
+        this.speed = 15;
+        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class)));
+        this.getSprite().setScale(10);
         this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
         this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
-        this.gunSprite.setScale(10);
     }
+
+
 }

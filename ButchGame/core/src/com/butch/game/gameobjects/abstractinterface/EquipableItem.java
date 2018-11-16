@@ -1,8 +1,7 @@
-package com.butch.game.gameobjects.spriterenderables.abstracts;
+package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
 public abstract class EquipableItem extends Renderable {

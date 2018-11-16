@@ -114,7 +114,7 @@ public abstract class Gun {
         if(this.oneHanded)
             position = player.getWeaponPosition();
         else{
-            position = player.position;
+            position = player.getPosition();
         }
         try{
             this.gunSprite.setRotation(angle);

@@ -16,7 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.abstractinterface.SpriteRenderable;
+import com.butch.game.gameobjects.abstractinterface.RenderableManager;
 import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ public class GameScreen implements Screen {
         this game screen is a 'scene' within the window. Used for creating levels.
 
      */
+    private RenderableManager renderableManager;
     public ButchGame game; //reference to libgdx main game class
     public SpriteBatch batch; //sprite renderer
     public SpriteBatch hudBatch;
@@ -43,6 +44,8 @@ public class GameScreen implements Screen {
     private Music music;
 
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
+        this.renderableManager = new RenderableManager();
+
         this.game = game;
         this.gameViewPort = gameViewPort;
 
@@ -94,20 +97,21 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
 
         camera.update(); //update camera view based on position
+        renderableManager.update(delta);
         orthogonalTiledMapRenderer.setView(camera); //update view of renderers to camera
         orthogonalTiledMapRenderer.render();//draw tilemap before sprites to save correct z-index of sprites
 
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-
-        SpriteRenderable.Render(batch, shapeRenderer, delta);
-
+        batch.begin();
+        renderableManager.render(batch);
+        batch.end();
     }
 
     private void updateCameraPosition() {
         Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
-        float newX = mousePosition.x + (player.position.x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
-        float newY = mousePosition.y + (player.position.y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
+        float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
+        float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
         camera.position.set(new Vector3(newX, newY, camera.position.z));
     }
 

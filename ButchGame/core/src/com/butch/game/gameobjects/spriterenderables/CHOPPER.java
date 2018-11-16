@@ -17,8 +17,8 @@ public class CHOPPER extends NewGun {
         this.oneHanded = false;
         this.reserve = 125;
 
-        this.sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
-        this.sprite.setScale(10);
+        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class)));
+        this.getSprite().setScale(10);
         this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
         this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
     }

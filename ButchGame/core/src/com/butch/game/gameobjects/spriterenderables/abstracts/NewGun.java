@@ -6,7 +6,7 @@ import com.butch.game.gameobjects.spriterenderables.NewPlayer;
 
 import java.util.Random;
 
-public abstract class NewGun extends EquipableItem{
+public abstract class NewGun extends EquipableItem {
     private long lastShot;
     public float fireRate;
     public Sound gunShotSound;
@@ -33,7 +33,7 @@ public abstract class NewGun extends EquipableItem{
             try {
                 if((clip > 0) && (!isReloading)) {
                     gunShotSound.play();
-                    NewBullet shot = new NewBullet(this.position, this.aimDirection(), true, damage);
+                    NewBullet shot = new NewBullet(this.getPosition(), this.aimDirection(), 0.3f);
                     lastShot = thisShot;
                     clip -= 1;
                 }

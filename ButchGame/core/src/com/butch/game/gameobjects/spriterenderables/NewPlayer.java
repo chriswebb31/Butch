@@ -8,14 +8,14 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.abstractinterface.SpriteRenderable;
+import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.abstracts.NewGun;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class NewPlayer extends SpriteRenderable {
+public class NewPlayer extends Renderable {
     float xAxis, yAxis, speed = 0;
 
     private ArrayList<NewGun> gunInventory;
@@ -32,11 +32,11 @@ public class NewPlayer extends SpriteRenderable {
     private Rectangle intersector;
 
     public NewPlayer(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
-        this.position = startPosition;
+        this.setPosition(startPosition);
         this.mapColliders = mapStaticColliders;
 
-        this.sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class));
-        this.sprite.setScale(10);
+        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class)));
+        this.getSprite().setScale(10);
 
         this.velocity = new Vector2().setZero();
         this.canMove = true;
@@ -50,19 +50,8 @@ public class NewPlayer extends SpriteRenderable {
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
 
-        this.collider = new Rectangle(position.x, position.y, this.sprite.getBoundingRectangle().width/2.5f, this.sprite.getBoundingRectangle().height/1.5f);
+        this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
     }
-
-    @Override
-    public void update(float delta) {
-        inputHandler();
-        movementHandler();
-        flipHandler();
-
-        System.out.println("position: "+position);
-        this.sprite.setPosition(this.position.x, this.position.y);
-    }
-
     private void inputHandler() { // handle inputs
         if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 0;
@@ -89,13 +78,13 @@ public class NewPlayer extends SpriteRenderable {
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 1;
         }
-//        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-//            try{
-//                activeWeapon.Shoot();
-//            } catch (NullPointerException e){
-//                e.printStackTrace();
-//            }
-//        }
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+            try{
+                activeWeapon.Shoot();
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try {
                 if (gunInvIterator.hasNext()) {
@@ -126,26 +115,26 @@ public class NewPlayer extends SpriteRenderable {
             } else {
                 velocity.x = 0;
             }
-            this.collider.setCenter(position.x + velocity.x * speed, position.y + velocity.y * speed);
+            this.getCollider().setCenter(this.getPosition().x + velocity.x * speed, this.getPosition().y + velocity.y * speed);
 
             for (Rectangle staticCollider: mapColliders) {
-                if(collider.overlaps(staticCollider)){
+                if(this.getCollider().overlaps(staticCollider)){
                     intersector = new Rectangle();
-                    Intersector.intersectRectangles(collider, staticCollider, intersector);
-                    if(intersector.x > collider.x){
+                    Intersector.intersectRectangles(this.getCollider(), staticCollider, intersector);
+                    if(intersector.x > this.getCollider().x){
                         //Intersects with right side
                         velocity.x = clamp(velocity.x, -1, 0.001f);
                     }
-                    else if(intersector.x + intersector.width < collider.x + collider.width) {
+                    else if(intersector.x + intersector.width < this.getCollider().x + this.getCollider().width) {
                         //Intersects with left side
                         velocity.x = clamp(velocity.x, 0.001f, 1);
                     }
 
-                    if(intersector.y > collider.y){
+                    if(intersector.y > this.getCollider().y){
                         //Intersects with top side
                         velocity.y = clamp(velocity.y, -1, 0.001f);
                     }
-                    else if(intersector.y + intersector.height < collider.y + collider.height){
+                    else if(intersector.y + intersector.height < this.getCollider().y + this.getCollider().height){
                         //intersects with bottom side
                         velocity.y = clamp(velocity.y, 0.001f, 1);
                     }
@@ -154,17 +143,17 @@ public class NewPlayer extends SpriteRenderable {
             System.out.println("Velocity: " + velocity);
 
             //interpolate this for clean movement
-            this.position = new Vector2(this.position.x + this.velocity.x * speed, this.position.y + this.velocity.y * speed);
+            this.setPosition(new Vector2(this.getPosition().x + this.velocity.x * speed, this.getPosition().y + this.velocity.y * speed));
         }
     }
 
     private void flipHandler() {
-        if (ButchGame.mousePosition().x >= this.position.x) { // if direction is right
-            this.sprite.setFlip(false, false);
-            activeWeapon.sprite.setFlip(false, false);
+        if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
+            this.getSprite().setFlip(false, false);
+            activeWeapon.getSprite().setFlip(false, false);
         } else { //if direction is left or not right
-            this.sprite.setFlip(true, false);
-            activeWeapon.sprite.setFlip(false, true); //
+            this.getSprite().setFlip(true, false);
+            activeWeapon.getSprite().setFlip(false, true); //
         }
     }
 
@@ -175,25 +164,25 @@ public class NewPlayer extends SpriteRenderable {
             PQ→=(xQ−xP,yQ−yP)
 
          */
-        Vector2 aimDirection = new Vector2(ButchGame.mousePosition().x - this.position.x, ButchGame.mousePosition().y - this.position.y);
+        Vector2 aimDirection = new Vector2(ButchGame.mousePosition().x - this.getPosition().x, ButchGame.mousePosition().y - this.getPosition().y);
         return aimDirection;
     }
     public Vector2 getWeaponPosition(){
         Vector2 pos;
-        if(ButchGame.mousePosition().x >= position.x){
+        if(ButchGame.mousePosition().x >= getPosition().x){
             if(this.activeWeapon.oneHanded){
-                pos = new Vector2(position.x + leftHandIKoffset.x, position.y + leftHandIKoffset.y);
+                pos = new Vector2(getPosition().x + leftHandIKoffset.x, getPosition().y + leftHandIKoffset.y);
             }
             else{
-                pos = new Vector2(position);
+                pos = new Vector2(getPosition());
             }
         }
         else{
             if(this.activeWeapon.oneHanded){
-                pos = new Vector2(position.x + rightHandIKoffset.x, position.y + rightHandIKoffset.y);
+                pos = new Vector2(getPosition().x + rightHandIKoffset.x, getPosition().y + rightHandIKoffset.y);
             }
             else{
-                pos = new Vector2(position);
+                pos = new Vector2(getPosition());
             }
         }
         return pos;
@@ -203,4 +192,13 @@ public class NewPlayer extends SpriteRenderable {
         return Math.max(min, Math.min(max, val));
     }
 
+    @Override
+    public void update() {
+        inputHandler();
+        movementHandler();
+        flipHandler();
+
+        System.out.println("position: " + this.getPosition());
+        this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+    }
 }

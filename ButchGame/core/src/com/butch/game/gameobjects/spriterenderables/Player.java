@@ -9,19 +9,19 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
-import com.butch.game.gameobjects.spriterenderables.abstracts.NewGun;
+import com.butch.game.gameobjects.spriterenderables.abstracts.Gun;
 import com.butch.game.gameobjects.weapons.CHOPPER;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class NewPlayer extends Renderable {
+public class Player extends Renderable {
     float xAxis, yAxis, speed = 0;
 
-    private ArrayList<NewGun> gunInventory;
-    private NewGun activeWeapon;
-    private Iterator<NewGun> gunInvIterator;
+    private ArrayList<Gun> gunInventory;
+    private Gun activeWeapon;
+    private Iterator<Gun> gunInvIterator;
 
     private ArrayList<Rectangle> mapColliders;
     private boolean canMove;
@@ -32,7 +32,7 @@ public class NewPlayer extends Renderable {
 
     private Rectangle intersector;
 
-    public NewPlayer(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
+    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
         this.setPosition(startPosition);
         this.mapColliders = mapStaticColliders;
 
@@ -43,7 +43,7 @@ public class NewPlayer extends Renderable {
         this.canMove = true;
         this.speed = 10;
 
-        this.gunInventory = new ArrayList<NewGun>();
+        this.gunInventory = new ArrayList<Gun>();
         this.gunInventory.add(new CHOPPER(this));
         this.activeWeapon = this.gunInventory.get(0);
         this.gunInvIterator = this.gunInventory.iterator();
@@ -201,5 +201,10 @@ public class NewPlayer extends Renderable {
 
         System.out.println("position: " + this.getPosition());
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+    }
+
+    @Override
+    public void takeHit(float damage) {
+
     }
 }

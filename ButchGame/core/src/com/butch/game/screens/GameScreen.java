@@ -3,6 +3,7 @@ package com.butch.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,8 +17,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.abstractinterface.RenderableManager;
-import com.butch.game.gameobjects.spriterenderables.NewPlayer;
+import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gameobjects.Barrel;
+import com.butch.game.gameobjects.abstractinterface.Renderable;
+import com.butch.game.gameobjects.spriterenderables.Player;
 
 import java.util.ArrayList;
 
@@ -32,14 +35,14 @@ public class GameScreen implements Screen {
     private RenderableManager renderableManager;
     public ButchGame game; //reference to libgdx main game class
     public SpriteBatch batch; //sprite renderer
-    public SpriteBatch hudBatch;
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     private OrthographicCamera camera; //camera for height position of render
     private float distanceDivisor = 1.5f;
-    private NewPlayer player;
+    private Player player;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     public ArrayList<Rectangle> mapColliders;
+    public Barrel barrel;
     private ShapeRenderer shapeRenderer;
     private Music music;
 
@@ -50,16 +53,18 @@ public class GameScreen implements Screen {
         this.gameViewPort = gameViewPort;
 
         batch = new SpriteBatch(); //create new sprite renderer
-        hudBatch = new SpriteBatch();
 
         //Setup camera and viewport
         camera = new OrthographicCamera(); //create new camera
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 40); //set to middle of screen default pos
         camera.zoom = 1.5f; //set camera height
+
+
         tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
-        shapeRenderer = new ShapeRenderer();
-
+        orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
+        barrel= new Barrel(6960,8630);
+        //Set up static colliders
         MapObjects mapObjects = tiledMap.getLayers().get(3).getObjects();
         mapColliders = new ArrayList<Rectangle>();
         for(RectangleMapObject rectangleMapObject : mapObjects.getByType(RectangleMapObject.class)){
@@ -68,14 +73,12 @@ public class GameScreen implements Screen {
             float newWidth = rectangleMapObject.getRectangle().width * 10;
             float newHeight = rectangleMapObject.getRectangle().height * 10;
             Rectangle collider = new Rectangle(newX, newY, newWidth, newHeight);
-
             mapColliders.add(collider);
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
         }
+        shapeRenderer = new ShapeRenderer();
 
-        player = new NewPlayer(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
-
-        orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
+        player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
 
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
@@ -106,6 +109,16 @@ public class GameScreen implements Screen {
         batch.begin();
         renderableManager.render(batch);
         batch.end();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.FIREBRICK);
+        for (Renderable renderable:renderableManager.renderableObjects) {
+            try{
+                shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+        shapeRenderer.end();
     }
 
     private void updateCameraPosition() {

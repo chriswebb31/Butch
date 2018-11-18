@@ -2,13 +2,13 @@ package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.spriterenderables.NewPlayer;
+import com.butch.game.gameobjects.spriterenderables.Player;
 
 public abstract class EquipableItem extends Renderable {
     public boolean oneHanded;
-    private NewPlayer player;
+    private Player player;
 
-    public EquipableItem(NewPlayer player){
+    public EquipableItem(Player player){
         this.player = player;
     }
 
@@ -30,9 +30,9 @@ public abstract class EquipableItem extends Renderable {
         }
     }
 //    public boolean oneHanded;
-//    private NewPlayer player;
+//    private Player player;
 //
-//    public EquipableItem(NewPlayer player){
+//    public EquipableItem(Player player){
 //        this.player = player;
 //    }
 //

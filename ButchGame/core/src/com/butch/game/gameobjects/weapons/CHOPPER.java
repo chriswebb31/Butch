@@ -4,12 +4,12 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.spriterenderables.NewPlayer;
-import com.butch.game.gameobjects.spriterenderables.abstracts.NewGun;
+import com.butch.game.gameobjects.spriterenderables.Player;
+import com.butch.game.gameobjects.spriterenderables.abstracts.Gun;
 
-public class CHOPPER extends NewGun {
+public class CHOPPER extends Gun {
 
-    public CHOPPER(NewPlayer player) {
+    public CHOPPER(Player player) {
         super(player);
         this.accuracy = 100;
         this.clip = 25;
@@ -27,4 +27,8 @@ public class CHOPPER extends NewGun {
     }
 
 
+    @Override
+    public void takeHit(float damage) {
+
+    }
 }

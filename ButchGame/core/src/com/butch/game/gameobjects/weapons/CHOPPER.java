@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.spriterenderables.Player;
-import com.butch.game.gameobjects.spriterenderables.abstracts.Gun;
+import com.butch.game.gameobjects.abstractinterface.Gun;
 
 public class CHOPPER extends Gun {
 

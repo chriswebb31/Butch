@@ -1,4 +1,4 @@
-package com.butch.game.gameobjects;
+package com.butch.game.gameobjects.Breakables;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -14,10 +14,5 @@ public class Barrel extends Breakable {
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.barrelSprite, Texture.class)));
         this.getSprite().setScale(5);
         this.setCollider(new Rectangle(x,y,this.getSprite().getBoundingRectangle().width/2, this.getSprite().getBoundingRectangle().height));
-    }
-
-    @Override
-    public void takeHit(float damage){
-        System.out.println("ded");
     }
 }

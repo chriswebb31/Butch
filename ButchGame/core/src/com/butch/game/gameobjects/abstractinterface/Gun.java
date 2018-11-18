@@ -1,9 +1,8 @@
-package com.butch.game.gameobjects.spriterenderables.abstracts;
+package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.spriterenderables.Bullet;
-import com.butch.game.gameobjects.abstractinterface.EquipableItem;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
 import java.util.Random;
@@ -36,7 +35,7 @@ public abstract class Gun extends EquipableItem {
             try {
                 if((clip > 0) && (!isReloading)) {
                     gunShotSound.play();
-                    Bullet shot = new Bullet(this.getPosition(), this.aimDirection().nor(), speed);
+                    Bullet shot = new Bullet(this.getPosition(), this.aimDirection().nor(), speed, damage);
                     lastShot = thisShot;
                     clip -= 1;
                 }

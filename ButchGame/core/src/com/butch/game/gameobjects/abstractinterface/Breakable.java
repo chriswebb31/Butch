@@ -21,5 +21,6 @@ public abstract class Breakable extends Renderable {
     @Override
     public void takeHit(float damage) {
         this.health -= damage;
+        System.out.println("Health:" + health + "  Damage: " + damage );
     }
 }

@@ -15,7 +15,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String backgroundTexture = "Butch Title 2 FINAL.png";
     public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
     public final String aboutButtonActiveSprite = "Buttons/aboutButtonActive.png";
-    public final String needHelpButtonActiveSprite = "Buttons/aboutButtonActive.png";
+    public final String needHelpButtonActiveSprite = "Buttons/helpButtonActive.png";
     public final String settingsButtonActiveSprite = "Buttons/settingsButton.png";
     public final String exitButtonActive = "Buttons/exitButtonActive.png";
     public final String exitButtonInactive = "Buttons/exitButtonInactive.png";

@@ -9,6 +9,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 
@@ -27,35 +33,18 @@ public class MainMenuScreen implements Screen {
     OrthographicCamera camera;
     SpriteBatch batch;
     Texture texture_back;
-    Sprite sprite_back;
-    Sprite playButtonActive;
-    Sprite aboutButtonActive;
-   Sprite needHelpButton;
-    Sprite settingsButton;
-    int playButtonX = 809; //location where the play button will start drawing in x axis
-    int  playButtonY = 598; //location where the play button will start drawing in y axis reversed!
-    int playButtonWidth = 276; // width of play Button
-    int playButtonHeight = 124; // height of play button
-    int aboutButtonX = 809; //location where the about button will start drawing in x axis
-    int  aboutButtonY = 750; //location where the about button will start drawing in y axis reversed!
-    int aboutButtonWidth = 276; // width of about Button
-    int aboutButtonHeight = 124; // height of about button
-    int needHelpButtonX = 809; //location where the needHelp button will start drawing in x axis
-    int  needHelpButtonY = 900; //location where the needHelp button will start drawing in y axis reversed!
-    int needHelpButtonWidth = 276; // width of needHelp Button
-    int needHelpButtonHeight = 124; // height of needHelp button
-    private Sprite exitButtonActive;
-    private Sprite exitButtonInactive;
-    private int exitButtonX = 100; //location where the exit button will start drawing in x axis
-    private int  exitButtonY = 50; //location where the exit button will start drawing in y axis reversed!
-    private int exitButtonWidth = 300; // width of exit Button
-    private int exitButtonHeight = 100; // height of exit button
+    Sprite sprite_back, playButtonActive,aboutButtonActive, needHelpButton, settingsButton, exitButtonActive, exitButtonInactive;
+    int playButtonX = 809, playButtonY = 598, playButtonWidth = 276, playButtonHeight = 124;
+    int aboutButtonX = 809, aboutButtonY = 750, aboutButtonWidth = 276, aboutButtonHeight = 124;
+    int needHelpButtonX = 809, needHelpButtonY = 900, needHelpButtonWidth = 276 ,needHelpButtonHeight = 124;
+    Stage stage;
     int settingsButtonX = 0; //location where the settings button will start drawing in x axis
     int  settingsButtonY = 0; //location where the settings button will start drawing in y axis reversed!
     int settingsButtonWidth = 70; // width of settings Button
     int settingsButtonHeight = 70; // height of settings button
     private FitViewport gameViewPort;
     private Music music;
+    public ImageButton exitButton;
 
 
     public MainMenuScreen(ButchGame game, FitViewport gameViewport){
@@ -71,7 +60,7 @@ public class MainMenuScreen implements Screen {
         sprite_back.setRegionHeight(1080);
         sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
-
+         stage = new Stage();
         playButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonActiveSprite, Texture.class)); // locating the play button
         playButtonActive.flip(false, true);
         aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class)); // locating the about button
@@ -80,11 +69,6 @@ public class MainMenuScreen implements Screen {
         needHelpButton = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class)); //locating the need help button
         needHelpButton.flip(false, true);
         settingsButton = new Sprite(ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class)); // locating the setting button
-        exitButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
-        exitButtonInactive.flip(false, true);
-        exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
-        exitButtonActive.flip(false,true);
-
         music = ButchGame.assets.get(ButchGame.assets.mainTheme, Music.class);
         music.setVolume(0.3f);
         music.setLooping(true);
@@ -92,7 +76,8 @@ public class MainMenuScreen implements Screen {
     }
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
+        createButtons();
     }
 
     @Override
@@ -102,6 +87,7 @@ public class MainMenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
+
         batch.begin(); //starting rendering
         //render code
 
@@ -173,23 +159,10 @@ public class MainMenuScreen implements Screen {
         else {
             batch.draw(settingsButton, 0, 0, 60, 60);
         }
-        if(Gdx.input.getX()>=  exitButtonX && Gdx.input.getX() <= exitButtonWidth + exitButtonX && Gdx.input.getY()
-                <1080 - exitButtonY && Gdx.input.getY() > 1080 - exitButtonY - exitButtonHeight ) {
-
-            batch.draw(exitButtonActive, exitButtonX, 1000-exitButtonY , exitButtonWidth,exitButtonHeight);
-            if (Gdx.input.isTouched()) {
-                sound.play(); // clicking sound will be played;
-                this.dispose();
-                Gdx.app.exit();
-
-            }
-        }
-
-        else{
-            batch.draw(exitButtonInactive, 100, 1080 - 100, 215,71);
-        }
 
         batch.end(); // end rendering
+        update(delta);
+        stage.draw();
     }
 
     @Override
@@ -201,7 +174,9 @@ public class MainMenuScreen implements Screen {
     public void pause() {
 
     }
-
+    public void update(float delta){
+        stage.act(delta);
+    }
     @Override
     public void resume() {
 
@@ -211,9 +186,34 @@ public class MainMenuScreen implements Screen {
     public void hide() {
 
     }
+    public void createButtons(){
+        exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
+        exitButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
+        exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
+        exitButton.setBounds(10,10,251,71);
 
+        exitButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+                exitButton.setBounds(10,10,251,81);
+
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+                exitButton.setBounds(10,10,251,71);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                sound.play();
+               Gdx.app.exit();
+            }
+
+        });
+        stage.addActor(exitButton);
+    }
     @Override
     public void dispose() {
+
         music.dispose();
     }
 }

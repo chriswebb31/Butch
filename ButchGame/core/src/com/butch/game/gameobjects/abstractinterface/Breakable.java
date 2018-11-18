@@ -1,7 +1,6 @@
-package com.butch.game.gameobjects.spriterenderables;
+package com.butch.game.gameobjects.abstractinterface;
 
 import com.butch.game.gamemanagers.RenderableManager;
-import com.butch.game.gameobjects.abstractinterface.Renderable;
 
 public abstract class Breakable extends Renderable {
     public float health;

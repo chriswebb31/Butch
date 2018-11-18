@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.spriterenderables.Breakable;
+import com.butch.game.gameobjects.abstractinterface.Breakable;
 
 public class Barrel extends Breakable {
     public Barrel(float x, float y) {

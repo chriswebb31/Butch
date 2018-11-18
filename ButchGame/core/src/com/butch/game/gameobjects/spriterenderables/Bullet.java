@@ -29,16 +29,12 @@ public class Bullet extends Renderable {
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getCollider().setPosition(this.getPosition());
         for (Renderable renderable: RenderableManager.renderableObjects) {
-            if(renderable.TAG.equals("com.butch.game.gameobjects.Barrel")){
-                renderable.takeHit(damage);
-                RenderableManager.renderableObjectsToRemove.add(this);
-                System.out.println(renderable.TAG);
-            } else{
-//                try{
-//                    RenderableManager.renderableObjectsToRemove.remove(this);
-//                    }catch (NullPointerException e){
-//                    e.printStackTrace();
-//                }
+            if(renderable.getCollider().overlaps(this.getCollider())){
+                if(renderable.TAG.equals("com.butch.game.gameobjects.Barrel")){
+                    renderable.takeHit(damage);
+                    active = false;
+                    System.out.println(renderable.TAG);
+                }
             }
         }
     }

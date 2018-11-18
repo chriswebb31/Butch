@@ -17,14 +17,21 @@ public class RenderableManager {
     public void update(float delta) {
         renderableObjects.removeAll(renderableObjectsToRemove);
         renderableObjectsToRemove.clear();
+
         for (int i=0; i<renderableObjects.size();i++) {
-            renderableObjects.get(i).update();
+            if(renderableObjects.get(i).active){
+                renderableObjects.get(i).update();
+            } else{
+                renderableObjectsToRemove.add(renderableObjects.get(i));
+            }
         }
     }
 
     public void render(SpriteBatch spriteBatch) {
         for (int i=0; i<renderableObjects.size();i++) {
-            renderableObjects.get(i).getSprite().draw(spriteBatch);
+            if(renderableObjects.get(i).active){
+                renderableObjects.get(i).getSprite().draw(spriteBatch);
+            }
         }
     }
 }

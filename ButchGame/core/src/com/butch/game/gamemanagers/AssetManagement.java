@@ -12,10 +12,13 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String coltSprite = "colt.png";
     public final String machineGunSprite = "machineGun.png";
     public final String rifleSprite = "Rifle.png";
-    public final String backgroundTexture = "Butch Title 2 FINAL.png";
+    public final String backgroundTexture = "saloonDoors.jpg";
     public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
+    public final String playButtonInactiveSprite = "Buttons/playButtonInactive.png";
     public final String aboutButtonActiveSprite = "Buttons/aboutButtonActive.png";
+    public final String aboutButtonInactiveSprite = "Buttons/aboutButtonInactive.png";
     public final String needHelpButtonActiveSprite = "Buttons/helpButtonActive.png";
+    public final String needHelpButtonInactiveSprite = "Buttons/helpButtonInactive.png";
     public final String settingsButtonActiveSprite = "Buttons/settingsButton.png";
     public final String exitButtonActive = "Buttons/exitButtonActive.png";
     public final String exitButtonInactive = "Buttons/exitButtonInactive.png";
@@ -27,6 +30,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String revolverReloadEeffect = "SoundFX/revolverReload.mp3";
     public final String otherReloadEffect = "SoundFX/OtherReload.mp3";
     public final String shellBounceEffect = "SoundFX/shellBounce.mp3";
+    public final String playSound = "SoundFX/playSound.mp3";
 
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
@@ -45,7 +49,17 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         includeAssets();
     }
-
+     public void includeMainMenuScreenAssets(){
+         load(backgroundTexture, Texture.class);
+         load(playButtonActiveSprite, Texture.class);
+         load(playButtonInactiveSprite, Texture.class);
+         load(aboutButtonActiveSprite, Texture.class);
+         load(aboutButtonInactiveSprite, Texture.class);
+         load(needHelpButtonActiveSprite, Texture.class);
+         load(needHelpButtonInactiveSprite, Texture.class);
+         load(settingsButtonActiveSprite, Texture.class);
+         load(playSound, Music.class);
+     }
     public void includeAssets() {
         load(cowboySprite, Texture.class);
         load(gunSprite, Texture.class);
@@ -55,11 +69,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(bulletSprite, Texture.class);
         load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);
-        load(backgroundTexture, Texture.class);
-        load(playButtonActiveSprite, Texture.class);
-        load(aboutButtonActiveSprite, Texture.class);
-        load(needHelpButtonActiveSprite, Texture.class);
-        load(settingsButtonActiveSprite, Texture.class);
         load(exitButtonActive,Texture.class);
         load(exitButtonInactive,Texture.class);
         load(barrelSprite, Texture.class);

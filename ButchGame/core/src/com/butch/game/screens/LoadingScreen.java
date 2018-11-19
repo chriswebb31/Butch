@@ -23,6 +23,7 @@ public class LoadingScreen implements Screen {
 
     public LoadingScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
+        game.assets.includeMainMenuScreenAssets();
         this.gameViewPort = gameViewPort;
     }
 

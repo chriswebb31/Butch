@@ -142,11 +142,13 @@ public class MainMenuScreen implements Screen {
 
             }
             public void clicked(InputEvent event, float x, float y){
+                music.pause();
                 playSound.play();
+
                 playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                     @Override
                     public void onCompletion(Music music) {
-                        music.pause();
+
                         game.setScreen(new GameScreen(game, gameViewPort));
                     }
                 });

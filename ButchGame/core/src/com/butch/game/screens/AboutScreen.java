@@ -18,8 +18,8 @@ public class AboutScreen implements Screen {
     private ButchGame game;
 
     private OrthographicCamera camera;
-    private Texture exitButton;
-    private Texture exitButtonInactive;
+    private Sprite exitButtonActive;
+    private Sprite exitButtonInactive;
     private int exitButtonX = 100; //location where the exit button will start drawing in x axis
     private int  exitButtonY = 950; //location where the exit button will start drawing in y axis reversed!
     private int exitButtonWidth = 300; // width of exit Button
@@ -43,9 +43,13 @@ public class AboutScreen implements Screen {
         backS.setRegionHeight(1080);
         backS.flip(false,true);
 
-        exitButton = new Texture("Buttons/exitButtonActive.png");
-        exitButtonInactive = new Texture("Buttons/exitButtonInactive.png");
-        sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
+        exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
+        exitButtonActive.flip(false,true);
+        exitButtonActive.setSize(100,100);
+        exitButtonActive.setPosition(300,100);
+        exitButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
+        exitButtonInactive.flip(false,true);
+        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
 
     }
     @Override
@@ -65,7 +69,7 @@ public class AboutScreen implements Screen {
         if(Gdx.input.getX()>=  exitButtonX && Gdx.input.getX() <= exitButtonWidth + exitButtonX && Gdx.input.getY()
                 >= exitButtonY && Gdx.input.getY() < exitButtonY + exitButtonHeight ) {
 
-            batch.draw(exitButton, exitButtonX, exitButtonY , exitButtonWidth,exitButtonHeight);
+            batch.draw(exitButtonActive, exitButtonX, exitButtonY , exitButtonWidth,exitButtonHeight);
             if (Gdx.input.isTouched()) {
                 sound.play(); // clicking sound will be played;
                 this.dispose();

@@ -31,6 +31,7 @@ public class ButchGame extends Game {
 	public static GameStateManager GSM;
 	private static FPSLogger log;
     public MainMenuScreen game_screen;
+    public float themeVolume;
 
 	public ButchGame() {
 		gameViewPort = new FitViewport(1920, 1080);
@@ -40,7 +41,14 @@ public class ButchGame extends Game {
 		log = new FPSLogger();
 		ashleyEngine = new Engine();
 		GSM = new GameStateManager();
+		themeVolume = 0.3f;
   	}
+  	public float getVolume(){
+		return themeVolume;
+	}
+	public void setVolume(float volume){
+		themeVolume = volume;
+	}
 
 	@Override
 	public void create () {

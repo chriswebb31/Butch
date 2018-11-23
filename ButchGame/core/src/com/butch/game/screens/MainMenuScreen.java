@@ -28,7 +28,7 @@ import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 public class MainMenuScreen implements Screen {
     //Change to use actual buttons maybe? Scene2D is used for menus etc
 
-    ButchGame game;
+    static ButchGame game;
     Sound sound;
 
     OrthographicCamera camera;
@@ -38,7 +38,7 @@ public class MainMenuScreen implements Screen {
             needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive;
     Stage stage;
     private FitViewport gameViewPort;
-    private Music music, playSound;
+    private static Music music, playSound;
     public ImageButton exitButton, playButton, aboutButton, settingsButton, needHelpButton;
 
 
@@ -58,7 +58,7 @@ public class MainMenuScreen implements Screen {
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
         stage = new Stage();
         music = ButchGame.assets.get(ButchGame.assets.mainTheme, Music.class);
-        music.setVolume(0.3f);
+        music.setVolume(game.getVolume());
         music.setLooping(true);
         music.play();
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
@@ -67,6 +67,10 @@ public class MainMenuScreen implements Screen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
         createButtons();
+    }
+
+    public void setVolume(float volume) {
+        music.setVolume(volume);
     }
 
 
@@ -118,7 +122,7 @@ public class MainMenuScreen implements Screen {
         playButton = new ImageButton(new SpriteDrawable(playButtonInactive),new SpriteDrawable(playButtonActive));
         playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
         aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class));
-        aboutButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class));
+        aboutButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonInactiveSprite, Texture.class));
         aboutButton = new ImageButton(new SpriteDrawable(aboutButtonInactive),new SpriteDrawable(aboutButtonActive));
         aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
         needHelpButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class));
@@ -201,10 +205,12 @@ public class MainMenuScreen implements Screen {
             }
             public void clicked(InputEvent event, float x, float y){
                 sound.play();
-                game.setScreen(new SettingsScreen(game, gameViewPort));
+                //game.setScreen(new SettingsScreen(game, gameViewPort, this));
+                changeS();
             }
 
         });
+
         exitButton.addListener(new ClickListener(){
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
@@ -228,9 +234,12 @@ public class MainMenuScreen implements Screen {
         stage.addActor(needHelpButton);
         stage.addActor(settingsButton);
     }
+    public void changeS(){
+        game.setScreen(new SettingsScreen(game, gameViewPort, this));
+    }
     @Override
     public void dispose() {
-       this.dispose();
+
        playButtonActive.getTexture().dispose();
        playButtonInactive.getTexture().dispose();
        exitButtonActive.getTexture().dispose();

@@ -142,7 +142,7 @@ public class MainMenuScreen implements Screen {
 
             }
             public void clicked(InputEvent event, float x, float y){
-                music.pause();
+                music.stop();
                 playSound.play();
 
                 playSound.setOnCompletionListener(new Music.OnCompletionListener() {

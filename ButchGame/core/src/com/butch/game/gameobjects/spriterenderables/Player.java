@@ -98,6 +98,9 @@ public class Player extends Renderable {
                 w.printStackTrace();
             }
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Gdx.app.exit();
+        }
     }
 
     private void movementHandler() {

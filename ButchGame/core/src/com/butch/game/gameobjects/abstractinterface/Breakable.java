@@ -2,11 +2,17 @@ package com.butch.game.gameobjects.abstractinterface;
 
 import com.butch.game.gamemanagers.RenderableManager;
 
+import java.util.ArrayList;
+
 public abstract class Breakable extends Renderable {
+    ArrayList<Breakable> breakables;
     public float health;
 
     public Breakable(){
-
+        if(breakables == null){
+            breakables = new ArrayList<Breakable>();
+        }
+        breakables.add(this);
     }
 
     @Override

@@ -12,6 +12,7 @@ public abstract class Breakable extends Renderable {
         if(breakables == null){
             breakables = new ArrayList<Breakable>();
         }
+
         breakables.add(this);
     }
 

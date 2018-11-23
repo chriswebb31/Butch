@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gameobjects.abstractinterface.Renderable;
 
 public class Bullet extends Renderable {
     private Vector2 velocity;
@@ -36,6 +36,11 @@ public class Bullet extends Renderable {
                     active = false;
                     System.out.println(renderable.TAG);
                 }
+            }
+        }
+        for(Rectangle collider : RenderableManager.mapColliders){
+            if(collider.overlaps(this.getCollider())){
+                active = false;
             }
         }
     }

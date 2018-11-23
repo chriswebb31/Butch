@@ -1,7 +1,6 @@
 package com.butch.game.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
@@ -48,12 +47,9 @@ public class GameScreen implements Screen {
     private Music music;
 
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
-        this.renderableManager = new RenderableManager();
-
         this.game = game;
         this.gameViewPort = gameViewPort;
-
-        batch = new SpriteBatch(); //create new sprite renderer
+        this.batch = new SpriteBatch(); //create new sprite renderer
 
         //Setup camera and viewport
         camera = new OrthographicCamera(); //create new camera
@@ -64,7 +60,7 @@ public class GameScreen implements Screen {
         tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
-        barrel= new Barrel(6960,8630);
+
         //Set up static colliders
         MapObjects mapObjects = tiledMap.getLayers().get(3).getObjects();
         mapColliders = new ArrayList<Rectangle>();
@@ -77,6 +73,11 @@ public class GameScreen implements Screen {
             mapColliders.add(collider);
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
         }
+
+        this.renderableManager = new RenderableManager(mapColliders);
+
+        barrel= new Barrel(6960,8630);
+        
         shapeRenderer = new ShapeRenderer();
 
         player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen

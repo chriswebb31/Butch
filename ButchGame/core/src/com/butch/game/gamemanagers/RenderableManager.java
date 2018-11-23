@@ -1,17 +1,20 @@
 package com.butch.game.gamemanagers;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 
 import java.util.ArrayList;
 
 public class RenderableManager {
+    public static ArrayList<Rectangle> mapColliders;
     public static ArrayList<Renderable> renderableObjects;
     public static ArrayList<Renderable> renderableObjectsToRemove;
 
-    public RenderableManager() {
+    public RenderableManager(ArrayList<Rectangle> mapColliders) {
         this.renderableObjects = new ArrayList<Renderable>();
         this.renderableObjectsToRemove = new ArrayList<Renderable>();
+        this.mapColliders = mapColliders;
     }
 
     public void update(float delta) {

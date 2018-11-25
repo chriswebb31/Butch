@@ -6,7 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gamemanagers.RenderableManager;
 
 public abstract class Renderable {
-    public boolean active = true;
+    public boolean activeForRender = true;
+    public boolean destroy = false;
+    public boolean activeCollision = false;
     public String TAG = this.getClass().getName();
     private Sprite sprite;
     private Vector2 position;

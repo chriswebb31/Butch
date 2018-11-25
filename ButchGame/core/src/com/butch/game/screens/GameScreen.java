@@ -77,7 +77,7 @@ public class GameScreen implements Screen {
         this.renderableManager = new RenderableManager(mapColliders);
 
         barrel= new Barrel(6960,8630);
-        
+
         shapeRenderer = new ShapeRenderer();
 
         player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen

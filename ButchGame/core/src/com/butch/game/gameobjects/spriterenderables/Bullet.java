@@ -31,16 +31,17 @@ public class Bullet extends Renderable {
         this.getCollider().setPosition(this.getPosition());
         for (Renderable renderable: RenderableManager.renderableObjects) {
             if(renderable.getCollider().overlaps(this.getCollider())){
-                if(renderable.TAG.equals("com.butch.game.gameobjects.Breakables.Barrel")){
+                if(renderable.TAG.equals("breakable")){
                     renderable.takeHit(damage);
-                    active = false;
+                    activeForRender = false;
                     System.out.println(renderable.TAG);
                 }
             }
         }
         for(Rectangle collider : RenderableManager.mapColliders){
             if(collider.overlaps(this.getCollider())){
-                active = false;
+                activeForRender = false;
+                destroy = true;
             }
         }
     }

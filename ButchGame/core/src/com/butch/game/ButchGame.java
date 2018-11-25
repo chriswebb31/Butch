@@ -18,7 +18,7 @@ public class ButchGame extends Game {
     /*
         CLASS : BUTCHGAME
 
-        This is the main LLibGDX class, it extends game, and could be described as the 'active window' enwhich the scene changes
+        This is the main LLibGDX class, it extends game, and could be described as the 'activeForRender window' enwhich the scene changes
         all game constants go here. Such as managers and viewports
 
      */

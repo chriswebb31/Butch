@@ -22,9 +22,9 @@ public class RenderableManager {
         renderableObjectsToRemove.clear();
 
         for (int i=0; i<renderableObjects.size();i++) {
-            if(renderableObjects.get(i).active){
+            if(renderableObjects.get(i).activeForRender){
                 renderableObjects.get(i).update();
-            } else{
+            } else if(renderableObjects.get(i).destroy){
                 renderableObjectsToRemove.add(renderableObjects.get(i));
             }
         }
@@ -32,7 +32,7 @@ public class RenderableManager {
 
     public void render(SpriteBatch spriteBatch) {
         for (int i=0; i<renderableObjects.size();i++) {
-            if(renderableObjects.get(i).active){
+            if(renderableObjects.get(i).activeForRender){
                 renderableObjects.get(i).getSprite().draw(spriteBatch);
             }
         }

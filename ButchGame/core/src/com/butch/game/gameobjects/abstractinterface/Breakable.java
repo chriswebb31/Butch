@@ -9,10 +9,11 @@ public abstract class Breakable extends Renderable {
     public float health;
 
     public Breakable(){
+        this.TAG = "breakable";
         if(breakables == null){
             breakables = new ArrayList<Breakable>();
         }
-
+        activeCollision = true;
         breakables.add(this);
     }
 

@@ -148,7 +148,7 @@ public class MainMenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y){
                 music.stop();
                 playSound.play();
-
+               removeButtons();
                 playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                     @Override
                     public void onCompletion(Music music) {
@@ -171,6 +171,7 @@ public class MainMenuScreen implements Screen {
             }
             public void clicked(InputEvent event, float x, float y){
                 sound.play();
+               removeButtons();
                 game.setScreen(new AboutScreen(game, gameViewPort));
             }
 
@@ -188,6 +189,7 @@ public class MainMenuScreen implements Screen {
             }
             public void clicked(InputEvent event, float x, float y){
                 sound.play();
+                removeButtons();
                 game.setScreen(new NeedHelpScreen(game, gameViewPort));
             }
 
@@ -234,7 +236,15 @@ public class MainMenuScreen implements Screen {
         stage.addActor(needHelpButton);
         stage.addActor(settingsButton);
     }
+    void removeButtons(){
+        playButton.remove();
+        aboutButton.remove();
+        needHelpButton.remove();
+        exitButton.remove();
+        settingsButton.remove();
+    }
     public void changeS(){
+        removeButtons();
         game.setScreen(new SettingsScreen(game, gameViewPort, this));
     }
     @Override

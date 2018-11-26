@@ -21,6 +21,7 @@ public class Player extends Renderable {
 
     private static ArrayList<Gun> gunInventory;
     private static ArrayList<ItemPickup> itemInventory;
+    private static ArrayList<ItemPickup> itemCollection;
 
     private Gun activeGun;
     private int gunInventoryIteration = 0;
@@ -47,6 +48,7 @@ public class Player extends Renderable {
 
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
+        this.itemCollection = new ArrayList<ItemPickup>();
         this.gunInventory.add(new CHOPPER());
 //        this.gunInventory.add(new Pistol());
         this.activeGun = this.gunInventory.get(0);
@@ -111,6 +113,18 @@ public class Player extends Renderable {
                 e.printStackTrace();
             }
             System.out.println("weapon: " + activeGun.getClass().getCanonicalName());
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.E)){
+            for (Renderable renderable:RenderableManager.renderableObjects) {
+                if(renderable.TAG == "item" && renderable.activeForRender){
+                    ItemPickup itemPickup = (ItemPickup) renderable;
+                    intersector = new Rectangle();
+                    if(Intersector.overlaps(itemPickup.collectionRange, this.getCollider())){
+                        itemCollection.add(itemPickup);
+                        itemPickup.activeForRender = false;
+                    }
+                }
+            }
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();
@@ -243,6 +257,13 @@ public class Player extends Renderable {
         movementHandler();
         flipHandler();
 
+        if(itemCollection.size() > 0){
+            for(ItemPickup item:itemCollection){
+                addItem(item);
+            }
+            itemCollection.clear();
+        }
+
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
     }
@@ -252,7 +273,7 @@ public class Player extends Renderable {
 
     }
 
-    public static void addItem(ItemPickup item){
+    public void addItem(ItemPickup item){
         switch (item.type){
             case 0:
                 gunInventory.add(ButchGame.itemManager.getGun(item.id));

@@ -120,7 +120,10 @@ public class GameScreen implements Screen {
         shapeRenderer.setColor(Color.FIREBRICK);
         for (Renderable renderable: RenderableManager.renderableObjects) {
             try{
-                shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+                if(renderable.TAG == "item"){
+                    ItemPickup item = (ItemPickup) renderable;
+                    shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
+                }
             } catch (NullPointerException e){
                 e.printStackTrace();
             }

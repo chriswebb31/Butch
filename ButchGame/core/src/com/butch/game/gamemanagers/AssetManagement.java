@@ -84,6 +84,5 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
-
     }
 }

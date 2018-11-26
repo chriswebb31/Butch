@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.gamemanagers.AssetManagement;
 import com.butch.game.gamemanagers.GameStateManager;
+import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.screens.LoadingScreen;
 import com.butch.game.screens.MainMenuScreen;
 
@@ -29,6 +30,7 @@ public class ButchGame extends Game {
 	public static Engine ashleyEngine;
 	public static AssetManagement assets;
 	public static GameStateManager GSM;
+	public static ItemManager itemManager;
 	private static FPSLogger log;
     public MainMenuScreen game_screen;
     public float themeVolume;
@@ -36,6 +38,7 @@ public class ButchGame extends Game {
 	public ButchGame() {
 		gameViewPort = new FitViewport(1920, 1080);
 		assets = new AssetManagement();
+		itemManager = new ItemManager();
 		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		assets.load(assets.tilemap1, TiledMap.class);
 		log = new FPSLogger();

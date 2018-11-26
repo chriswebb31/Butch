@@ -4,13 +4,11 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.butch.game.ButchGame;
-import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 
 public class CHOPPER extends Gun {
 
-    public CHOPPER(Player player) {
-        super(player);
+    public CHOPPER() {
         this.accuracy = 100;
         this.clip = 25;
         this.clipSize = 25;

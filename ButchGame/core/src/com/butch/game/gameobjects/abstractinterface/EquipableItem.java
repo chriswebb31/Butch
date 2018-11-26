@@ -8,8 +8,8 @@ public abstract class EquipableItem extends Renderable {
     public boolean oneHanded;
     private Player player;
 
-    public EquipableItem(Player player){
-        this.player = player;
+    public EquipableItem(){
+
     }
 
     @Override

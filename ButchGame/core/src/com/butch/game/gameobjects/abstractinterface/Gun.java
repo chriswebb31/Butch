@@ -8,6 +8,7 @@ import com.butch.game.gameobjects.spriterenderables.Player;
 import java.util.Random;
 
 public abstract class Gun extends EquipableItem {
+    public int id;
     private long lastShot;
     public float fireRate;
     public float speed;
@@ -24,9 +25,8 @@ public abstract class Gun extends EquipableItem {
     public float reloadSpeed;
     public int reserve;
 
-    public Gun(Player player) {
-        super(player);
-        this.player = player;
+    public Gun() {
+
     }
 
     public void Shoot(){

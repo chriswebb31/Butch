@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
-import com.butch.game.gameobjects.Items.ColtItem;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
@@ -27,7 +26,6 @@ public class Player extends Renderable {
     private int gunInventoryIteration = 0;
 
     private ArrayList<Rectangle> mapColliders;
-    public ArrayList<ItemPickup> itemPickups;
     private boolean canMove;
     private Vector2 velocity;
 
@@ -49,9 +47,7 @@ public class Player extends Renderable {
 
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
-        this.itemPickups = new ArrayList<ItemPickup>();
         this.gunInventory.add(new CHOPPER());
-        this.itemPickups.add(new ColtItem(startPosition));
 //        this.gunInventory.add(new Pistol());
         this.activeGun = this.gunInventory.get(0);
 
@@ -242,6 +238,7 @@ public class Player extends Renderable {
 
     @Override
     public void update() {
+        this.activeGun.player = this;
         inputHandler();
         movementHandler();
         flipHandler();

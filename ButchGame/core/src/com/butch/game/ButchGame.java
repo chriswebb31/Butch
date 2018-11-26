@@ -1,6 +1,5 @@
 package com.butch.game;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -12,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.gamemanagers.AssetManagement;
 import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.gamemanagers.ItemManager;
+import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.screens.LoadingScreen;
 import com.butch.game.screens.MainMenuScreen;
 
@@ -27,9 +27,9 @@ public class ButchGame extends Game {
 	public static final float TARGET_WIDTH = 1920;
 	public static final float TARGET_HEIGHT = 1080;
 	private static FitViewport gameViewPort;
-	public static Engine ashleyEngine;
 	public static AssetManagement assets;
 	public static GameStateManager GSM;
+	public static RenderableManager renderableManager;
 	public static ItemManager itemManager;
 	private static FPSLogger log;
     public MainMenuScreen game_screen;
@@ -38,11 +38,11 @@ public class ButchGame extends Game {
 	public ButchGame() {
 		gameViewPort = new FitViewport(1920, 1080);
 		assets = new AssetManagement();
-		itemManager = new ItemManager();
 		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		assets.load(assets.tilemap1, TiledMap.class);
+		renderableManager = new RenderableManager();
+
 		log = new FPSLogger();
-		ashleyEngine = new Engine();
 		GSM = new GameStateManager();
 		themeVolume = 0.3f;
   	}

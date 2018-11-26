@@ -28,6 +28,9 @@ public abstract class ItemPickup extends Renderable{
 
     @Override
     public void update() {
+        this.setSprite(icon);
+        this.getSprite().setScale(10);
+        this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         for (Renderable renderableObject: RenderableManager.renderableObjects) {
             if(renderableObject.TAG == "player"){
                 intersector = new Rectangle();

@@ -6,7 +6,7 @@ import com.butch.game.gameobjects.spriterenderables.Player;
 
 public abstract class EquipableItem extends Renderable {
     public boolean oneHanded;
-    private Player player;
+    public Player player;
 
     public EquipableItem(){
 
@@ -14,19 +14,25 @@ public abstract class EquipableItem extends Renderable {
 
     @Override
     public void update() {
-        Vector2 targetDir = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
-        float angle = (float) Math.atan2(targetDir.y - this.getSprite().getY(), targetDir.x - this.getSprite().getX());
-        angle = (float) Math.toDegrees(angle);
-        if(this.oneHanded)
-            this.setPosition(player.getWeaponPosition());
-        else{
-            this.setPosition(player.getPosition());
-        }
-        try{
-            this.getSprite().setRotation(angle);
-            this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
-        } catch (NullPointerException e){
-            System.out.println(e);
+        if(player != null){
+            Vector2 targetDir = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
+            float angle = (float) Math.atan2(targetDir.y - this.getSprite().getY(), targetDir.x - this.getSprite().getX());
+            angle = (float) Math.toDegrees(angle);
+            try{
+                if(this.oneHanded)
+                    this.setPosition(player.getWeaponPosition());
+                else{
+                    this.setPosition(player.getPosition());
+                }
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            try{
+                this.getSprite().setRotation(angle);
+                this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+            } catch (NullPointerException e){
+                System.out.println(e);
+            }
         }
     }
 //    public boolean oneHanded;

@@ -17,8 +17,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Breakables.Barrel;
+import com.butch.game.gameobjects.Items.ColtItem;
+import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
@@ -32,7 +35,7 @@ public class GameScreen implements Screen {
         this game screen is a 'scene' within the window. Used for creating levels.
 
      */
-    private RenderableManager renderableManager;
+    public ArrayList<ItemPickup> itemPickups;
     public ButchGame game; //reference to libgdx main game class
     public SpriteBatch batch; //sprite renderer
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
@@ -74,14 +77,16 @@ public class GameScreen implements Screen {
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
         }
 
-        this.renderableManager = new RenderableManager(mapColliders);
-
-        barrel= new Barrel(6960,8630);
+        ButchGame.renderableManager.reset();
+        ButchGame.renderableManager.mapColliders = mapColliders;
+        ButchGame.itemManager = new ItemManager();
+//        barrel= new Barrel(6960,8630);
 
         shapeRenderer = new ShapeRenderer();
 
         player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
-
+        this.itemPickups = new ArrayList<ItemPickup>();
+        this.itemPickups.add(new ColtItem(new Vector2(6960,8630)));
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
@@ -102,18 +107,18 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
 
         camera.update(); //update camera view based on position
-        renderableManager.update(delta);
+        ButchGame.renderableManager.update(delta);
         orthogonalTiledMapRenderer.setView(camera); //update view of renderers to camera
         orthogonalTiledMapRenderer.render();//draw tilemap before sprites to save correct z-index of sprites
 
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         batch.begin();
-        renderableManager.render(batch);
+        ButchGame.renderableManager.render(batch);
         batch.end();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.FIREBRICK);
-        for (Renderable renderable:renderableManager.renderableObjects) {
+        for (Renderable renderable: RenderableManager.renderableObjects) {
             try{
                 shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
             } catch (NullPointerException e){

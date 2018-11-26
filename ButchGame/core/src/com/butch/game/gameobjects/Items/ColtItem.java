@@ -9,8 +9,9 @@ import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 public class ColtItem extends ItemPickup {
     public ColtItem(Vector2 position) {
         super(position);
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class)));
+        this.icon = new Sprite(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class));
         this.type = 0;
         this.id = 0;
+        System.out.println("created at: "+position);
     }
 }

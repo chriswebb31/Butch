@@ -9,6 +9,7 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 public class Pistol extends Gun {
 
     public Pistol() {
+        this.id = 0;
         this.clipSize = 8;
         this.accuracy = 50;
         this.clip = 8;

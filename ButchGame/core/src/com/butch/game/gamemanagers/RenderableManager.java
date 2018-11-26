@@ -11,10 +11,10 @@ public class RenderableManager {
     public static ArrayList<Renderable> renderableObjects;
     public static ArrayList<Renderable> renderableObjectsToRemove;
 
-    public RenderableManager(ArrayList<Rectangle> mapColliders) {
+    public RenderableManager() {
         this.renderableObjects = new ArrayList<Renderable>();
         this.renderableObjectsToRemove = new ArrayList<Renderable>();
-        this.mapColliders = mapColliders;
+        this.mapColliders = new ArrayList<Rectangle>();
     }
 
     public void update(float delta) {
@@ -36,5 +36,11 @@ public class RenderableManager {
                 renderableObjects.get(i).getSprite().draw(spriteBatch);
             }
         }
+    }
+
+    public void reset(){
+        this.renderableObjects.clear();
+        this.renderableObjectsToRemove.clear();
+        this.mapColliders.clear();
     }
 }

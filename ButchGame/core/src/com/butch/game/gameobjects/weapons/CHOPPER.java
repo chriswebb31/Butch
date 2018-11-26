@@ -9,6 +9,7 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 public class CHOPPER extends Gun {
 
     public CHOPPER() {
+        this.id = 1;
         this.accuracy = 100;
         this.clip = 25;
         this.clipSize = 25;

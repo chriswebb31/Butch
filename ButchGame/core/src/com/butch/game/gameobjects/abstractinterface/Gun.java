@@ -3,7 +3,6 @@ package com.butch.game.gameobjects.abstractinterface;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.spriterenderables.Bullet;
-import com.butch.game.gameobjects.spriterenderables.Player;
 
 import java.util.Random;
 
@@ -17,7 +16,6 @@ public abstract class Gun extends EquipableItem {
     public float accuracy;
     public int clip;
     public int clipSize;
-    private Player player;
     private boolean isReloading = false;
     private long lastReload;
     private boolean hasCalledReload;

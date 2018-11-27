@@ -1,160 +1,92 @@
 package com.butch.game.screens;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-//import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-///import com.badlogic.gdx.graphics.g2d.TextureRegion;
-//import com.badlogic.gdx.maps.tiled.TiledMap;
-//import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.gamemanagers.AssetManagement;
-import com.butch.game.gamemanagers.GameStateManager;
 
 import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 
+//import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+///import com.badlogic.gdx.graphics.g2d.TextureRegion;
+//import com.badlogic.gdx.maps.tiled.TiledMap;
+//import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+
 public class MainMenuScreen implements Screen {
-    ButchGame game;
+    //Change to use actual buttons maybe? Scene2D is used for menus etc
+
+    static ButchGame game;
     Sound sound;
+
     OrthographicCamera camera;
     SpriteBatch batch;
     Texture texture_back;
-    Sprite sprite_back;
-    Texture playButtonActive;
-    Texture aboutButton;
-    Texture needHelpButton;
-    Texture settingsButton;
-    int playButtonX = 809; //location where the play button will start drawing in x axis
-    int  playButtonY = 598; //location where the play button will start drawing in y axis reversed!
-    int playButtonWidth = 276; // width of play Button
-    int playButtonHeight = 124; // height of play button
-    int aboutButtonX = 809; //location where the about button will start drawing in x axis
-    int  aboutButtonY = 750; //location where the about button will start drawing in y axis reversed!
-    int aboutButtonWidth = 276; // width of about Button
-    int aboutButtonHeight = 124; // height of about button
-    int needHelpButtonX = 809; //location where the needHelp button will start drawing in x axis
-    int  needHelpButtonY = 900; //location where the needHelp button will start drawing in y axis reversed!
-    int needHelpButtonWidth = 276; // width of needHelp Button
-    int needHelpButtonHeight = 124; // height of needHelp button
-    int settingsButtonX = 0; //location where the settings button will start drawing in x axis
-    int  settingsButtonY = 0; //location where the settings button will start drawing in y axis reversed!
-    int settingsButtonWidth = 70; // width of settings Button
-    int settingsButtonHeight = 70; // height of settings button
+    private Sprite sprite_back, playButtonActive,playButtonInactive,aboutButtonActive,aboutButtonInactive,
+            needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive;
+    Stage stage;
+    private FitViewport gameViewPort;
+    private static Music music, playSound;
+    public ImageButton exitButton, playButton, aboutButton, settingsButton, needHelpButton;
 
-    public MainMenuScreen(ButchGame game){
+
+    public MainMenuScreen(ButchGame game, FitViewport gameViewport){
         this.game = game;
+
+        this.gameViewPort = gameViewport;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();
-        texture_back = new Texture(Gdx.files.internal("Butch Title 2 Final.png")); // locating the background
+        texture_back = ButchGame.assets.get(ButchGame.assets.backgroundTexture, Texture.class); // locating the background
         texture_back.setFilter(Linear,Linear);
         sprite_back = new Sprite(texture_back);
         sprite_back.setRegionWidth(1920);
         sprite_back.setRegionHeight(1080);
         sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
-        sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
-
-        playButtonActive = new Texture ("Buttons/playButton.png"); // locating the play button
-        aboutButton = new Texture("Buttons/aboutButton.png"); // locating the about button
-        needHelpButton = new Texture("Buttons/needHelpButton.png"); //locating the need help button
-        settingsButton = new Texture("Buttons/settingsButton.png"); // locating the setting button
+        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
+        stage = new Stage();
+        music = ButchGame.assets.get(ButchGame.assets.mainTheme, Music.class);
+        music.setVolume(game.getVolume());
+        music.setLooping(true);
+        music.play();
+        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
     }
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
+        createButtons();
     }
+
+    public void setVolume(float volume) {
+        music.setVolume(volume);
+    }
+
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1f,1f,1f,1f); // setting the background white, however this doesn't...
-        // ...matter as there will be a background anyway.
+        Gdx.gl.glClearColor(1f,1f,1f,1f); // setting the background white, however this doesn't//
+        //matter as there will be a background anyway.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-        batch.begin(); //starting rendering
-        //render code
 
+        batch.begin();
         batch.draw(sprite_back,0,0);
-        float x =  1600/2 - playButtonWidth/2;
-        //float y = ButchGame.TARGET_HEIGHT/2 - playButtonActive.getWidth();
-
-        if(Gdx.input.getX()>=  playButtonX && Gdx.input.getX() <= playButtonWidth + playButtonX && Gdx.input.getY() >=
-                playButtonY  && Gdx.input.getY() < playButtonY + playButtonHeight ) {
-// there is math involved here, in a few words it's checking if the pointer is hovering over the button if yes the image
-// will become larger.
-            batch.draw(playButtonActive, playButtonX, playButtonY , playButtonWidth,playButtonHeight);
-            //if yes the image will become larger.
-            if (Gdx.input.isTouched()) {
-                sound.play();
-
-                this.dispose();
-                game.doit();
-                game.create2();
-
-                game.render2();
-
-            }
-            //if above conditions are met then once play button is clicked the game will load
-        }
-
-        else{
-            batch.draw(playButtonActive, 839, 619, 215,71);
-        }
-        if(Gdx.input.getX()>=  aboutButtonX && Gdx.input.getX() <= aboutButtonWidth + aboutButtonX && Gdx.input.getY()
-                >= aboutButtonY  && Gdx.input.getY() < aboutButtonY + aboutButtonHeight ) {
-
-            batch.draw(aboutButton, aboutButtonX, aboutButtonY , aboutButtonWidth,aboutButtonHeight);
-
-            if (Gdx.input.isTouched()) {
-                sound.play();
-                this.dispose();
-                game.setScreen(new AboutScreen(game));
-
-
-            }
-        }
-
-        else{
-            batch.draw(aboutButton, 839, 780, 215,71);
-        }
-        if(Gdx.input.getX()>=  needHelpButtonX && Gdx.input.getX() <= needHelpButtonWidth + needHelpButtonX &&
-                Gdx.input.getY() >= needHelpButtonY  && Gdx.input.getY() < needHelpButtonY + needHelpButtonHeight ) {
-
-            batch.draw(needHelpButton, needHelpButtonX, needHelpButtonY , needHelpButtonWidth,needHelpButtonHeight);
-            if (Gdx.input.isTouched()) {
-                sound.play();
-                this.dispose();
-                game.setScreen(new NeedHelpScreen(game));
-            }
-        }
-
-        else{
-            batch.draw(needHelpButton, 839, 940, 215,71);
-        }
-
-        if(Gdx.input.getX()>=  settingsButtonX && Gdx.input.getX() <= settingsButtonWidth + settingsButtonX &&
-                Gdx.input.getY() >= settingsButtonY  && Gdx.input.getY() < settingsButtonY + settingsButtonHeight ) {
-
-            batch.draw(settingsButton, settingsButtonX, settingsButtonY , settingsButtonWidth,settingsButtonHeight);
-            if (Gdx.input.isTouched()) {
-                sound.play();
-                this.dispose();
-                game.setScreen(new SettingsScreen(game));
-            }
-        }
-
-        else {
-            batch.draw(settingsButton, 0, 0, 60, 60);
-        }
-        batch.end(); // end rendering
+        batch.end();
+        update(delta);
+        stage.draw();
     }
 
     @Override
@@ -166,7 +98,9 @@ public class MainMenuScreen implements Screen {
     public void pause() {
 
     }
-
+    public void update(float delta){
+        stage.act(delta);
+    }
     @Override
     public void resume() {
 
@@ -176,9 +110,150 @@ public class MainMenuScreen implements Screen {
     public void hide() {
 
     }
+    public void createButtons(){
+        /** creating the Active and Inactive Sprites
+            creating the Buttons as Image Buttons
+            setting position and size with .setBounds method. */
+        settingsButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class));
+        settingsButton = new ImageButton(new SpriteDrawable(settingsButtonActive));
+        settingsButton.setBounds(0,game.TARGET_HEIGHT-60,60,60);
+        playButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonActiveSprite, Texture.class));
+        playButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonInactiveSprite, Texture.class));
+        playButton = new ImageButton(new SpriteDrawable(playButtonInactive),new SpriteDrawable(playButtonActive));
+        playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+        aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class));
+        aboutButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonInactiveSprite, Texture.class));
+        aboutButton = new ImageButton(new SpriteDrawable(aboutButtonInactive),new SpriteDrawable(aboutButtonActive));
+        aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
+        needHelpButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class));
+        needHelpButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonInactiveSprite, Texture.class));
+        needHelpButton = new ImageButton(new SpriteDrawable( needHelpButtonInactive), new SpriteDrawable(needHelpButtonActive));
+        needHelpButton.setBounds(80, game.TARGET_HEIGHT - 821, 321, 137);
+        exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
+        exitButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
+        exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
+        exitButton.setBounds(10,10,251,71);
+        /** adding actions of when hovering over a button and clicking */
+        playButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+                playButton.setBounds(75,game.TARGET_HEIGHT-452,331,147);
 
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+                playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                music.stop();
+                playSound.play();
+               removeButtons();
+                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(Music music) {
+
+                        game.setScreen(new GameScreen(game, gameViewPort));
+                    }
+                });
+            }
+        });
+        aboutButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+                aboutButton.setBounds(75,game.TARGET_HEIGHT-639,331,147);
+
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+                aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                sound.play();
+               removeButtons();
+                game.setScreen(new AboutScreen(game, gameViewPort));
+            }
+
+        });
+        needHelpButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+                needHelpButton.setBounds(75,game.TARGET_HEIGHT-826,331,147);
+
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+                needHelpButton.setBounds(80,game.TARGET_HEIGHT -821,321,137);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                sound.play();
+                removeButtons();
+                game.setScreen(new NeedHelpScreen(game, gameViewPort));
+            }
+
+        });
+        settingsButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+                settingsButton.setBounds(0,game.TARGET_HEIGHT-70,70,70);
+
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+                settingsButton.setBounds(0,game.TARGET_HEIGHT-60,60,60);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                sound.play();
+                //game.setScreen(new SettingsScreen(game, gameViewPort, this));
+                changeS();
+            }
+
+        });
+
+        exitButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+                exitButton.setSize(261,81);
+
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+                exitButton.setSize(251,71);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                sound.play();
+                Gdx.app.exit();
+            }
+
+        });
+        stage.addActor(exitButton);
+        stage.addActor(playButton);
+        stage.addActor(aboutButton);
+        stage.addActor(needHelpButton);
+        stage.addActor(settingsButton);
+    }
+    void removeButtons(){
+        playButton.remove();
+        aboutButton.remove();
+        needHelpButton.remove();
+        exitButton.remove();
+        settingsButton.remove();
+    }
+    public void changeS(){
+        removeButtons();
+        game.setScreen(new SettingsScreen(game, gameViewPort, this));
+    }
     @Override
     public void dispose() {
 
+       playButtonActive.getTexture().dispose();
+       playButtonInactive.getTexture().dispose();
+       exitButtonActive.getTexture().dispose();
+       exitButtonInactive.getTexture().dispose();
+        music.dispose();
     }
 }

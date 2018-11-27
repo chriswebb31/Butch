@@ -1,0 +1,61 @@
+horseWalking.png
+size: 102, 102
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+horseWalking-0
+  rotate: false
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+horseWalking-1
+  rotate: false
+  xy: 35, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+horseWalking-2
+  rotate: false
+  xy: 69, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+horseWalking-3
+  rotate: false
+  xy: 1, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+horseWalking-4
+  rotate: false
+  xy: 35, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+horseWalking-5
+  rotate: false
+  xy: 69, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+horseWalking-6
+  rotate: false
+  xy: 1, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+horseWalking-7
+  rotate: false
+  xy: 35, 69
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

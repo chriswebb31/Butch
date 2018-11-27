@@ -1,0 +1,54 @@
+shotgunFiring.png
+size: 224, 12
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shotgunFiring-0
+  rotate: false
+  xy: 1, 1
+  size: 30, 10
+  orig: 30, 10
+  offset: 0, 0
+  index: -1
+shotgunFiring-1
+  rotate: false
+  xy: 33, 1
+  size: 30, 10
+  orig: 30, 10
+  offset: 0, 0
+  index: -1
+shotgunFiring-2
+  rotate: false
+  xy: 65, 1
+  size: 30, 10
+  orig: 30, 10
+  offset: 0, 0
+  index: -1
+shotgunFiring-3
+  rotate: false
+  xy: 97, 1
+  size: 30, 10
+  orig: 30, 10
+  offset: 0, 0
+  index: -1
+shotgunFiring-4
+  rotate: false
+  xy: 129, 1
+  size: 30, 10
+  orig: 30, 10
+  offset: 0, 0
+  index: -1
+shotgunFiring-5
+  rotate: false
+  xy: 161, 1
+  size: 30, 10
+  orig: 30, 10
+  offset: 0, 0
+  index: -1
+shotgunFiring-6
+  rotate: false
+  xy: 193, 1
+  size: 30, 10
+  orig: 30, 10
+  offset: 0, 0
+  index: -1

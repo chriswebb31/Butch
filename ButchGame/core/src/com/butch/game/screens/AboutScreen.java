@@ -8,7 +8,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 
 import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
@@ -16,18 +22,17 @@ import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 public class AboutScreen implements Screen {
     private SpriteBatch batch;
     private ButchGame game;
-    //String aboutText;
     private OrthographicCamera camera;
-    private Texture exitButton;
-    private int exitButtonX = 100; //location where the exit button will start drawing in x axis
-    private int  exitButtonY = 970; //location where the exit button will start drawing in y axis reversed!
-    private int exitButtonWidth = 300; // width of exit Button
-    private int exitButtonHeight = 100; // height of exit button
     private Sound sound;
     Texture back;
-    Sprite backS;
-    public AboutScreen(ButchGame game){
+    Sprite backS, exitButtonActive,exitButtonInactive;
+    Stage stage;
+    public ImageButton exitButton;
+    FitViewport gameViewPort;
+
+    public AboutScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
+        this.gameViewPort = gameViewPort;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         // import picture to sprite and then using sprite to render background image with canvas dimensions
@@ -38,14 +43,16 @@ public class AboutScreen implements Screen {
         backS.setRegionWidth(1920);
         backS.setRegionHeight(1080);
         backS.flip(false,true);
-        //aboutText = new String("bye world");
-        exitButton = new Texture("Buttons/exitButton.png");
-        sound = Gdx.audio.newSound(Gdx.files.internal("SoundFX/clickingSound.mp3"));
+        stage = new Stage(gameViewPort);
+        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
+
+
 
     }
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
+        createButtons();
     }
 
     @Override
@@ -55,26 +62,13 @@ public class AboutScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-      batch.begin();
-       batch.draw(backS, 0, 0 );
-        if(Gdx.input.getX()>=  exitButtonX && Gdx.input.getX() <= exitButtonWidth + exitButtonX && Gdx.input.getY()
-                >= exitButtonY && Gdx.input.getY() < exitButtonY + exitButtonHeight ) {
-
-            batch.draw(exitButton, exitButtonX, exitButtonY , exitButtonWidth,exitButtonHeight);
-            if (Gdx.input.isTouched()) {
-                sound.play(); // clicking sound will be played;
-                this.dispose();
-                game.setScreen(new MainMenuScreen(game));
-
-
-            }
-        }
-
-        else{
-            batch.draw(exitButton, 100, 1080- 100, 215,71);
-        }
+        batch.begin();
+        batch.draw(backS, 0, 0 );
 
       batch.end();
+        camera.update();
+        update(delta);
+        stage.draw();
     }
 
     @Override
@@ -95,6 +89,34 @@ public class AboutScreen implements Screen {
     @Override
     public void hide() {
 
+    }
+    public void update(float delta){
+        stage.act(delta);
+    }
+    public void createButtons(){
+        exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
+        exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
+        exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
+        exitButton.setBounds(10,10,251,71);
+
+        exitButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+                exitButton.setBounds(10,10,251,81);
+
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+                exitButton.setBounds(10,10,251,71);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                sound.play();
+                game.setScreen(new MainMenuScreen(game, gameViewPort));
+            }
+
+        });
+        stage.addActor(exitButton);
     }
 
     @Override

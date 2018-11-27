@@ -1,0 +1,61 @@
+butchWalkingRight.png
+size: 224, 28
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+butchWalkingRight-0
+  rotate: false
+  xy: 1, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+butchWalkingRight-1
+  rotate: false
+  xy: 29, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+butchWalkingRight-2
+  rotate: false
+  xy: 57, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+butchWalkingRight-3
+  rotate: false
+  xy: 85, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+butchWalkingRight-4
+  rotate: false
+  xy: 113, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+butchWalkingRight-5
+  rotate: false
+  xy: 141, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+butchWalkingRight-6
+  rotate: false
+  xy: 169, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+butchWalkingRight-7
+  rotate: false
+  xy: 197, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

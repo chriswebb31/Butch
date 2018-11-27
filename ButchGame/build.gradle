@@ -71,6 +71,12 @@ project(":core") {
 
 
     dependencies {
+        compile group: 'com.esotericsoftware.kryo', name: 'kryo', version: '2.24.0'
+        compile group: 'com.esotericsoftware.minlog', name: 'minlog', version: '1.2'
+        testCompile group: 'org.objenesis', name: 'objenesis', version: '3.0.1'
+        compile group: 'com.esotericsoftware.kryo', name: 'kryo', version: '2.24.0'
+        compile group: 'com.esotericsoftware', name: 'jsonbeans', version: '0.7'
+        compile "com.esotericsoftware:kryonet:2.22.0-RC1"
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.ashley:ashley:$ashleyVersion"
         

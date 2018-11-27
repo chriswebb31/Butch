@@ -19,6 +19,7 @@ public class DesktopLauncher {
 		config.width = Math.round(ButchGame.TARGET_WIDTH);
 		config.height = Math.round(ButchGame.TARGET_HEIGHT);
 		config.resizable = false;
+		config.fullscreen = true;
 		new LwjglApplication(new ButchGame(), config);
 	}
 }

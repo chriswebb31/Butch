@@ -1,0 +1,152 @@
+doubleBarrellReload.png
+size: 32, 357
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Double Barrel (Reload)-0
+  rotate: false
+  xy: 1, 1
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-1
+  rotate: false
+  xy: 1, 18
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-2
+  rotate: false
+  xy: 1, 35
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-3
+  rotate: false
+  xy: 1, 52
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-4
+  rotate: false
+  xy: 1, 69
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-5
+  rotate: false
+  xy: 1, 86
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-6
+  rotate: false
+  xy: 1, 103
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-7
+  rotate: false
+  xy: 1, 120
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-8
+  rotate: false
+  xy: 1, 137
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-9
+  rotate: false
+  xy: 1, 154
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-10
+  rotate: false
+  xy: 1, 171
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-11
+  rotate: false
+  xy: 1, 188
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-12
+  rotate: false
+  xy: 1, 205
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-13
+  rotate: false
+  xy: 1, 222
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-14
+  rotate: false
+  xy: 1, 239
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-15
+  rotate: false
+  xy: 1, 256
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-16
+  rotate: false
+  xy: 1, 273
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-17
+  rotate: false
+  xy: 1, 290
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-18
+  rotate: false
+  xy: 1, 307
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-19
+  rotate: false
+  xy: 1, 324
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+Double Barrel (Reload)-20
+  rotate: false
+  xy: 1, 341
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,47 @@
+gatlingGunFiring.png
+size: 336, 26
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gatlingGunFiring-0
+  rotate: false
+  xy: 1, 1
+  size: 54, 24
+  orig: 54, 24
+  offset: 0, 0
+  index: -1
+gatlingGunFiring-1
+  rotate: false
+  xy: 57, 1
+  size: 54, 24
+  orig: 54, 24
+  offset: 0, 0
+  index: -1
+gatlingGunFiring-2
+  rotate: false
+  xy: 113, 1
+  size: 54, 24
+  orig: 54, 24
+  offset: 0, 0
+  index: -1
+gatlingGunFiring-3
+  rotate: false
+  xy: 169, 1
+  size: 54, 24
+  orig: 54, 24
+  offset: 0, 0
+  index: -1
+gatlingGunFiring-4
+  rotate: false
+  xy: 225, 1
+  size: 54, 24
+  orig: 54, 24
+  offset: 0, 0
+  index: -1
+gatlingGunFiring-5
+  rotate: false
+  xy: 281, 1
+  size: 54, 24
+  orig: 54, 24
+  offset: 0, 0
+  index: -1

@@ -44,7 +44,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     //TileMapData
     public final String tilemap1 = "TiledFiles/desertdoodles.tmx";
-    public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
+   public final String tilemap1Tileset = "TiledFiles/desertdoodles.png" ;
     public final String enemySprite = "enemy.png";
 
     public AssetManagement() {
@@ -71,7 +71,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(machineGunSprite, Texture.class);
         load(rifleSprite, Texture.class);
         load(bulletSprite, Texture.class);
-        load(tilemap1Tilseset, Texture.class);
+        load(tilemap1Tileset, Texture.class);
         load(enemySprite, Texture.class);
         load(exitButtonActive,Texture.class);
         load(exitButtonInactive,Texture.class);

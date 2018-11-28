@@ -1,13 +1,11 @@
 package com.butch.game.gameobjects.abstractinterface;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class ItemPickup extends Renderable{
     public int id;
-    public Sprite icon;
     public Circle collectionRange;
     public int type;
 
@@ -21,9 +19,10 @@ public abstract class ItemPickup extends Renderable{
 
     @Override
     public void update() {
-        this.setSprite(icon);
-        this.getSprite().setScale(10);
-        this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+        if(activeForRender && getSprite()!=null){
+            this.getSprite().setScale(10);
+            this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+        }
     }
 
     @Override

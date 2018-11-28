@@ -9,19 +9,27 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gameobjects.Items.PistolAmmo;
+import com.butch.game.gameobjects.Items.RifleAmmo;
+import com.butch.game.gameobjects.Items.ShotgunAmmo;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
-import com.butch.game.gameobjects.weapons.CHOPPER;
+import com.butch.game.gameobjects.weapons.MachineGun;
 
 import java.util.ArrayList;
 
 public class Player extends Renderable {
     float xAxis, yAxis, speed = 0;
 
+    public int rifleAmmo = 10;
+    public int pistolAmmo = 10;
+    public int shotgunAmmo = 10;
+
     private static ArrayList<Gun> gunInventory;
     private static ArrayList<ItemPickup> itemInventory;
-    private static ArrayList<ItemPickup> itemCollection;
+    private static ArrayList<ItemPickup> itemCollection; //items in range if collection
 
     private Gun activeGun;
     private int gunInventoryIteration = 0;
@@ -49,8 +57,8 @@ public class Player extends Renderable {
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
         this.itemCollection = new ArrayList<ItemPickup>();
-        this.gunInventory.add(new CHOPPER());
-//        this.gunInventory.add(new Pistol());
+        this.gunInventory.add(new MachineGun());
+//        this.gunInventory.add(new Colt());
         this.activeGun = this.gunInventory.get(0);
 
         for (Gun gun:gunInventory) {
@@ -98,22 +106,20 @@ public class Player extends Renderable {
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try{
-                if(this.gunInventory.size()-1 > this.gunInventoryIteration){
+                if(this.gunInventory.size() -1 > this.gunInventoryIteration){
                     this.activeGun.activeForRender = false;
                     this.gunInventoryIteration++;
                     this.activeGun = gunInventory.get(this.gunInventoryIteration);
-                    this.activeGun.activeForRender = true;
                 } else{
                     this.activeGun.activeForRender = false;
                     this.gunInventoryIteration = 0;
                     this.activeGun = gunInventory.get(this.gunInventoryIteration);
-                    this.activeGun.activeForRender = true;
                 }
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
-            System.out.println("weapon: " + activeGun.getClass().getCanonicalName());
         }
+
         if(Gdx.input.isKeyPressed(Input.Keys.E)){
             for (Renderable renderable:RenderableManager.renderableObjects) {
                 if(renderable.TAG == "item" && renderable.activeForRender){
@@ -206,12 +212,16 @@ public class Player extends Renderable {
     }
 
     private void flipHandler() {
-        if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
-            this.getSprite().setFlip(false, false);
-            activeGun.getSprite().setFlip(false, false);
-        } else { //if direction is left or not right
-            this.getSprite().setFlip(true, false);
-            activeGun.getSprite().setFlip(false, true); //
+        try{
+            if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
+                this.getSprite().setFlip(false, false);
+                activeGun.getSprite().setFlip(false, false);
+            } else { //if direction is left or not right
+                this.getSprite().setFlip(true, false);
+                activeGun.getSprite().setFlip(false, true); //
+            }
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
     }
 
@@ -253,6 +263,7 @@ public class Player extends Renderable {
     @Override
     public void update() {
         this.activeGun.player = this;
+        this.activeGun.activeForRender = true;
         inputHandler();
         movementHandler();
         flipHandler();
@@ -279,6 +290,24 @@ public class Player extends Renderable {
                 gunInventory.add(ButchGame.itemManager.getGun(item.id));
             case 1:
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
+            if(item.type == 2){
+                System.out.println(item);
+                System.out.println("type:"+ item.type);
+                Item itemObj = (Item) item;
+                System.out.println("AmmoCount:" +itemObj.quantity);
+               switch (itemObj.id){
+                   case 0:
+                       PistolAmmo newPistolAmmo = (PistolAmmo) item;
+                       this.pistolAmmo += newPistolAmmo.quantity;
+                   case 1:
+                       RifleAmmo newRifleAmmo = (RifleAmmo) item;
+                       this.rifleAmmo += newRifleAmmo.quantity;
+                   case 2:
+                       ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
+                       this.shotgunAmmo += newShotgunAmmo.quantity;
+               }
+               item.activeForRender = false;
+            }
         }
     }
 }

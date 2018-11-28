@@ -9,7 +9,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gameobjects.Items.PistolAmmo;
+import com.butch.game.gameobjects.Items.RifleAmmo;
+import com.butch.game.gameobjects.Items.ShotgunAmmo;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
@@ -286,6 +290,24 @@ public class Player extends Renderable {
                 gunInventory.add(ButchGame.itemManager.getGun(item.id));
             case 1:
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
+            if(item.type == 2){
+                System.out.println(item);
+                System.out.println("type:"+ item.type);
+                Item itemObj = (Item) item;
+                System.out.println("AmmoCount:" +itemObj.quantity);
+               switch (itemObj.id){
+                   case 0:
+                       PistolAmmo newPistolAmmo = (PistolAmmo) item;
+                       this.pistolAmmo += newPistolAmmo.quantity;
+                   case 1:
+                       RifleAmmo newRifleAmmo = (RifleAmmo) item;
+                       this.rifleAmmo += newRifleAmmo.quantity;
+                   case 2:
+                       ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
+                       this.shotgunAmmo += newShotgunAmmo.quantity;
+               }
+               item.activeForRender = false;
+            }
         }
     }
 }

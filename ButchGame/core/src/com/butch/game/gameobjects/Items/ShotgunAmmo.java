@@ -11,5 +11,7 @@ public class ShotgunAmmo extends Item {
         super(position);
         this.id = 2;
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.shotgunAmmo, Texture.class)));
+        this.quantity = 10;
+        this.type = 2;
     }
 }

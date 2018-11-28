@@ -17,10 +17,14 @@ public class ItemManager {
     0 : PistolAmmo
     1 : RifleAmmo
     2 : ShotgunAmmo
-    3 : Gold
-    4 : HealthPack
+
     10 : Colt
     11 : Machine Gun
+
+    TYPES
+    0 : Gun
+    1 : Melee
+    2 : Ammo
 
      */
 

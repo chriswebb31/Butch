@@ -33,6 +33,7 @@ public class RenderableManager {
     public void render(SpriteBatch spriteBatch) {
         for (int i=0; i<renderableObjects.size();i++) {
             if(renderableObjects.get(i).activeForRender){
+                System.out.println(renderableObjects.get(i).getClass());
                 renderableObjects.get(i).getSprite().draw(spriteBatch);
             }
         }

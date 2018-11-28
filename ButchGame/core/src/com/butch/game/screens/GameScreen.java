@@ -21,6 +21,7 @@ import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Breakables.Barrel;
 import com.butch.game.gameobjects.Items.ColtItem;
+import com.butch.game.gameobjects.Items.RifleAmmo;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Player;
@@ -85,8 +86,10 @@ public class GameScreen implements Screen {
         shapeRenderer = new ShapeRenderer();
 
         player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
+        player.activeForRender = true;
         this.itemPickups = new ArrayList<ItemPickup>();
         this.itemPickups.add(new ColtItem(new Vector2(6960,8630)));
+        this.itemPickups.add(new RifleAmmo(new Vector2(7070, 8650)));
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);

@@ -11,7 +11,7 @@ public class ColtItem extends ItemPickup {
         super(position);
         this.icon = new Sprite(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class));
         this.type = 0;
-        this.id = 0;
-        System.out.println("created at: "+position);
+        this.id = 10;
+        System.out.println("created at: " + position);
     }
 }

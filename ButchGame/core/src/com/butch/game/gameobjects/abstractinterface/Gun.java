@@ -8,6 +8,8 @@ import java.util.Random;
 
 public abstract class Gun extends EquipableItem {
     public int id;
+    public int gunType;
+
     private long lastShot;
     public float fireRate;
     public float speed;
@@ -31,6 +33,14 @@ public abstract class Gun extends EquipableItem {
         long thisShot = System.currentTimeMillis();
         if ((thisShot - lastShot) >= (long) (fireRate * 1000)) {
             try {
+                switch (gunType){
+                    case 0:
+                        this.reserve = player.pistolAmmo;
+                    case 1:
+                        this.reserve = player.rifleAmmo;
+                    case 2:
+                        this.reserve = player.shotgunAmmo;
+                }
                 if((clip > 0) && (!isReloading)) {
                     gunShotSound.play();
                     Bullet shot = new Bullet(this.getPosition(), this.aimDirection().nor(), speed, damage);
@@ -56,19 +66,27 @@ public abstract class Gun extends EquipableItem {
 
     public void Reload(){
         if (!hasCalledReload){
-            reloadSoundEffect.play(1);
             hasCalledReload = true;
         }
-        long thisReload = System.currentTimeMillis();
 
+        long thisReload = System.currentTimeMillis();
         System.out.println(reloadSpeed * 1000);
         if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
+            reloadSoundEffect.play(1);
             if(this.reserve >= clipSize){
                 clip = clipSize;
                 reserve -= clipSize;
             } else{
                 clip = reserve;
                 reserve = 0;
+            }
+            switch (gunType){
+                case 0:
+                    player.pistolAmmo = this.reserve;
+                case 1:
+                    player.rifleAmmo = this.reserve;
+                case 2:
+                    player.shotgunAmmo = this.reserve;
             }
             isReloading = false;
             hasCalledReload = false;

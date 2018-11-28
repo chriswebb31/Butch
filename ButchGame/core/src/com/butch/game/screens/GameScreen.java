@@ -21,6 +21,7 @@ import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Breakables.Barrel;
 import com.butch.game.gameobjects.Items.ColtItem;
+import com.butch.game.gameobjects.Items.RifleAmmo;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Player;
@@ -85,8 +86,10 @@ public class GameScreen implements Screen {
         shapeRenderer = new ShapeRenderer();
 
         player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
+        player.activeForRender = true;
         this.itemPickups = new ArrayList<ItemPickup>();
         this.itemPickups.add(new ColtItem(new Vector2(6960,8630)));
+        this.itemPickups.add(new RifleAmmo(new Vector2(7070, 8650)));
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
@@ -107,20 +110,21 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
 
         camera.update(); //update camera view based on position
-        ButchGame.renderableManager.update(delta);
+        ButchGame.renderableManager.update(delta);//update all objects on screen
         orthogonalTiledMapRenderer.setView(camera); //update view of renderers to camera
         orthogonalTiledMapRenderer.render();//draw tilemap before sprites to save correct z-index of sprites
 
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         batch.begin();
-        ButchGame.renderableManager.render(batch);
+        ButchGame.renderableManager.render(batch); //render all objects on screen
         batch.end();
+
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.FIREBRICK);
         for (Renderable renderable: RenderableManager.renderableObjects) {
             try{
-                if(renderable.TAG == "item"){
+                if(renderable.TAG == "item" && renderable.activeForRender){
                     ItemPickup item = (ItemPickup) renderable;
                     shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
                 }
@@ -129,7 +133,7 @@ public class GameScreen implements Screen {
             }
         }
 //        if (Gdx.input.isButtonPressed(Input.Keys.F2)== false){
-// Gdx.app.exit();
+//            Gdx.app.exit();
 //        }
         shapeRenderer.end();
     }

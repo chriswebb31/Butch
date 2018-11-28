@@ -14,14 +14,18 @@ public class Bullet extends Renderable {
     private float damage;
     private float speed;
 
+    private long startTime;
+
     public Bullet(Vector2 start, Vector2 velocity, float speed, float damage) {
         this.setPosition(start);
+        startTime = System.currentTimeMillis();
         this.velocity = velocity;
         this.speed = speed;
         this.damage = damage;
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.bulletSprite, Texture.class)));
         this.getSprite().setScale(10);
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getWidth(), this.getSprite().getHeight()));
+        this.activeForRender = true;
     }
 
     @Override
@@ -43,6 +47,10 @@ public class Bullet extends Renderable {
                 activeForRender = false;
                 destroy = true;
             }
+        }
+        if(System.currentTimeMillis() - startTime > 2000){
+            activeForRender = false;
+            destroy = true;
         }
     }
 

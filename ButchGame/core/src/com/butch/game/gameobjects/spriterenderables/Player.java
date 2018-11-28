@@ -44,7 +44,7 @@ public class Player extends Renderable {
 
         this.velocity = new Vector2().setZero();
         this.canMove = true;
-        this.speed = 10;
+        this.speed = 50;
 
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();

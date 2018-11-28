@@ -43,8 +43,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //FONTS
 
     //TileMapData
-    public final String tilemap1 = "TiledFiles/desertdoodles.tmx";
-    public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
+    public final String tilemap1 = "TiledFiles/NEWTOWNMAP.tmx";
+    public final String tilemap1Tilseset = "TiledFiles/pokemon.png";
+    public final String tilemap2Tileset = "TiledFiles/biblioteca_by_derlo-d97v1d4.png";
+
     public final String enemySprite = "enemy.png";
 
     public AssetManagement() {
@@ -63,6 +65,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(playSound, Music.class);
      }
     public void includeAssets() {
+
         load(sliderKnob, Texture.class);
         load(sliderBack, Texture.class);
         load(cowboySprite, Texture.class);
@@ -84,5 +87,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
+        load(tilemap2Tileset, Texture.class);
     }
 }

@@ -15,6 +15,9 @@ import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.screens.LoadingScreen;
 import com.butch.game.screens.MainMenuScreen;
 
+import javax.tools.Tool;
+import java.awt.*;
+
 public class ButchGame extends Game {
     /*
         CLASS : BUTCHGAME
@@ -24,15 +27,16 @@ public class ButchGame extends Game {
 
      */
 	public static final boolean DEBUG = true;
-	public static final float TARGET_WIDTH = 1920;
-	public static final float TARGET_HEIGHT = 1080;
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final float TARGET_WIDTH = (float)screenSize.getWidth();
+	public static final float TARGET_HEIGHT = (float)screenSize.getHeight();
 	private static FitViewport gameViewPort;
 	public static AssetManagement assets;
 	public static GameStateManager GSM;
 	public static RenderableManager renderableManager;
 	public static ItemManager itemManager;
 	private static FPSLogger log;
-    public MainMenuScreen game_screen;
+    //public MainMenuScreen game_screen;
     public float themeVolume;
 
 	public ButchGame() {

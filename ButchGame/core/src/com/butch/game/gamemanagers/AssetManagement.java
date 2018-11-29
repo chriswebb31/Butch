@@ -43,9 +43,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //FONTS
 
     //TileMapData
-    public final String tilemap1 = "TiledFiles/NEWTOWNMAP.tmx";
-    public final String tilemap1Tilseset = "TiledFiles/pokemon.png";
-    public final String tilemap2Tileset = "TiledFiles/biblioteca_by_derlo-d97v1d4.png";
+    public final String tilemap1 = "TiledFiles/untitled.tmx";
 
     public final String enemySprite = "enemy.png";
 
@@ -74,7 +72,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(machineGunSprite, Texture.class);
         load(rifleSprite, Texture.class);
         load(bulletSprite, Texture.class);
-        load(tilemap1Tilseset, Texture.class);
+        //load(tilemap1Tileset, Texture.class);
         load(enemySprite, Texture.class);
         load(exitButtonActive,Texture.class);
         load(exitButtonInactive,Texture.class);
@@ -87,6 +85,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
-        load(tilemap2Tileset, Texture.class);
+       // load(tilemap2Tileset, Texture.class);
     }
 }

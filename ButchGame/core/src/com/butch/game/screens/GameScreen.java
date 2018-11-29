@@ -65,7 +65,7 @@ public class GameScreen implements Screen {
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
 
         //Set up static colliders
-        MapObjects mapObjects = tiledMap.getLayers().get(3).getObjects();
+        MapObjects mapObjects = tiledMap.getLayers().get(0).getObjects();
         mapColliders = new ArrayList<Rectangle>();
         for(RectangleMapObject rectangleMapObject : mapObjects.getByType(RectangleMapObject.class)){
             float newX = rectangleMapObject.getRectangle().x * 10;

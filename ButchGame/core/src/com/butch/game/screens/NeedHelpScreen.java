@@ -6,19 +6,27 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+;
+
+import javax.swing.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class NeedHelpScreen implements Screen {
-    private SpriteBatch batch;
+
     private ButchGame game;
     private OrthographicCamera camera;
     private Sprite exitButtonActive,exitButtonInactive;
@@ -27,17 +35,33 @@ public class NeedHelpScreen implements Screen {
     private Sound sound;
     FitViewport gameViewPort;
 
+
     public NeedHelpScreen(ButchGame game, FitViewport gameViewPort){
         this.gameViewPort = gameViewPort;
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         stage = new Stage(gameViewPort);
-        batch = new SpriteBatch();
+
         exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
 
+
+
     }
+//    public static void main(String[] args) throws MalformedURLException {
+//
+//        URL url = new URL("gifs.gif");
+//        Icon icon = new ImageIcon(url);
+//        JLabel label = new JLabel(icon);
+//
+//        JFrame f = new JFrame("Animation");
+//        f.getContentPane().add(label);
+//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        f.pack();
+//        f.setLocation(100,100);
+//        f.setVisible(true);
+//    }
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
@@ -50,11 +74,18 @@ public class NeedHelpScreen implements Screen {
         //...matter as there will be a background anyway.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+
         update(delta);
+
+
+
+
         stage.draw();
+
     }
     public void update(float delta){
         stage.act(delta);
+
     }
     @Override
     public void resize(int width, int height) {

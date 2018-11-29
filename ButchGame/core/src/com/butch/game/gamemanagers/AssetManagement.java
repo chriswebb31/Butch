@@ -3,15 +3,16 @@ package com.butch.game.gamemanagers;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
     public final String cowboySprite = "Anim/IdleDown/Idle_1_32x32.png";
-    public final String gunSprite = "weapon.png";
+
     public final String bulletSprite = "bullet.png";
     public final String coltSprite = "colt.png";
     public final String machineGunSprite = "machineGun.png";
-    public final String rifleSprite = "Rifle.png";
+
     public final String backgroundTexture = "saloonDoors.jpg";
     public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
     public final String playButtonInactiveSprite = "Buttons/playButtonInactive.png";
@@ -31,10 +32,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
     public final String menuClick = "SoundFX/clickingSound.mp3";
-    public final String hitEffect = "SoundFX/hit.mp3";
-    public final String revolverReloadEeffect = "SoundFX/revolverReload.mp3";
+
     public final String otherReloadEffect = "SoundFX/OtherReload.mp3";
-    public final String shellBounceEffect = "SoundFX/shellBounce.mp3";
+
     public final String playSound = "SoundFX/playSound.mp3";
 
     //MUSIC
@@ -47,8 +47,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     //TileMapData
     public final String tilemap1 = "TiledFiles/desertdoodles.tmx";
-   public final String tilemap1Tileset = "TiledFiles/desertdoodles.png" ;
-    public final String enemySprite = "enemy.png";
+
 
     public AssetManagement() {
 
@@ -65,7 +64,12 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(settingsButtonActiveSprite, Texture.class);
          load(playSound, Music.class);
      }
-    public void includeAssets() {
+    private void includeAssets() {
+        final String rifleSprite = "Rifle.png", gunSprite = "weapon.png", hitEffect = "SoundFX/hit.mp3",
+                revolverReloadEeffect = "SoundFX/revolverReload.mp3", shellBounceEffect = "SoundFX/shellBounce.mp3",
+                //animation = "Gif/loading.gif",
+                tilemap1Tileset = "TiledFiles/desertdoodles.png",enemySprite = "enemy.png";
+        //load(animation, Animation.class);
         load(sliderKnob, Texture.class);
         load(sliderBack, Texture.class);
         load(cowboySprite, Texture.class);
@@ -82,7 +86,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(pistolAmmo, Texture.class);
         load(rifleAmmo, Texture.class);
         load(shotgunAmmo, Texture.class);
-
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
         load(gunShot, Sound.class);
@@ -91,5 +94,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
+
     }
 }

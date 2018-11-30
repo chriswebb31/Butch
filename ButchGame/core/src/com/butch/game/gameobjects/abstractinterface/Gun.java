@@ -3,6 +3,7 @@ package com.butch.game.gameobjects.abstractinterface;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.spriterenderables.Bullet;
+import com.butch.game.gameobjects.spriterenderables.Enemy;
 
 import java.util.Random;
 
@@ -25,11 +26,18 @@ public abstract class Gun extends EquipableItem {
     public float reloadSpeed;
     public int reserve;
 
+    public Renderable parent;
+    boolean friendly;
+
     public Gun() {
 
     }
 
     public void Shoot(){
+        if(this.parent.TAG == "player"){
+            friendly = true;
+        }
+
         long thisShot = System.currentTimeMillis();
         if ((thisShot - lastShot) >= (long) (fireRate * 1000)) {
             try {
@@ -41,20 +49,20 @@ public abstract class Gun extends EquipableItem {
                     case 2:
                         this.reserve = player.shotgunAmmo;
                 }
-                if((clip > 0) && (!isReloading)) {
+                if((clip > 0) && (!isReloading) && this.reserve!=0) {
                     gunShotSound.play();
-                    Bullet shot = new Bullet(this.getPosition(), this.aimDirection().nor(), speed, damage);
+                    Bullet shot = new Bullet(this.getPosition(), this.aimDirection().nor(), speed, damage, friendly);
                     lastShot = thisShot;
                     clip -= 1;
                 }
-                else if (clip <= 0) {
+                else if (clip <= 0  && this.reserve!=0) {
                     if (!isReloading)
                         lastReload = System.currentTimeMillis();
 
                     isReloading = true;
                     Reload();
                 }
-                else if((clip < 0) && isReloading){
+                else if((clip < 0) && isReloading  && this.reserve!=0){
                     lastReload = System.currentTimeMillis();
                     Reload();
                 }
@@ -68,26 +76,39 @@ public abstract class Gun extends EquipableItem {
         if (!hasCalledReload){
             hasCalledReload = true;
         }
-
+        if(gunType == 0){
+            reserve = player.pistolAmmo;
+        } else if(gunType == 1){
+            reserve = player.rifleAmmo;
+        } else if (gunType == 2){
+            reserve = player.shotgunAmmo;
+        }
+        System.out.println("RELOAD!");
+        System.out.println("RESERVE AMMO:" + reserve);
         long thisReload = System.currentTimeMillis();
-        System.out.println(reloadSpeed * 1000);
         if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
             reloadSoundEffect.play(1);
             if(this.reserve >= clipSize){
                 clip = clipSize;
-                reserve -= clipSize;
+                if(gunType == 0){
+                    player.pistolAmmo -= clipSize;
+                } else if(gunType == 1){
+                    player.rifleAmmo -= clipSize;
+                } else if (gunType == 2){
+                    player.shotgunAmmo -= clipSize;
+                }
             } else{
                 clip = reserve;
                 reserve = 0;
+                if(gunType == 0){
+                    player.pistolAmmo = 0;
+                } else if(gunType == 1){
+                    player.rifleAmmo = 0;
+                } else if (gunType == 2){
+                    player.shotgunAmmo = 0;
+                }
             }
-            switch (gunType){
-                case 0:
-                    player.pistolAmmo = this.reserve;
-                case 1:
-                    player.rifleAmmo = this.reserve;
-                case 2:
-                    player.shotgunAmmo = this.reserve;
-            }
+
             isReloading = false;
             hasCalledReload = false;
             lastReload = thisReload;
@@ -95,16 +116,24 @@ public abstract class Gun extends EquipableItem {
     }
 
     public Vector2 aimDirection(){
-        Vector2 aimDir = player.getAimDirection();
-        System.out.println(aimDir);
-        Random random = new Random();
-        float min = -accuracy;
-        float max = accuracy;
-        float x = min + random.nextFloat() * (max - min);
-        float y = min + random.nextFloat() * (max - min);
 
-        aimDir = new Vector2(aimDir.x + x, aimDir.y + y);
-        System.out.println(aimDir);
-        return aimDir;
+        if(parent.TAG == "player"){
+            Vector2 aimDir = player.getAimDirection();
+            System.out.println(aimDir);
+            Random random = new Random();
+            float min = -accuracy;
+            float max = accuracy;
+            float x = min + random.nextFloat() * (max - min);
+            float y = min + random.nextFloat() * (max - min);
+
+            aimDir = new Vector2(aimDir.x + x, aimDir.y + y);
+            System.out.println(aimDir);
+            return aimDir;
+        } else if(parent.TAG == "enemy"){
+            Enemy enemy = (Enemy) parent;
+            return enemy.aimDirection();
+        }else {
+            return null;
+        }
     }
 }

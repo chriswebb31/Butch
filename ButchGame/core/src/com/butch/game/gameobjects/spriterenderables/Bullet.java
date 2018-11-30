@@ -16,12 +16,13 @@ public class Bullet extends Renderable {
 
     private long startTime;
 
-    public Bullet(Vector2 start, Vector2 velocity, float speed, float damage) {
+    public Bullet(Vector2 start, Vector2 velocity, float speed, float damage, boolean freindly) {
         this.setPosition(start);
         startTime = System.currentTimeMillis();
         this.velocity = velocity;
         this.speed = speed;
         this.damage = damage;
+        this.freindly = freindly;
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.bulletSprite, Texture.class)));
         this.getSprite().setScale(10);
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getWidth(), this.getSprite().getHeight()));
@@ -35,7 +36,7 @@ public class Bullet extends Renderable {
         this.getCollider().setPosition(this.getPosition());
         for (Renderable renderable: RenderableManager.renderableObjects) {
             if(renderable.getCollider().overlaps(this.getCollider())){
-                if(renderable.TAG.equals("breakable")){
+                if(renderable.TAG.equals("breakable") || renderable.TAG == "enemy" || (renderable.TAG=="player" && !this.freindly)){
                     renderable.takeHit(damage);
                     activeForRender = false;
                     System.out.println(renderable.TAG);

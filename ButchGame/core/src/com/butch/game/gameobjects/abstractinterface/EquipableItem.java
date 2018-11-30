@@ -8,6 +8,7 @@ public abstract class EquipableItem extends Renderable {
     public boolean oneHanded;
     public Player player;
 
+
     public EquipableItem(){
 
     }

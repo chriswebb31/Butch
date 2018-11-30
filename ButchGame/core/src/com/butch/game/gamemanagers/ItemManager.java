@@ -17,6 +17,7 @@ public class ItemManager {
     0 : PistolAmmo
     1 : RifleAmmo
     2 : ShotgunAmmo
+    3 : CoinItem
 
     10 : Colt
     11 : Machine Gun

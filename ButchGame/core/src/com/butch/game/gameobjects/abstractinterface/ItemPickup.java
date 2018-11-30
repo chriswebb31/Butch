@@ -9,8 +9,6 @@ public abstract class ItemPickup extends Renderable{
     public Circle collectionRange;
     public int type;
 
-    private Rectangle intersector;
-
     public ItemPickup(Vector2 position){
         this.TAG = "item";
         this.setPosition(position);

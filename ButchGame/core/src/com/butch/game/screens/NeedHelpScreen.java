@@ -6,10 +6,10 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,11 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-;
-
-import javax.swing.*;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.butch.game.gameobjects.HUDObjects.HealthBar;
 
 public class NeedHelpScreen implements Screen {
 
@@ -31,10 +27,12 @@ public class NeedHelpScreen implements Screen {
     private OrthographicCamera camera;
     private Sprite exitButtonActive,exitButtonInactive;
     public ImageButton exitButton;
+    public Texture healthBarBack;
     Stage stage;
     private Sound sound;
     FitViewport gameViewPort;
-
+    HealthBar healthBar;
+    SpriteBatch batch;
 
     public NeedHelpScreen(ButchGame game, FitViewport gameViewPort){
         this.gameViewPort = gameViewPort;
@@ -45,13 +43,17 @@ public class NeedHelpScreen implements Screen {
 
         exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
-
-
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        healthBar = new HealthBar(1000,20);
+        healthBar.setPosition(10,game.TARGET_HEIGHT-healthBar.getHeight()-10);
+        batch= new SpriteBatch();
+        healthBarBack = new Texture("HUD Stuff/healthBarBack.png");
+//        healthBarBack.setRegionHeight(22);
+//        healthBarBack.setRegionWidth(1004);
+        //healthBarBack.setPosition(9,game.TARGET_HEIGHT-healthBar.getHeight()-9);
     }
-//    public static void main(String[] args) throws MalformedURLException {
+    //    public static void main(String[] args) throws MalformedURLException {
 //
-//        URL url = new URL("gifs.gif");
 //        Icon icon = new ImageIcon(url);
 //        JLabel label = new JLabel(icon);
 //
@@ -74,9 +76,16 @@ public class NeedHelpScreen implements Screen {
         //...matter as there will be a background anyway.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-
+        if(Gdx.input.isTouched()){
+            healthBar.setWidth(healthBar.getWidth() + 0.1f);
+        }
+        else{
+            healthBar.setWidth(healthBar.getWidth() - 0.1f);
+        }
         update(delta);
-
+        batch.begin();
+         batch.draw(healthBarBack,8,game.TARGET_HEIGHT-healthBar.getHeight()-11);
+        batch.end();
 
 
 
@@ -129,6 +138,7 @@ public class NeedHelpScreen implements Screen {
 
         });
         stage.addActor(exitButton);
+        stage.addActor(healthBar);
     }
 
     @Override

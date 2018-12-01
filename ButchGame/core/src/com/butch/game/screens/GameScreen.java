@@ -1,11 +1,10 @@
 package com.butch.game.screens;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObjects;
@@ -15,6 +14,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ItemManager;
@@ -49,7 +49,8 @@ public class GameScreen implements Screen {
     public Barrel barrel;
     private ShapeRenderer shapeRenderer;
     private Music music;
-
+    private Stage stage;
+    //       private ProgressBarStyle pbs;
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -58,13 +59,13 @@ public class GameScreen implements Screen {
         //Setup camera and viewport
         camera = new OrthographicCamera(); //create new camera
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 40); //set to middle of screen default pos
-        camera.zoom = 1.5f; //set camera height
+        camera.zoom = 2.0f; //set camera height
 
 
         tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
-
+//        stage = new Stage();
         //Set up static colliders
         MapObjects mapObjects = tiledMap.getLayers().get(3).getObjects();
         mapColliders = new ArrayList<Rectangle>();
@@ -76,15 +77,15 @@ public class GameScreen implements Screen {
             Rectangle collider = new Rectangle(newX, newY, newWidth, newHeight);
             mapColliders.add(collider);
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
+
         }
 
         ButchGame.renderableManager.reset();
         ButchGame.renderableManager.mapColliders = mapColliders;
         ButchGame.itemManager = new ItemManager();
-//        barrel= new Barrel(6960,8630);
+        // barrel = new Barrel(6960,8630);
 
         shapeRenderer = new ShapeRenderer();
-
         player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
         player.activeForRender = true;
         this.itemPickups = new ArrayList<ItemPickup>();
@@ -100,7 +101,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-
+//        Gdx.input.setInputProcessor(stage);
+//        createHUD();
     }
 
     @Override
@@ -132,10 +134,8 @@ public class GameScreen implements Screen {
                 e.printStackTrace();
             }
         }
-//        if (Gdx.input.isButtonPressed(Input.Keys.F2)== false){
-//            Gdx.app.exit();
-//        }
         shapeRenderer.end();
+//        stage.draw();
     }
 
     private void updateCameraPosition() {
@@ -151,7 +151,9 @@ public class GameScreen implements Screen {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, camera.position.z);
         camera.update();
     }
-
+//    public void update(float delta){
+//        stage.act(delta);
+//    }
     @Override
     public void pause() {
 
@@ -171,8 +173,16 @@ public class GameScreen implements Screen {
     public void dispose() {
 
     }
+//    @Override
+//    public void create(){
+//
+//    }
 
     public ArrayList<Rectangle> getColliders() {
         return mapColliders;
+    }
+
+    private void createHUD(){
+
     }
 }

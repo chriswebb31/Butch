@@ -32,15 +32,11 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
     public final String menuClick = "SoundFX/clickingSound.mp3";
-
     public final String otherReloadEffect = "SoundFX/OtherReload.mp3";
-
     public final String playSound = "SoundFX/playSound.mp3";
-
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
-
     //PARTICLES
 
     //FONTS

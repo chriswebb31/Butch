@@ -12,6 +12,8 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
 
+import java.awt.*;
+
 public class Enemy extends Renderable {
     public float health;
     public Gun weapon;
@@ -20,9 +22,14 @@ public class Enemy extends Renderable {
     public boolean combatActive = false;
     private Vector2 direction;
     private float speed;
+    private Vector2 leftHandIKoffset;
+    private Vector2 rightHandIKoffset;
+
 
     public Enemy(Vector2 position){
         this.TAG = "enemy";
+        this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
+        this.leftHandIKoffset = new Vector2(50, 0);
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
         this.weapon = new MachineGun();
         this.weapon.parent = this;
@@ -58,6 +65,7 @@ public class Enemy extends Renderable {
             try {
                 direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
                 this.setPosition(new Vector2(this.getPosition().x + this.direction.x * speed, this.getPosition().y + this.direction.y * speed));
+                this.weapon.Shoot();
             }catch (NullPointerException e){
                 e.printStackTrace();
             }
@@ -68,8 +76,9 @@ public class Enemy extends Renderable {
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
 
         if(this.health <= 0){
-            this.activeForRender= false;
             this.activeCollision = false;
+            this.activeForRender= false;
+
         }
     }
 
@@ -80,5 +89,26 @@ public class Enemy extends Renderable {
 
     public Vector2 aimDirection(){
         return direction;
+    }
+
+    public Vector2 getWeaponPosition(){
+        Vector2 pos;
+        if(target.getPosition().x>= this.getPosition().x){
+            if(this.weapon.oneHanded){
+                pos = new Vector2(this.getPosition().x + leftHandIKoffset.x, this.getPosition().y + leftHandIKoffset.y);
+            }
+            else{
+                pos = this.getPosition();
+            }
+        }
+        else {
+            if(this.weapon.oneHanded){
+                pos = new Vector2(getPosition().x + rightHandIKoffset.x, getPosition().y + rightHandIKoffset.y);
+            }
+            else{
+                pos = this.getPosition();
+            }
+        }
+        return pos;
     }
 }

@@ -29,7 +29,6 @@ import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
 import java.util.ArrayList;
-
 public class GameScreen implements Screen {
     /*
         CLASS : GAMESCREEN
@@ -136,7 +135,7 @@ public class GameScreen implements Screen {
                     if((renderable.TAG == "item")) {
                         ItemPickup item = (ItemPickup) renderable;
                         shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
-                    } else if(renderable.TAG == "enemy"){
+                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
                         Enemy enemy = (Enemy) renderable;
                         shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
                     }
@@ -145,7 +144,9 @@ public class GameScreen implements Screen {
                 e.printStackTrace();
             }
             try{
-                shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+                if(renderable.activeCollision){
+                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+                }
             } catch (NullPointerException e){
                 e.printStackTrace();
             }

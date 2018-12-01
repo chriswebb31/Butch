@@ -26,9 +26,6 @@ public abstract class Gun extends EquipableItem {
     public float reloadSpeed;
     public int reserve;
 
-    public Renderable parent;
-    boolean friendly;
-
     public Gun() {
 
     }
@@ -37,17 +34,25 @@ public abstract class Gun extends EquipableItem {
         if(this.parent.TAG == "player"){
             friendly = true;
         }
+        else if(this.parent.TAG == "enemy"){
+            friendly = false;
+        }
 
         long thisShot = System.currentTimeMillis();
         if ((thisShot - lastShot) >= (long) (fireRate * 1000)) {
+
             try {
-                switch (gunType){
-                    case 0:
-                        this.reserve = player.pistolAmmo;
-                    case 1:
-                        this.reserve = player.rifleAmmo;
-                    case 2:
-                        this.reserve = player.shotgunAmmo;
+                if(friendly){
+                    switch (gunType){
+                        case 0:
+                            this.reserve = player.pistolAmmo;
+                        case 1:
+                            this.reserve = player.rifleAmmo;
+                        case 2:
+                            this.reserve = player.shotgunAmmo;
+                    }
+                }else{
+                    this.reserve = 100;
                 }
                 if((clip > 0) && (!isReloading) && this.reserve!=0) {
                     gunShotSound.play();

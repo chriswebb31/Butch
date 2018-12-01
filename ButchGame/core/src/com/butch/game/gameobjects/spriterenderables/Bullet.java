@@ -31,15 +31,15 @@ public class Bullet extends Renderable {
 
     @Override
     public void update() {
-        float angle = (float)Math.toDegrees(Math.atan2(this.getPosition().y + this.velocity.y * speed - this.getPosition().y, this.getPosition().x + this.velocity.x * speed - this.getPosition().x));
-        this.setPosition(new Vector2(this.getPosition().x + this.velocity.x * speed, this.getPosition().y + this.velocity.y * speed));
+        float angle = (float)Math.toDegrees(Math.atan2(this.getPosition().y + this.velocity.y * speed - this.getPosition().y, this.getPosition().x + this.velocity.x * speed - this.getPosition().x)); //calculate direction of bullets velocity, then converts to a degree rotation
+        this.setPosition(new Vector2(this.getPosition().x + this.velocity.x * speed, this.getPosition().y + this.velocity.y * speed)); // move position to position plus velocity x speed
         this.getSprite().setRotation(angle);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getCollider().setPosition(this.getPosition());
 //        this.getSprite().setRotation();
         for (Renderable renderable: RenderableManager.renderableObjects) {
             if(renderable.getCollider().overlaps(this.getCollider())){
-                if(renderable.TAG.equals("breakable") || renderable.TAG == "enemy" || (renderable.TAG=="player" && !this.freindly)){
+                if((renderable.TAG.equals("breakable") || (renderable.TAG == "enemy" && this.freindly)) && renderable.activeCollision|| (renderable.TAG=="player" && !this.freindly)){ //hit player if not friendly
                     renderable.takeHit(damage);
                     activeForRender = false;
                     System.out.println(renderable.TAG);

@@ -20,14 +20,15 @@ import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Breakables.Barrel;
+import com.butch.game.gameobjects.Items.CoinItem;
 import com.butch.game.gameobjects.Items.ColtItem;
 import com.butch.game.gameobjects.Items.RifleAmmo;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
+import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
 import java.util.ArrayList;
-
 public class GameScreen implements Screen {
     /*
         CLASS : GAMESCREEN
@@ -37,6 +38,7 @@ public class GameScreen implements Screen {
 
      */
     public ArrayList<ItemPickup> itemPickups;
+    public ArrayList<Enemy> enemies;
     public ButchGame game; //reference to libgdx main game class
     public SpriteBatch batch; //sprite renderer
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
@@ -81,7 +83,7 @@ public class GameScreen implements Screen {
         }
 
         ButchGame.renderableManager.reset();
-        ButchGame.renderableManager.mapColliders = mapColliders;
+        RenderableManager.mapColliders = mapColliders;
         ButchGame.itemManager = new ItemManager();
         // barrel = new Barrel(6960,8630);
 
@@ -91,6 +93,11 @@ public class GameScreen implements Screen {
         this.itemPickups = new ArrayList<ItemPickup>();
         this.itemPickups.add(new ColtItem(new Vector2(6960,8630)));
         this.itemPickups.add(new RifleAmmo(new Vector2(7070, 8650)));
+        this.itemPickups.add(new CoinItem(new Vector2(6000, 8000)));
+
+        this.enemies = new ArrayList<Enemy>();
+        this.enemies.add(new Enemy(new Vector2(8000, 7500)));
+
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
@@ -126,9 +133,21 @@ public class GameScreen implements Screen {
         shapeRenderer.setColor(Color.FIREBRICK);
         for (Renderable renderable: RenderableManager.renderableObjects) {
             try{
-                if(renderable.TAG == "item" && renderable.activeForRender){
-                    ItemPickup item = (ItemPickup) renderable;
-                    shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
+                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
+                    if((renderable.TAG == "item")) {
+                        ItemPickup item = (ItemPickup) renderable;
+                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
+                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
+                        Enemy enemy = (Enemy) renderable;
+                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
+                    }
+                }
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            try{
+                if(renderable.activeCollision){
+                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
                 }
             } catch (NullPointerException e){
                 e.printStackTrace();

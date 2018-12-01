@@ -40,7 +40,7 @@ public class ButchGame extends Game {
     public float themeVolume;
 
 	public ButchGame() {
-		gameViewPort = new FitViewport(1920, 1080);
+		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
 		assets = new AssetManagement();
 		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		assets.load(assets.tilemap1, TiledMap.class);

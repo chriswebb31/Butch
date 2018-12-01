@@ -7,6 +7,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
+
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -16,13 +21,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+
 import com.butch.game.gameobjects.HUDObjects.HealthBar;
 
-public class NeedHelpScreen implements Screen {
 
+public class NeedHelpScreen implements Screen {
+    private SpriteBatch batch;
     private ButchGame game;
     private OrthographicCamera camera;
     private Sprite exitButtonActive,exitButtonInactive;
@@ -31,8 +37,9 @@ public class NeedHelpScreen implements Screen {
     Stage stage;
     private Sound sound;
     FitViewport gameViewPort;
+
     HealthBar healthBar;
-    SpriteBatch batch;
+
 
     public NeedHelpScreen(ButchGame game, FitViewport gameViewPort){
         this.gameViewPort = gameViewPort;
@@ -40,9 +47,10 @@ public class NeedHelpScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         stage = new Stage(gameViewPort);
-
+        batch = new SpriteBatch();
         exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         healthBar = new HealthBar(1000,20);
         healthBar.setPosition(10,game.TARGET_HEIGHT-healthBar.getHeight()-10);
@@ -64,6 +72,10 @@ public class NeedHelpScreen implements Screen {
 //        f.setLocation(100,100);
 //        f.setVisible(true);
 //    }
+
+
+
+
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
@@ -76,6 +88,7 @@ public class NeedHelpScreen implements Screen {
         //...matter as there will be a background anyway.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+
         if(Gdx.input.isTouched()){
             healthBar.setWidth(healthBar.getWidth() + 0.1f);
         }
@@ -89,12 +102,13 @@ public class NeedHelpScreen implements Screen {
 
 
 
-        stage.draw();
 
+        update(delta);
+
+        stage.draw();
     }
     public void update(float delta){
         stage.act(delta);
-
     }
     @Override
     public void resize(int width, int height) {

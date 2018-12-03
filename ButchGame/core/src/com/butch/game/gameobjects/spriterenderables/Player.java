@@ -112,9 +112,9 @@ public class Player extends Renderable {
 
         butchIdle = new Animation<TextureRegion>(0.3f, butchIdleAtlas.getRegions());
         butchDying = new Animation<TextureRegion>(0.3f, butchDyingAtlas.getRegions());
-        butchWalkingUp = new Animation<TextureRegion>(0.3f, butchUpAtlas.getRegions());
-        butchWalkingLeft = new Animation<TextureRegion>(0.3f, butchLeftAtlas.getRegions());
-        butchWalkingRight = new Animation<TextureRegion>(0.3f, butchRightAtlas.getRegions());
+        butchWalkingUp = new Animation<TextureRegion>(0.1f, butchUpAtlas.getRegions());
+        butchWalkingLeft = new Animation<TextureRegion>(0.1f, butchLeftAtlas.getRegions());
+        butchWalkingRight = new Animation<TextureRegion>(0.1f, butchRightAtlas.getRegions());
 
         currentState = State.IDLE;
         previousState = State.IDLE;
@@ -356,7 +356,7 @@ public class Player extends Renderable {
         sprite.setRegion(getFrame(delta));
         this.setSprite(sprite);
 
-        this.getSprite().setScale(5);
+        this.getSprite().setScale(10);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
     }
@@ -404,12 +404,16 @@ public class Player extends Renderable {
                 break;
             case UP:
                 region = butchWalkingUp.getKeyFrame(stateTimer, true);
+                break;
             case DOWN:
                 region = butchIdle.getKeyFrame(stateTimer, true);
+                break;
             case LEFT:
                 region = butchWalkingLeft.getKeyFrame(stateTimer, true);
+                break;
             case RIGHT:
                 region = butchWalkingRight.getKeyFrame(stateTimer, true);
+                break;
             case IDLE:
                 region = butchIdle.getKeyFrame(stateTimer, true);
         }

@@ -49,6 +49,7 @@ public class Player extends Renderable {
     private boolean movingUp;
     private boolean movingDown;
     private boolean butchDead;
+    private boolean isButchIdle = true;
 
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
@@ -102,8 +103,19 @@ public class Player extends Renderable {
         this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
 
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
+
         butchIdleAtlas = new TextureAtlas(ButchGame.assets.butchIdleAnim);
-        butchIdle = new Animation<TextureRegion>(0.1f, butchIdleAtlas.getRegions());
+        butchUpAtlas = new TextureAtlas(ButchGame.assets.butchWalkingBack);
+        butchDyingAtlas = new TextureAtlas(ButchGame.assets.butchDying);
+        butchLeftAtlas = new TextureAtlas(ButchGame.assets.butchWalkingLeft);
+        butchRightAtlas = new TextureAtlas(ButchGame.assets.butchWalkingRight);
+
+        butchIdle = new Animation<TextureRegion>(0.3f, butchIdleAtlas.getRegions());
+        butchDying = new Animation<TextureRegion>(0.3f, butchDyingAtlas.getRegions());
+        butchWalkingUp = new Animation<TextureRegion>(0.3f, butchUpAtlas.getRegions());
+        butchWalkingLeft = new Animation<TextureRegion>(0.3f, butchLeftAtlas.getRegions());
+        butchWalkingRight = new Animation<TextureRegion>(0.3f, butchRightAtlas.getRegions());
+
         currentState = State.IDLE;
         previousState = State.IDLE;
         stateTimer = 0;
@@ -119,25 +131,34 @@ public class Player extends Renderable {
             movingUp = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.S)) {
+            yAxis = 0;
             movingDown = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.A)) {
             xAxis = 0;
             movingLeft = false;
         }
+        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D)) {
+            isButchIdle = true;
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             yAxis = 1;
-            movingUp = true;        }
+            isButchIdle = false;
+            movingUp = true;
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             yAxis = -1;
+            isButchIdle = false;
             movingDown = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             xAxis = -1;
+            isButchIdle = false;
             movingLeft = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 1;
+            isButchIdle = false;
             movingRight = true;
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
@@ -382,18 +403,15 @@ public class Player extends Renderable {
             case DEAD:
                 break;
             case UP:
-                region = butchIdle.getKeyFrame(stateTimer, true);
+                region = butchWalkingUp.getKeyFrame(stateTimer, true);
             case DOWN:
                 region = butchIdle.getKeyFrame(stateTimer, true);
             case LEFT:
-                region = butchIdle.getKeyFrame(stateTimer, true);
+                region = butchWalkingLeft.getKeyFrame(stateTimer, true);
             case RIGHT:
-                region = butchIdle.getKeyFrame(stateTimer, true);
+                region = butchWalkingRight.getKeyFrame(stateTimer, true);
             case IDLE:
                 region = butchIdle.getKeyFrame(stateTimer, true);
-            default:
-                region = butchIdle.getKeyFrame(stateTimer, true);
-                break;
         }
 
 
@@ -408,23 +426,18 @@ public class Player extends Renderable {
     }
 
     public State getState(){
-        //Test to Box2D for velocity on the X and Y-Axis
-        //if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
         if(butchDead)
             return State.DEAD;
         else if(movingLeft)
             return State.LEFT;
         else if(movingRight)
             return State.RIGHT;
-            //if negative in Y-Axis mario is falling
         else if(movingUp)
             return State.UP;
-            //if mario is positive or negative in the X axis he is running
         else if(movingDown)
             return State.DOWN;
-            //if none of these return then he must be standing
         else
             return State.IDLE;
     }
-    }
+}
 

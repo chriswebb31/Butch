@@ -99,8 +99,8 @@ public class Player extends Renderable {
             }
         }
 
-        this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
-        this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
+        this.rightHandIKoffset = new Vector2(-50, -20); //how far from sprite center is the right hand
+        this.leftHandIKoffset = new Vector2(50, -20); //how far away from sprite center is the left hand
 
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
 
@@ -203,20 +203,22 @@ public class Player extends Renderable {
 
     private void movementHandler() {
         if (canMove) { //if player isnt blocked
+            Vector2 velocityNew = new Vector2();
             if (yAxis > 0) {
-                velocity.y = 1;
+                velocityNew.y = 1;
             } else if (yAxis < 0) {
-                velocity.y = -1;
+                velocityNew.y = -1;
             } else {
-                velocity.y = 0;
+                velocityNew.y = 0;
             }
             if (xAxis > 0) {
-                velocity.x = 1;
+                velocityNew.x = 1;
             } else if (xAxis < 0) {
-                velocity.x = -1;
+                velocityNew.x = -1;
             } else {
-                velocity.x = 0;
+                velocityNew.x = 0;
             }
+            velocity.lerp(velocityNew,0.85f);
             this.getCollider().setCenter(this.getPosition().x + velocity.x * speed, this.getPosition().y + velocity.y * speed);
 
             for (Rectangle staticCollider: RenderableManager.mapColliders) {
@@ -307,7 +309,7 @@ public class Player extends Renderable {
                 pos = new Vector2(getPosition().x + leftHandIKoffset.x, getPosition().y + leftHandIKoffset.y);
             }
             else{
-                pos = new Vector2(getPosition());
+                pos = new Vector2(getPosition().x, getPosition().y);
             }
         }
         else{
@@ -318,6 +320,7 @@ public class Player extends Renderable {
                 pos = new Vector2(getPosition());
             }
         }
+        pos.y -= 40;
         return pos;
     }
 
@@ -329,9 +332,11 @@ public class Player extends Renderable {
         this.activeGun.player = this;
         this.activeGun.parent = this;
         this.activeGun.activeForRender = true;
+
         inputHandler();
         movementHandler();
         flipHandler();
+
         System.out.println("COINSSSS:"+coin);
         for (Renderable renderable:RenderableManager.renderableObjects) {
             if(renderable.TAG == "item" && renderable.activeForRender){
@@ -356,7 +361,7 @@ public class Player extends Renderable {
         sprite.setRegion(getFrame(delta));
         this.setSprite(sprite);
 
-        this.getSprite().setScale(10);
+        this.getSprite().setScale(8);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
     }
@@ -394,14 +399,11 @@ public class Player extends Renderable {
 
     public TextureRegion getFrame(float dt){
         //get marios current state. ie. jumping, running, standing...
-        currentState = getState();
-
         TextureRegion region = null;
 
         //depending on the state, get corresponding animation keyFrame.
-        switch(currentState){
-            case DEAD:
-                break;
+
+        switch(getState()){
             case UP:
                 region = butchWalkingUp.getKeyFrame(stateTimer, true);
                 break;
@@ -430,18 +432,33 @@ public class Player extends Renderable {
     }
 
     public State getState(){
-        if(butchDead)
-            return State.DEAD;
-        else if(movingLeft)
-            return State.LEFT;
-        else if(movingRight)
+        if(xAxis > 0){
             return State.RIGHT;
-        else if(movingUp)
+        }
+        else if(xAxis < 0){
+            return State.LEFT;
+        }
+        else if(yAxis > 0){
             return State.UP;
-        else if(movingDown)
+        }
+        else if(yAxis < 0){
             return State.DOWN;
-        else
+        }
+        else{
             return State.IDLE;
+        }
+//        if(butchDead)
+//            return State.DEAD;
+//        else if(movingLeft)
+//            return State.LEFT;
+//        else if(movingRight)
+//            return State.RIGHT;
+//        else if(movingUp)
+//            return State.UP;
+//        else if(movingDown)
+//            return State.DOWN;
+//        else
+//            return State.IDLE;
     }
 }
 

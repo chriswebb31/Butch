@@ -43,7 +43,7 @@ public class GameScreen implements Screen {
     public SpriteBatch batch; //sprite renderer
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     private OrthographicCamera camera; //camera for height position of render
-    private float distanceDivisor = 1.5f;
+    private float distanceDivisor = 1.2f;
     private Player player;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
@@ -161,7 +161,7 @@ public class GameScreen implements Screen {
         Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
         float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
         float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
-        camera.position.set(new Vector3(newX, newY, camera.position.z));
+        camera.position.slerp(new Vector3(newX, newY, camera.position.z), 0.1f);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class Enemy extends Renderable {
     }
 
     @Override
-    public void update() {
+    public void update(float delta) {
         System.out.println("Active for render? " + this.activeForRender);
         if(!this.combatActive) {
             try{

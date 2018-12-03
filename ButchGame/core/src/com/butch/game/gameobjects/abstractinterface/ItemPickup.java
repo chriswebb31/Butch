@@ -16,7 +16,7 @@ public abstract class ItemPickup extends Renderable{
     }
 
     @Override
-    public void update() {
+    public void update(float delta) {
         if(activeForRender && getSprite()!=null){
             this.getSprite().setScale(10);
             this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);

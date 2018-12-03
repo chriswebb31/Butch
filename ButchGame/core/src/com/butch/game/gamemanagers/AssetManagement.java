@@ -3,6 +3,7 @@ package com.butch.game.gamemanagers;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
@@ -29,6 +30,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String rifleAmmo = "rifleAmmo.png";
     public final String shotgunAmmo = "shotgunAmmo.png";
     public final String coinItemSprite = "coin.png";
+    //TEXTUREATLAS
+    public final String butchIdleAnim = "Anim/Butch/butchIdle.atlas";
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
     public final String menuClick = "SoundFX/clickingSound.mp3";
@@ -85,6 +88,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(rifleAmmo, Texture.class);
         load(shotgunAmmo, Texture.class);
         load(coinItemSprite, Texture.class);
+        load(butchIdleAnim, TextureAtlas.class);
 
         load(mainTheme, Music.class);
         load(townTheme, Music.class);

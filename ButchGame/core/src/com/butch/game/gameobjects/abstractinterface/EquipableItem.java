@@ -18,7 +18,7 @@ public abstract class EquipableItem extends Renderable {
     }
 
     @Override
-    public void update() {
+    public void update(float delta) {
         if(parent!=null){
             if (parent.TAG == "player"){
                 player = (Player) parent;

@@ -23,7 +23,7 @@ public class RenderableManager {
 
         for (int i=0; i<renderableObjects.size();i++) {
             if(renderableObjects.get(i).activeForRender){
-                renderableObjects.get(i).update();
+                renderableObjects.get(i).update(delta);
             } else if(renderableObjects.get(i).destroy){
                 renderableObjectsToRemove.add(renderableObjects.get(i));
             }

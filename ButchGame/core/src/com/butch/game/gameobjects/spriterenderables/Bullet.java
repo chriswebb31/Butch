@@ -30,7 +30,7 @@ public class Bullet extends Renderable {
     }
 
     @Override
-    public void update() {
+    public void update(float delta) {
         float angle = (float)Math.toDegrees(Math.atan2(this.getPosition().y + this.velocity.y * speed - this.getPosition().y, this.getPosition().x + this.velocity.x * speed - this.getPosition().x)); //calculate direction of bullets velocity, then converts to a degree rotation
         this.setPosition(new Vector2(this.getPosition().x + this.velocity.x * speed, this.getPosition().y + this.velocity.y * speed)); // move position to position plus velocity x speed
         this.getSprite().setRotation(angle);

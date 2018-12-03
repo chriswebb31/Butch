@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -21,7 +24,31 @@ import com.butch.game.gameobjects.weapons.MachineGun;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
+    public enum State { UP, DOWN, LEFT, RIGHT, IDLE, DEAD };
+    public State currentState;
+    public State previousState;
     float xAxis, yAxis, speed = 0;
+    private Sprite sprite;
+
+    private Animation<TextureRegion> butchWalkingLeft;
+    private Animation<TextureRegion> butchWalkingRight;
+    private Animation<TextureRegion> butchWalkingUp;
+    private Animation<TextureRegion> butchWalkingDown;
+    private Animation<TextureRegion> butchIdle;
+    private Animation<TextureRegion> butchDying;
+
+    private TextureAtlas butchLeftAtlas;
+    private TextureAtlas butchRightAtlas;
+    private TextureAtlas butchUpAtlas;
+    private TextureAtlas butchDownAtlas;
+    private TextureAtlas butchIdleAtlas;
+    private TextureAtlas butchDyingAtlas;
+
+    private boolean movingRight;
+    private boolean movingLeft;
+    private boolean movingUp;
+    private boolean movingDown;
+    private boolean butchDead;
 
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
@@ -45,13 +72,15 @@ public class Player extends Renderable {
 
     private Rectangle intersector;
 
+    private float stateTimer;
+
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
         this.setPosition(startPosition);
         this.mapColliders = mapStaticColliders;
         this.TAG = "player";
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class)));
+        sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class));
+        this.setSprite(sprite);
         this.getSprite().setScale(10);
-
         this.velocity = new Vector2().setZero();
         this.canMove = true;
         this.speed = 10;
@@ -73,31 +102,43 @@ public class Player extends Renderable {
         this.leftHandIKoffset = new Vector2(50, 0); //how far away from sprite center is the left hand
 
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
+        butchIdleAtlas = new TextureAtlas(ButchGame.assets.butchIdleAnim);
+        butchIdle = new Animation<TextureRegion>(0.1f, butchIdleAtlas.getRegions());
+        currentState = State.IDLE;
+        previousState = State.IDLE;
+        stateTimer = 0;
+        butchDead = false;
     }
     private void inputHandler() { // handle inputs
         if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 0;
+            movingRight = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.W)) {
             yAxis = 0;
+            movingUp = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.S)) {
-            yAxis = 0;
+            movingDown = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.A)) {
             xAxis = 0;
+            movingLeft = false;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             yAxis = 1;
-        }
+            movingUp = true;        }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             yAxis = -1;
+            movingDown = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             xAxis = -1;
+            movingLeft = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 1;
+            movingRight = true;
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             try{
@@ -263,8 +304,7 @@ public class Player extends Renderable {
         return Math.max(min, Math.min(max, val));
     }
 
-    @Override
-    public void update() {
+    public void update(float delta) {
         this.activeGun.player = this;
         this.activeGun.parent = this;
         this.activeGun.activeForRender = true;
@@ -292,7 +332,10 @@ public class Player extends Renderable {
             }
             itemCollection.clear();
         }
+        sprite.setRegion(getFrame(delta));
+        this.setSprite(sprite);
 
+        this.getSprite().setScale(5);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
     }
@@ -327,4 +370,61 @@ public class Player extends Renderable {
                item.activeForRender = false;
             }
         }
+
+    public TextureRegion getFrame(float dt){
+        //get marios current state. ie. jumping, running, standing...
+        currentState = getState();
+
+        TextureRegion region = null;
+
+        //depending on the state, get corresponding animation keyFrame.
+        switch(currentState){
+            case DEAD:
+                break;
+            case UP:
+                region = butchIdle.getKeyFrame(stateTimer, true);
+            case DOWN:
+                region = butchIdle.getKeyFrame(stateTimer, true);
+            case LEFT:
+                region = butchIdle.getKeyFrame(stateTimer, true);
+            case RIGHT:
+                region = butchIdle.getKeyFrame(stateTimer, true);
+            case IDLE:
+                region = butchIdle.getKeyFrame(stateTimer, true);
+            default:
+                region = butchIdle.getKeyFrame(stateTimer, true);
+                break;
+        }
+
+
+        //if the current state is the same as the previous state increase the state timer.
+        //otherwise the state has changed and we need to reset timer.
+        stateTimer = currentState == previousState ? stateTimer + dt : 0;
+        //update previous state
+        previousState = currentState;
+        //return our final adjusted frame
+        return region;
+
     }
+
+    public State getState(){
+        //Test to Box2D for velocity on the X and Y-Axis
+        //if mario is going positive in Y-Axis he is jumping... or if he just jumped and is falling remain in jump state
+        if(butchDead)
+            return State.DEAD;
+        else if(movingLeft)
+            return State.LEFT;
+        else if(movingRight)
+            return State.RIGHT;
+            //if negative in Y-Axis mario is falling
+        else if(movingUp)
+            return State.UP;
+            //if mario is positive or negative in the X axis he is running
+        else if(movingDown)
+            return State.DOWN;
+            //if none of these return then he must be standing
+        else
+            return State.IDLE;
+    }
+    }
+

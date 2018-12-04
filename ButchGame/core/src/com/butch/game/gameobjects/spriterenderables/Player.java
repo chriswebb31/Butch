@@ -350,8 +350,7 @@ public class Player extends Renderable {
                     Item itemPickup = (Item) renderable;
                     intersector = new Rectangle();
                     if(Intersector.overlaps(itemPickup.collectionRange, this.getCollider()) && itemPickup.autoPickup){
-                        this.coin += itemPickup.quantity;
-                        itemPickup.activeForRender = false;
+                        addItem(itemPickup);
                     }
                 }
             }
@@ -387,34 +386,46 @@ public class Player extends Renderable {
 
     @Override
     public void takeHit(float damage) {
-
         health -= damage/5;
-
     }
 
     public void addItem(ItemPickup item){
-        if(item.type== 0) {
-            gunInventory.add(ButchGame.itemManager.getGun(item.id));
-        } else if(item.type == 1){
-            itemInventory.add(ButchGame.itemManager.getItem(item.id));
+        if(item.getCollider().overlaps(this.getCollider())){
+            if(item.id==3){
+                Item coin = (Item) item;
+                this.coin += coin.quantity;
+                item.collected();
+                item.activeForRender = false;
+            }
+            if(item.type== 0) {
+                gunInventory.add(ButchGame.itemManager.getGun(item.id));
+                item.collected();
+            } else if(item.type == 1){
+                itemInventory.add(ButchGame.itemManager.getItem(item.id));
+                item.collected();
+            }
+            else if(item.type == 2) {
+                System.out.println(item);
+                System.out.println("type:"+ item.type);
+                Item itemObj = (Item) item;
+                System.out.println("AmmoCount:" +itemObj.quantity);
+                if(itemObj.id == 0){
+                    PistolAmmo newPistolAmmo = (PistolAmmo) item;
+                    this.pistolAmmo += newPistolAmmo.quantity;
+                } else if(itemObj.id == 1){
+                    RifleAmmo newRifleAmmo = (RifleAmmo) item;
+                    this.rifleAmmo += newRifleAmmo.quantity;
+                }
+                else if(itemObj.id == 2){
+                    ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
+                    this.shotgunAmmo += newShotgunAmmo.quantity;
+                }
+                item.activeForRender = false;
+                item.collected();
+            }
         }
-        else if(item.type == 2) {
-            System.out.println(item);
-            System.out.println("type:"+ item.type);
-            Item itemObj = (Item) item;
-            System.out.println("AmmoCount:" +itemObj.quantity);
-            if(itemObj.id == 0){
-                PistolAmmo newPistolAmmo = (PistolAmmo) item;
-                this.pistolAmmo += newPistolAmmo.quantity;
-            } else if(itemObj.id == 1){
-                RifleAmmo newRifleAmmo = (RifleAmmo) item;
-                this.rifleAmmo += newRifleAmmo.quantity;
-            }
-            else if(itemObj.id == 2){
-                ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
-                this.shotgunAmmo += newShotgunAmmo.quantity;
-            }
-            item.activeForRender = false;
+        else{
+            item.getPosition().lerp(this.getPosition(), 0.2f);
         }
     }
 

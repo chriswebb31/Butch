@@ -52,8 +52,8 @@ public class LoadingScreen implements Screen {
         batch.begin();
         if (elapsed < 3.0f){
             batch.draw(animation.getKeyFrame(elapsed), 0,0,game.TARGET_WIDTH,game.TARGET_HEIGHT);
-
         }
+
         else {
             if (game.assets.update()) {
                 if (ButchGame.assets.update()) {
@@ -63,6 +63,7 @@ public class LoadingScreen implements Screen {
         }
         batch.end();
     }
+
 
     @Override
     public void resize(int width, int height) {

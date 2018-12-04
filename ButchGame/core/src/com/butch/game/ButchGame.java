@@ -14,9 +14,7 @@ import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.screens.LoadingScreen;
-import com.butch.game.screens.MainMenuScreen;
 
-import javax.tools.Tool;
 import java.awt.*;
 
 public class ButchGame extends Game {

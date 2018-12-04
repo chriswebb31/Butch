@@ -1,5 +1,6 @@
 package com.butch.game.gameobjects.Items;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -14,5 +15,7 @@ public class CoinItem extends Item {
         this.quantity = 1;
         autoPickup = true;
         this.activeForRender = true;
+        this.collectionFX = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
     }
+    
 }

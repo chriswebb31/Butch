@@ -47,6 +47,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String shellBounceEffect = "SoundFX/shellBounce.mp3";
 
     public final String playSound = "SoundFX/playSound.mp3";
+    public final String coinCollection = "SoundFX/coinCollect.mp3";
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
@@ -107,5 +108,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
+        load(coinCollection, Sound.class);
     }
 }

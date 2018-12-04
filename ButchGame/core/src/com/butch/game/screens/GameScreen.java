@@ -24,6 +24,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Breakables.Barrel;
+import com.butch.game.gameobjects.HUDObjects.HealthBar;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.CoinItem;
 import com.butch.game.gameobjects.Items.ColtItem;
@@ -60,6 +61,7 @@ public class GameScreen implements Screen {
     /////////initializing hud vars////////////////////
     private Hud hud;
     private boolean outOfBullets;
+    HealthBar enemyHb;
     /////////////////////////////////////////////////////
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
@@ -87,7 +89,7 @@ public class GameScreen implements Screen {
             Rectangle collider = new Rectangle(newX, newY, newWidth, newHeight);
             mapColliders.add(collider);
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
-
+//            enemyHb = new HealthBar((int)enemies.get(0).getPosition().x,(int)enemies.get(0).getPosition().y);
         }
 
         ButchGame.renderableManager.reset();
@@ -115,6 +117,7 @@ public class GameScreen implements Screen {
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player.getHealth());
         outOfBullets = false;
+
     }
 
     @Override
@@ -184,13 +187,7 @@ public class GameScreen implements Screen {
         else{
             hud.hb.setWidth(player.getHealth());
         }
-//        int i = 1;
-//        if( enemies.get(i).getHealth()<0 && outOfBullets == false){
-//
-//        }
-//        else{
-//
-//        }
+
         hud.stage.draw();
     }
 

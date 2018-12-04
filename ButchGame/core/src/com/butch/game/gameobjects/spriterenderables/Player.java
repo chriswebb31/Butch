@@ -55,7 +55,7 @@ public class Player extends Renderable {
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
     public int shotgunAmmo = 10;
-    public float health;
+    public float health = 500;
     public int coin;
 
     private static ArrayList<Gun> gunInventory;
@@ -123,7 +123,7 @@ public class Player extends Renderable {
         stateTimer = 0;
         butchDead = false;
         ////////////////////////////
-        health = 100;
+       // health = 1000;
     }
 
     private void inputHandler() { // handle inputs

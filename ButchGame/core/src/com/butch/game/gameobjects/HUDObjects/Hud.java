@@ -27,7 +27,7 @@ public class Hud {
 
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
-        health = new Integer(30);
+       // health = new Integer(1000);
         levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         levelLabel.setFontScale(2.0f);
         weaponLabel = new Label(String.format(""), new Label.LabelStyle(new BitmapFont(), Color.RED));
@@ -36,8 +36,8 @@ public class Hud {
         table.setFillParent(true);
         table.row();
 
-        table.add(levelLabel).expandX().left().pad(5);
-        table.add(hb).expandX().right().pad(5);
+        table.add(hb).expandX().left().pad(5);
+        table.add(levelLabel).expandX().right().pad(5);
         table.row();
 
         table.add(weaponLabel).expand().bottom().left().pad(5);

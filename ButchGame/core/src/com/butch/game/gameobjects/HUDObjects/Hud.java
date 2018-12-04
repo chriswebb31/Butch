@@ -21,6 +21,7 @@ public class Hud {
     public Label timeLabel;
     public Label levelLabel;
     public Label weaponLabel;
+    public Label coinLabel;
     public HealthBar hb;
    public  Table table = new Table();
     public Hud(SpriteBatch spriteBatch, float health){
@@ -30,7 +31,10 @@ public class Hud {
        // health = new Integer(1000);
         levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         levelLabel.setFontScale(2.0f);
+        coinLabel = new Label(String.format("0"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
+        coinLabel.setFontScale(2.0f);
         weaponLabel = new Label(String.format("Rifle"), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
+        weaponLabel.setFontScale(2.0f);
         table.top().left();
         hb = new HealthBar((int)health,20);
         table.setFillParent(true);
@@ -39,8 +43,8 @@ public class Hud {
         table.add(hb).expandX().left().pad(5);
         table.add(levelLabel).expandX().right().pad(5);
         table.row();
-
-        table.add(weaponLabel).expand().bottom().left().pad(5);
+        table.add(coinLabel).expand().bottom().left().pad(5);
+        table.add(weaponLabel).expand().bottom().right().pad(5);
 
         stage.addActor(table);
     }

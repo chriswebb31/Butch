@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.butch.game.ButchGame;
+import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.HUDObjects.HealthBar;
 
 /**
@@ -24,7 +25,7 @@ public class Hud {
     public Label coinLabel;
     public HealthBar hb;
    public  Table table = new Table();
-    public Hud(SpriteBatch spriteBatch, float health){
+    public Hud(SpriteBatch spriteBatch, Player player){
 
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
@@ -33,10 +34,10 @@ public class Hud {
         levelLabel.setFontScale(2.0f);
         coinLabel = new Label(String.format("0"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         coinLabel.setFontScale(2.0f);
-        weaponLabel = new Label(String.format("Rifle"), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
+        weaponLabel = new Label(String.format(player.getActiveWeapon().gunName), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
         weaponLabel.setFontScale(2.0f);
         table.top().left();
-        hb = new HealthBar((int)health,20);
+        hb = new HealthBar((int)player.getHealth(),20);
         table.setFillParent(true);
         table.row();
 

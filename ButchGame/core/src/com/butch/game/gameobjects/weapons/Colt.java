@@ -10,6 +10,7 @@ public class Colt extends Gun {
 
     public Colt() {
         this.id = 10;
+        this.gunName = "Colt";
         this.gunType = 0;
         this.clipSize = 8;
         this.accuracy = 50;

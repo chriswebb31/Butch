@@ -486,5 +486,8 @@ public class Player extends Renderable {
     public float getHealth(){
         return health;
     }
+    public Gun getActiveWeapon() {
+        return this.activeGun;
+    }
 }
 

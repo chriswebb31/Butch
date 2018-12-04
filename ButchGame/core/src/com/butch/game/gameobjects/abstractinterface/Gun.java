@@ -10,7 +10,7 @@ import java.util.Random;
 public abstract class Gun extends EquipableItem {
     public int id;
     public int gunType;
-
+    public String gunName;
     private long lastShot;
     public float fireRate;
     public float speed;

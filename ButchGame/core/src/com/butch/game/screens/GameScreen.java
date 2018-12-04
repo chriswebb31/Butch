@@ -118,7 +118,7 @@ public class GameScreen implements Screen {
         music.setLooping(true);
         music.play();
         //////////////////////hud ////////////////////
-        hud = new Hud(game.batch, player.getHealth());
+        hud = new Hud(game.batch, player);
         outOfBullets = false;
         //(int)enemies.get(0).getHealth()
         enemyHb = new HealthBar(500,20);

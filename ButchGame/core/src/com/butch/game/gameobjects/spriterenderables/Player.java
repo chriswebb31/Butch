@@ -418,10 +418,8 @@ public class Player extends Renderable {
     }
 
     public TextureRegion getFrame(float dt){
-        //get marios current state. ie. jumping, running, standing...
         TextureRegion region = null;
 
-        //depending on the state, get corresponding animation keyFrame.
 
         switch(getState()){
             case UP:
@@ -440,13 +438,8 @@ public class Player extends Renderable {
                 region = butchIdle.getKeyFrame(stateTimer, true);
         }
 
-
-        //if the current state is the same as the previous state increase the state timer.
-        //otherwise the state has changed and we need to reset timer.
         stateTimer = currentState == previousState ? stateTimer + dt : 0;
-        //update previous state
         previousState = currentState;
-        //return our final adjusted frame
         return region;
 
     }

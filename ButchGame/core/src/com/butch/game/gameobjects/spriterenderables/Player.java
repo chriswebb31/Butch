@@ -386,23 +386,17 @@ public class Player extends Renderable {
 
     @Override
     public void takeHit(float damage) {
+
         health -= damage/5;
+
     }
 
     public void addItem(ItemPickup item){
         if(item.getCollider().overlaps(this.getCollider())){
-            if(item.id==3){
-                Item coin = (Item) item;
-                this.coin += coin.quantity;
-                item.collected();
-                item.activeForRender = false;
-            }
             if(item.type== 0) {
                 gunInventory.add(ButchGame.itemManager.getGun(item.id));
-                item.collected();
             } else if(item.type == 1){
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
-                item.collected();
             }
             else if(item.type == 2) {
                 System.out.println(item);
@@ -419,6 +413,9 @@ public class Player extends Renderable {
                 else if(itemObj.id == 2){
                     ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
                     this.shotgunAmmo += newShotgunAmmo.quantity;
+                }
+                else if(itemObj.id == 3){
+                    this.coin += itemObj.quantity;
                 }
                 item.activeForRender = false;
                 item.collected();

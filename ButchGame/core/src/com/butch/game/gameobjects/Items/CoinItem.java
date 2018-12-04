@@ -17,5 +17,5 @@ public class CoinItem extends Item {
         this.activeForRender = true;
         this.collectionFX = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
     }
-    
+
 }

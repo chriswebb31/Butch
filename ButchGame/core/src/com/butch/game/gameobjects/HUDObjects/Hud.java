@@ -24,14 +24,14 @@ public class Hud {
     public Label weaponLabel;
     public HealthBar hb;
    public  Table table = new Table();
-    public Hud(SpriteBatch spriteBatch){
+    public Hud(SpriteBatch spriteBatch, float health){
 
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
         health = new Integer(30);
 
         table.top().left();
-        hb = new HealthBar(1000,20);
+        hb = new HealthBar((int)health,20);
         table.setFillParent(true);
         levelLabel = new Label(String.format("Level 1, Introduction"), new Label.LabelStyle(new BitmapFont(), Color.RED));
         table.add(levelLabel).expandX().pad(5);

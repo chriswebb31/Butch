@@ -17,6 +17,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ItemManager;
@@ -54,9 +56,9 @@ public class GameScreen implements Screen {
     public Barrel barrel;
     private ShapeRenderer shapeRenderer;
     private Music music;
-   // private Stage stage;
-   /////////initializing hud vars////////////////////
-   private Hud hud;
+    // private Stage stage;
+    /////////initializing hud vars////////////////////
+    private Hud hud;
     private boolean outOfBullets;
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
@@ -110,7 +112,7 @@ public class GameScreen implements Screen {
         music.setLooping(true);
         music.play();
         //////////////////////hud ////////////////////
-        hud = new Hud(game.batch);
+        hud = new Hud(game.batch, player.getHealth());
         outOfBullets = false;
     }
 
@@ -164,17 +166,23 @@ public class GameScreen implements Screen {
         }
         shapeRenderer.end();
 //////////////////////hud drawing and actions////////////////////////////////////
-        if(Gdx.input.isTouched()){
-            if(hud.hb.getWidth() <=0&& outOfBullets == false){
-                Label bulletLabel = new Label(String.format("Out of Bullets"), new Label.LabelStyle(new BitmapFont(), Color.RED));
-                hud.table.removeActor(hud.hb);
-                hud.table.padRight(10);
-                hud.table.add(bulletLabel);
-                outOfBullets = true;
-            }
-            else {
-                hud.hb.setWidth(hud.hb.getWidth() - 0.27778f);
-            }}
+
+        if(player.getHealth() <0 && outOfBullets == false){
+
+            Label healthLabel = new Label(String.format("You are Dead"), new Label.LabelStyle(new BitmapFont(), Color.RED));
+            healthLabel.setFontScale(3.0f);
+            hud.table.removeActor(hud.hb);
+            hud.table.removeActor(hud.levelLabel);
+            hud.table.reset();
+            hud.table.center();
+
+            hud.table.add(healthLabel).expandY().expandX().center();
+
+            outOfBullets = true;
+        }
+        else{
+            hud.hb.setWidth(player.getHealth());
+        }
         hud.stage.draw();
     }
 
@@ -191,7 +199,7 @@ public class GameScreen implements Screen {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, camera.position.z);
         camera.update();
     }
-//    public void update(float delta){
+    //    public void update(float delta){
 //        stage.act(delta);
 //    }
     @Override

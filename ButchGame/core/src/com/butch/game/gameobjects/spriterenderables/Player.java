@@ -20,6 +20,7 @@ import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
+import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,7 @@ public class Player extends Renderable {
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
     public int shotgunAmmo = 10;
-
+    public float health;
     public int coin;
 
     private static ArrayList<Gun> gunInventory;
@@ -120,6 +121,8 @@ public class Player extends Renderable {
         previousState = State.IDLE;
         stateTimer = 0;
         butchDead = false;
+        ////////////////////////////
+        health = 100;
     }
     private void inputHandler() { // handle inputs
         if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
@@ -369,6 +372,8 @@ public class Player extends Renderable {
     @Override
     public void takeHit(float damage) {
 
+            health -= damage/5;
+
     }
 
     public void addItem(ItemPickup item){
@@ -447,6 +452,7 @@ public class Player extends Renderable {
         else{
             return State.IDLE;
         }
+
 //        if(butchDead)
 //            return State.DEAD;
 //        else if(movingLeft)
@@ -459,6 +465,9 @@ public class Player extends Renderable {
 //            return State.DOWN;
 //        else
 //            return State.IDLE;
+    }
+    public float getHealth(){
+        return health;
     }
 }
 

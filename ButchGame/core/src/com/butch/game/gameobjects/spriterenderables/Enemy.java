@@ -24,6 +24,9 @@ public class Enemy extends Renderable {
     private float speed;
     private Vector2 leftHandIKoffset;
     private Vector2 rightHandIKoffset;
+    public int rifleAmmo = 100000;
+    public int pistolAmmo = 100000;
+    public int shotgunAmmo = 100000;
 
 
     public Enemy(Vector2 position){
@@ -45,7 +48,7 @@ public class Enemy extends Renderable {
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta ) {
         System.out.println("Active for render? " + this.activeForRender);
         if(!this.combatActive) {
             try{

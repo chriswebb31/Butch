@@ -55,7 +55,7 @@ public class Player extends Renderable {
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
     public int shotgunAmmo = 10;
-    public float health = 500;
+    public float health = 100;
     public int coin;
 
     private static ArrayList<Gun> gunInventory;
@@ -368,17 +368,18 @@ public class Player extends Renderable {
 
         this.getSprite().setScale(8);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+        this.activeGun.activeForRender = true;
         if(this.health <= 0){
-            this.activeCollision = false;
-            this.activeForRender= false;
-            this.butchDead = true;
-            this.destroy = true;
-            this.activeGun.activeForRender = false;
+//            this.activeCollision = false;
+//            this.activeForRender= false;
+//            this.butchDead = true;
+//            this.destroy = true;
+           // this.activeGun.activeForRender = false;
 
 
         }
         else{
-            this.activeGun.activeForRender = true;
+            //
         }
 
 

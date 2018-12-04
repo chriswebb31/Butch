@@ -62,6 +62,8 @@ public class GameScreen implements Screen {
     private Hud hud;
     private boolean outOfBullets;
     HealthBar enemyHb;
+    Stage stage;
+    float enemyX = 8000, enemyY = 7500;
     /////////////////////////////////////////////////////
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
@@ -71,7 +73,7 @@ public class GameScreen implements Screen {
         //Setup camera and viewport
         camera = new OrthographicCamera(); //create new camera
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 40); //set to middle of screen default pos
-        camera.zoom = 2.0f; //set camera height
+        camera.zoom = 5.0f; //set camera height
 
 
         tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
@@ -89,7 +91,7 @@ public class GameScreen implements Screen {
             Rectangle collider = new Rectangle(newX, newY, newWidth, newHeight);
             mapColliders.add(collider);
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
-//            enemyHb = new HealthBar((int)enemies.get(0).getPosition().x,(int)enemies.get(0).getPosition().y);
+//
         }
 
         ButchGame.renderableManager.reset();
@@ -106,7 +108,8 @@ public class GameScreen implements Screen {
         this.itemPickups.add(new CoinItem(new Vector2(6000, 8000)));
 
         this.enemies = new ArrayList<Enemy>();
-        this.enemies.add(new Enemy(new Vector2(8000, 7500)));
+
+        this.enemies.add(new Enemy(new Vector2(enemyX, enemyY)));
 
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
@@ -117,7 +120,9 @@ public class GameScreen implements Screen {
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player.getHealth());
         outOfBullets = false;
-
+        //(int)enemies.get(0).getHealth()
+        enemyHb = new HealthBar(500,20);
+        stage= new Stage();
     }
 
     @Override
@@ -168,6 +173,7 @@ public class GameScreen implements Screen {
                 e.printStackTrace();
             }
         }
+
         shapeRenderer.end();
 //////////////////////hud drawing and actions////////////////////////////////////
 
@@ -188,7 +194,13 @@ public class GameScreen implements Screen {
             hud.hb.setWidth(player.getHealth());
         }
 
+
         hud.stage.draw();
+        ///////////////////////////////////////////////////////////
+        //stage.act(delta);
+        //enemyHb.setPosition((int)enemies.get(0).getPosition().x,(int)enemies.get(0).getPosition().y);
+        //stage.addActor(enemyHb);
+        //stage.draw();
     }
 
     private void updateCameraPosition() {

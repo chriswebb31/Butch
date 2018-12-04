@@ -78,7 +78,7 @@ public class Enemy extends Renderable {
         if(this.health <= 0){
             this.activeCollision = false;
             this.activeForRender= false;
-            this.weapon.activeForRender = false;
+           // this.weapon.activeForRender = false;
 
         }
     }

@@ -24,7 +24,7 @@ public class Hud {
     public Label weaponLabel;
     public Label coinLabel;
     public HealthBar hb;
-   public  Table table = new Table();
+    public Table table = new Table();
     public Hud(SpriteBatch spriteBatch, Player player){
 
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());

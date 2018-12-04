@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObjects;
@@ -15,11 +16,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Breakables.Barrel;
+import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.CoinItem;
 import com.butch.game.gameobjects.Items.ColtItem;
 import com.butch.game.gameobjects.Items.RifleAmmo;
@@ -51,8 +54,10 @@ public class GameScreen implements Screen {
     public Barrel barrel;
     private ShapeRenderer shapeRenderer;
     private Music music;
-    private Stage stage;
-    //       private ProgressBarStyle pbs;
+   // private Stage stage;
+   /////////initializing hud vars////////////////////
+   private Hud hud;
+    private boolean outOfBullets;
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -104,6 +109,9 @@ public class GameScreen implements Screen {
         music.setVolume(0.3f);
         music.setLooping(true);
         music.play();
+        //////////////////////hud ////////////////////
+        hud = new Hud(game.batch);
+        outOfBullets = false;
     }
 
     @Override
@@ -124,6 +132,7 @@ public class GameScreen implements Screen {
         orthogonalTiledMapRenderer.render();//draw tilemap before sprites to save correct z-index of sprites
 
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
@@ -154,7 +163,19 @@ public class GameScreen implements Screen {
             }
         }
         shapeRenderer.end();
-//        stage.draw();
+//////////////////////hud drawing and actions////////////////////////////////////
+        if(Gdx.input.isTouched()){
+            if(hud.hb.getWidth() <=0&& outOfBullets == false){
+                Label bulletLabel = new Label(String.format("Out of Bullets"), new Label.LabelStyle(new BitmapFont(), Color.RED));
+                hud.table.removeActor(hud.hb);
+                hud.table.padRight(10);
+                hud.table.add(bulletLabel);
+                outOfBullets = true;
+            }
+            else {
+                hud.hb.setWidth(hud.hb.getWidth() - 0.27778f);
+            }}
+        hud.stage.draw();
     }
 
     private void updateCameraPosition() {

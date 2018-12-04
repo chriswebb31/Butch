@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector3;
@@ -38,6 +39,7 @@ public class ButchGame extends Game {
 	private static FPSLogger log;
     //public MainMenuScreen game_screen;
     public float themeVolume;
+	public SpriteBatch batch;
 
 	public ButchGame() {
 		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
@@ -59,6 +61,7 @@ public class ButchGame extends Game {
 
 	@Override
 	public void create () {
+		batch = new SpriteBatch();
         this.setScreen(new LoadingScreen(this, gameViewPort));
 	}
 

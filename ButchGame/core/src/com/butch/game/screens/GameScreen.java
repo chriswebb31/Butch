@@ -184,13 +184,13 @@ public class GameScreen implements Screen {
         else{
             hud.hb.setWidth(player.getHealth());
         }
-        int i = 1;
-        if( enemies.get(i).getHealth()<0 && outOfBullets == false){
-
-        }
-        else{
-
-        }
+//        int i = 1;
+//        if( enemies.get(i).getHealth()<0 && outOfBullets == false){
+//
+//        }
+//        else{
+//
+//        }
         hud.stage.draw();
     }
 

@@ -60,6 +60,7 @@ public class GameScreen implements Screen {
     /////////initializing hud vars////////////////////
     private Hud hud;
     private boolean outOfBullets;
+    /////////////////////////////////////////////////////
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -182,6 +183,13 @@ public class GameScreen implements Screen {
         }
         else{
             hud.hb.setWidth(player.getHealth());
+        }
+        int i = 1;
+        if( enemies.get(i).getHealth()<0 && outOfBullets == false){
+
+        }
+        else{
+
         }
         hud.stage.draw();
     }

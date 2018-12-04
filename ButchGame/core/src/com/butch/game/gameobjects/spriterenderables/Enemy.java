@@ -79,9 +79,12 @@ public class Enemy extends Renderable {
             this.activeCollision = false;
             this.activeForRender= false;
 
+
         }
     }
-
+public float getHealth(){
+        return health;
+}
     @Override
     public void takeHit(float damage) {
         this.health -= damage;

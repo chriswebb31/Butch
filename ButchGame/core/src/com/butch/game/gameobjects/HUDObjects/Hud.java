@@ -18,7 +18,6 @@ import com.butch.game.gameobjects.HUDObjects.HealthBar;
 public class Hud {
     public Stage stage;
     private Viewport viewport;
-    private Integer health;
     public Label timeLabel;
     public Label levelLabel;
     public Label weaponLabel;
@@ -29,16 +28,20 @@ public class Hud {
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
         health = new Integer(30);
-
+        levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
+        levelLabel.setFontScale(2.0f);
+        weaponLabel = new Label(String.format(""), new Label.LabelStyle(new BitmapFont(), Color.RED));
         table.top().left();
         hb = new HealthBar((int)health,20);
         table.setFillParent(true);
-        levelLabel = new Label(String.format("Level 1, Introduction"), new Label.LabelStyle(new BitmapFont(), Color.RED));
-        table.add(levelLabel).expandX().pad(5);
-        table.add(hb).expandX().pad(5);
-        table.left();
-        // table.row();
-        //table.bottom();
+        table.row();
+
+        table.add(levelLabel).expandX().left().pad(5);
+        table.add(hb).expandX().right().pad(5);
+        table.row();
+
+        table.add(weaponLabel).expand().bottom().left().pad(5);
+
         stage.addActor(table);
     }
 }

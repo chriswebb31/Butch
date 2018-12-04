@@ -70,6 +70,7 @@ public class Player extends Renderable {
     private Vector2 velocity;
 
     private Vector2 leftHandIKoffset = new Vector2().setZero();
+
     private Vector2 rightHandIKoffset = new Vector2().setZero();
 
     private Rectangle intersector;
@@ -124,6 +125,7 @@ public class Player extends Renderable {
         ////////////////////////////
         health = 100;
     }
+
     private void inputHandler() { // handle inputs
         if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 0;
@@ -366,13 +368,26 @@ public class Player extends Renderable {
 
         this.getSprite().setScale(8);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
-        this.activeGun.activeForRender = true;
+        if(this.health <= 0){
+            this.activeCollision = false;
+            this.activeForRender= false;
+            this.butchDead = true;
+            this.destroy = true;
+            this.activeGun.activeForRender = false;
+
+
+        }
+        else{
+            this.activeGun.activeForRender = true;
+        }
+
+
     }
 
     @Override
     public void takeHit(float damage) {
 
-            health -= damage/5;
+        health -= damage/5;
 
     }
 
@@ -383,24 +398,24 @@ public class Player extends Renderable {
             itemInventory.add(ButchGame.itemManager.getItem(item.id));
         }
         else if(item.type == 2) {
-                System.out.println(item);
-                System.out.println("type:"+ item.type);
-                Item itemObj = (Item) item;
-                System.out.println("AmmoCount:" +itemObj.quantity);
-              if(itemObj.id == 0){
-                  PistolAmmo newPistolAmmo = (PistolAmmo) item;
-                  this.pistolAmmo += newPistolAmmo.quantity;
-              } else if(itemObj.id == 1){
-                  RifleAmmo newRifleAmmo = (RifleAmmo) item;
-                  this.rifleAmmo += newRifleAmmo.quantity;
-              }
-              else if(itemObj.id == 2){
-                  ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
-                  this.shotgunAmmo += newShotgunAmmo.quantity;
-              }
-               item.activeForRender = false;
+            System.out.println(item);
+            System.out.println("type:"+ item.type);
+            Item itemObj = (Item) item;
+            System.out.println("AmmoCount:" +itemObj.quantity);
+            if(itemObj.id == 0){
+                PistolAmmo newPistolAmmo = (PistolAmmo) item;
+                this.pistolAmmo += newPistolAmmo.quantity;
+            } else if(itemObj.id == 1){
+                RifleAmmo newRifleAmmo = (RifleAmmo) item;
+                this.rifleAmmo += newRifleAmmo.quantity;
             }
+            else if(itemObj.id == 2){
+                ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
+                this.shotgunAmmo += newShotgunAmmo.quantity;
+            }
+            item.activeForRender = false;
         }
+    }
 
     public TextureRegion getFrame(float dt){
         //get marios current state. ie. jumping, running, standing...

@@ -73,7 +73,7 @@ public class GameScreen implements Screen {
         //Setup camera and viewport
         camera = new OrthographicCamera(); //create new camera
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 40); //set to middle of screen default pos
-        camera.zoom = 5.0f; //set camera height
+        camera.zoom = 2.5f; //set camera height
 
 
         tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
@@ -167,6 +167,8 @@ public class GameScreen implements Screen {
             }
             try{
                 if(renderable.activeCollision){
+                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
                     shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
                 }
             } catch (NullPointerException e){

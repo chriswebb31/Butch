@@ -10,9 +10,11 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String cowboySprite = "Anim/IdleDown/Idle_1_32x32.png";
     public final String gunSprite = "weapon.png";
     public final String bulletSprite = "bullet.png";
-    public final String coltSprite = "colt.png";
-    public final String machineGunSprite = "machineGun.png";
+    public final String coltSprite = "Anim/Guns/revolverIdle.png";
+    public final String machineGunSprite = "Anim/Guns/machinegunIdle.png";
     public final String rifleSprite = "Rifle.png";
+    public final String shotgunSprite = "Anim/Guns/shotgunIdle.png";
+    public final String musketSprite = "Anim/Guns/musketIdle.png";
     public final String backgroundTexture = "saloonDoors.jpg";
     public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
     public final String playButtonInactiveSprite = "Buttons/playButtonInactive.png";
@@ -47,6 +49,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String shellBounceEffect = "SoundFX/shellBounce.mp3";
 
     public final String playSound = "SoundFX/playSound.mp3";
+    public final String coinCollection = "SoundFX/coinCollect.mp3";
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
@@ -83,6 +86,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(machineGunSprite, Texture.class);
         load(rifleSprite, Texture.class);
         load(bulletSprite, Texture.class);
+        load(musketSprite, Texture.class);
         load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);
         load(exitButtonActive,Texture.class);
@@ -92,7 +96,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(rifleAmmo, Texture.class);
         load(shotgunAmmo, Texture.class);
         load(coinItemSprite, Texture.class);
-
+        load(shotgunSprite, Texture.class);
         load(butchIdleAnim, TextureAtlas.class);
         load(butchDying, TextureAtlas.class);
         load(butchWalkingBack, TextureAtlas.class);
@@ -107,5 +111,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
+        load(coinCollection, Sound.class);
     }
 }

@@ -26,6 +26,7 @@ public class ItemManager {
     0 : Gun
     1 : Melee
     2 : Ammo
+    3 : item
 
      */
 

@@ -31,10 +31,8 @@ public class Hud {
         levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         levelLabel.setFontScale(2.0f);
         weaponLabel = new Label(String.format("Rifle"), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
-        weaponLabel.setFontScale(2.0f);
         table.top().left();
         hb = new HealthBar((int)health,20);
-        hb.getStyle().knobAfter.
         table.setFillParent(true);
         table.row();
 

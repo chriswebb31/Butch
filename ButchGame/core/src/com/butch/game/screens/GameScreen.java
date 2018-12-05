@@ -167,6 +167,7 @@ public class GameScreen implements Screen {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.FIREBRICK);
+
         for (Renderable renderable: RenderableManager.renderableObjects) {
             try{
                 if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
@@ -197,9 +198,9 @@ public class GameScreen implements Screen {
 
         hud.coinLabel.setText(String.format("Coins = " + player.coin ));
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName));
-
+//        Label ammoLabel = new Label(String.format(), new Label.LabelStyle(new BitmapFont(), Color.RED));
         if(player.getHealth() <0 && outOfHealth == false){
-            Label healthLabel = new Label(String.format("You are Dead"), new Label.LabelStyle(new BitmapFont(), Color.RED));
+            Label healthLabel = new Label(String.format(" "), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
             hud.table.removeActor(hud.hb);
             hud.table.removeActor(hud.levelLabel);

@@ -111,7 +111,11 @@ public class GameScreen implements Screen {
         // barrel = new Barrel(6960,8630);
         this.spawnPoint = new Vector2(6960, 8630);
         shapeRenderer = new ShapeRenderer();
+<<<<<<< HEAD
         player = new Player(spawnPoint, mapColliders); //create new player for screen
+=======
+        player = new Player(new Vector2(7500.0f,4340.0f), mapColliders); //create new player for screen
+>>>>>>> master
         player.activeForRender = true;
         this.itemPickups = new ArrayList<ItemPickup>();
         this.itemPickups.add(new ColtItem(new Vector2(6960,8630)));

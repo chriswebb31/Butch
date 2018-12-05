@@ -29,6 +29,7 @@ import java.util.Random;
 
 public class Player extends Renderable {
     public enum State { UP, DOWN, LEFT, RIGHT, IDLE, DEAD };
+    private static float maxHealth = 100;
     public State currentState;
     public State previousState;
     float xAxis, yAxis, speed = 0;
@@ -440,6 +441,11 @@ public class Player extends Renderable {
                 }
                 else if(itemObj.id == 3){
                     this.coin += itemObj.quantity;
+                }
+                else if(itemObj.id == 4){
+                    this.health += itemObj.quantity;
+                    if(this.health > maxHealth)
+                        this.health = maxHealth;
                 }
                 item.activeForRender = false;
                 item.collected();

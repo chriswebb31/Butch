@@ -9,6 +9,7 @@ import com.butch.game.ButchGame;
 public abstract class ItemPickup extends Renderable{
     public int id;
     public Circle collectionRange;
+    public boolean colleactable = false;
     public int type;
     public Sound collectionFX;
 

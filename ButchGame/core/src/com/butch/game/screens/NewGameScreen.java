@@ -6,7 +6,9 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObjects;
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 public class NewGameScreen implements Screen {
 
     private SpriteBatch batch;
+    private Sprite cursor;
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
     public ArrayList<NPC> NPCs;
@@ -72,6 +75,8 @@ public class NewGameScreen implements Screen {
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
+        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
+        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
@@ -123,6 +128,7 @@ public class NewGameScreen implements Screen {
         Gdx.gl.glClearColor(240 / 255f, 220 / 255f, 130 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
 
+
         camera.update();
         ButchGame.renderableManager.update(delta);
 
@@ -132,8 +138,10 @@ public class NewGameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+        cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
+        cursor.draw(batch);
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);

@@ -23,14 +23,14 @@ public class Shell extends Renderable {
         this.activeCollision = false;
         this.activeForRender = true;
         int max = 100;
-        int min = -100;
-        int minAngle = -360;
+        int min = 0;
+        int minAngle = 0;
         int maxAngle = 360;
 // create instance of Random class
         random = new Random();
         int x = min + random.nextInt(max);
         int y = min + random.nextInt(max);
-        newRotation = minAngle + random.nextInt(max);
+        newRotation = minAngle + random.nextInt(maxAngle);
         offsetLanding = new Vector2(this.getPosition().x + x, this.getPosition().y + y);
 
     }
@@ -39,9 +39,6 @@ public class Shell extends Renderable {
     public void update(float delta) {
         if(this.getPosition() != offsetLanding){
             this.setPosition(this.getPosition().lerp(offsetLanding, 0.1f));
-        }
-        else{
-            shellFX.play();
         }
         if(this.getSprite().getRotation() != newRotation){
             Vector2 angleHolder = new Vector2(0, this.getSprite().getRotation());

@@ -1,172 +1,172 @@
 butchDying.png
-size: 672, 28
+size: 624, 26
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 butchDying-0
   rotate: false
-  xy: 1, 1
+  xy: 0, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-1
   rotate: false
-  xy: 29, 1
+  xy: 26, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-2
   rotate: false
-  xy: 57, 1
+  xy: 52, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-3
   rotate: false
-  xy: 85, 1
+  xy: 78, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-4
   rotate: false
-  xy: 113, 1
+  xy: 104, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-5
   rotate: false
-  xy: 141, 1
+  xy: 130, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-6
   rotate: false
-  xy: 169, 1
+  xy: 156, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-7
   rotate: false
-  xy: 197, 1
+  xy: 182, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-8
   rotate: false
-  xy: 225, 1
+  xy: 208, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-9
   rotate: false
-  xy: 253, 1
+  xy: 234, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-10
   rotate: false
-  xy: 281, 1
+  xy: 260, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-11
   rotate: false
-  xy: 309, 1
+  xy: 286, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-12
   rotate: false
-  xy: 337, 1
+  xy: 312, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-13
   rotate: false
-  xy: 365, 1
+  xy: 338, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-14
   rotate: false
-  xy: 393, 1
+  xy: 364, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-15
   rotate: false
-  xy: 421, 1
+  xy: 390, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-16
   rotate: false
-  xy: 449, 1
+  xy: 416, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-17
   rotate: false
-  xy: 477, 1
+  xy: 442, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-18
   rotate: false
-  xy: 505, 1
+  xy: 468, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-19
   rotate: false
-  xy: 533, 1
+  xy: 494, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-20
   rotate: false
-  xy: 561, 1
+  xy: 520, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-21
   rotate: false
-  xy: 589, 1
+  xy: 546, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-22
   rotate: false
-  xy: 617, 1
+  xy: 572, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchDying-23
   rotate: false
-  xy: 645, 1
+  xy: 598, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0

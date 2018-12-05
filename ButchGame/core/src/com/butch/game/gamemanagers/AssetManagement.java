@@ -37,11 +37,42 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String cursor = "cursor.png";
 
     //TEXTUREATLAS
+    //BUTCH
     public final String butchIdleAnim = "Anim/Butch/butchIdle.atlas";
     public final String butchDying = "Anim/Butch/butchDying.atlas";
-    public final String butchWalkingBack = "Anim/Butch/butchWalkingBack.atlas";
-    public final String butchWalkingLeft = "Anim/Butch/butchWalkingLeft.atlas";
-    public final String butchWalkingRight = "Anim/Butch/butchWalkingRight.atlas";
+    public final String butchWalking = "Anim/Butch/butchWalking.atlas";
+    public final String butchGhost = "Anim/Butch/butchGhost.atlas";
+    //ENEMIES
+    public final String enemy1Idle = "Anim/Enemies/enemy1Idle.atlas";
+    public final String enemy1Walking = "Anim/Enemies/enemy1Walking.atlas";
+    public final String enemy2Idle = "Anim/Enemies/enemy2Idle.atlas";
+    public final String enemy2Walking = "Anim/Enemies/enemy2Walking.atlas";
+    public final String enemy3Idle = "Anim/Enemies/enemy3Idle.atlas";
+    public final String enemy3Walking = "Anim/Enemies/enemy3Walking.atlas";
+    public final String enemy4Idle = "Anim/Enemies/enemy4Idle.atlas";
+    public final String enemy4Walking = "Anim/Enemies/enemy4Walking.atlas";
+    //GUNS
+    public final String machineGunFiring = "Anim/Guns/machineGunFiring.atlas";
+    public final String machineGunReload = "Anim/Guns/machineGunReload.atlas";
+    public final String machineGunWalking = "Anim/Guns/machineGunWalking.atlas";
+    public final String musketFiring = "Anim/Guns/musketFiring.atlas";
+    public final String musketReload = "Anim/Guns/musketReload.atlas";
+    public final String musketWalking = "Anim/Guns/musketWalking.atlas";
+    public final String revolverFiring = "Anim/Guns/revolverFiring.atlas";
+    public final String revolverReload = "Anim/Guns/revolverReload.atlas";
+    public final String reveolverWalking = "Anim/Guns/revolverWalking.atlas";
+    public final String shotgunFiring = "Anim/Guns/shotgunFiring.atlas";
+    public final String shotgunReload = "Anim/Guns/shotgunReload.atlas";
+    public final String shotgunWalking = "Anim/Guns/shotgunWalking.atlas";
+    //HORSE
+    public final String horseWalking = "Anim/Horse/horseWalking.atlas";
+    //NPC
+    public final String npc2Idle = "Anim/NPC/npc2Idle.atlas";
+    public final String npc3Idle = "Anim/NPC/npc3Idle.atlas";
+    public final String npc6Walking = "Anim/NPC/npc6Walking.atlas";
+    public final String npc7Walking = "Anim/NPC/npc7Walking.atlas";
+    public final String npc8Walking = "Anim/NPC/npc8Walking.atlas";
+
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
     public final String menuClick = "SoundFX/clickingSound.mp3";
@@ -106,9 +137,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(shotgunSprite, Texture.class);
         load(butchIdleAnim, TextureAtlas.class);
         load(butchDying, TextureAtlas.class);
-        load(butchWalkingBack, TextureAtlas.class);
-        load(butchWalkingLeft, TextureAtlas.class);
-        load(butchWalkingRight, TextureAtlas.class);
+
         load(shellSprite, Texture.class);
         load(pickupSprite, Texture.class);
         load(cursor, Texture.class);

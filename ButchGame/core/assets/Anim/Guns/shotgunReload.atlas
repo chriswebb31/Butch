@@ -1,0 +1,152 @@
+shotgunReload.png
+size: 30, 252
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shotgunReload-0
+  rotate: false
+  xy: 0, 0
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-1
+  rotate: false
+  xy: 0, 12
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-2
+  rotate: false
+  xy: 0, 24
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-3
+  rotate: false
+  xy: 0, 36
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-4
+  rotate: false
+  xy: 0, 48
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-5
+  rotate: false
+  xy: 0, 60
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-6
+  rotate: false
+  xy: 0, 72
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-7
+  rotate: false
+  xy: 0, 84
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-8
+  rotate: false
+  xy: 0, 96
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-9
+  rotate: false
+  xy: 0, 108
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-10
+  rotate: false
+  xy: 0, 120
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-11
+  rotate: false
+  xy: 0, 132
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-12
+  rotate: false
+  xy: 0, 144
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-13
+  rotate: false
+  xy: 0, 156
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-14
+  rotate: false
+  xy: 0, 168
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-15
+  rotate: false
+  xy: 0, 180
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-16
+  rotate: false
+  xy: 0, 192
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-17
+  rotate: false
+  xy: 0, 204
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-18
+  rotate: false
+  xy: 0, 216
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-19
+  rotate: false
+  xy: 0, 228
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+shotgunReload-20
+  rotate: false
+  xy: 0, 240
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1

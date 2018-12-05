@@ -1,54 +1,54 @@
 revolverFiring.png
-size: 154, 14
+size: 196, 12
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 revolverFiring-0
   rotate: false
-  xy: 1, 1
-  size: 20, 12
-  orig: 20, 12
+  xy: 0, 0
+  size: 28, 12
+  orig: 28, 12
   offset: 0, 0
   index: -1
 revolverFiring-1
   rotate: false
-  xy: 23, 1
-  size: 20, 12
-  orig: 20, 12
+  xy: 28, 0
+  size: 28, 12
+  orig: 28, 12
   offset: 0, 0
   index: -1
 revolverFiring-2
   rotate: false
-  xy: 45, 1
-  size: 20, 12
-  orig: 20, 12
+  xy: 56, 0
+  size: 28, 12
+  orig: 28, 12
   offset: 0, 0
   index: -1
 revolverFiring-3
   rotate: false
-  xy: 67, 1
-  size: 20, 12
-  orig: 20, 12
+  xy: 84, 0
+  size: 28, 12
+  orig: 28, 12
   offset: 0, 0
   index: -1
 revolverFiring-4
   rotate: false
-  xy: 89, 1
-  size: 20, 12
-  orig: 20, 12
+  xy: 112, 0
+  size: 28, 12
+  orig: 28, 12
   offset: 0, 0
   index: -1
 revolverFiring-5
   rotate: false
-  xy: 111, 1
-  size: 20, 12
-  orig: 20, 12
+  xy: 140, 0
+  size: 28, 12
+  orig: 28, 12
   offset: 0, 0
   index: -1
 revolverFiring-6
   rotate: false
-  xy: 133, 1
-  size: 20, 12
-  orig: 20, 12
+  xy: 168, 0
+  size: 28, 12
+  orig: 28, 12
   offset: 0, 0
   index: -1

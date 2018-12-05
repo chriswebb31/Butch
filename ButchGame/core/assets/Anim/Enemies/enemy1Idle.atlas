@@ -1,0 +1,19 @@
+enemy1Idle.png
+size: 24, 53
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+enemy1Idle-0
+  rotate: false
+  xy: 1, 1
+  size: 22, 25
+  orig: 26, 26
+  offset: 3, 0
+  index: -1
+enemy1Idle-1
+  rotate: false
+  xy: 1, 28
+  size: 22, 24
+  orig: 26, 26
+  offset: 3, 0
+  index: -1

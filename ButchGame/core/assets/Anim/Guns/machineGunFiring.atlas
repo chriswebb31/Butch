@@ -1,0 +1,33 @@
+machineGunFiring.png
+size: 136, 14
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+machineGunFiring-0
+  rotate: false
+  xy: 1, 1
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machineGunFiring-1
+  rotate: false
+  xy: 35, 1
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machineGunFiring-2
+  rotate: false
+  xy: 69, 1
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machineGunFiring-3
+  rotate: false
+  xy: 103, 1
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1

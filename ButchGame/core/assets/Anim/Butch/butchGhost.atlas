@@ -1,0 +1,33 @@
+butchGhost.png
+size: 104, 26
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghost-0
+  rotate: false
+  xy: 0, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+ghost-1
+  rotate: false
+  xy: 26, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+ghost-2
+  rotate: false
+  xy: 52, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+ghost-3
+  rotate: false
+  xy: 78, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

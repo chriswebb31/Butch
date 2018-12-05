@@ -1,60 +1,60 @@
 horseWalking.png
-size: 102, 102
+size: 256, 32
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 horseWalking-0
   rotate: false
-  xy: 1, 1
+  xy: 0, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horseWalking-1
   rotate: false
-  xy: 35, 1
+  xy: 32, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horseWalking-2
   rotate: false
-  xy: 69, 1
+  xy: 64, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horseWalking-3
   rotate: false
-  xy: 1, 35
+  xy: 96, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horseWalking-4
   rotate: false
-  xy: 35, 35
+  xy: 128, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horseWalking-5
   rotate: false
-  xy: 69, 35
+  xy: 160, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horseWalking-6
   rotate: false
-  xy: 1, 69
+  xy: 192, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horseWalking-7
   rotate: false
-  xy: 35, 69
+  xy: 224, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

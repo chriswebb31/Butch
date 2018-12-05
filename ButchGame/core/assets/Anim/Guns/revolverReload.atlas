@@ -1,152 +1,152 @@
 revolverReload.png
-size: 504, 24
+size: 29, 462
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 revolverReload-0
   rotate: false
-  xy: 1, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 0
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-1
   rotate: false
-  xy: 25, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 22
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-2
   rotate: false
-  xy: 49, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 44
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-3
   rotate: false
-  xy: 73, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 66
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-4
   rotate: false
-  xy: 97, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 88
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-5
   rotate: false
-  xy: 121, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 110
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-6
   rotate: false
-  xy: 145, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 132
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-7
   rotate: false
-  xy: 169, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 154
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-8
   rotate: false
-  xy: 193, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 176
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-9
   rotate: false
-  xy: 217, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 198
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-10
   rotate: false
-  xy: 241, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 220
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-11
   rotate: false
-  xy: 265, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 242
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-12
   rotate: false
-  xy: 289, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 264
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-13
   rotate: false
-  xy: 313, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 286
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-14
   rotate: false
-  xy: 337, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 308
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-15
   rotate: false
-  xy: 361, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 330
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-16
   rotate: false
-  xy: 385, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 352
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-17
   rotate: false
-  xy: 409, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 374
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-18
   rotate: false
-  xy: 433, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 396
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-19
   rotate: false
-  xy: 457, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 418
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1
 revolverReload-20
   rotate: false
-  xy: 481, 1
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 440
+  size: 29, 22
+  orig: 29, 22
   offset: 0, 0
   index: -1

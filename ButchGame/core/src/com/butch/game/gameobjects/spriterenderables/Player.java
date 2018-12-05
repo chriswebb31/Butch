@@ -28,28 +28,22 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends Renderable {
-    public enum State { UP, DOWN, LEFT, RIGHT, IDLE, DEAD };
+    public enum State { RUNNING, IDLE, DEAD };
     private static float maxHealth = 100;
     public State currentState;
     public State previousState;
     float xAxis, yAxis, speed = 0;
     private Sprite sprite;
 
-    private Animation<TextureRegion> butchWalkingLeft;
-    private Animation<TextureRegion> butchWalkingRight;
-    private Animation<TextureRegion> butchWalkingUp;
-    private Animation<TextureRegion> butchWalkingDown;
+    private Animation<TextureRegion> butchWalking;
     private Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
 
-    private TextureAtlas butchLeftAtlas;
-    private TextureAtlas butchRightAtlas;
-    private TextureAtlas butchUpAtlas;
-    private TextureAtlas butchDownAtlas;
     private TextureAtlas butchIdleAtlas;
     private TextureAtlas butchDyingAtlas;
+    private TextureAtlas butchWalkingAtlas;
 
-    private boolean movingRight;
+    private boolean movingRight = false;
     private boolean movingLeft;
     private boolean movingUp;
     private boolean movingDown;
@@ -116,16 +110,12 @@ public class Player extends Renderable {
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
 
         butchIdleAtlas = new TextureAtlas(ButchGame.assets.butchIdleAnim);
-        butchUpAtlas = new TextureAtlas(ButchGame.assets.butchWalkingBack);
         butchDyingAtlas = new TextureAtlas(ButchGame.assets.butchDying);
-        butchLeftAtlas = new TextureAtlas(ButchGame.assets.butchWalkingLeft);
-        butchRightAtlas = new TextureAtlas(ButchGame.assets.butchWalkingRight);
+        butchWalkingAtlas = new TextureAtlas(ButchGame.assets.butchWalking);
 
         butchIdle = new Animation<TextureRegion>(0.3f, butchIdleAtlas.getRegions());
         butchDying = new Animation<TextureRegion>(0.3f, butchDyingAtlas.getRegions());
-        butchWalkingUp = new Animation<TextureRegion>(0.1f, butchUpAtlas.getRegions());
-        butchWalkingLeft = new Animation<TextureRegion>(0.1f, butchLeftAtlas.getRegions());
-        butchWalkingRight = new Animation<TextureRegion>(0.1f, butchRightAtlas.getRegions());
+        butchWalking = new Animation<TextureRegion>(0.1f, butchWalkingAtlas.getRegions());
 
         currentState = State.IDLE;
         previousState = State.IDLE;
@@ -138,19 +128,15 @@ public class Player extends Renderable {
     private void inputHandler() { // handle inputs
         if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 0;
-            movingRight = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.W)) {
             yAxis = 0;
-            movingUp = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.S)) {
             yAxis = 0;
-            movingDown = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.A)) {
             xAxis = 0;
-            movingLeft = false;
         }
         if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D)) {
             isButchIdle = true;
@@ -158,22 +144,18 @@ public class Player extends Renderable {
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             yAxis = 1;
             isButchIdle = false;
-            movingUp = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             yAxis = -1;
             isButchIdle = false;
-            movingDown = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             xAxis = -1;
             isButchIdle = false;
-            movingLeft = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             xAxis = 1;
             isButchIdle = false;
-            movingRight = true;
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             try{
@@ -467,21 +449,22 @@ public class Player extends Renderable {
                 }
                 region = butchDying.getKeyFrame(stateTimer, false);
                 break;
-            case UP:
-                region = butchWalkingUp.getKeyFrame(stateTimer, true);
-                break;
-            case DOWN:
-                region = butchIdle.getKeyFrame(stateTimer, true);
-                break;
-            case LEFT:
-                region = butchWalkingLeft.getKeyFrame(stateTimer, true);
-                break;
-            case RIGHT:
-                region = butchWalkingRight.getKeyFrame(stateTimer, true);
+            case RUNNING:
+                region = butchWalking.getKeyFrame(stateTimer, true);
                 break;
             case IDLE:
                 region = butchIdle.getKeyFrame(stateTimer, true);
                 break;
+        }
+
+        if(((ButchGame.mousePosition().x < getPosition().x) || !movingRight) && !region.isFlipX()){
+            region.flip(true, false);
+            movingRight = false;
+        }
+
+        if(((ButchGame.mousePosition().x >= getPosition().x) || movingRight) && region.isFlipX()) {
+            region.flip(true, false);
+            movingRight = true;
         }
 
 
@@ -492,17 +475,20 @@ public class Player extends Renderable {
     }
 
     public State getState(){
-        if(xAxis > 0){
-            return State.RIGHT;
+        if(health <= 0) {
+            return State.DEAD;
+        }
+        else if(xAxis > 0){
+            return State.RUNNING;
         }
         else if(xAxis < 0){
-            return State.LEFT;
+            return State.RUNNING;
         }
         else if(yAxis > 0){
-            return State.UP;
+            return State.RUNNING;
         }
         else if(yAxis < 0){
-            return State.DOWN;
+            return State.RUNNING;
         }
         else{
             return State.IDLE;

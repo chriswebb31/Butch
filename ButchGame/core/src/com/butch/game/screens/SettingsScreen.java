@@ -61,11 +61,12 @@ public class SettingsScreen implements Screen {
             }
         });
 
-        table.setFillParent(true);
-        table.row();
-        table.add(volumeSlider).center();
-        stage.addActor(table);
-      //  stage.addActor(volumeSlider);
+//        table.setFillParent(true);
+//        table.center();
+//        table.add(volumeSlider).fillX();
+//        table.row();
+//        stage.addActor(table);
+   stage.addActor(volumeSlider);
     }
     @Override
     public void show() {

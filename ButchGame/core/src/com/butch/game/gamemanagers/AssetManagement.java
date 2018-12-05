@@ -61,7 +61,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String musketWalking = "Anim/Guns/musketWalking.atlas";
     public final String revolverFiring = "Anim/Guns/revolverFiring.atlas";
     public final String revolverReload = "Anim/Guns/revolverReload.atlas";
-    public final String reveolverWalking = "Anim/Guns/revolverWalking.atlas";
+    public final String revolverWalking = "Anim/Guns/revolverWalking.atlas";
     public final String shotgunFiring = "Anim/Guns/shotgunFiring.atlas";
     public final String shotgunReload = "Anim/Guns/shotgunReload.atlas";
     public final String shotgunWalking = "Anim/Guns/shotgunWalking.atlas";

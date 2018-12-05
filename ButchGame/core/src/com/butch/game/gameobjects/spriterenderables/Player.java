@@ -22,6 +22,8 @@ import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
+import com.butch.game.gameobjects.weapons.Shotgun;
+import com.butch.game.gameobjects.weapons.Musket;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
@@ -93,7 +95,7 @@ public class Player extends Renderable {
         this.walkingFX.pause();
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
-        this.itemCollection = new ArrayList<ItemPickup>();
+        this.itemCollection = new  ArrayList<ItemPickup>();
         this.gunInventory.add(new MachineGun());
 //        this.gunInventory.add(new Colt());
         this.activeGun = this.gunInventory.get(0);
@@ -284,10 +286,10 @@ public class Player extends Renderable {
     private void flipHandler() {
         try{
             if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
-                this.getSprite().setFlip(false, false);
+                //this.getSprite().setFlip(false, false);
                 activeGun.getSprite().setFlip(false, false);
             } else { //if direction is left or not right
-                this.getSprite().setFlip(true, false);
+                //this.getSprite().setFlip(true, false);
                 activeGun.getSprite().setFlip(false, true); //
             }
         } catch (NullPointerException e){

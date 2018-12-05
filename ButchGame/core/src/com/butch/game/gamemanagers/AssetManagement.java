@@ -58,7 +58,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //FONTS
 
     //TileMapData
-    public final String tilemap1 = "TiledFiles/desertdoodles.tmx";
+    public final String tilemap1 = "TiledFiles/REALTOWNMAPCLEAN.tmx";
     public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
     public final String enemySprite = "enemy.png";
 

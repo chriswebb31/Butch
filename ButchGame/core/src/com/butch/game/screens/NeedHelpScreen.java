@@ -26,6 +26,8 @@ import com.butch.game.ButchGame;
 
 import com.butch.game.gameobjects.HUDObjects.HealthBar;
 
+import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
+
 
 public class NeedHelpScreen implements Screen {
     private SpriteBatch batch;
@@ -35,6 +37,8 @@ public class NeedHelpScreen implements Screen {
     public ImageButton exitButton;
     public Texture healthBarBack;
     Stage stage;
+    Texture back;
+    Sprite backS;
     private Sound sound;
     FitViewport gameViewPort;
 
@@ -55,7 +59,13 @@ public class NeedHelpScreen implements Screen {
         healthBar = new HealthBar(1000,20);
         healthBar.setPosition(10,game.TARGET_HEIGHT-healthBar.getHeight()-10);
         batch= new SpriteBatch();
-        healthBarBack = new Texture("HUD Stuff/healthBarBack.png");
+        //healthBarBack = new Texture("HUD Stuff/healthBarBack.png");
+        back = new Texture(Gdx.files.internal("needHelpPage.png"));
+        back.setFilter(Linear, Linear);
+        backS = new Sprite(back);
+//        backS.setRegionWidth(1920);
+////        backS.setRegionHeight(1080);
+       backS.flip(false,true);
 //        healthBarBack.setRegionHeight(22);
 //        healthBarBack.setRegionWidth(1004);
         //healthBarBack.setPosition(9,game.TARGET_HEIGHT-healthBar.getHeight()-9);
@@ -87,6 +97,7 @@ public class NeedHelpScreen implements Screen {
         Gdx.gl.glClearColor(255f,215f,0f,1f); // setting the background white, however this doesn't...
         //...matter as there will be a background anyway.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.setProjectionMatrix(camera.combined);
         camera.update();
 
         if(Gdx.input.isTouched()){
@@ -97,7 +108,8 @@ public class NeedHelpScreen implements Screen {
         }
         update(delta);
         batch.begin();
-         batch.draw(healthBarBack,8,game.TARGET_HEIGHT-healthBar.getHeight()-11);
+        batch.draw(backS, 0, 0 );
+       //  batch.draw(healthBarBack,8,game.TARGET_HEIGHT-healthBar.getHeight()-11);
         batch.end();
 
 
@@ -152,7 +164,7 @@ public class NeedHelpScreen implements Screen {
 
         });
         stage.addActor(exitButton);
-        stage.addActor(healthBar);
+       // stage.addActor(healthBar);
     }
 
     @Override

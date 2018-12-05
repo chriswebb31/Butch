@@ -47,7 +47,7 @@ public class MainMenuScreen implements Screen {
 
         this.gameViewPort = gameViewport;
         camera = new OrthographicCamera();
-        camera.setToOrtho(true, game.TARGET_WIDTH,game.TARGET_HEIGHT);
+        camera.setToOrtho(true, 1920,1080);
         batch = new SpriteBatch();
         texture_back = ButchGame.assets.get(ButchGame.assets.backgroundTexture, Texture.class); // locating the background
         texture_back.setFilter(Linear,Linear);

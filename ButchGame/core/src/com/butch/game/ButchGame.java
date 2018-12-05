@@ -39,6 +39,7 @@ public class ButchGame extends Game {
     public float themeVolume;
 	public SpriteBatch batch;
 
+
 	public ButchGame() {
 		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
 		assets = new AssetManagement();

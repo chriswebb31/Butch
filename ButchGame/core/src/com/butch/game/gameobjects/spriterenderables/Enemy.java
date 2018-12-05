@@ -14,6 +14,9 @@ import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.gameobjects.weapons.Shotgun;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 
 public class Enemy extends Renderable {
     public float health;
@@ -28,6 +31,14 @@ public class Enemy extends Renderable {
     public int rifleAmmo = 100000;
     public int pistolAmmo = 100000;
     public int shotgunAmmo = 100000;
+
+    public ArrayList<Vector2> route;
+    public Vector2 targetPos;
+    Iterator itr;
+
+    public ENEMYSTATE state;
+    private long lastCheck;
+    private int checkRate;
 
 
     public Enemy(Vector2 position){
@@ -46,54 +57,76 @@ public class Enemy extends Renderable {
         this.activeForRender = true;
         this.activeCollision = true;
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
+        this.state = ENEMYSTATE.IDLE;
+        this.checkRate = 5;
+        this.route = new ArrayList<Vector2>();
+        itr = route.iterator();
     }
 
     @Override
     public void update(float delta ) {
-        System.out.println("Active for render? " + this.activeForRender);
-        if(!this.combatActive) {
-            try{
-                for(Renderable renderable:RenderableManager.renderableObjects){
-                    if (renderable.TAG == "player") {
-                        if (Intersector.overlaps(this.activateRange, renderable.getCollider())) {
-                            this.combatActive = true;
-                            this.target = (Player) renderable;
-                        }
+        switch (getState()){
+            case IDLE:
+                break;
+            case ROUTE:
+                if(this.getPosition() == this.targetPos){
+                    if(itr.hasNext()){
+                        targetPos = (Vector2) itr.next();
+                    }
+                    else{
+                        itr = route.iterator();
+                        targetPos = (Vector2) itr.next();
                     }
                 }
-            }catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }//CHECK IF SHOULD FIGHT
-        else{
-            this.combatActive = false;
-            try {
-                direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
-                this.setPosition(new Vector2(this.getPosition().x + this.direction.x * speed, this.getPosition().y + this.direction.y * speed));
-                if(this.weapon.clip > 0){
-                    this.weapon.Shoot();
-                }else{
-                    this.weapon.Reload();
-                }
-            }catch (NullPointerException e){
-                e.printStackTrace();
-            }
+                break;
+            case CHASE:
+                break;
+            case PICKSPOT:
 
         }
+
+
+//        System.out.println("Active for render? " + this.activeForRender);
+//        if (!this.combatActive) {
+//            try {
+//                for (Renderable renderable : RenderableManager.renderableObjects) {
+//                    if (renderable.TAG == "player") {
+//                        if (Intersector.overlaps(this.activateRange, renderable.getCollider())) {
+//                            this.combatActive = true;
+//                            this.target = (Player) renderable;
+//                        }
+//                    }
+//                }
+//            } catch (NullPointerException e) {
+//                e.printStackTrace();
+//            }
+//        }//CHECK IF SHOULD FIGHT
+//        else {
+//            this.combatActive = false;
+//            try {
+//                direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
+//                this.setPosition(new Vector2(this.getPosition().x + this.direction.x * speed, this.getPosition().y + this.direction.y * speed));
+//                if (this.weapon.clip > 0) {
+//                    this.weapon.Shoot();
+//                } else {
+//                    this.weapon.Reload();
+//                }
+//            } catch (NullPointerException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getCollider().setPosition(this.getPosition());
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
-
-        if(this.health <= 0){
-            this.activeCollision = false;
-            this.activeForRender= false;
-            this.weapon.activeForRender = false;
-
-        }
+//
+//        if (this.health <= 0) {
+//            this.activeCollision = false;
+//            this.activeForRender = false;
+//            this.weapon.activeForRender = false;
+//        }
     }
-    public float getHealth(){
-        return health;
-}
+
     @Override
     public void takeHit(float damage) {
         this.health -= damage;
@@ -122,5 +155,32 @@ public class Enemy extends Renderable {
             }
         }
         return pos;
+    }
+
+    public ENEMYSTATE getState(){
+        long thisCheck = System.currentTimeMillis();
+        if((thisCheck - lastCheck) >= (long) (checkRate * 1000)){
+            ArrayList<ENEMYSTATE> stateChoice = new ArrayList<ENEMYSTATE>();
+            if(combatActive){
+                stateChoice.add(ENEMYSTATE.IDLE);
+                stateChoice.add(ENEMYSTATE.CHASE);
+                stateChoice.add(ENEMYSTATE.PICKSPOT);
+            }
+            else{
+                stateChoice.add(ENEMYSTATE.IDLE);
+                stateChoice.add(ENEMYSTATE.ROUTE);
+            }
+            Random rand = new Random();
+            ENEMYSTATE newState = stateChoice.get(rand.nextInt(stateChoice.size()));
+            lastCheck = thisCheck;
+            return newState;
+        }
+        else{
+            return state;
+        }
+    }
+
+    public enum ENEMYSTATE{
+        IDLE, ROUTE, CHASE, PICKSPOT
     }
 }

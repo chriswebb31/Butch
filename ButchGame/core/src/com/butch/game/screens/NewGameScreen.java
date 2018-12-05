@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -213,7 +214,7 @@ public class NewGameScreen implements Screen {
 
         for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
             if(point.getName() == "SPAWNPOINT"){
-                spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().y * 10);
+                spawnPoint = new Vector2(point.getRectangle().getX() * 10, point.getRectangle().getY() * 10);
                 player.setPosition(spawnPoint);
             }else{
                 endPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().y * 10);
@@ -249,9 +250,18 @@ public class NewGameScreen implements Screen {
         }
         //SET ITEMS AND POSITIONING ITEMS
 
-        for(RectangleMapObject enemy : enemyLayer.getByType(RectangleMapObject.class)){
-            enemies.add(new Enemy(new Vector2(enemy.getRectangle().x * 10, enemy.getRectangle().y*10)));
+        for(PolygonMapObject enemy : enemyLayer.getByType(PolygonMapObject.class)){
+            ArrayList<Vector2> route;
+            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10));
+            for (int i = 2; i < enemy.getPolygon().getVertices().length; i+=2){
+                Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i++] * 10);
+                newEnemy.route.add(newRoutePosition);
+                System.out.println("NEW ROUTE POS: " + newRoutePosition);
+
+            }
+            enemies.add(newEnemy);
         }
+
         //SET ENEMIES AND POSITIONS
 
         for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){

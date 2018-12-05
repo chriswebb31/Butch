@@ -190,7 +190,12 @@ public abstract class Gun extends EquipableItem {
             return aimDir;
         } else if(parent.TAG == "enemy"){
             Enemy enemy = (Enemy) parent;
-            return enemy.aimDirection();
+            Random random = new Random();
+            float min = -accuracy;
+            float max = accuracy;
+            float x = min + random.nextFloat() * (max - min);
+            float y = min + random.nextFloat() * (max - min);
+            return new Vector2(enemy.aimDirection().x + x, enemy.aimDirection().y + y);
         }else {
             return null;
         }

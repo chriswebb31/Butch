@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Enemy extends Renderable {
+    private Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
     public float health;
     public Gun weapon;
     public Player target;
@@ -35,20 +36,26 @@ public class Enemy extends Renderable {
 
     public ArrayList<Vector2> route;
     public Vector2 targetPos;
+    public Vector2 localPos;
     int iteration;
 
     public ENEMYSTATE state;
     private long lastCheck;
     private int checkRate;
 
+    private long lastShootCheck;
+    private int shootCheckRate;
+    private boolean currentShootMode;
+
 
     public Vector2 newDirection;
+    private boolean swappedCombat = false;
 
     public Enemy(Vector2 position){
         this.TAG = "enemy";
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0);
-        this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
+        this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
         this.weapon = new MachineGun();
         this.weapon.parent = this;
         this.weapon.activeForRender = true;
@@ -62,16 +69,32 @@ public class Enemy extends Renderable {
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
         this.state = ENEMYSTATE.IDLE;
         this.checkRate = 5;
+        this.shootCheckRate = 3;
         this.route = new ArrayList<Vector2>();
         this.newDirection = new Vector2().setZero();
         this.targetPos = new Vector2().setZero();
+        this.localPos = new Vector2().setZero();
         this.iteration = 0;
     }
 
     @Override
     public void update(float delta ) {
+        this.weapon.accuracy *= 3;
+        for (Renderable renderable : RenderableManager.renderableObjects) {
+            if (renderable.TAG == "player") {
+                if (Intersector.overlaps(this.activateRange, renderable.getCollider())) {
+                    this.combatActive = true;
+                    this.target = (Player) renderable;
+                }
+                else{
+                    this.combatActive = false;
+                }
+            }
+        }
+
         this.setPosition(new Vector2(this.getPosition().x + this.newDirection.x * speed,this.getPosition().y + this.newDirection.y * speed ));
         state = getState();
+
         switch (state){
             case IDLE:
                 this.newDirection.setZero();
@@ -81,7 +104,6 @@ public class Enemy extends Renderable {
                 double posy = (double) this.getPosition().y;
                 double tarx = (double) this.targetPos.x;
                 double tary = (double) this.targetPos.y;
-
                 System.out.println("POS: " + getPosition() + " TARGETPOS: " + targetPos + " DISTANCE: " + (Math.hypot(posx - tarx, posy -tary)));
                 System.out.println("ROUTE: " + route);
                 if(Vector2.dst2(this.getPosition().x,this.getPosition().y,targetPos.x, targetPos.y) < 10){
@@ -100,12 +122,45 @@ public class Enemy extends Renderable {
             case CHASE:
                 if(!(this.target == null)){
                     newDirection = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
+                    this.getCollider().setPosition(this.getPosition().x + newDirection.x * speed, this.getPosition().y + newDirection.y * speed);
+                    for (Rectangle renderable:RenderableManager.mapColliders) {
+                        if(this.getCollider().overlaps(renderable)){
+                            newDirection = Vector2.Zero;
+                            this.getCollider().setPosition(this.getPosition());
+                        }
+                    }
                 }
                 break;
             case PICKSPOT:
+                if(this.getPosition().dst2(localPos) < 10 || localPos == Vector2.Zero){
+                    Random random = new Random();
+                    double r = 100;
+                    double x = r * Math.sin(random.nextFloat());
+                    double y = r * Math.sin(random.nextFloat());
+                    float newX = (float) x;
+                    float newY = (float) y;
+                    localPos = new Vector2(target.getPosition().x + newX, target.getPosition().y + newY);
+                    this.getCollider().setPosition(localPos);
+                    for(Rectangle renderable: RenderableManager.mapColliders){
+                        if(this.getCollider().overlaps(renderable)){
+                            x = r * Math.sin(random.nextFloat());
+                            y = r * Math.sin(random.nextFloat());
+                            newX = (float) x;
+                            newY = (float) y;
+                            localPos = new Vector2(target.getPosition().x + newX, target.getPosition().y + newY);
+                        }
+                    }
+                }
+
+                direction = new Vector2(this.localPos.x - this.getPosition().x, this.localPos.y - this.getPosition().y).nor();
                 break;
         }
-
+        if(combatActive && target.health > 0){
+            direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
+            if(shouldShoot()){
+                this.weapon.Shoot();
+            }
+        }
         this.setPosition(new Vector2(this.getPosition().x + this.newDirection.x * speed,this.getPosition().y + this.newDirection.y * speed ));
 
 //        System.out.println("Active for render? " + this.activeForRender);
@@ -140,7 +195,7 @@ public class Enemy extends Renderable {
 //        }
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getCollider().setPosition(this.getPosition());
-        this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
+        this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
 //
 //        if (this.health <= 0) {
 //            this.activeCollision = false;
@@ -156,6 +211,22 @@ public class Enemy extends Renderable {
 
     public Vector2 aimDirection(){
         return direction;
+    }
+
+    public boolean shouldShoot(){
+//        long thisShootCheck = System.currentTimeMillis();
+//        if((thisShootCheck - lastShootCheck) >= (long) (shootCheckRate * 1000)){
+//            Random random = new Random();
+//            boolean newShootMode = random.nextBoolean();
+//            this.currentShootMode = newShootMode;
+//            return newShootMode;
+//        }else{
+//            return currentShootMode;
+//        }
+
+        Random r = new Random();
+        float newRand = r.nextFloat();
+        return newRand > 0.98f;
     }
 
     public Vector2 getWeaponPosition(){
@@ -182,7 +253,7 @@ public class Enemy extends Renderable {
     public ENEMYSTATE getState(){
         long thisCheck = System.currentTimeMillis();
         System.out.println("thisCheck:"+thisCheck+" lastCheck:"+lastCheck+" checkrate:"+checkRate);
-        if((thisCheck - lastCheck) >= (long) (checkRate * 1000)){
+        if(((thisCheck - lastCheck) >= (long) (checkRate * 1000)) || swappedCombat){
             ArrayList<ENEMYSTATE> stateChoice = new ArrayList<ENEMYSTATE>();
             if(combatActive){
                 stateChoice.add(ENEMYSTATE.IDLE);
@@ -196,8 +267,6 @@ public class Enemy extends Renderable {
                 stateChoice.add(ENEMYSTATE.ROUTE);
             }
             System.out.println("RANDOM STATEs: "+stateChoice);
-            Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
-            fx.play();
             Random rand = new Random();
             ENEMYSTATE newState = stateChoice.get(rand.nextInt(stateChoice.size()));
             lastCheck = thisCheck;

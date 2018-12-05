@@ -1,7 +1,7 @@
 gatlingGunFiring.png
 size: 336, 26
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 gatlingGunFiring-0
   rotate: false

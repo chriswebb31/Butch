@@ -1,7 +1,7 @@
 musketReload.png
 size: 216, 512
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 musketReload-0
   rotate: false

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends Renderable {
-    public enum State { RUNNING, IDLE, DEAD };
+    public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING };
     private static float maxHealth = 100;
     public State currentState;
     public State previousState;

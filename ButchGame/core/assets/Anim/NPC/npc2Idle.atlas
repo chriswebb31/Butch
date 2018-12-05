@@ -1,7 +1,7 @@
 npc2Idle.png
 size: 40, 20
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 npc2Idle-0
   rotate: false

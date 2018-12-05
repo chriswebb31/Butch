@@ -1,7 +1,7 @@
 butchDying.png
 size: 624, 26
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 butchDying-0
   rotate: false

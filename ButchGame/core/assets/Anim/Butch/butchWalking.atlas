@@ -1,7 +1,7 @@
 butchWalking.png
 size: 208, 26
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 butchWalking-0
   rotate: false

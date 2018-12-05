@@ -1,7 +1,7 @@
 shotgunFiring.png
 size: 210, 10
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 shotgunFiring-0
   rotate: false

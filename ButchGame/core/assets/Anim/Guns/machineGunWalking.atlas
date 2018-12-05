@@ -1,7 +1,7 @@
 machineGunWalking.png
 size: 256, 12
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 machinegunWalking-0
   rotate: false

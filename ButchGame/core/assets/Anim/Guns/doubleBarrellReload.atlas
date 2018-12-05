@@ -1,7 +1,7 @@
 doubleBarrellReload.png
 size: 32, 357
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 Double Barrel (Reload)-0
   rotate: false

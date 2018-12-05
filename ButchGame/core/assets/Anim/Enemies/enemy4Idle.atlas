@@ -1,7 +1,7 @@
 enemy4Idle.png
 size: 24, 51
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 enemy4Idle-0
   rotate: false

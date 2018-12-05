@@ -369,11 +369,11 @@ public class Player extends Renderable {
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
         if(this.health <= 0){
-//            this.activeCollision = false;
+            this.activeCollision = false;
 //            this.activeForRender= false;
 //            this.butchDead = true;
 //            this.destroy = true;
-           // this.activeGun.activeForRender = false;
+           this.activeGun.activeForRender = false;
 
 
         }
@@ -428,9 +428,15 @@ public class Player extends Renderable {
 
     public TextureRegion getFrame(float dt){
         TextureRegion region = null;
+        currentState = getState();
 
-
-        switch(getState()){
+        switch(currentState){
+            case DEAD:
+                if(previousState != currentState) {
+                    stateTimer = 0;
+                }
+                region = butchDying.getKeyFrame(stateTimer, false);
+                break;
             case UP:
                 region = butchWalkingUp.getKeyFrame(stateTimer, true);
                 break;
@@ -454,7 +460,10 @@ public class Player extends Renderable {
     }
 
     public State getState(){
-        if(xAxis > 0){
+        if(health <= 0) {
+            return State.DEAD;
+        }
+        else if(xAxis > 0){
             return State.RIGHT;
         }
         else if(xAxis < 0){

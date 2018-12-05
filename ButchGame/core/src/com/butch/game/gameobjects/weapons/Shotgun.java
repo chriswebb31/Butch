@@ -11,11 +11,11 @@ public class Shotgun extends Gun {
     public Shotgun() {
         this.id = 12;
         this.gunName = "Shotgun";
-        this.gunType = 0;
+        this.gunType = 1;
         this.clipSize = 2;
         this.accuracy = 20;
         this.clip = 2;
-        this.oneHanded = true;
+        this.oneHanded = false;
         this.damage = 60;
         this.fireRate = 1;
         this.reloadSpeed = 2;

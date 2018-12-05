@@ -2,6 +2,7 @@ package com.butch.game.gameobjects.spriterenderables;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
+import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Items.PistolAmmo;
 import com.butch.game.gameobjects.Items.RifleAmmo;
@@ -23,9 +25,11 @@ import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player extends Renderable {
     public enum State { UP, DOWN, LEFT, RIGHT, IDLE, DEAD };
+    private static float maxHealth = 100;
     public State currentState;
     public State previousState;
     float xAxis, yAxis, speed = 0;
@@ -58,8 +62,8 @@ public class Player extends Renderable {
     public float health = 100;
     public int coin;
 
-    private static ArrayList<Gun> gunInventory;
-    private static ArrayList<ItemPickup> itemInventory;
+    public static ArrayList<Gun> gunInventory;
+    public static ArrayList<ItemPickup> itemInventory;
     private static ArrayList<ItemPickup> itemCollection; //items in range if collection
 
     private Gun activeGun;
@@ -75,6 +79,9 @@ public class Player extends Renderable {
 
     private Rectangle intersector;
 
+    public Sound walkingFX;
+    public Sound hitEffect;
+
     private float stateTimer;
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
@@ -87,7 +94,9 @@ public class Player extends Renderable {
         this.velocity = new Vector2().setZero();
         this.canMove = true;
         this.speed = 10;
-
+        this.walkingFX = ButchGame.assets.get(ButchGame.assets.walkingFX, Sound.class);
+        this.walkingFX.play();
+        this.walkingFX.pause();
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
         this.itemCollection = new ArrayList<ItemPickup>();
@@ -184,6 +193,14 @@ public class Player extends Renderable {
                     this.gunInventoryIteration = 0;
                     this.activeGun = gunInventory.get(this.gunInventoryIteration);
                 }
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.R)){
+            try{
+                this.activeGun.Reload();
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
@@ -334,13 +351,23 @@ public class Player extends Renderable {
     }
 
     public void update(float delta) {
-        this.activeGun.player = this;
-        this.activeGun.parent = this;
-        this.activeGun.activeForRender = true;
+        if(!this.butchDead) {
+            this.activeGun.player = this;
+            this.activeGun.parent = this;
+            this.activeGun.activeForRender = true;
 
-        inputHandler();
-        movementHandler();
-        flipHandler();
+            inputHandler();
+            movementHandler();
+            flipHandler();
+            if(velocity.x > 0 || velocity.x < 0 || velocity.y > 0 || velocity.y < 0){
+                walkingFX.resume();
+            }else{
+                walkingFX.pause();
+            }
+        }
+        else{
+
+        }
 
         System.out.println("COINSSSS:"+coin);
         for (Renderable renderable:RenderableManager.renderableObjects) {
@@ -368,13 +395,13 @@ public class Player extends Renderable {
         this.getSprite().setScale(8);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
+
         if(this.health <= 0){
-//            this.activeCollision = false;
+            this.activeCollision = false;
 //            this.activeForRender= false;
 //            this.butchDead = true;
 //            this.destroy = true;
-           // this.activeGun.activeForRender = false;
-
+           this.activeGun.activeForRender = false;
 
         }
         else{
@@ -386,9 +413,7 @@ public class Player extends Renderable {
 
     @Override
     public void takeHit(float damage) {
-
         health -= damage/5;
-
     }
 
     public void addItem(ItemPickup item){
@@ -417,6 +442,11 @@ public class Player extends Renderable {
                 else if(itemObj.id == 3){
                     this.coin += itemObj.quantity;
                 }
+                else if(itemObj.id == 4){
+                    this.health += itemObj.quantity;
+                    if(this.health > maxHealth)
+                        this.health = maxHealth;
+                }
                 item.activeForRender = false;
                 item.collected();
             }
@@ -428,9 +458,15 @@ public class Player extends Renderable {
 
     public TextureRegion getFrame(float dt){
         TextureRegion region = null;
+        currentState = getState();
 
-
-        switch(getState()){
+        switch(currentState){
+            case DEAD:
+                if(previousState != currentState) {
+                    stateTimer = 0;
+                }
+                region = butchDying.getKeyFrame(stateTimer, false);
+                break;
             case UP:
                 region = butchWalkingUp.getKeyFrame(stateTimer, true);
                 break;
@@ -445,7 +481,9 @@ public class Player extends Renderable {
                 break;
             case IDLE:
                 region = butchIdle.getKeyFrame(stateTimer, true);
+                break;
         }
+
 
         stateTimer = currentState == previousState ? stateTimer + dt : 0;
         previousState = currentState;
@@ -469,7 +507,6 @@ public class Player extends Renderable {
         else{
             return State.IDLE;
         }
-
 //        if(butchDead)
 //            return State.DEAD;
 //        else if(movingLeft)

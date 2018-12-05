@@ -11,6 +11,7 @@ import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
+import com.butch.game.gameobjects.weapons.Shotgun;
 
 import java.awt.*;
 
@@ -24,6 +25,9 @@ public class Enemy extends Renderable {
     private float speed;
     private Vector2 leftHandIKoffset;
     private Vector2 rightHandIKoffset;
+    public int rifleAmmo = 100000;
+    public int pistolAmmo = 100000;
+    public int shotgunAmmo = 100000;
 
 
     public Enemy(Vector2 position){
@@ -31,7 +35,7 @@ public class Enemy extends Renderable {
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0);
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
-        this.weapon = new MachineGun();
+        this.weapon = new Shotgun();
         this.weapon.parent = this;
         this.weapon.activeForRender = true;
         this.setPosition(position);
@@ -45,7 +49,7 @@ public class Enemy extends Renderable {
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta ) {
         System.out.println("Active for render? " + this.activeForRender);
         if(!this.combatActive) {
             try{
@@ -62,10 +66,15 @@ public class Enemy extends Renderable {
             }
         }//CHECK IF SHOULD FIGHT
         else{
+            this.combatActive = false;
             try {
                 direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
                 this.setPosition(new Vector2(this.getPosition().x + this.direction.x * speed, this.getPosition().y + this.direction.y * speed));
-                this.weapon.Shoot();
+                if(this.weapon.clip > 0){
+                    this.weapon.Shoot();
+                }else{
+                    this.weapon.Reload();
+                }
             }catch (NullPointerException e){
                 e.printStackTrace();
             }
@@ -78,11 +87,11 @@ public class Enemy extends Renderable {
         if(this.health <= 0){
             this.activeCollision = false;
             this.activeForRender= false;
-           // this.weapon.activeForRender = false;
+            this.weapon.activeForRender = false;
 
         }
     }
-public float getHealth(){
+    public float getHealth(){
         return health;
 }
     @Override

@@ -33,6 +33,7 @@ import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.Player;
+import com.butch.game.gameobjects.spriterenderables.NPC;
 
 import java.util.ArrayList;
 public class GameScreen implements Screen {
@@ -45,16 +46,23 @@ public class GameScreen implements Screen {
      */
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
+    public ArrayList<NPC> npcs;
     public ButchGame game; //reference to libgdx main game class
+
     public SpriteBatch batch; //sprite renderer
+
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     private OrthographicCamera camera; //camera for height position of render
     private float distanceDivisor = 1.2f;
+
     private Player player;
+    public Vector2 spawnPoint;
+
+
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     public ArrayList<Rectangle> mapColliders;
-    public Barrel barrel;
+
     private ShapeRenderer shapeRenderer;
     private Music music;
     // private Stage stage;
@@ -62,8 +70,10 @@ public class GameScreen implements Screen {
     private Hud hud;
     private boolean outOfBullets;
     HealthBar enemyHb;
+    Label healthLabel;
     Stage stage;
     float enemyX = 8000, enemyY = 7500;
+    float npcX = 6000, npcY = 8000;
     /////////////////////////////////////////////////////
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
@@ -92,15 +102,17 @@ public class GameScreen implements Screen {
             mapColliders.add(collider);
             System.out.println("created collider: "+ "x:"+collider.x+" y:"+ collider.y+" width:"+collider.width+" height:" +collider.height);
 //
+            ButchGame.GSM.playerObject = this.player;
         }
 
         ButchGame.renderableManager.reset();
         RenderableManager.mapColliders = mapColliders;
         ButchGame.itemManager = new ItemManager();
         // barrel = new Barrel(6960,8630);
-
+        this.spawnPoint = new Vector2(6960, 8630);
         shapeRenderer = new ShapeRenderer();
-        player = new Player(new Vector2(6960.0f,8630.0f), mapColliders); //create new player for screen
+        player = new Player(spawnPoint, mapColliders); //create new player for screen
+        player = new Player(new Vector2(7500.0f,4340.0f), mapColliders); //create new player for screen
         player.activeForRender = true;
         this.itemPickups = new ArrayList<ItemPickup>();
         this.itemPickups.add(new ColtItem(new Vector2(6960,8630)));
@@ -110,6 +122,10 @@ public class GameScreen implements Screen {
         this.enemies = new ArrayList<Enemy>();
 
         this.enemies.add(new Enemy(new Vector2(enemyX, enemyY)));
+
+        this.npcs = new ArrayList<NPC>();
+
+        this.npcs.add(new NPC(new Vector2(npcX, npcY)));
 
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
@@ -178,17 +194,17 @@ public class GameScreen implements Screen {
 
         shapeRenderer.end();
 //////////////////////hud drawing and actions////////////////////////////////////
+
         hud.coinLabel.setText(String.format("Coins = " + player.coin ));
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName));
-        if(player.getHealth() <0 && outOfBullets == false){
 
+        if(player.getHealth() <0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("You are Dead"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
             hud.table.removeActor(hud.hb);
             hud.table.removeActor(hud.levelLabel);
             hud.table.reset();
             hud.table.center();
-
             hud.table.add(healthLabel).expandY().expandX().center();
 
             outOfBullets = true;
@@ -196,7 +212,6 @@ public class GameScreen implements Screen {
         else{
             hud.hb.setWidth(player.getHealth());
         }
-
 
         hud.stage.draw();
         ///////////////////////////////////////////////////////////

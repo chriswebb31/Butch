@@ -25,8 +25,10 @@ public class Hud implements Disposable {
     public Label weaponLabel;
     public Label coinLabel;
     public HealthBar hb;
+
    public  Table table = new Table();
    public Player player;
+
     public Hud(SpriteBatch spriteBatch, Player player){
  this.player = player;
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());

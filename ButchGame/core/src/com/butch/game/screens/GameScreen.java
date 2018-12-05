@@ -125,7 +125,7 @@ public class GameScreen implements Screen {
 
         this.npcs = new ArrayList<NPC>();
 
-        this.npcs.add(new NPC(new Vector2(npcX, npcY)));
+        //this.npcs.add(new NPC(new Vector2(npcX, npcY)));
 
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings

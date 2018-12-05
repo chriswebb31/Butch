@@ -68,7 +68,7 @@ public class GameScreen implements Screen {
     // private Stage stage;
     /////////initializing hud vars////////////////////
     private Hud hud;
-    private boolean outOfBullets;
+    private boolean outOfHealth = false;
     HealthBar enemyHb;
     Label healthLabel;
     Stage stage;
@@ -134,8 +134,8 @@ public class GameScreen implements Screen {
         music.setLooping(true);
         music.play();
         //////////////////////hud ////////////////////
-        hud = new Hud(game.batch, player);
-        outOfBullets = false;
+        hud = new Hud(game.batch,player);
+
         //(int)enemies.get(0).getHealth()
         enemyHb = new HealthBar(500,20);
         stage= new Stage();
@@ -167,6 +167,7 @@ public class GameScreen implements Screen {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.FIREBRICK);
+
         for (Renderable renderable: RenderableManager.renderableObjects) {
             try{
                 if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
@@ -197,9 +198,9 @@ public class GameScreen implements Screen {
 
         hud.coinLabel.setText(String.format("Coins = " + player.coin ));
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName));
-
-        if(player.getHealth() <0 && outOfBullets == false){
-            Label healthLabel = new Label(String.format("You are Dead"), new Label.LabelStyle(new BitmapFont(), Color.RED));
+//        Label ammoLabel = new Label(String.format(), new Label.LabelStyle(new BitmapFont(), Color.RED));
+        if(player.getHealth() <0 && outOfHealth == false){
+            Label healthLabel = new Label(String.format(" "), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
             hud.table.removeActor(hud.hb);
             hud.table.removeActor(hud.levelLabel);
@@ -207,7 +208,7 @@ public class GameScreen implements Screen {
             hud.table.center();
             hud.table.add(healthLabel).expandY().expandX().center();
 
-            outOfBullets = true;
+            outOfHealth = true;
         }
         else{
             hud.hb.setWidth(player.getHealth());
@@ -254,7 +255,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+hud.dispose();
     }
 //    @Override
 //    public void create(){

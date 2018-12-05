@@ -50,9 +50,12 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     public final String playSound = "SoundFX/playSound.mp3";
     public final String coinCollection = "SoundFX/coinCollect.mp3";
+    public final String walkingFX = "SoundFX/walking.mp3";
+    public final String ammoCollection = "SoundFX/ammoCollect.mp3";
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
+
     //PARTICLES
 
     //FONTS
@@ -112,5 +115,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
         load(coinCollection, Sound.class);
+        load(ammoCollection, Sound.class);
+        load(walkingFX, Sound.class);
     }
 }

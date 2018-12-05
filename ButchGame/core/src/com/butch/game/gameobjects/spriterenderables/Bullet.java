@@ -1,5 +1,6 @@
 package com.butch.game.gameobjects.spriterenderables;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
@@ -13,12 +14,13 @@ public class Bullet extends Renderable {
     private boolean freindly;
     private float damage;
     private float speed;
-
+    private Sound hitEffect;
     private long startTime;
 
     public Bullet(Vector2 start, Vector2 velocity, float speed, float damage, boolean freindly) {
         this.setPosition(start);
-        startTime = System.currentTimeMillis();
+        this.startTime = System.currentTimeMillis();
+        this.hitEffect = ButchGame.assets.get(ButchGame.assets.hitEffect, Sound.class);
         this.velocity = velocity;
         this.speed = speed;
         this.damage = damage;
@@ -42,6 +44,7 @@ public class Bullet extends Renderable {
                 if((renderable.TAG.equals("breakable") || (renderable.TAG == "enemy" && this.freindly)) && renderable.activeCollision|| (renderable.TAG=="player" && !this.freindly)){ //hit player if not friendly
                     renderable.takeHit(damage);
                     activeForRender = false;
+                    this.hitEffect.play();
                     System.out.println(renderable.TAG);
                 }
             }
@@ -49,6 +52,7 @@ public class Bullet extends Renderable {
         for(Rectangle collider : RenderableManager.mapColliders){
             if(collider.overlaps(this.getCollider())){
                 activeForRender = false;
+                this.hitEffect.play();
                 destroy = true;
             }
         }

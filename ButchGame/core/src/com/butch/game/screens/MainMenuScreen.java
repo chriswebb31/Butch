@@ -153,7 +153,7 @@ public class MainMenuScreen implements Screen {
                     @Override
                     public void onCompletion(Music music) {
 
-                        game.setScreen(new GameScreen(game, gameViewPort));
+                        game.setScreen(new NewGameScreen(game, gameViewPort));
                     }
                 });
             }

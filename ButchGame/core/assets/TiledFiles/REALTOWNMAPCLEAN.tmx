@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="148">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="186">
  <tileset firstgid="1" name="allTiles-3" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-3.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -315,5 +315,33 @@
   <object id="145" x="660.423" y="693.953" width="11.7427" height="11.6013"/>
   <object id="146" x="682.966" y="816.52" width="9.8252" height="60.2079"/>
   <object id="147" x="811.722" y="816.406" width="8.45424" height="60.4364"/>
+ </objectgroup>
+ <objectgroup id="14" name="Points">
+  <object id="178" name="SPAWNPOINT" x="732" y="265.5"/>
+  <object id="179" name="NextLevel" x="1096.5" y="911"/>
+ </objectgroup>
+ <objectgroup id="13" name="ItemLayer">
+  <object id="165" name="3" x="912.5" y="307"/>
+  <object id="166" name="3" x="919.5" y="316.5"/>
+  <object id="167" name="3" x="888" y="303"/>
+  <object id="168" name="3" x="749" y="740.5"/>
+  <object id="169" name="10" x="722" y="755.5"/>
+  <object id="170" name="11" x="779" y="756.5"/>
+  <object id="171" name="0" x="635.5" y="846.5"/>
+  <object id="172" name="1" x="650.5" y="616.5"/>
+  <object id="173" name="3" x="1000.5" y="816.5"/>
+  <object id="174" name="3" x="976.5" y="828.5"/>
+  <object id="175" name="3" x="1002.5" y="841.5"/>
+  <object id="176" name="3" x="1019" y="826"/>
+  <object id="177" name="3" x="983" y="840.5"/>
+ </objectgroup>
+ <objectgroup id="15" name="EnemyLayer">
+  <object id="180" x="943" y="836.5"/>
+  <object id="181" x="942.5" y="984.5"/>
+ </objectgroup>
+ <objectgroup id="16" name="NPCLayer">
+  <object id="182" name="John" x="820.5" y="719.5"/>
+  <object id="183" name="Jamerson" x="606" y="430.5"/>
+  <object id="184" name="Morgan" x="596.5" y="208"/>
  </objectgroup>
 </map>

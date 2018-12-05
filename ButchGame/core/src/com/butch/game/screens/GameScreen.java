@@ -178,7 +178,8 @@ public class GameScreen implements Screen {
 
         shapeRenderer.end();
 //////////////////////hud drawing and actions////////////////////////////////////
-          hud.coinLabel.setText(String.format("Coins = " + player.coin ));
+        hud.coinLabel.setText(String.format("Coins = " + player.coin ));
+        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName));
         if(player.getHealth() <0 && outOfBullets == false){
 
             Label healthLabel = new Label(String.format("You are Dead"), new Label.LabelStyle(new BitmapFont(), Color.RED));

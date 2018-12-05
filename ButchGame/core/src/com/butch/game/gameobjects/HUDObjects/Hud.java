@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.butch.game.ButchGame;
@@ -16,7 +17,7 @@ import com.butch.game.gameobjects.HUDObjects.HealthBar;
 /**
  * Created by rahmanel on 03/12/2018.
  */
-public class Hud {
+public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
     public Label timeLabel;
@@ -25,8 +26,9 @@ public class Hud {
     public Label coinLabel;
     public HealthBar hb;
    public  Table table = new Table();
+   public Player player;
     public Hud(SpriteBatch spriteBatch, Player player){
-
+ this.player = player;
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
        // health = new Integer(1000);
@@ -48,5 +50,10 @@ public class Hud {
         table.add(weaponLabel).expand().bottom().right().pad(5);
 
         stage.addActor(table);
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
     }
 }

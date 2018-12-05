@@ -37,6 +37,9 @@ public abstract class Gun extends EquipableItem {
         else if(this.parent.TAG == "enemy"){
             friendly = false;
         }
+        else if(this.parent.TAG == "npc") {
+            friendly = false;
+        }
 
         long thisShot = System.currentTimeMillis();
         if ((thisShot - lastShot) >= (long) (fireRate * 1000)) {

@@ -226,6 +226,9 @@ public class NewGameScreen implements Screen {
                 case 3:
                     itemPickups.add(new CoinItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
+                case 4:
+                    itemPickups.add(new WhiskyItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
                 case 10:
                     itemPickups.add(new ColtItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;

@@ -32,6 +32,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String rifleAmmo = "rifleAmmo.png";
     public final String shotgunAmmo = "shotgunAmmo.png";
     public final String coinItemSprite = "coin.png";
+    public final String shellSprite = "shell.png";
     //TEXTUREATLAS
     public final String butchIdleAnim = "Anim/Butch/butchIdle.atlas";
     public final String butchDying = "Anim/Butch/butchDying.atlas";
@@ -105,6 +106,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(butchWalkingBack, TextureAtlas.class);
         load(butchWalkingLeft, TextureAtlas.class);
         load(butchWalkingRight, TextureAtlas.class);
+        load(shellSprite, Texture.class);
 
         load(mainTheme, Music.class);
         load(townTheme, Music.class);

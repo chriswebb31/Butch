@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.spriterenderables.Bullet;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
+import com.butch.game.gameobjects.spriterenderables.Shell;
 
 import java.util.Random;
 
@@ -60,6 +61,7 @@ public abstract class Gun extends EquipableItem {
                 if((clip > 0) && (!isReloading) && this.reserve!=0) {
                     gunShotSound.play();
                     Bullet shot = new Bullet(this.getPosition(), this.aimDirection().nor(), speed, damage, friendly);
+                    Shell shell = new Shell(this.getPosition());
                     lastShot = thisShot;
                     clip -= 1;
                 }

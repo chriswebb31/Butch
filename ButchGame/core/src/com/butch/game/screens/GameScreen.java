@@ -33,6 +33,7 @@ import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.Player;
+import com.butch.game.gameobjects.spriterenderables.NPC;
 
 import java.util.ArrayList;
 public class GameScreen implements Screen {
@@ -45,6 +46,7 @@ public class GameScreen implements Screen {
      */
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
+    public ArrayList<NPC> npcs;
     public ButchGame game; //reference to libgdx main game class
     public SpriteBatch batch; //sprite renderer
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
@@ -64,6 +66,7 @@ public class GameScreen implements Screen {
     HealthBar enemyHb;
     Stage stage;
     float enemyX = 8000, enemyY = 7500;
+    float npcX = 6000, npcY = 8000;
     /////////////////////////////////////////////////////
     public GameScreen(ButchGame game, FitViewport gameViewPort) {
         this.game = game;
@@ -110,6 +113,10 @@ public class GameScreen implements Screen {
         this.enemies = new ArrayList<Enemy>();
 
         this.enemies.add(new Enemy(new Vector2(enemyX, enemyY)));
+
+        this.npcs = new ArrayList<NPC>();
+
+        this.npcs.add(new NPC(new Vector2(npcX, npcY)));
 
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings

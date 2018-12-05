@@ -1,6 +1,9 @@
 package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.spriterenderables.Bullet;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
@@ -9,6 +12,7 @@ import com.butch.game.gameobjects.spriterenderables.Shell;
 import java.util.Random;
 
 public abstract class Gun extends EquipableItem {
+    public enum State {SHOOTING, MOVING, IDLE, RELOADING}
     public int id;
     public int gunType;
     public String gunName;
@@ -26,6 +30,11 @@ public abstract class Gun extends EquipableItem {
     public Sound reloadSoundEffect;
     public float reloadSpeed;
     public int reserve;
+    private boolean isShooting = false;
+    public Animation<TextureRegion> gunWalking;
+    public Animation<TextureRegion> gunShooting;
+    public Animation<TextureRegion> gunReloading;
+    public TextureRegion spriteImg;
 
     public Gun() {
 
@@ -185,5 +194,14 @@ public abstract class Gun extends EquipableItem {
         }else {
             return null;
         }
+    }
+
+    public State getState() {
+        if (isShooting)
+            return State.SHOOTING;
+        else if (isReloading)
+            return  State.RELOADING;
+        else
+            return State.MOVING;
     }
 }

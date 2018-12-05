@@ -2,11 +2,16 @@ package com.butch.game.gameobjects.weapons;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 
 public class Colt extends Gun {
+    private TextureAtlas revolverWalkingAtlas = new TextureAtlas(ButchGame.assets.revolverWalking);
+    private TextureAtlas revolverShootingAtlas = new TextureAtlas(ButchGame.assets.revolverFiring);
+    private TextureAtlas revolverReloadingAtlas = new TextureAtlas(ButchGame.assets.revolverReload);
 
     public Colt() {
         this.id = 10;
@@ -20,8 +25,9 @@ public class Colt extends Gun {
         this.fireRate = 0.2f;
         this.reloadSpeed = 1;
         this.speed = 15;
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class)));
-        this.getSprite().setScale(6);
+        this.gunWalking = new Animation<TextureRegion>(0.1f, revolverWalkingAtlas.getRegions());
+        this.gunReloading = new Animation<TextureRegion>(0.1f, revolverReloadingAtlas.getRegions());
+        this.gunShooting = new Animation<TextureRegion>(0.1f, revolverShootingAtlas.getRegions());
         this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
         this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
     }

@@ -1,7 +1,7 @@
 shotgunWalking.png
 size: 240, 10
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 shotgunWalking-0
   rotate: false

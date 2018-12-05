@@ -1,7 +1,7 @@
 revolverReload.png
 size: 29, 462
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 revolverReload-0
   rotate: false

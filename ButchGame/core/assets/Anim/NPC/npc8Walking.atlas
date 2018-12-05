@@ -1,7 +1,7 @@
 npc8Walking.png
 size: 208, 26
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 npc8Walking-0
   rotate: false

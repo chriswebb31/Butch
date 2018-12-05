@@ -1,7 +1,7 @@
 machineGunFiring.png
 size: 136, 14
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 machineGunFiring-0
   rotate: false

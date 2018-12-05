@@ -1,7 +1,7 @@
 butchGhost.png
 size: 104, 26
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 ghost-0
   rotate: false

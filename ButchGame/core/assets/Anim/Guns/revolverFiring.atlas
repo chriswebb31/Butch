@@ -1,7 +1,7 @@
 revolverFiring.png
 size: 196, 12
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 revolverFiring-0
   rotate: false

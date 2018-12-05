@@ -1,7 +1,7 @@
 horseWalking.png
 size: 256, 32
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 horseWalking-0
   rotate: false

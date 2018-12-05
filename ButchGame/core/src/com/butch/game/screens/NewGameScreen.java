@@ -215,7 +215,7 @@ public class NewGameScreen implements Screen {
         for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
             if(point.getName() == "SPAWNPOINT"){
                 spawnPoint = new Vector2(point.getRectangle().getX() * 10, point.getRectangle().getY() * 10);
-                player.setPosition(spawnPoint);
+                player = new Player(spawnPoint, mapColliders);
             }else{
                 endPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().y * 10);
             }
@@ -251,11 +251,11 @@ public class NewGameScreen implements Screen {
         //SET ITEMS AND POSITIONING ITEMS
 
         for(PolygonMapObject enemy : enemyLayer.getByType(PolygonMapObject.class)){
-            ArrayList<Vector2> route;
             Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10));
-            for (int i = 2; i < enemy.getPolygon().getVertices().length; i+=2){
-                Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i++] * 10);
+            for (int i = 2; i < enemy.getPolygon().getTransformedVertices().length; i+=2){
+                Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i+1] * 10);
                 newEnemy.route.add(newRoutePosition);
+                newEnemy.targetPos = newEnemy.route.get(0);
                 System.out.println("NEW ROUTE POS: " + newRoutePosition);
 
             }

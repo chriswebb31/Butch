@@ -1,5 +1,6 @@
 package com.butch.game.gameobjects.spriterenderables;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Circle;
@@ -34,12 +35,14 @@ public class Enemy extends Renderable {
 
     public ArrayList<Vector2> route;
     public Vector2 targetPos;
-    Iterator itr;
+    int iteration;
 
     public ENEMYSTATE state;
     private long lastCheck;
     private int checkRate;
 
+
+    public Vector2 newDirection;
 
     public Enemy(Vector2 position){
         this.TAG = "enemy";
@@ -53,38 +56,57 @@ public class Enemy extends Renderable {
         this.health = 100;
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class)));
         this.getSprite().setScale(10);
-        this.speed = 5;
+        this.speed = 2.5F;
         this.activeForRender = true;
         this.activeCollision = true;
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
         this.state = ENEMYSTATE.IDLE;
         this.checkRate = 5;
         this.route = new ArrayList<Vector2>();
-        itr = route.iterator();
+        this.newDirection = new Vector2().setZero();
+        this.targetPos = new Vector2().setZero();
+        this.iteration = 0;
     }
 
     @Override
     public void update(float delta ) {
-        switch (getState()){
+        this.setPosition(new Vector2(this.getPosition().x + this.newDirection.x * speed,this.getPosition().y + this.newDirection.y * speed ));
+        state = getState();
+        switch (state){
             case IDLE:
+                this.newDirection.setZero();
                 break;
             case ROUTE:
-                if(this.getPosition() == this.targetPos){
-                    if(itr.hasNext()){
-                        targetPos = (Vector2) itr.next();
+                double posx = (double) this.getPosition().x;
+                double posy = (double) this.getPosition().y;
+                double tarx = (double) this.targetPos.x;
+                double tary = (double) this.targetPos.y;
+
+                System.out.println("POS: " + getPosition() + " TARGETPOS: " + targetPos + " DISTANCE: " + (Math.hypot(posx - tarx, posy -tary)));
+                System.out.println("ROUTE: " + route);
+                if(Vector2.dst2(this.getPosition().x,this.getPosition().y,targetPos.x, targetPos.y) < 10){
+                    if(iteration < route.size()-1){
+                        iteration++;
+                        targetPos = route.get(iteration);
                     }
                     else{
-                        itr = route.iterator();
-                        targetPos = (Vector2) itr.next();
+                        iteration = 0;
+                        targetPos = route.get(iteration);
                     }
                 }
+                newDirection = new Vector2(this.targetPos.x - this.getPosition().x, this.targetPos.y - this.getPosition().y).nor();
+                System.out.println("New Direction : " +newDirection);
                 break;
             case CHASE:
+                if(!(this.target == null)){
+                    newDirection = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
+                }
                 break;
             case PICKSPOT:
-
+                break;
         }
 
+        this.setPosition(new Vector2(this.getPosition().x + this.newDirection.x * speed,this.getPosition().y + this.newDirection.y * speed ));
 
 //        System.out.println("Active for render? " + this.activeForRender);
 //        if (!this.combatActive) {
@@ -159,6 +181,7 @@ public class Enemy extends Renderable {
 
     public ENEMYSTATE getState(){
         long thisCheck = System.currentTimeMillis();
+        System.out.println("thisCheck:"+thisCheck+" lastCheck:"+lastCheck+" checkrate:"+checkRate);
         if((thisCheck - lastCheck) >= (long) (checkRate * 1000)){
             ArrayList<ENEMYSTATE> stateChoice = new ArrayList<ENEMYSTATE>();
             if(combatActive){
@@ -169,13 +192,20 @@ public class Enemy extends Renderable {
             else{
                 stateChoice.add(ENEMYSTATE.IDLE);
                 stateChoice.add(ENEMYSTATE.ROUTE);
+                stateChoice.add(ENEMYSTATE.ROUTE);
+                stateChoice.add(ENEMYSTATE.ROUTE);
             }
+            System.out.println("RANDOM STATEs: "+stateChoice);
+            Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
+            fx.play();
             Random rand = new Random();
             ENEMYSTATE newState = stateChoice.get(rand.nextInt(stateChoice.size()));
             lastCheck = thisCheck;
+            System.out.println("STATE: " + newState);
             return newState;
         }
         else{
+            System.out.println("STATE: " + state);
             return state;
         }
     }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector3;
@@ -13,9 +14,7 @@ import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.screens.LoadingScreen;
-import com.butch.game.screens.MainMenuScreen;
 
-import javax.tools.Tool;
 import java.awt.*;
 
 public class ButchGame extends Game {
@@ -38,16 +37,17 @@ public class ButchGame extends Game {
 	private static FPSLogger log;
     //public MainMenuScreen game_screen;
     public float themeVolume;
+	public SpriteBatch batch;
 
 	public ButchGame() {
-		gameViewPort = new FitViewport(1920, 1080);
+		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
 		assets = new AssetManagement();
 		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		assets.load(assets.tilemap1, TiledMap.class);
 		renderableManager = new RenderableManager();
 
 		log = new FPSLogger();
-		GSM = new GameStateManager();
+		GSM = new GameStateManager(gameViewPort, this);
 		themeVolume = 0.3f;
   	}
   	public float getVolume(){
@@ -59,6 +59,7 @@ public class ButchGame extends Game {
 
 	@Override
 	public void create () {
+		batch = new SpriteBatch();
         this.setScreen(new LoadingScreen(this, gameViewPort));
 	}
 

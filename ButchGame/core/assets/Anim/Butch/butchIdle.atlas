@@ -1,7 +1,7 @@
 butchIdle.png
 size: 112, 28
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 butchIdle-0
   rotate: false

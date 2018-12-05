@@ -47,13 +47,13 @@ public class MainMenuScreen implements Screen {
 
         this.gameViewPort = gameViewport;
         camera = new OrthographicCamera();
-        camera.setToOrtho(true, 1920, 1080);
+        camera.setToOrtho(true, game.TARGET_WIDTH,game.TARGET_HEIGHT);
         batch = new SpriteBatch();
         texture_back = ButchGame.assets.get(ButchGame.assets.backgroundTexture, Texture.class); // locating the background
         texture_back.setFilter(Linear,Linear);
         sprite_back = new Sprite(texture_back);
-        sprite_back.setRegionWidth(1920);
-        sprite_back.setRegionHeight(1080);
+        sprite_back.setRegionWidth((int)camera.viewportWidth);
+        sprite_back.setRegionHeight((int)camera.viewportHeight);
         sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
         stage = new Stage();
@@ -153,7 +153,7 @@ public class MainMenuScreen implements Screen {
                     @Override
                     public void onCompletion(Music music) {
 
-                        game.setScreen(new GameScreen(game, gameViewPort));
+                        game.setScreen(new NewGameScreen(game, gameViewPort));
                     }
                 });
             }
@@ -226,7 +226,8 @@ public class MainMenuScreen implements Screen {
             }
             public void clicked(InputEvent event, float x, float y){
                 sound.play();
-                Gdx.app.exit();
+              Gdx.app.exit();
+
             }
 
         });
@@ -256,4 +257,5 @@ public class MainMenuScreen implements Screen {
        exitButtonInactive.getTexture().dispose();
         music.dispose();
     }
+
 }

@@ -1,6 +1,7 @@
 package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gamemanagers.RenderableManager;
@@ -20,7 +21,7 @@ public abstract class Renderable {
         RenderableManager.renderableObjects.add(this);
     }
 
-    public abstract void update();
+    public abstract void update(float delta);
 
     public Sprite getSprite() {
         return sprite;

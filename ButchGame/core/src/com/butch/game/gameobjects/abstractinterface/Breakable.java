@@ -18,7 +18,7 @@ public abstract class Breakable extends Renderable {
     }
 
     @Override
-    public void update() {
+    public void update(float delta){
         if(this.health <= 0){
             System.out.println("broke");
             RenderableManager.renderableObjectsToRemove.add(this);

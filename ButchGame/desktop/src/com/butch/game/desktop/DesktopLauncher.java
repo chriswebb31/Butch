@@ -12,6 +12,7 @@ public class DesktopLauncher {
     the launchers are different main classes which run depending on the system running the game. It also supplies the BUTCHGAME class with
     the window configs. such as a size and title
  	*/
+
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Butch";

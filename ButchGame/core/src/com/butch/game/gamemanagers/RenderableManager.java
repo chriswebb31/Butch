@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RenderableManager {
     public static ArrayList<Rectangle> mapColliders;
@@ -18,12 +20,20 @@ public class RenderableManager {
     }
 
     public void update(float delta) {
+
+        Collections.sort(renderableObjects, new Comparator<Renderable>() { //lamda not in this version :(
+            @Override
+            public int compare(Renderable o1, Renderable o2) {
+                return Float.compare(o2.getPosition().y, o1.getPosition().y) ;
+            }
+        });
+
         renderableObjects.removeAll(renderableObjectsToRemove);
         renderableObjectsToRemove.clear();
 
         for (int i=0; i<renderableObjects.size();i++) {
             if(renderableObjects.get(i).activeForRender){
-                renderableObjects.get(i).update();
+                renderableObjects.get(i).update(delta);
             } else if(renderableObjects.get(i).destroy){
                 renderableObjectsToRemove.add(renderableObjects.get(i));
             }

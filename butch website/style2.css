@@ -17,5 +17,17 @@ html, body{
 .about-text p{
 	font-size:30px;
 	padding: 20px;
+	background-color:FFFFFF;
 	
+}
+.example p{
+	font-size:30px;
+	padding: 20px;
+	background-color:FFFFFF;
+}
+.card{
+	margin:5px;
+}
+.about-text .card{
+	height:400px:
 }

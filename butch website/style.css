@@ -41,6 +41,7 @@ html, body{
 .btn-primary{
 	background-color:#f49242;
 	border: 1px solid #f49242;
+	margin:5px;
 }
 .btn-primary:hover {
 	background-color:#f48941;

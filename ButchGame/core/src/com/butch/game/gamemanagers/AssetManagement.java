@@ -32,6 +32,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String rifleAmmo = "rifleAmmo.png";
     public final String shotgunAmmo = "shotgunAmmo.png";
     public final String coinItemSprite = "coin.png";
+    public final String shellSprite = "shell.png";
+    public final String pickupSprite = "pickupIcon.png";
+    public final String cursor = "cursor.png";
+
     //TEXTUREATLAS
     public final String butchIdleAnim = "Anim/Butch/butchIdle.atlas";
     public final String butchDying = "Anim/Butch/butchDying.atlas";
@@ -50,15 +54,18 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     public final String playSound = "SoundFX/playSound.mp3";
     public final String coinCollection = "SoundFX/coinCollect.mp3";
+    public final String walkingFX = "SoundFX/walking.mp3";
+    public final String ammoCollection = "SoundFX/ammoCollect.mp3";
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
+
     //PARTICLES
 
     //FONTS
 
     //TileMapData
-    public final String tilemap1 = "TiledFiles/desertdoodles.tmx";
+    public final String tilemap1 = "TiledFiles/REALTOWNMAPCLEAN.tmx";
     public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
     public final String enemySprite = "enemy.png";
 
@@ -102,6 +109,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(butchWalkingBack, TextureAtlas.class);
         load(butchWalkingLeft, TextureAtlas.class);
         load(butchWalkingRight, TextureAtlas.class);
+        load(shellSprite, Texture.class);
+        load(pickupSprite, Texture.class);
+        load(cursor, Texture.class);
 
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
@@ -112,5 +122,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(otherReloadEffect, Sound.class);
         load(shellBounceEffect, Sound.class);
         load(coinCollection, Sound.class);
+        load(ammoCollection, Sound.class);
+        load(walkingFX, Sound.class);
     }
 }

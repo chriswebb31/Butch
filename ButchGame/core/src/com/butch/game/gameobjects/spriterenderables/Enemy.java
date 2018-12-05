@@ -66,10 +66,15 @@ public class Enemy extends Renderable {
             }
         }//CHECK IF SHOULD FIGHT
         else{
+            this.combatActive = false;
             try {
                 direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
                 this.setPosition(new Vector2(this.getPosition().x + this.direction.x * speed, this.getPosition().y + this.direction.y * speed));
-                this.weapon.Shoot();
+                if(this.weapon.clip > 0){
+                    this.weapon.Shoot();
+                }else{
+                    this.weapon.Reload();
+                }
             }catch (NullPointerException e){
                 e.printStackTrace();
             }

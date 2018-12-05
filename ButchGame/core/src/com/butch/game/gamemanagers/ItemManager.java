@@ -33,6 +33,7 @@ public class ItemManager {
     public ItemManager(){
         gunList = new ArrayList<Gun>();
         itemList = new ArrayList<Item>();
+
         gunList.add(new MachineGun());
         gunList.add(new Colt());
     }

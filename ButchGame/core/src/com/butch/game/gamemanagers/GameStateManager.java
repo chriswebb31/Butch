@@ -1,36 +1,55 @@
 package com.butch.game.gamemanagers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.butch.game.ButchGame;
+import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.abstractinterface.ItemPickup;
+import com.butch.game.gameobjects.abstractinterface.Renderable;
+import com.butch.game.gameobjects.spriterenderables.Player;
+import com.butch.game.screens.GameScreen;
+
+import java.util.ArrayList;
 
 public class GameStateManager {
+    public Player playerObject;
+    private int lives;
     //CLASS USED TO MANAGE PLAYER STATE AND GAME STATE
-    private static int GAME_STATE = 0; //0:RUN
-    private static int PLAYER_STATE = 0; //0:ALIVE 1:DEAD /
+    public int coins;
 
-    public GameStateManager() {
+    public ArrayList<Gun> weaponInventory;
+    public ArrayList<ItemPickup> itemInventory;
 
+    public GameScreen level;
+    private FitViewport viewport;
+    private ButchGame game;
+
+    public GameStateManager(FitViewport viewPort,ButchGame game) {
+        this.viewport = viewPort;
+        this.game = game;
     }
 
-    public static int getGameState() {
-        return GAME_STATE;
-    }
-
-    public static void setGameState(int gameState) {
-        GAME_STATE = gameState;
-    }
-
-    public static int getPlayerState() {
-        return PLAYER_STATE;
-    }
-
-    public static void setPlayerState(int playerState) {
-        PLAYER_STATE = playerState;
-    }
-
-    public void update() {
-        if (GAME_STATE > 0) {
-            Gdx.app.exit();
-            System.exit(0);
+    public void update(){
+        if(playerObject != null){
+            try{
+                if(playerObject.health <= 0){
+                    death(playerObject.coin, Player.gunInventory, Player.itemInventory);
+                }
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
         }
     }
+
+    public void death(int coins, ArrayList<Gun> weaponInventory, ArrayList<ItemPickup> itemInventory){
+        if(lives > 0) {
+            playerObject.setPosition(level.spawnPoint);
+            playerObject.health = 100;
+            lives -= 1;
+        }
+        else{
+            game.setScreen(new GameScreen(game, viewport));
+        }
+    }
+
 }

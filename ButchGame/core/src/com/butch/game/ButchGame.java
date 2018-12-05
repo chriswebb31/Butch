@@ -47,7 +47,7 @@ public class ButchGame extends Game {
 		renderableManager = new RenderableManager();
 
 		log = new FPSLogger();
-		GSM = new GameStateManager();
+		GSM = new GameStateManager(gameViewPort, this);
 		themeVolume = 0.3f;
   	}
   	public float getVolume(){

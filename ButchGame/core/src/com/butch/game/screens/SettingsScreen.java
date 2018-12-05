@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
@@ -32,7 +33,7 @@ public class SettingsScreen implements Screen {
     Slider.SliderStyle sliderStyle;
     Slider volumeSlider;
     MainMenuScreen menuScreen;
-
+    Table table = new Table();
     public SettingsScreen(final ButchGame game, FitViewport gameViewPort, final MainMenuScreen menuScreen){
         this.gameViewPort = gameViewPort;
         this.game = game;
@@ -57,10 +58,14 @@ public class SettingsScreen implements Screen {
              menuScreen.setVolume(volumeSlider.getValue());
              System.out.println(volumeSlider.getValue());
 
-
             }
         });
-        stage.addActor(volumeSlider);
+
+        table.setFillParent(true);
+        table.row();
+        table.add(volumeSlider).center();
+        stage.addActor(table);
+      //  stage.addActor(volumeSlider);
     }
     @Override
     public void show() {

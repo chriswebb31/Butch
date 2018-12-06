@@ -82,6 +82,7 @@ public class Player extends Renderable {
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
         this.setPosition(startPosition);
+        System.out.println("STARTN POS:" + startPosition);
         this.mapColliders = mapStaticColliders;
         this.TAG = "player";
         sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class));
@@ -351,11 +352,7 @@ public class Player extends Renderable {
                 }
             }
         }
-        else{
 
-        }
-
-        System.out.println("COINSSSS:"+coin);
         for (Renderable renderable:RenderableManager.renderableObjects) {
             if(renderable.TAG == "item" && renderable.activeForRender){
                 ItemPickup itemPickupOG = (ItemPickup) renderable;

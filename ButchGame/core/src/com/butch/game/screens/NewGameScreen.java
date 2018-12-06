@@ -139,41 +139,41 @@ public class NewGameScreen implements Screen {
 
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+//        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
         cursor.draw(batch);
         batch.end();
 
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(Color.FIREBRICK);
-        for (Renderable renderable: RenderableManager.renderableObjects) {
-            try{
-                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
-                    if((renderable.TAG == "item")) {
-                        ItemPickup item = (ItemPickup) renderable;
-                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
-                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
-                        Enemy enemy = (Enemy) renderable;
-                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
-                    }
-                }
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-            try{
-                if(renderable.activeCollision){
-                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
-                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-                }
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
-
-        shapeRenderer.end();
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+//        shapeRenderer.setColor(Color.FIREBRICK);
+//        for (Renderable renderable: RenderableManager.renderableObjects) {
+//            try{
+//                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
+//                    if((renderable.TAG == "item")) {
+//                        ItemPickup item = (ItemPickup) renderable;
+//                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
+//                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
+//                        Enemy enemy = (Enemy) renderable;
+//                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
+//                    }
+//                }
+//            } catch (NullPointerException e){
+//                e.printStackTrace();
+//            }
+//            try{
+//                if(renderable.activeCollision){
+//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+//                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
+//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+//                }
+//            } catch (NullPointerException e){
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        shapeRenderer.end();
 
         hud.coinLabel.setText(String.format("Coins: " + player.coin ));
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip));
@@ -214,8 +214,9 @@ public class NewGameScreen implements Screen {
         // ADD ALL COLLIDERS TO GAME
 
         for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
-            if(point.getName() == "SPAWNPOINT"){
-                spawnPoint = new Vector2(point.getRectangle().getX() * 10, point.getRectangle().getY() * 10);
+            int pointID = Integer.parseInt(point.getName());
+            if(pointID == 0){
+                spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
                 player = new Player(spawnPoint, mapColliders);
             }else{
                 endPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().y * 10);

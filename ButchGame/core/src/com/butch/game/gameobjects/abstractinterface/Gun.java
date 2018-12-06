@@ -106,16 +106,17 @@ public abstract class Gun extends EquipableItem {
             System.out.println("Player RELOAD!");
             System.out.println("Player RESERVE AMMO:" + reserve);
             long thisReload = System.currentTimeMillis();
-            if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
+            if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000) && reserve > 0) {
                 reloadSoundEffect.play(1);
                 if (this.reserve >= clipSize) {
+                    reserve += clip;
                     clip = clipSize;
                     if (gunType == 0) {
-                        player.pistolAmmo -= clipSize;
+                        player.pistolAmmo = reserve-clipSize;
                     } else if (gunType == 1) {
-                        player.rifleAmmo -= clipSize;
+                        player.rifleAmmo = reserve-clipSize;
                     } else if (gunType == 2) {
-                        player.shotgunAmmo -= clipSize;
+                        player.shotgunAmmo = reserve-clipSize;
                     }
                 } else {
                     clip = reserve;
@@ -178,24 +179,24 @@ public abstract class Gun extends EquipableItem {
 
         if(parent.TAG == "player"){
             Vector2 aimDir = player.getAimDirection();
-            System.out.println(aimDir);
             Random random = new Random();
             float min = -accuracy;
             float max = accuracy;
             float x = min + random.nextFloat() * (max - min);
             float y = min + random.nextFloat() * (max - min);
-
             aimDir = new Vector2(aimDir.x + x, aimDir.y + y);
-            System.out.println(aimDir);
             return aimDir;
         } else if(parent.TAG == "enemy"){
-            Enemy enemy = (Enemy) parent;
+            Vector2 aimDir = enemy.aimDirection();
             Random random = new Random();
-            float min = -accuracy;
-            float max = accuracy;
+            float min = -100;
+            float max = 100;
             float x = min + random.nextFloat() * (max - min);
             float y = min + random.nextFloat() * (max - min);
-            return new Vector2(enemy.aimDirection().x + x, enemy.aimDirection().y + y);
+            Vector2 randomNums = new Vector2(x, y);
+            System.out.println("random nums:"+randomNums);
+            aimDir = new Vector2(aimDir.x + randomNums.x, aimDir.y + randomNums.y);
+            return aimDir;
         }else {
             return null;
         }

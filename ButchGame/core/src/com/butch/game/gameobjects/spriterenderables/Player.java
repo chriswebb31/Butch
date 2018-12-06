@@ -340,13 +340,15 @@ public class Player extends Renderable {
             this.activeGun.parent = this;
             this.activeGun.activeForRender = true;
 
-            inputHandler();
-            movementHandler();
-            flipHandler();
-            if(velocity.x > 0 || velocity.x < 0 || velocity.y > 0 || velocity.y < 0){
-                walkingFX.resume();
-            }else{
-                walkingFX.pause();
+            if(!butchDead){
+                inputHandler();
+                movementHandler();
+                flipHandler();
+                if(velocity.x > 0 || velocity.x < 0 || velocity.y > 0 || velocity.y < 0){
+                    walkingFX.resume();
+                }else{
+                    walkingFX.pause();
+                }
             }
         }
         else{
@@ -383,7 +385,7 @@ public class Player extends Renderable {
         if(this.health <= 0){
             this.activeCollision = false;
 //            this.activeForRender= false;
-//            this.butchDead = true;
+            this.butchDead = true;
 //            this.destroy = true;
            this.activeGun.activeForRender = false;
 

@@ -104,8 +104,6 @@ public class Enemy extends Renderable {
                 double posy = (double) this.getPosition().y;
                 double tarx = (double) this.targetPos.x;
                 double tary = (double) this.targetPos.y;
-                System.out.println("POS: " + getPosition() + " TARGETPOS: " + targetPos + " DISTANCE: " + (Math.hypot(posx - tarx, posy -tary)));
-                System.out.println("ROUTE: " + route);
                 if(Vector2.dst2(this.getPosition().x,this.getPosition().y,targetPos.x, targetPos.y) < 10){
                     if(iteration < route.size()-1){
                         iteration++;
@@ -117,10 +115,9 @@ public class Enemy extends Renderable {
                     }
                 }
                 newDirection = new Vector2(this.targetPos.x - this.getPosition().x, this.targetPos.y - this.getPosition().y).nor();
-                System.out.println("New Direction : " +newDirection);
                 break;
             case CHASE:
-                if(!(this.target == null)){
+                if(!(this.target == null && target.health > 0)){
                     newDirection = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
                     this.getCollider().setPosition(this.getPosition().x + newDirection.x * speed, this.getPosition().y + newDirection.y * speed);
                     for (Rectangle renderable:RenderableManager.mapColliders) {
@@ -152,11 +149,11 @@ public class Enemy extends Renderable {
                     }
                 }
 
-                direction = new Vector2(this.localPos.x - this.getPosition().x, this.localPos.y - this.getPosition().y).nor();
+                direction = new Vector2(this.localPos.x - this.getPosition().x, this.localPos.y - this.getPosition().y);
                 break;
         }
         if(combatActive && target.health > 0){
-            direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y).nor();
+            direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y);
             if(shouldShoot()){
                 this.weapon.Shoot();
             }
@@ -197,11 +194,11 @@ public class Enemy extends Renderable {
         this.getCollider().setPosition(this.getPosition());
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
 //
-//        if (this.health <= 0) {
-//            this.activeCollision = false;
-//            this.activeForRender = false;
-//            this.weapon.activeForRender = false;
-//        }
+        if (this.health <= 0) {
+            this.activeCollision = false;
+            this.activeForRender = false;
+            this.weapon.activeForRender = false;
+        }
     }
 
     @Override

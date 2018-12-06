@@ -39,7 +39,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class NewGameScreen implements Screen {
-
+    public int levelNumber;
     private SpriteBatch batch;
     private Sprite cursor;
     public ArrayList<ItemPickup> itemPickups;
@@ -52,7 +52,7 @@ public class NewGameScreen implements Screen {
     private float distanceDivisor = 1.2f;
 
     public Vector2 spawnPoint;
-    public Vector2 endPoint;
+    public Rectangle endPoint;
 
     public Player player;
 
@@ -127,7 +127,11 @@ public class NewGameScreen implements Screen {
     public void render(float delta){
         updateCameraPosition();
 
-        Gdx.gl.glClearColor(240 / 255f, 220 / 255f, 130 / 255f, 1); //set clear colour of screen (sandy)
+        if(player.getCollider().overlaps(endPoint)){
+            ButchGame.GSM.playerObject = player;
+        }
+
+        Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
 
 
@@ -139,44 +143,53 @@ public class NewGameScreen implements Screen {
 
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-//        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
         cursor.draw(batch);
         batch.end();
 
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-//        shapeRenderer.setColor(Color.FIREBRICK);
-//        for (Renderable renderable: RenderableManager.renderableObjects) {
-//            try{
-//                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
-//                    if((renderable.TAG == "item")) {
-//                        ItemPickup item = (ItemPickup) renderable;
-//                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
-//                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
-//                        Enemy enemy = (Enemy) renderable;
-//                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
-//                    }
-//                }
-//            } catch (NullPointerException e){
-//                e.printStackTrace();
-//            }
-//            try{
-//                if(renderable.activeCollision){
-//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-//                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
-//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-//                }
-//            } catch (NullPointerException e){
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        shapeRenderer.end();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.FIREBRICK);
+
+        for (Renderable renderable: RenderableManager.renderableObjects) {
+            try{
+                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
+                    if((renderable.TAG == "item")) {
+                        ItemPickup item = (ItemPickup) renderable;
+                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
+                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
+                        Enemy enemy = (Enemy) renderable;
+                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
+                    }
+                }
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            try{
+                if(renderable.activeCollision){
+                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
+                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+                }
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+
+        shapeRenderer.end();
 
         hud.coinLabel.setText(String.format("Coins: " + player.coin ));
-        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip));
+        int thisReserve;
+        if(player.getActiveWeapon().gunType == 0){
+            thisReserve = player.pistolAmmo;
+        } else if(player.getActiveWeapon().gunType == 1){
+            thisReserve = player.rifleAmmo;
+        }else{
+            thisReserve = player.shotgunAmmo;
+        }
+        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
         if(player.getHealth() <0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
@@ -219,7 +232,7 @@ public class NewGameScreen implements Screen {
                 spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
                 player = new Player(spawnPoint, mapColliders);
             }else{
-                endPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().y * 10);
+                endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
             }
         }
         //SET SPAWN AND ENDS OF LEVELS

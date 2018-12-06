@@ -36,6 +36,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String shellSprite = "shell.png";
     public final String pickupSprite = "pickupIcon.png";
     public final String cursor = "cursor.png";
+    public final String healthPotion = "healthPotion.png";
 
     //TEXTUREATLAS
     //BUTCH
@@ -88,6 +89,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String coinCollection = "SoundFX/coinCollect.mp3";
     public final String walkingFX = "SoundFX/walking.mp3";
     public final String ammoCollection = "SoundFX/ammoCollect.mp3";
+    public final String potionCollection = "SoundFX/potionFX.mp3";
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
@@ -136,6 +138,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(shotgunAmmo, Texture.class);
         load(coinItemSprite, Texture.class);
         load(shotgunSprite, Texture.class);
+        load(healthPotion, Texture.class);
         load(butchIdleAnim, TextureAtlas.class);
         load(butchDying, TextureAtlas.class);
 
@@ -154,5 +157,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(coinCollection, Sound.class);
         load(ammoCollection, Sound.class);
         load(walkingFX, Sound.class);
+        load(potionCollection, Sound.class);
     }
 }

@@ -12,7 +12,6 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
-import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Items.PistolAmmo;
 import com.butch.game.gameobjects.Items.RifleAmmo;
@@ -22,12 +21,8 @@ import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
-import com.butch.game.gameobjects.weapons.Shotgun;
-import com.butch.game.gameobjects.weapons.Musket;
-import com.butch.game.screens.GameScreen;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Player extends Renderable {
     public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING };
@@ -173,7 +168,7 @@ public class Player extends Renderable {
                     this.activeGun.activeForRender = false;
                     this.gunInventoryIteration++;
                     this.activeGun = gunInventory.get(this.gunInventoryIteration);
-                    this.activeGun.activeForRender =true;
+                    this.activeGun.activeForRender = true;
                 } else{
                     this.activeGun.activeForRender = false;
                     this.gunInventoryIteration = 0;
@@ -279,7 +274,6 @@ public class Player extends Renderable {
                     }
                 }
             } //Loop activeForRender breakables
-            System.out.println("Velocity: " + velocity);
 
             //interpolate this for clean movement
             this.setPosition(new Vector2(this.getPosition().x + this.velocity.x * speed, this.getPosition().y + this.velocity.y * speed));
@@ -346,7 +340,6 @@ public class Player extends Renderable {
             if(!butchDead){
                 inputHandler();
                 movementHandler();
-//                flipHandler();
                 if(velocity.x > 0 || velocity.x < 0 || velocity.y > 0 || velocity.y < 0){
                     walkingFX.resume();
                 }else{
@@ -380,7 +373,7 @@ public class Player extends Renderable {
         this.getSprite().setScale(8);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
-
+//        flipHandler();
         if(this.health <= 0){
             this.activeCollision = false;
 //            this.activeForRender= false;
@@ -409,20 +402,14 @@ public class Player extends Renderable {
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
             }
             else if(item.type == 2) {
-                System.out.println(item);
-                System.out.println("type:"+ item.type);
                 Item itemObj = (Item) item;
-                System.out.println("AmmoCount:" +itemObj.quantity);
                 if(itemObj.id == 0){
-                    PistolAmmo newPistolAmmo = (PistolAmmo) item;
-                    this.pistolAmmo += newPistolAmmo.quantity;
+                    this.pistolAmmo += itemObj.quantity;
                 } else if(itemObj.id == 1){
-                    RifleAmmo newRifleAmmo = (RifleAmmo) item;
-                    this.rifleAmmo += newRifleAmmo.quantity;
+                    this.rifleAmmo += itemObj.quantity;
                 }
                 else if(itemObj.id == 2){
-                    ShotgunAmmo newShotgunAmmo = (ShotgunAmmo) item;
-                    this.shotgunAmmo += newShotgunAmmo.quantity;
+                    this.shotgunAmmo += itemObj.quantity;
                 }
                 else if(itemObj.id == 3){
                     this.coin += itemObj.quantity;

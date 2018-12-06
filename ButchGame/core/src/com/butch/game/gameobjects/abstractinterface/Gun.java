@@ -12,6 +12,12 @@ import com.butch.game.gameobjects.spriterenderables.Shell;
 import java.util.Random;
 
 public abstract class Gun extends EquipableItem {
+    /*
+    gun types
+    1: rifle
+    0 : pistol
+
+     */
     public enum State {SHOOTING, MOVING, IDLE, RELOADING}
     public int id;
     public int gunType;
@@ -108,15 +114,23 @@ public abstract class Gun extends EquipableItem {
             long thisReload = System.currentTimeMillis();
             if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000) && reserve > 0) {
                 reloadSoundEffect.play(1);
-                if (this.reserve >= clipSize) {
-                    reserve += clip;
-                    clip = clipSize;
+                if (this.reserve > clipSize) {
                     if (gunType == 0) {
-                        player.pistolAmmo = reserve-clipSize;
+                        player.pistolAmmo += clip;
                     } else if (gunType == 1) {
-                        player.rifleAmmo = reserve-clipSize;
+                        player.rifleAmmo += clip;
                     } else if (gunType == 2) {
-                        player.shotgunAmmo = reserve-clipSize;
+                        player.shotgunAmmo += clip;
+                    }
+
+                    clip = clipSize;
+
+                    if (gunType == 0) {
+                        player.pistolAmmo -= clipSize;
+                    } else if (gunType == 1) {
+                        player.rifleAmmo -= clipSize;
+                    } else if (gunType == 2) {
+                        player.shotgunAmmo -= clipSize;
                     }
                 } else {
                     clip = reserve;
@@ -194,7 +208,6 @@ public abstract class Gun extends EquipableItem {
             float x = min + random.nextFloat() * (max - min);
             float y = min + random.nextFloat() * (max - min);
             Vector2 randomNums = new Vector2(x, y);
-            System.out.println("random nums:"+randomNums);
             aimDir = new Vector2(aimDir.x + randomNums.x, aimDir.y + randomNums.y);
             return aimDir;
         }else {

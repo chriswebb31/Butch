@@ -12,10 +12,10 @@ public class WhiskyItem extends Item {
     public WhiskyItem(Vector2 position) {
         super(position);
         this.id = 4;
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.coinItemSprite, Texture.class)));
+        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.healthPotion, Texture.class)));
         this.quantity = 50;
         autoPickup = false;
+        this.collectionFX = ButchGame.assets.get(ButchGame.assets.potionCollection, Sound.class);
         this.activeForRender = true;
-        this.collectionFX = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
     }
 }

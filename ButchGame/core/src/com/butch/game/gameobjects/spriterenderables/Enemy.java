@@ -94,7 +94,7 @@ public class Enemy extends Renderable {
         this.activeForRender = true;
         this.activeCollision = true;
         this.setSprite(sprite);
-        this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
+        this.setCollider(new Rectangle(this.getPosition().x - (this.getSprite().getWidth() /3), this.getPosition().y - (this.getSprite().getHeight() / 5), this.getSprite().getBoundingRectangle().width/2.5f * 10, this.getSprite().getBoundingRectangle().height/1.5f * 10));
         this.state = ENEMYSTATE.IDLE;
         this.checkRate = 5;
         this.shootCheckRate = 3;
@@ -130,6 +130,7 @@ public class Enemy extends Renderable {
         }
 
         this.setPosition(new Vector2(this.getPosition().x + this.newDirection.x * speed,this.getPosition().y + this.newDirection.y * speed ));
+        this.getCollider().setPosition(this.getPosition());
         state = getState();
 
         switch (state){
@@ -291,7 +292,6 @@ public class Enemy extends Renderable {
 
     public ENEMYSTATE getState(){
         long thisCheck = System.currentTimeMillis();
-        System.out.println("thisCheck:"+thisCheck+" lastCheck:"+lastCheck+" checkrate:"+checkRate);
         if(((thisCheck - lastCheck) >= (long) (checkRate * 1000)) || swappedCombat){
             ArrayList<ENEMYSTATE> stateChoice = new ArrayList<ENEMYSTATE>();
             if(combatActive){
@@ -305,15 +305,12 @@ public class Enemy extends Renderable {
                 stateChoice.add(ENEMYSTATE.ROUTE);
                 stateChoice.add(ENEMYSTATE.ROUTE);
             }
-            System.out.println("RANDOM STATEs: "+stateChoice);
             Random rand = new Random();
             ENEMYSTATE newState = stateChoice.get(rand.nextInt(stateChoice.size()));
             lastCheck = thisCheck;
-            System.out.println("STATE: " + newState);
             return newState;
         }
         else{
-            System.out.println("STATE: " + state);
             return state;
         }
     }

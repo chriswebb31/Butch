@@ -35,10 +35,9 @@ import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
-public class NewGameScreen implements Screen {
+public class Level2 implements Screen {
     public int levelNumber;
     private SpriteBatch batch;
     private Sprite cursor;
@@ -73,7 +72,7 @@ public class NewGameScreen implements Screen {
     float enemyX = 8000, enemyY = 7500;
     float npcX = 6000, npcY = 8000;
 
-    public NewGameScreen(ButchGame game, FitViewport gameViewPort){
+    public Level2(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
@@ -82,7 +81,7 @@ public class NewGameScreen implements Screen {
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
-        tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
+        tiledMap = ButchGame.assets.get(ButchGame.assets.route1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
@@ -128,7 +127,7 @@ public class NewGameScreen implements Screen {
         updateCameraPosition();
 
         if(player.getCollider().overlaps(endPoint)){
-           game.setScreen(new Level2(game, gameViewPort));
+            ButchGame.GSM.playerObject = player;
         }
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
@@ -149,7 +148,7 @@ public class NewGameScreen implements Screen {
         ButchGame.renderableManager.render(batch); //render all objects on screen
         cursor.draw(batch);
         batch.end();
-//
+
 //        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 //        shapeRenderer.setColor(Color.FIREBRICK);
 //
@@ -236,7 +235,7 @@ public class NewGameScreen implements Screen {
             }
         }
         //SET SPAWN AND ENDS OF LEVELS
-        
+
         for(RectangleMapObject item : itemLayer.getByType(RectangleMapObject.class)){
             int itemId = Integer.parseInt(item.getName());
             switch (itemId){

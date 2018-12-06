@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="31">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="54">
  <tileset firstgid="1" name="allTiles-4" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-4.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -200,8 +200,40 @@
   <object id="29" x="973.707" y="139.64" width="198.767" height="452.887"/>
   <object id="30" x="4.5527" y="95.6066" width="56.9087" height="450.717"/>
  </objectgroup>
- <objectgroup id="5" name="Points"/>
- <objectgroup id="7" name="Item Layer"/>
- <objectgroup id="9" name="Enemy Layer"/>
- <objectgroup id="10" name="NPC Layer"/>
+ <objectgroup id="5" name="Points">
+  <object id="31" name="0" x="412.667" y="895.333"/>
+  <object id="33" name="1" x="28" y="558.667"/>
+ </objectgroup>
+ <objectgroup id="7" name="Item Layer">
+  <object id="34" name="3" x="476" y="217.5"/>
+  <object id="35" name="3" x="534" y="220.5"/>
+  <object id="36" name="3" x="520.5" y="216"/>
+  <object id="37" name="3" x="947" y="180.5"/>
+  <object id="38" name="3" x="956.5" y="202"/>
+  <object id="39" name="3" x="939" y="188"/>
+  <object id="47" name="1" x="483" y="848"/>
+  <object id="48" name="2" x="505" y="870"/>
+  <object id="49" name="4" x="579" y="177.5"/>
+  <object id="50" name="10" x="380.5" y="268.5"/>
+  <object id="51" name="3" x="1060.5" y="796"/>
+  <object id="52" name="3" x="1052" y="773"/>
+  <object id="53" name="3" x="1081" y="783"/>
+ </objectgroup>
+ <objectgroup id="9" name="Enemy Layer">
+  <object id="40" name="ENEMY" x="1085.5" y="847.5">
+   <polygon points="0,0 37,-49 51,-110.5 0,-139 -54,-114 -132.5,-67.5 -70,-41 -141.5,7 -57.5,19.5 -30,1"/>
+  </object>
+  <object id="41" name="enemy" x="454.5" y="234.5">
+   <polygon points="0,0 56,20 117,11.5 139.5,-23.5 139.5,-74 132,-92 162.5,-77 150,1 120,40.5 79.5,49.5 31,40 4,19"/>
+  </object>
+  <object id="42" name="ENEMY" x="888.5" y="250">
+   <polygon points="0,0 0.5,126 -23.5,144.5 -53.5,154.5 -71.5,185 -97,214 -145,224 -214,231.5 -232.5,252 -283.5,271 -273.5,239 -220,211.5 -179,188 -126,186 -51,113.5 -23,105 -11,14.5"/>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="NPC Layer">
+  <object id="43" x="537" y="176.5"/>
+  <object id="44" x="1069.5" y="771.5"/>
+  <object id="45" x="1037.5" y="809.5"/>
+  <object id="46" x="956.5" y="175.5"/>
+ </objectgroup>
 </map>

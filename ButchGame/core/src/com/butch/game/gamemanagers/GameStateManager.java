@@ -50,7 +50,7 @@ public class GameStateManager {
         }
     }
 
-    public void setLevel(int level_id){
-        this.level = level_id;
+    public void nextLevel(){
+
     }
 }

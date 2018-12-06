@@ -75,7 +75,6 @@ public class Enemy extends Renderable {
     private State currentState = State.IDLE;
     private State previousState = State.IDLE;
 
-
     public Vector2 newDirection;
     private boolean swappedCombat = false;
     private float stateTimer = 0;
@@ -100,6 +99,7 @@ public class Enemy extends Renderable {
         this.checkRate = 5;
         this.shootCheckRate = 3;
         this.route = new ArrayList<Vector2>();
+        this.direction = new Vector2().setZero();
         this.newDirection = new Vector2().setZero();
         this.targetPos = new Vector2().setZero();
         this.localPos = new Vector2().setZero();
@@ -354,15 +354,19 @@ public class Enemy extends Renderable {
     }
 
     private State getAnimState() {
-        if (direction.x < 0)
-            return State.WALKING;
-        else if (direction.x > 0)
-            return State.WALKING;
-        else if (direction.y < 0)
-            return State.WALKING;
-        else if (direction.y > 0)
-            return State.WALKING;
-        else
+        if(direction != null){
+            if (direction.x < 0)
+                return State.WALKING;
+            else if (direction.x > 0)
+                return State.WALKING;
+            else if (direction.y < 0)
+                return State.WALKING;
+            else if (direction.y > 0)
+                return State.WALKING;
+            else
+                return State.IDLE;
+        }else{
             return State.IDLE;
+        }
     }
 }

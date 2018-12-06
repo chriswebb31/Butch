@@ -173,10 +173,12 @@ public class Player extends Renderable {
                     this.activeGun.activeForRender = false;
                     this.gunInventoryIteration++;
                     this.activeGun = gunInventory.get(this.gunInventoryIteration);
+                    this.activeGun.activeForRender =true;
                 } else{
                     this.activeGun.activeForRender = false;
                     this.gunInventoryIteration = 0;
                     this.activeGun = gunInventory.get(this.gunInventoryIteration);
+                    this.activeGun.activeForRender =true;
                 }
             } catch (NullPointerException e){
                 e.printStackTrace();
@@ -344,7 +346,7 @@ public class Player extends Renderable {
             if(!butchDead){
                 inputHandler();
                 movementHandler();
-                flipHandler();
+//                flipHandler();
                 if(velocity.x > 0 || velocity.x < 0 || velocity.y > 0 || velocity.y < 0){
                     walkingFX.resume();
                 }else{

@@ -201,9 +201,9 @@
   <object id="30" x="4.5527" y="95.6066" width="56.9087" height="450.717"/>
  </objectgroup>
  <objectgroup id="5" name="Points">
-  <object id="31" name="0" x="412.667" y="895.333"/>
+  <object id="31" name="0" x="416.667" y="811.333"/>
   <object id="33" name="1" x="28" y="558.667"/>
-  <object id="55" name="1" x="887" y="108" width="81.5" height="40.5"/>
+  <object id="55" name="1" x="374" y="861" width="81.5" height="40.5"/>
  </objectgroup>
  <objectgroup id="7" name="Item Layer">
   <object id="34" name="3" x="476" y="217.5"/>
@@ -227,7 +227,7 @@
   <object id="41" name="enemy" x="454.5" y="234.5">
    <polygon points="0,0 56,20 117,11.5 139.5,-23.5 139.5,-74 132,-92 162.5,-77 150,1 120,40.5 79.5,49.5 31,40 4,19"/>
   </object>
-  <object id="42" name="ENEMY" x="888.5" y="250">
+  <object id="42" name="ENEMY" x="893.5" y="131">
    <polygon points="0,0 0.5,126 -23.5,144.5 -53.5,154.5 -71.5,185 -97,214 -145,224 -214,231.5 -232.5,252 -283.5,271 -273.5,239 -220,211.5 -179,188 -126,186 -51,113.5 -23,105 -11,14.5"/>
   </object>
  </objectgroup>

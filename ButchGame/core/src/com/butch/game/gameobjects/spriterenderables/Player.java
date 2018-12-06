@@ -22,6 +22,9 @@ import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
 
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
@@ -46,6 +49,8 @@ public class Player extends Renderable {
     private boolean movingDown;
     private boolean butchDead;
     private boolean isButchIdle = true;
+
+    private Iterator<Gun> gunInvIterator;
 
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
@@ -95,6 +100,7 @@ public class Player extends Renderable {
         this.gunInventory.add(new MachineGun());
 //        this.gunInventory.add(new Colt());
         this.activeGun = this.gunInventory.get(0);
+        this.gunInvIterator = this.gunInventory.iterator();
 
         for (Gun gun:gunInventory) {
             if(gun != activeGun){
@@ -163,20 +169,15 @@ public class Player extends Renderable {
             }
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            try{
-                if(this.gunInventory.size() -1 > this.gunInventoryIteration){
-                    this.activeGun.activeForRender = false;
-                    this.gunInventoryIteration++;
-                    this.activeGun = gunInventory.get(this.gunInventoryIteration);
-                    this.activeGun.activeForRender = true;
-                } else{
-                    this.activeGun.activeForRender = false;
-                    this.gunInventoryIteration = 0;
-                    this.activeGun = gunInventory.get(this.gunInventoryIteration);
-                    this.activeGun.activeForRender =true;
+            try {
+                if (gunInvIterator.hasNext()) {
+                    this.activeGun = gunInvIterator.next();
+                } else {
+                    gunInvIterator = gunInventory.iterator();
+                    this.activeGun = gunInventory.get(0);
                 }
-            } catch (NullPointerException e){
-                e.printStackTrace();
+            } catch (NoSuchElementException w){
+                w.printStackTrace();
             }
         }
 
@@ -385,6 +386,7 @@ public class Player extends Renderable {
         else{
             //
         }
+        this.gunInvIterator = this.gunInventory.iterator();
 
 
     }

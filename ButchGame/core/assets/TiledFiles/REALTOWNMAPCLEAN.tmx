@@ -320,8 +320,8 @@
   <object id="189" x="853.869" y="2.32916" width="19.5649" height="27.9499"/>
  </objectgroup>
  <objectgroup id="14" name="Points">
-  <object id="178" name="0" x="732" y="265.5"/>
-  <object id="191" name="1" x="1038" y="850.667" width="54.6667" height="144"/>
+  <object id="178" name="0" x="729" y="194.5"/>
+  <object id="191" name="1" x="612" y="74.667" width="54.6667" height="144"/>
  </objectgroup>
  <objectgroup id="13" name="ItemLayer">
   <object id="165" name="3" x="912.5" y="307"/>

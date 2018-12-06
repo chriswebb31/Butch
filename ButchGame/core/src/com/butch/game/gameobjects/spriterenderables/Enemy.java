@@ -192,7 +192,9 @@ public class Enemy extends Renderable {
         }
         if(combatActive && target.health > 0){
             direction = new Vector2(this.target.getPosition().x - this.getPosition().x, this.target.getPosition().y - this.getPosition().y);
+            System.out.println("TRY SHOOT");
             if(shouldShoot()){
+                System.out.println("shooting!:"+direction);
                 this.weapon.Shoot();
             }
         }

@@ -89,7 +89,7 @@ public class Level2 implements Screen {
         this.mapColliders = new ArrayList<Rectangle>();
         this.spawnPoint = new Vector2().setZero();
 
-        ButchGame.renderableManager.reset();
+        ButchGame.renderableManager = new RenderableManager();
         RenderableManager.mapColliders = mapColliders;
         ButchGame.itemManager = new ItemManager();
 
@@ -127,7 +127,7 @@ public class Level2 implements Screen {
         updateCameraPosition();
 
         if(player.getCollider().overlaps(endPoint)){
-            ButchGame.GSM.playerObject = player;
+            game.setScreen( new NewGameScreen(game, gameViewPort));
         }
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)

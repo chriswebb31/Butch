@@ -18,7 +18,6 @@ import com.butch.game.gameobjects.spriterenderables.Player;
 public class Hud implements Disposable{
     public Stage stage;
     private Viewport viewport;
-    public Label timeLabel;
     public Label levelLabel;
     public Label weaponLabel;
     public Label coinLabel;

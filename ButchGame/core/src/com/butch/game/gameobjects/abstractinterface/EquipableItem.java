@@ -1,16 +1,25 @@
 package com.butch.game.gameobjects.abstractinterface;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
 public abstract class EquipableItem extends Renderable {
+    public enum State {MOVING, IDLE, SHOOTING, RELOADING}
     public boolean oneHanded;
     public Renderable parent;
     boolean friendly;
     public Enemy enemy;
     public Player player;
+    private State currentState, previousState;
+    private float stateTimer = 0;
+    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
 
 
     public EquipableItem(){
@@ -26,7 +35,12 @@ public abstract class EquipableItem extends Renderable {
                 enemy = (Enemy) parent;
             }
 
+
+
             if(parent.TAG == "player"){
+                sprite.setRegion(getFrame(delta));
+                this.setSprite(sprite);
+                this.getSprite().setScale(10);
                 Vector2 targetDir = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
                 float angle = (float) Math.atan2(targetDir.y - this.getSprite().getY(), targetDir.x - this.getSprite().getX());
                 angle = (float) Math.toDegrees(angle);
@@ -46,6 +60,9 @@ public abstract class EquipableItem extends Renderable {
                     System.out.println(e);
                 }
             } else if(parent.TAG == "enemy"){
+                sprite.setRegion(getFrame(delta));
+                this.setSprite(sprite);
+                this.getSprite().setScale(10);
                 if(this.oneHanded){
                     this.setPosition(enemy.getWeaponPosition());
                 }else{
@@ -64,7 +81,58 @@ public abstract class EquipableItem extends Renderable {
                 }
             }
         }
+
+
+//        this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
     }
+
+    public TextureRegion getFrame(float dt) {
+        TextureRegion region = null;
+        currentState = GetState();
+
+//        switch(currentState) {
+//            case MOVING:
+//                region = player.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, true);
+//                break;
+//        }
+        if(parent.TAG == "player")
+            switch(currentState) {
+                case RELOADING:
+                    region = player.getActiveWeapon().gunReloading.getKeyFrame(stateTimer, false);
+                    break;
+                case SHOOTING:
+                    region = player.getActiveWeapon().gunShooting.getKeyFrame(stateTimer, true);
+                    break;
+                case MOVING:
+                    region = player.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, true);
+                    break;
+                case IDLE:
+                    region = player.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, false);
+            }
+
+        else if(parent.TAG == "enemy")
+            region = enemy.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, true);
+        stateTimer = currentState == previousState ? stateTimer + dt : 0;
+        previousState = currentState;
+
+        return region;
+    }
+
+    public State GetState() {
+        if(parent.TAG == "player") {
+            if (player.getActiveWeapon().getState() == Gun.State.RELOADING)
+                return State.RELOADING;
+            else if (Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+                return State.SHOOTING;
+            else if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.D))
+                return State.MOVING;
+            else
+                return State.IDLE;
+        } else
+            return State.IDLE;
+    }
+
+
 //    public boolean oneHanded;
 //    private Player player;
 //

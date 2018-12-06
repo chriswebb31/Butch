@@ -10,8 +10,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -37,7 +39,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class NewGameScreen implements Screen {
-
+    public int levelNumber;
     private SpriteBatch batch;
     private Sprite cursor;
     public ArrayList<ItemPickup> itemPickups;
@@ -50,7 +52,7 @@ public class NewGameScreen implements Screen {
     private float distanceDivisor = 1.2f;
 
     public Vector2 spawnPoint;
-    public Vector2 endPoint;
+    public Rectangle endPoint;
 
     public Player player;
 
@@ -125,7 +127,11 @@ public class NewGameScreen implements Screen {
     public void render(float delta){
         updateCameraPosition();
 
-        Gdx.gl.glClearColor(240 / 255f, 220 / 255f, 130 / 255f, 1); //set clear colour of screen (sandy)
+        if(player.getCollider().overlaps(endPoint)){
+           game.setScreen(new Level2(game, gameViewPort));
+        }
+
+        Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
 
 
@@ -143,38 +149,47 @@ public class NewGameScreen implements Screen {
         ButchGame.renderableManager.render(batch); //render all objects on screen
         cursor.draw(batch);
         batch.end();
-
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(Color.FIREBRICK);
-        for (Renderable renderable: RenderableManager.renderableObjects) {
-            try{
-                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
-                    if((renderable.TAG == "item")) {
-                        ItemPickup item = (ItemPickup) renderable;
-                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
-                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
-                        Enemy enemy = (Enemy) renderable;
-                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
-                    }
-                }
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-            try{
-                if(renderable.activeCollision){
-                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
-                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-                }
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
-
-        shapeRenderer.end();
+//
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+//        shapeRenderer.setColor(Color.FIREBRICK);
+//
+//        for (Renderable renderable: RenderableManager.renderableObjects) {
+//            try{
+//                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
+//                    if((renderable.TAG == "item")) {
+//                        ItemPickup item = (ItemPickup) renderable;
+//                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
+//                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
+//                        Enemy enemy = (Enemy) renderable;
+//                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
+//                    }
+//                }
+//            } catch (NullPointerException e){
+//                e.printStackTrace();
+//            }
+//            try{
+//                if(renderable.activeCollision){
+//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+//                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
+//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
+//                }
+//            } catch (NullPointerException e){
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        shapeRenderer.end();
 
         hud.coinLabel.setText(String.format("Coins: " + player.coin ));
-        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip));
+        int thisReserve;
+        if(player.getActiveWeapon().gunType == 0){
+            thisReserve = player.pistolAmmo;
+        } else if(player.getActiveWeapon().gunType == 1){
+            thisReserve = player.rifleAmmo;
+        }else{
+            thisReserve = player.shotgunAmmo;
+        }
+        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
         if(player.getHealth() <0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
@@ -212,11 +227,12 @@ public class NewGameScreen implements Screen {
         // ADD ALL COLLIDERS TO GAME
 
         for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
-            if(point.getName() == "SPAWNPOINT"){
-                spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().y * 10);
-                player.setPosition(spawnPoint);
+            int pointID = Integer.parseInt(point.getName());
+            if(pointID == 0){
+                spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
+                player = new Player(spawnPoint, mapColliders);
             }else{
-                endPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().y * 10);
+                endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
             }
         }
         //SET SPAWN AND ENDS OF LEVELS
@@ -249,13 +265,22 @@ public class NewGameScreen implements Screen {
         }
         //SET ITEMS AND POSITIONING ITEMS
 
-        for(RectangleMapObject enemy : enemyLayer.getByType(RectangleMapObject.class)){
-            enemies.add(new Enemy(new Vector2(enemy.getRectangle().x * 10, enemy.getRectangle().y*10)));
+        for(PolygonMapObject enemy : enemyLayer.getByType(PolygonMapObject.class)){
+            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10), 1);
+            for (int i = 2; i < enemy.getPolygon().getTransformedVertices().length; i+=2){
+                Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i+1] * 10);
+                newEnemy.route.add(newRoutePosition);
+                newEnemy.targetPos = newEnemy.route.get(0);
+                System.out.println("NEW ROUTE POS: " + newRoutePosition);
+
+            }
+            enemies.add(newEnemy);
         }
+
         //SET ENEMIES AND POSITIONS
 
         for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){
-            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10)));
+            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), new TextureAtlas(ButchGame.assets.npc2Idle)));
         }
         //SET NPCS AND POSITIONS
     }

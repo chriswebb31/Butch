@@ -1,0 +1,61 @@
+machineGunWalking.png
+size: 256, 12
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+machinegunWalking-0
+  rotate: false
+  xy: 0, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machinegunWalking-1
+  rotate: false
+  xy: 32, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machinegunWalking-2
+  rotate: false
+  xy: 64, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machinegunWalking-3
+  rotate: false
+  xy: 96, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machinegunWalking-4
+  rotate: false
+  xy: 128, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machinegunWalking-5
+  rotate: false
+  xy: 160, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machinegunWalking-6
+  rotate: false
+  xy: 192, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+machinegunWalking-7
+  rotate: false
+  xy: 224, 0
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1

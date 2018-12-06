@@ -56,7 +56,7 @@ public class Bullet extends Renderable {
                 destroy = true;
             }
         }
-        if(System.currentTimeMillis() - startTime > 2000){
+        if(System.currentTimeMillis() - startTime > 8000){
             activeForRender = false;
             destroy = true;
         }

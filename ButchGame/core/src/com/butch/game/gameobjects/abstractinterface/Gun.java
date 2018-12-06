@@ -1,6 +1,9 @@
 package com.butch.game.gameobjects.abstractinterface;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.spriterenderables.Bullet;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
@@ -9,6 +12,13 @@ import com.butch.game.gameobjects.spriterenderables.Shell;
 import java.util.Random;
 
 public abstract class Gun extends EquipableItem {
+    /*
+    gun types
+    1: rifle
+    0 : pistol
+
+     */
+    public enum State {SHOOTING, MOVING, IDLE, RELOADING}
     public int id;
     public int gunType;
     public String gunName;
@@ -26,6 +36,11 @@ public abstract class Gun extends EquipableItem {
     public Sound reloadSoundEffect;
     public float reloadSpeed;
     public int reserve;
+    private boolean isShooting = false;
+    public Animation<TextureRegion> gunWalking;
+    public Animation<TextureRegion> gunShooting;
+    public Animation<TextureRegion> gunReloading;
+    public TextureRegion spriteImg;
 
     public Gun() {
 
@@ -97,10 +112,19 @@ public abstract class Gun extends EquipableItem {
             System.out.println("Player RELOAD!");
             System.out.println("Player RESERVE AMMO:" + reserve);
             long thisReload = System.currentTimeMillis();
-            if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
+            if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000) && reserve > 0) {
                 reloadSoundEffect.play(1);
-                if (this.reserve >= clipSize) {
+                if (this.reserve > clipSize) {
+                    if (gunType == 0) {
+                        player.pistolAmmo += clip;
+                    } else if (gunType == 1) {
+                        player.rifleAmmo += clip;
+                    } else if (gunType == 2) {
+                        player.shotgunAmmo += clip;
+                    }
+
                     clip = clipSize;
+
                     if (gunType == 0) {
                         player.pistolAmmo -= clipSize;
                     } else if (gunType == 1) {
@@ -169,21 +193,34 @@ public abstract class Gun extends EquipableItem {
 
         if(parent.TAG == "player"){
             Vector2 aimDir = player.getAimDirection();
-            System.out.println(aimDir);
             Random random = new Random();
             float min = -accuracy;
             float max = accuracy;
             float x = min + random.nextFloat() * (max - min);
             float y = min + random.nextFloat() * (max - min);
-
             aimDir = new Vector2(aimDir.x + x, aimDir.y + y);
-            System.out.println(aimDir);
             return aimDir;
         } else if(parent.TAG == "enemy"){
-            Enemy enemy = (Enemy) parent;
-            return enemy.aimDirection();
+            Vector2 aimDir = enemy.aimDirection();
+            Random random = new Random();
+            float min = -100;
+            float max = 100;
+            float x = min + random.nextFloat() * (max - min);
+            float y = min + random.nextFloat() * (max - min);
+            Vector2 randomNums = new Vector2(x, y);
+            aimDir = new Vector2(aimDir.x + randomNums.x, aimDir.y + randomNums.y);
+            return aimDir;
         }else {
             return null;
         }
+    }
+
+    public State getState() {
+        if (isShooting)
+            return State.SHOOTING;
+        else if (isReloading)
+            return  State.RELOADING;
+        else
+            return State.MOVING;
     }
 }

@@ -1,0 +1,61 @@
+enemy4Walking.png
+size: 208, 26
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+enemy4Walking-0
+  rotate: false
+  xy: 0, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+enemy4Walking-1
+  rotate: false
+  xy: 26, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+enemy4Walking-2
+  rotate: false
+  xy: 52, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+enemy4Walking-3
+  rotate: false
+  xy: 78, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+enemy4Walking-4
+  rotate: false
+  xy: 104, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+enemy4Walking-5
+  rotate: false
+  xy: 130, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+enemy4Walking-6
+  rotate: false
+  xy: 156, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+enemy4Walking-7
+  rotate: false
+  xy: 182, 0
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

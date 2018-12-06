@@ -13,5 +13,6 @@ public class PistolAmmo extends Item {
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.pistolAmmo, Texture.class)));
         this.quantity = 50;
         this.type = 2;
+        this.activeForRender = true;
     }
 }

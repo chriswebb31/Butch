@@ -1,32 +1,32 @@
 butchIdle.png
-size: 112, 28
+size: 104, 26
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 butchIdle-0
   rotate: false
-  xy: 1, 1
+  xy: 0, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchIdle-1
   rotate: false
-  xy: 29, 1
+  xy: 26, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchIdle-2
   rotate: false
-  xy: 57, 1
+  xy: 52, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 butchIdle-3
   rotate: false
-  xy: 85, 1
+  xy: 78, 0
   size: 26, 26
   orig: 26, 26
   offset: 0, 0

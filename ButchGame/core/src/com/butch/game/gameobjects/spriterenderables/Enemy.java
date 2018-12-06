@@ -3,6 +3,9 @@ package com.butch.game.gameobjects.spriterenderables;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
@@ -20,6 +23,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Enemy extends Renderable {
+    public enum State {IDLE, WALKING}
     private Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
     public float health;
     public Gun weapon;
@@ -33,7 +37,28 @@ public class Enemy extends Renderable {
     public int rifleAmmo = 100000;
     public int pistolAmmo = 100000;
     public int shotgunAmmo = 100000;
+    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
+    private boolean movingRight = false;
 
+    private TextureAtlas enemy1IdleAtlas = new TextureAtlas(ButchGame.assets.enemy1Idle);
+    private TextureAtlas enemy1WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy1Walking);
+    private TextureAtlas enemy2IdleAtlas = new TextureAtlas(ButchGame.assets.enemy2Idle);
+    private TextureAtlas enemy2WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy2Walking);
+    private TextureAtlas enemy3IdleAtlas = new TextureAtlas(ButchGame.assets.enemy3Idle);
+    private TextureAtlas enemy3WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy3Walking);
+    private TextureAtlas enemy4IdleAtlas = new TextureAtlas(ButchGame.assets.enemy4Idle);
+    private TextureAtlas enemy4WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy4Walking);
+
+    private Animation<TextureRegion> enemy1Idle;
+    private Animation<TextureRegion> enemy1Walking;
+    private Animation<TextureRegion> enemy2Idle;
+    private Animation<TextureRegion> enemy2Walking;
+    private Animation<TextureRegion> enemy3Idle;
+    private Animation<TextureRegion> enemy3Walking;
+    private Animation<TextureRegion> enemy4Idle;
+    private Animation<TextureRegion> enemy4Walking;
+
+    private int enemyType;
     public ArrayList<Vector2> route;
     public Vector2 targetPos;
     public Vector2 localPos;
@@ -47,12 +72,17 @@ public class Enemy extends Renderable {
     private int shootCheckRate;
     private boolean currentShootMode;
 
+    private State currentState = State.IDLE;
+    private State previousState = State.IDLE;
+
 
     public Vector2 newDirection;
     private boolean swappedCombat = false;
+    private float stateTimer = 0;
 
-    public Enemy(Vector2 position){
+    public Enemy(Vector2 position, int enemyType){
         this.TAG = "enemy";
+        this.enemyType = enemyType;
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0);
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
@@ -61,11 +91,10 @@ public class Enemy extends Renderable {
         this.weapon.activeForRender = true;
         this.setPosition(position);
         this.health = 100;
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class)));
-        this.getSprite().setScale(10);
         this.speed = 2.5F;
         this.activeForRender = true;
         this.activeCollision = true;
+        this.setSprite(sprite);
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
         this.state = ENEMYSTATE.IDLE;
         this.checkRate = 5;
@@ -75,6 +104,14 @@ public class Enemy extends Renderable {
         this.targetPos = new Vector2().setZero();
         this.localPos = new Vector2().setZero();
         this.iteration = 0;
+        enemy1Idle = new Animation<TextureRegion>(0.3f, enemy1IdleAtlas.getRegions());
+        enemy2Idle = new Animation<TextureRegion>(0.3f, enemy2IdleAtlas.getRegions());
+        enemy3Idle = new Animation<TextureRegion>(0.3f, enemy3IdleAtlas.getRegions());
+        enemy4Idle = new Animation<TextureRegion>(0.3f, enemy4IdleAtlas.getRegions());
+        enemy1Walking = new Animation<TextureRegion>(0.1f, enemy1WalkingAtlas.getRegions());
+        enemy2Walking = new Animation<TextureRegion>(0.1f, enemy2WalkingAtlas.getRegions());
+        enemy3Walking = new Animation<TextureRegion>(0.1f, enemy3WalkingAtlas.getRegions());
+        enemy4Walking = new Animation<TextureRegion>(0.1f, enemy4WalkingAtlas.getRegions());
     }
 
     @Override
@@ -190,6 +227,11 @@ public class Enemy extends Renderable {
 //            }
 //
 //        }
+
+        sprite.setRegion(getFrame(delta));
+        this.setSprite(sprite);
+
+        this.getSprite().setScale(8);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getCollider().setPosition(this.getPosition());
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
@@ -281,5 +323,46 @@ public class Enemy extends Renderable {
     }
     public Gun getActiveWeapon() {
         return this.weapon;
+    }
+
+
+    private TextureRegion getFrame(float dt) {
+        TextureRegion region = null;
+        currentState = getAnimState();
+
+        switch(currentState) {
+            case WALKING:
+                region = enemy1Walking.getKeyFrame(stateTimer, true);
+                break;
+            case IDLE:
+                region = enemy1Idle.getKeyFrame(stateTimer, true);
+        }
+
+        if(((direction.x < 0 || !movingRight) && !region.isFlipX())){
+            region.flip(true, false);
+            movingRight = false;
+        }
+
+        if(((direction.x >= 0) || movingRight) && region.isFlipX()) {
+            region.flip(true, false);
+            movingRight = true;
+        }
+
+        stateTimer = currentState == previousState ? stateTimer + dt : 0;
+        previousState = currentState;
+        return region;
+    }
+
+    private State getAnimState() {
+        if (direction.x < 0)
+            return State.WALKING;
+        else if (direction.x > 0)
+            return State.WALKING;
+        else if (direction.y < 0)
+            return State.WALKING;
+        else if (direction.y > 0)
+            return State.WALKING;
+        else
+            return State.IDLE;
     }
 }

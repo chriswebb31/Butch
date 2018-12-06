@@ -121,7 +121,7 @@ public class GameScreen implements Screen {
 
         this.enemies = new ArrayList<Enemy>();
 
-        this.enemies.add(new Enemy(new Vector2(enemyX, enemyY)));
+        this.enemies.add(new Enemy(new Vector2(enemyX, enemyY), 1));
 
         this.npcs = new ArrayList<NPC>();
 

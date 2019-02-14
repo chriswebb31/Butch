@@ -393,7 +393,7 @@ public class Player extends Renderable {
 
     @Override
     public void takeHit(float damage) {
-        health -= damage/5;
+        health -= damage;
     }
 
     public void addItem(ItemPickup item){

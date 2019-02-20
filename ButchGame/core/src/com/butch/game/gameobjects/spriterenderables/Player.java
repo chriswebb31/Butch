@@ -85,7 +85,7 @@ public class Player extends Renderable {
         System.out.println("STARTN POS:" + startPosition);
         this.mapColliders = mapStaticColliders;
         this.TAG = "player";
-        sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class));
+        sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
         this.setSprite(sprite);
         this.getSprite().setScale(10);
         this.velocity = new Vector2().setZero();

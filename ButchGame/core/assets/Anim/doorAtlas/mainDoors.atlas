@@ -1,0 +1,103 @@
+mainDoors-0.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors 1
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+mainDoors-1.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors 2
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+mainDoors-2.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors 3
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+mainDoors-3.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors 4
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+mainDoors-4.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors 5
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+mainDoors-5.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors 6
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+mainDoors-6.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors 7
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+mainDoors-7.png
+size: 1922, 1082
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainDoors
+  rotate: false
+  xy: 1, 1
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1

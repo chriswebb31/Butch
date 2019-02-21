@@ -75,10 +75,11 @@ public class MainMenuScreen implements Screen {
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
 
         doorsOpenAtlas = new TextureAtlas(ButchGame.assets.doorsMain);
-        doorsOpenAnim = new Animation<TextureRegion>(0.1f, doorsOpenAtlas.getRegions());
+        doorsOpenAnim = new Animation<TextureRegion>(0.2f, doorsOpenAtlas.getRegions());
         currentState = State.NOTCLICKED;
         previousState = State.NOTCLICKED;
     }
+
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
@@ -88,7 +89,6 @@ public class MainMenuScreen implements Screen {
     public void setVolume(float volume) {
         music.setVolume(volume);
     }
-
 
     @Override
     public void render(float delta) {
@@ -114,6 +114,7 @@ public class MainMenuScreen implements Screen {
     public void pause() {
 
     }
+
     public void update(float delta){
 
         stage.act(delta);
@@ -124,6 +125,7 @@ public class MainMenuScreen implements Screen {
             sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
         }
     }
+
     @Override
     public void resume() {
 
@@ -263,6 +265,7 @@ public class MainMenuScreen implements Screen {
         stage.addActor(needHelpButton);
         stage.addActor(settingsButton);
     }
+
     void removeButtons(){
         playButton.remove();
         aboutButton.remove();
@@ -274,14 +277,13 @@ public class MainMenuScreen implements Screen {
         removeButtons();
         game.setScreen(new SettingsScreen(game, gameViewPort, this));
     }
-    @Override
-    public void dispose() {
 
+    @Override public void dispose() {
        playButtonActive.getTexture().dispose();
        playButtonInactive.getTexture().dispose();
        exitButtonActive.getTexture().dispose();
        exitButtonInactive.getTexture().dispose();
-        music.dispose();
+       music.dispose();
     }
 
     public TextureRegion getFrame(float dt){
@@ -296,16 +298,12 @@ public class MainMenuScreen implements Screen {
 
         }
 
-
-
-
-
-
         stateTimer = currentState == previousState ? stateTimer + dt : 0;
         previousState = currentState;
         return region;
 
     }
+
     public State getState() {
         if (startClicked) {
             return State.CLICKED;

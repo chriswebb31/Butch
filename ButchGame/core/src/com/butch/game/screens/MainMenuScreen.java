@@ -75,7 +75,7 @@ public class MainMenuScreen implements Screen {
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
 
         doorsOpenAtlas = new TextureAtlas(ButchGame.assets.doorsMain);
-        doorsOpenAnim = new Animation<TextureRegion>(0.3f, doorsOpenAtlas.getRegions());
+        doorsOpenAnim = new Animation<TextureRegion>(0.1f, doorsOpenAtlas.getRegions());
         currentState = State.NOTCLICKED;
         previousState = State.NOTCLICKED;
     }
@@ -117,8 +117,12 @@ public class MainMenuScreen implements Screen {
     public void update(float delta){
 
         stage.act(delta);
-        if(startClicked)
+        if(startClicked) {
             sprite_back.setRegion(getFrame(delta));
+            sprite_back.setRegionWidth((int)camera.viewportWidth);
+            sprite_back.setRegionHeight((int)camera.viewportHeight);
+            sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
+        }
     }
     @Override
     public void resume() {

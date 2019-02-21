@@ -281,19 +281,19 @@ public class Player extends Renderable {
         }
     }
 
-    private void flipHandler() {
-        try{
-            if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
-                //this.getSprite().setFlip(false, false);
-                activeGun.getSprite().setFlip(false, false);
-            } else { //if direction is left or not right
-                //this.getSprite().setFlip(true, false);
-                activeGun.getSprite().setFlip(false, true); //
-            }
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        }
-    }
+//    private void flipHandler() {
+//        try{
+//            if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
+//                //this.getSprite().setFlip(false, false);
+//                this.activeGun.getSprite().setFlip(false, false);
+//            } else if (ButchGame.mousePosition().x < this.getPosition().x){ //if direction is left or not right
+//                //this.getSprite().setFlip(true, false);
+//                this.activeGun.getSprite().setFlip(false, true); //
+//            }
+//        } catch (NullPointerException e){
+//            e.printStackTrace();
+//        }
+//    }
 
     public Vector2 getAimDirection() {
         /*
@@ -374,6 +374,8 @@ public class Player extends Renderable {
         this.getSprite().setScale(8);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.activeGun.activeForRender = true;
+
+
 //        flipHandler();
         if(this.health <= 0){
             this.activeCollision = false;

@@ -21,6 +21,7 @@ import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
+import com.butch.game.gameobjects.weapons.Colt;
 
 
 import java.util.Iterator;
@@ -82,7 +83,7 @@ public class Player extends Renderable {
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
         this.setPosition(startPosition);
-        System.out.println("STARTN POS:" + startPosition);
+        System.out.println("STARTING POS:" + startPosition);
         this.mapColliders = mapStaticColliders;
         this.TAG = "player";
         sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
@@ -171,10 +172,15 @@ public class Player extends Renderable {
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try {
                 if (gunInvIterator.hasNext()) {
+                    System.out.println(gunInvIterator.next());
+                    this.activeGun.activeForRender = false;
                     this.activeGun = gunInvIterator.next();
+                    this.activeGun.activeForRender = true;
                 } else {
+                    this.activeGun.activeForRender = false;
+                    this.activeGun = this.gunInventory.get(0);
+                    this.activeGun.activeForRender = true;
                     gunInvIterator = gunInventory.iterator();
-                    this.activeGun = gunInventory.get(0);
                 }
             } catch (NoSuchElementException w){
                 w.printStackTrace();
@@ -333,6 +339,7 @@ public class Player extends Renderable {
     }
 
     public void update(float delta) {
+
         if(!this.butchDead) {
             this.activeGun.player = this;
             this.activeGun.parent = this;
@@ -388,7 +395,7 @@ public class Player extends Renderable {
         else{
             //
         }
-        this.gunInvIterator = this.gunInventory.iterator();
+//        this.gunInvIterator = this.gunInventory.iterator();
 
 
     }
@@ -399,13 +406,19 @@ public class Player extends Renderable {
     }
 
     public void addItem(ItemPickup item){
+        System.out.println(item);
         if(item.getCollider().overlaps(this.getCollider())){
-            if(item.type== 0) {
+            System.out.println(item.type);
+            if(item.type == 0) {
                 gunInventory.add(ButchGame.itemManager.getGun(item.id));
+                gunInvIterator = gunInventory.iterator();
+
             } else if(item.type == 1){
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
+                System.out.println("DING");
             }
             else if(item.type == 2) {
+                System.out.println("DONG");
                 Item itemObj = (Item) item;
                 if(itemObj.id == 0){
                     this.pistolAmmo += itemObj.quantity;
@@ -429,6 +442,36 @@ public class Player extends Renderable {
         }
         else{
             item.getPosition().lerp(this.getPosition(), 0.2f);
+            if(item.type == 0) {
+                gunInventory.add(ButchGame.itemManager.getGun(item.id));
+                gunInvIterator = gunInventory.iterator();
+
+            } else if(item.type == 1){
+                itemInventory.add(ButchGame.itemManager.getItem(item.id));
+                System.out.println("DING");
+            }
+            else if(item.type == 2) {
+                System.out.println("DONG");
+                Item itemObj = (Item) item;
+                if(itemObj.id == 0){
+                    this.pistolAmmo += itemObj.quantity;
+                } else if(itemObj.id == 1){
+                    this.rifleAmmo += itemObj.quantity;
+                }
+                else if(itemObj.id == 2){
+                    this.shotgunAmmo += itemObj.quantity;
+                }
+                else if(itemObj.id == 3){
+                    this.coin += itemObj.quantity;
+                }
+                else if(itemObj.id == 4){
+                    this.health += itemObj.quantity;
+                    if(this.health > maxHealth)
+                        this.health = maxHealth;
+                }
+                item.activeForRender = false;
+                item.collected();
+            }
         }
     }
 

@@ -3,6 +3,8 @@ package com.butch.game.gamemanagers;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -145,7 +147,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         load(shellSprite, Texture.class);
         load(pickupSprite, Texture.class);
-        load(cursor, Texture.class);
+        load(cursor, Pixmap.class);
 
         load(mainTheme, Music.class);
         load(townTheme, Music.class);

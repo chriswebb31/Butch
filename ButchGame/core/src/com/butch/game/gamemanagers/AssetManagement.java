@@ -147,16 +147,27 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         load(shellSprite, Texture.class);
         load(pickupSprite, Texture.class);
+
+        //CURSOR
         load(cursor, Pixmap.class);
 
-        //LOAD GUN ATLAS
+        //GUN ATLAS
+        //Machine Gun
         load(machineGunFiring, TextureAtlas.class);
         load(machineGunReload, TextureAtlas.class);
         load(machineGunWalking, TextureAtlas.class);
         load(machineGunSprite, Texture.class);
+        //Colt
+        load(revolverReload, TextureAtlas.class);
+        load(revolverFiring, TextureAtlas.class);
+        load(revolverWalking, TextureAtlas.class);
+        load(coltSprite, Texture.class);
 
+        //SOUNDS
+        //Background Music
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
+        //SFX
         load(gunShot, Sound.class);
         load(menuClick, Sound.class);
         load(hitEffect, Sound.class);

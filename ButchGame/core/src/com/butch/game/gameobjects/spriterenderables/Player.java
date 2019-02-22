@@ -21,6 +21,7 @@ import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
+import com.butch.game.gameobjects.weapons.GunCreator;
 import com.butch.game.gameobjects.weapons.Colt;
 
 
@@ -98,7 +99,7 @@ public class Player extends Renderable {
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
         this.itemCollection = new  ArrayList<ItemPickup>();
-        this.gunInventory.add(new MachineGun());
+        this.gunInventory.add(new GunCreator("MachineGun"));
 //        this.gunInventory.add(new Colt());
         this.activeGun = this.gunInventory.get(0);
         this.gunInvIterator = this.gunInventory.iterator();

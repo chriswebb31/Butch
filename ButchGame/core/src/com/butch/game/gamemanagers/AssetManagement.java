@@ -127,7 +127,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(sliderBack, Texture.class);
         load(gunSprite, Texture.class);
         load(coltSprite, Texture.class);
-        load(machineGunSprite, Texture.class);
+
         load(rifleSprite, Texture.class);
         load(bulletSprite, Texture.class);
         load(musketSprite, Texture.class);
@@ -148,6 +148,12 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(shellSprite, Texture.class);
         load(pickupSprite, Texture.class);
         load(cursor, Pixmap.class);
+
+        //LOAD GUN ATLAS
+        load(machineGunFiring, TextureAtlas.class);
+        load(machineGunReload, TextureAtlas.class);
+        load(machineGunWalking, TextureAtlas.class);
+        load(machineGunSprite, Texture.class);
 
         load(mainTheme, Music.class);
         load(townTheme, Music.class);

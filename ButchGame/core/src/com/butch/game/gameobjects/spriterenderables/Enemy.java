@@ -359,4 +359,19 @@ public class Enemy extends Renderable {
             return State.IDLE;
         }
     }
+    //E.L. Territory!!
+    private class HealthBar{
+        private Sprite healthBarBG;
+        private Sprite healthBarFG;
+        private Enemy owner;
+        private final short buffer = 20;
+        public HealthBar(Enemy owner){
+            this.owner = owner;
+            healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
+            healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
+            healthBarBG.setX(owner.getPosition().x);
+            healthBarBG.setX(owner.getPosition().y + owner.sprite.getHeight() + buffer);
+
+        }
+    }
 }

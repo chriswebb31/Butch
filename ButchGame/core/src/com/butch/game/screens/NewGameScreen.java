@@ -191,7 +191,7 @@ public class NewGameScreen implements Screen {
         }
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
-        if(player.getHealth() <0 && outOfBullets == false){
+        if(player.getHealth() <=0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
             hud.table.removeActor(hud.hb);

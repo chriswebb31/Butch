@@ -1,7 +1,7 @@
 mainDoors-0.png
 size: 1922, 1082
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 mainDoors 1
   rotate: false

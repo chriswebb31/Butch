@@ -40,15 +40,6 @@ public class Enemy extends Renderable {
     private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
     private boolean movingRight = false;
 
-    private TextureAtlas enemy1IdleAtlas = new TextureAtlas(ButchGame.assets.enemy1Idle);
-    private TextureAtlas enemy1WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy1Walking);
-    private TextureAtlas enemy2IdleAtlas = new TextureAtlas(ButchGame.assets.enemy2Idle);
-    private TextureAtlas enemy2WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy2Walking);
-    private TextureAtlas enemy3IdleAtlas = new TextureAtlas(ButchGame.assets.enemy3Idle);
-    private TextureAtlas enemy3WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy3Walking);
-    private TextureAtlas enemy4IdleAtlas = new TextureAtlas(ButchGame.assets.enemy4Idle);
-    private TextureAtlas enemy4WalkingAtlas = new TextureAtlas(ButchGame.assets.enemy4Walking);
-
     private Animation<TextureRegion> enemy1Idle;
     private Animation<TextureRegion> enemy1Walking;
     private Animation<TextureRegion> enemy2Idle;
@@ -104,14 +95,14 @@ public class Enemy extends Renderable {
         this.targetPos = new Vector2().setZero();
         this.localPos = new Vector2().setZero();
         this.iteration = 0;
-        enemy1Idle = new Animation<TextureRegion>(0.3f, enemy1IdleAtlas.getRegions());
-        enemy2Idle = new Animation<TextureRegion>(0.3f, enemy2IdleAtlas.getRegions());
-        enemy3Idle = new Animation<TextureRegion>(0.3f, enemy3IdleAtlas.getRegions());
-        enemy4Idle = new Animation<TextureRegion>(0.3f, enemy4IdleAtlas.getRegions());
-        enemy1Walking = new Animation<TextureRegion>(0.1f, enemy1WalkingAtlas.getRegions());
-        enemy2Walking = new Animation<TextureRegion>(0.1f, enemy2WalkingAtlas.getRegions());
-        enemy3Walking = new Animation<TextureRegion>(0.1f, enemy3WalkingAtlas.getRegions());
-        enemy4Walking = new Animation<TextureRegion>(0.1f, enemy4WalkingAtlas.getRegions());
+        enemy1Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy1Idle, TextureAtlas.class).getRegions());
+        enemy2Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy2Idle, TextureAtlas.class).getRegions());
+        enemy3Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy3Idle, TextureAtlas.class).getRegions());
+        enemy4Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy4Idle, TextureAtlas.class).getRegions());
+        enemy1Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy1Walking, TextureAtlas.class).getRegions());
+        enemy2Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
+        enemy3Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
+        enemy4Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
     }
 
     @Override

@@ -10,13 +10,20 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
-    public final String gunSprite = "weapon.png";
-    public final String bulletSprite = "bullet.png";
+    public final String gunSprite = "weapon.png"; //Placeholder Gun
+    public final String bulletSprite = "bullet.png"; //Standard Bullet
+    //Idle Gun Textures
     public final String coltSprite = "Anim/Guns/revolverIdle.png";
     public final String machineGunSprite = "Anim/Guns/machinegunIdle.png";
     public final String rifleSprite = "Rifle.png";
     public final String shotgunSprite = "Anim/Guns/shotgunIdle.png";
     public final String musketSprite = "Anim/Guns/musketIdle.png";
+    //Gun Silhouettes
+    public final String machineGunSilhoutte = "Anim/Guns/machineGunSilhouette.png";
+    public final String musketSilhoutte = "Anim/Guns/musketSilhouette.png";
+    public final String revolverSilhouette = "Anim/Guns/revolverSilhouette.png";
+    public final String shotgunSilhouette = "Anim/Guns/shotgunSilhouette.png";
+
     public final String backgroundTexture = "saloonDoors.jpg";
     public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
     public final String playButtonInactiveSprite = "Buttons/playButtonInactive.png";
@@ -38,15 +45,25 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String pickupSprite = "pickupIcon.png";
     public final String cursor = "cursor.png";
     public final String healthPotion = "healthPotion.png";
+    public final String whiskyBottle = "whisky.png";
 
     //TEXTUREATLAS
     //MAIN MENU
     public final String doorsMain = "Anim/doorAtlas/mainDoors.atlas";
+    //ANIMALS
+    public final String chickenIdle = "Anim/Animals/chickenIdle.atlas";
+    public final String cowIdle = "Anim/Animals/cowIdle.atlas";
+    public final String goatIdle = "Anim/Animals/goatIdle.atlas";
+    public final String horseWalking = "Anim/Animals/horseWalking.atlas";
+    public final String pigIdle = "Anim/Animals/pigIdle.atlas";
+    public final String racoonIdle = "Anim/Animals/racoonIdle";
     //BUTCH
     public final String butchIdleAnim = "Anim/Butch/butchIdle.atlas";
     public final String butchDying = "Anim/Butch/butchDying.atlas";
     public final String butchWalking = "Anim/Butch/butchWalking.atlas";
     public final String butchGhost = "Anim/Butch/butchGhost.atlas";
+    public final String butchDoorTransition = "Anim/Butch/butchDoorTransition.atlas";
+    public final String butchHandsWalking = "Anim/Butch/handsWalking.atlas";
     //ENEMIES
     public final String enemy1Idle = "Anim/Enemies/enemy1Idle.atlas";
     public final String enemy1Walking = "Anim/Enemies/enemy1Walking.atlas";
@@ -69,14 +86,20 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String shotgunFiring = "Anim/Guns/shotgunFiring.atlas";
     public final String shotgunReload = "Anim/Guns/shotgunReload.atlas";
     public final String shotgunWalking = "Anim/Guns/shotgunWalking.atlas";
-    //HORSE
-    public final String horseWalking = "Anim/Horse/horseWalking.atlas";
     //NPC
+    public final String npc1Idle = "Anim/NPC/npc1Idle.atlas";
     public final String npc2Idle = "Anim/NPC/npc2Idle.atlas";
     public final String npc3Idle = "Anim/NPC/npc3Idle.atlas";
+    public final String npc4Idle = "Anim/NPC/npc4Idle.atlas";
+    public final String npc5Idle = "Anim/NPC/npc5Idle.atlas";
     public final String npc6Walking = "Anim/NPC/npc6Walking.atlas";
     public final String npc7Walking = "Anim/NPC/npc7Walking.atlas";
     public final String npc8Walking = "Anim/NPC/npc8Walking.atlas";
+    public final String npc9Idle = "Anim/NPC/npc9Idle.atlas";
+    public final String npc10Idle = "Anim/NPC/npc10Idle.atlas";
+    public final String npc11Idle = "Anim/NPC/npc11Idle.atlas";
+    public final String npc12Idle = "Anim/NPC/npc12Idle.atlas";
+    public final String npc13Idle = "Anim/NPC/npc13Idle.atlas";
 
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
@@ -130,7 +153,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         load(rifleSprite, Texture.class);
         load(bulletSprite, Texture.class);
-        load(musketSprite, Texture.class);
+
         load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);
         load(exitButtonActive,Texture.class);
@@ -140,10 +163,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(rifleAmmo, Texture.class);
         load(shotgunAmmo, Texture.class);
         load(coinItemSprite, Texture.class);
-        load(shotgunSprite, Texture.class);
+
         load(healthPotion, Texture.class);
-        load(butchIdleAnim, TextureAtlas.class);
-        load(butchDying, TextureAtlas.class);
+        load(butchIdleAnim, TextureAtlas.class);//FrameDuration = 0.25f
+        load(butchDying, TextureAtlas.class);//FrameDuration = 0.083f
 
         load(shellSprite, Texture.class);
         load(pickupSprite, Texture.class);
@@ -151,17 +174,63 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //CURSOR
         load(cursor, Pixmap.class);
 
+        //BUTCH ATLAS
+        load(butchDying, TextureAtlas.class);//FrameDuration = 0.083f
+        load(butchIdleAnim, TextureAtlas.class);//FrameDuration = 0.25f
+        load(butchDoorTransition, TextureAtlas.class);//FrameDuration = 0.083f
+        load(butchWalking, TextureAtlas.class);//FrameDuration = 0.083f
+        load(butchHandsWalking, TextureAtlas.class);//FrameDuration = 0.083f
+
+        //ENEMY ATLAS
+        load(enemy1Idle, TextureAtlas.class);
+        load(enemy1Walking, TextureAtlas.class);
+        load(enemy2Idle, TextureAtlas.class);
+        load(enemy2Walking, TextureAtlas.class);
+        load(enemy3Idle, TextureAtlas.class);
+        load(enemy3Walking, TextureAtlas.class);
+        load(enemy4Idle, TextureAtlas.class);
+        load(enemy4Walking, TextureAtlas.class);
+
+        //NPC ATLAS
+        load(npc1Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc2Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc3Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc4Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc5Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc6Walking, TextureAtlas.class);//FrameDuration = 0.083f
+        load(npc7Walking, TextureAtlas.class);//FrameDuration = 0.083f
+        load(npc8Walking, TextureAtlas.class);//FrameDuration = 0.083f
+        load(npc9Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc10Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc11Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc12Idle, TextureAtlas.class);//FrameDuration = 0.25f
+        load(npc13Idle, TextureAtlas.class);//FrameDuration = 0.25f
+
         //GUN ATLAS
         //Machine Gun
-        load(machineGunFiring, TextureAtlas.class);
-        load(machineGunReload, TextureAtlas.class);
-        load(machineGunWalking, TextureAtlas.class);
+        load(machineGunFiring, TextureAtlas.class);//FrameDuration = 0.083f
+        load(machineGunReload, TextureAtlas.class);//FrameDuration = 0.083f
+        load(machineGunWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(machineGunSprite, Texture.class);
+        load(machineGunSilhoutte, Texture.class);
         //Colt
-        load(revolverReload, TextureAtlas.class);
-        load(revolverFiring, TextureAtlas.class);
-        load(revolverWalking, TextureAtlas.class);
+        load(revolverReload, TextureAtlas.class);//FrameDuration = 0.083f
+        load(revolverFiring, TextureAtlas.class);//FrameDuration = 0.083f
+        load(revolverWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(coltSprite, Texture.class);
+        load(revolverSilhouette, Texture.class);
+        //Shotgun
+        load(shotgunFiring, TextureAtlas.class);//FrameDuration = 0.083f
+        load(shotgunReload, TextureAtlas.class);//FrameDuration = 0.083f
+        load(shotgunWalking, TextureAtlas.class);//FrameDuration = 0.083f
+        load(shotgunSprite, Texture.class);
+        load(shotgunSilhouette, Texture.class);
+        //Musket
+        load(musketFiring, TextureAtlas.class);//FrameDuration = 0.083f
+        load(musketReload, TextureAtlas.class);//FrameDuration = 0.083f
+        load(musketWalking, TextureAtlas.class);//FrameDuration = 0.083f
+        load(musketSprite, Texture.class);
+        load(musketSilhoutte, Texture.class);
 
         //SOUNDS
         //Background Music

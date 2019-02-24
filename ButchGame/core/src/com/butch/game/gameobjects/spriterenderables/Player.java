@@ -41,10 +41,6 @@ public class Player extends Renderable {
     private Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
 
-    private TextureAtlas butchIdleAtlas;
-    private TextureAtlas butchDyingAtlas;
-    private TextureAtlas butchWalkingAtlas;
-
     private boolean movingRight = false;
     private boolean movingLeft;
     private boolean movingUp;
@@ -115,13 +111,9 @@ public class Player extends Renderable {
 
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
 
-        butchIdleAtlas = new TextureAtlas(ButchGame.assets.butchIdleAnim);
-        butchDyingAtlas = new TextureAtlas(ButchGame.assets.butchDying);
-        butchWalkingAtlas = new TextureAtlas(ButchGame.assets.butchWalking);
-
-        butchIdle = new Animation<TextureRegion>(0.3f, butchIdleAtlas.getRegions());
-        butchDying = new Animation<TextureRegion>(0.3f, butchDyingAtlas.getRegions());
-        butchWalking = new Animation<TextureRegion>(0.1f, butchWalkingAtlas.getRegions());
+        butchIdle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchIdleAnim, TextureAtlas.class).getRegions());
+        butchDying = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.butchDying, TextureAtlas.class).getRegions());
+        butchWalking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.butchWalking, TextureAtlas.class).getRegions());
 
         currentState = State.IDLE;
         previousState = State.IDLE;

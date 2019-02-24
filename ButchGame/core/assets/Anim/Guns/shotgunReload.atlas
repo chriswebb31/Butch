@@ -1,151 +1,151 @@
 shotgunReload.png
-size: 30, 252
+size: 672, 14
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 shotgunReload-0
   rotate: false
-  xy: 0, 0
+  xy: 1, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-1
   rotate: false
-  xy: 0, 12
+  xy: 33, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-2
   rotate: false
-  xy: 0, 24
+  xy: 65, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-3
   rotate: false
-  xy: 0, 36
+  xy: 97, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-4
   rotate: false
-  xy: 0, 48
+  xy: 129, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-5
   rotate: false
-  xy: 0, 60
+  xy: 161, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-6
   rotate: false
-  xy: 0, 72
+  xy: 193, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-7
   rotate: false
-  xy: 0, 84
+  xy: 225, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-8
   rotate: false
-  xy: 0, 96
+  xy: 257, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-9
   rotate: false
-  xy: 0, 108
+  xy: 289, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-10
   rotate: false
-  xy: 0, 120
+  xy: 321, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-11
   rotate: false
-  xy: 0, 132
+  xy: 353, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-12
   rotate: false
-  xy: 0, 144
+  xy: 385, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-13
   rotate: false
-  xy: 0, 156
+  xy: 417, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-14
   rotate: false
-  xy: 0, 168
+  xy: 449, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-15
   rotate: false
-  xy: 0, 180
+  xy: 481, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-16
   rotate: false
-  xy: 0, 192
+  xy: 513, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-17
   rotate: false
-  xy: 0, 204
+  xy: 545, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-18
   rotate: false
-  xy: 0, 216
+  xy: 577, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-19
   rotate: false
-  xy: 0, 228
+  xy: 609, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0
   index: -1
 shotgunReload-20
   rotate: false
-  xy: 0, 240
+  xy: 641, 1
   size: 30, 12
   orig: 30, 12
   offset: 0, 0

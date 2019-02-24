@@ -2,7 +2,10 @@ package com.butch.game.gameobjects.Items;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Item;
@@ -17,5 +20,6 @@ public class WhiskyItem extends Item {
         autoPickup = false;
         this.collectionFX = ButchGame.assets.get(ButchGame.assets.potionCollection, Sound.class);
         this.activeForRender = true;
+        this.itemAnim = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.coinSpin, TextureAtlas.class).getRegions());
     }
 }

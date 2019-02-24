@@ -47,6 +47,15 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String healthPotion = "healthPotion.png";
     public final String whiskyBottle = "whisky.png";
 
+    //Revolver Ammo Bar
+    public final String revolverAmmoBar6 = "HUD/RevolverAmmo/revolverAmmoBar-0.png";
+    public final String revolverAmmoBar5 = "HUD/RevolverAmmo/revolverAmmoBar-1.png";
+    public final String revolverAmmoBar4 = "HUD/RevolverAmmo/revolverAmmoBar-2.png";
+    public final String revolverAmmoBar3 = "HUD/RevolverAmmo/revolverAmmoBar-3.png";
+    public final String revolverAmmoBar2 = "HUD/RevolverAmmo/revolverAmmoBar-4.png";
+    public final String revolverAmmoBar1 = "HUD/RevolverAmmo/revolverAmmoBar-5.png";
+    public final String revolverAmmoBar0 = "HUD/RevolverAmmo/revolverAmmoBar-6.png";
+
     //TEXTUREATLAS
     //MAIN MENU
     public final String doorsMain = "Anim/doorAtlas/mainDoors.atlas";
@@ -100,6 +109,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String npc11Idle = "Anim/NPC/npc11Idle.atlas";
     public final String npc12Idle = "Anim/NPC/npc12Idle.atlas";
     public final String npc13Idle = "Anim/NPC/npc13Idle.atlas";
+    public final String coinSpin = "Anim/Coin/coin.atlas";
 
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
@@ -231,6 +241,18 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(musketWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(musketSprite, Texture.class);
         load(musketSilhoutte, Texture.class);
+
+        //Revolver Ammo Bar
+        load(revolverAmmoBar0, Texture.class);
+        load(revolverAmmoBar1, Texture.class);
+        load(revolverAmmoBar2, Texture.class);
+        load(revolverAmmoBar3, Texture.class);
+        load(revolverAmmoBar4, Texture.class);
+        load(revolverAmmoBar5, Texture.class);
+        load(revolverAmmoBar6, Texture.class);
+
+        //Coin
+        load(coinSpin, TextureAtlas.class);
 
         //SOUNDS
         //Background Music

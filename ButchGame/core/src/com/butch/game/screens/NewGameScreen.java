@@ -179,7 +179,28 @@ public class NewGameScreen implements Screen {
 //        }
 //
 //        shapeRenderer.end();
-
+        switch(player.getActiveWeapon().clip) {
+            case 6:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar6, Texture.class));
+                break;
+            case 5:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar5, Texture.class));
+                break;
+            case 4:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar4, Texture.class));
+                break;
+            case 3:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar3, Texture.class));
+                break;
+            case 2:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar2, Texture.class));
+                break;
+            case 1:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar1, Texture.class));
+                break;
+            case 0:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar0, Texture.class));
+        }
         hud.coinLabel.setText(String.format("Coins: " + player.coin ));
         int thisReserve;
         if(player.getActiveWeapon().gunType == 0){

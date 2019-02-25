@@ -1,0 +1,61 @@
+handsWalking.png
+size: 80, 14
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+handsWalking-0
+  rotate: false
+  xy: 1, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+handsWalking-1
+  rotate: false
+  xy: 11, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+handsWalking-2
+  rotate: false
+  xy: 21, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+handsWalking-3
+  rotate: false
+  xy: 31, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+handsWalking-4
+  rotate: false
+  xy: 41, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+handsWalking-5
+  rotate: false
+  xy: 51, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+handsWalking-6
+  rotate: false
+  xy: 61, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+handsWalking-7
+  rotate: false
+  xy: 71, 1
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1

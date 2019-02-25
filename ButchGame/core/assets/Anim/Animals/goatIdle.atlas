@@ -1,0 +1,19 @@
+goatIdle.png
+size: 42, 19
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+goatIdle-0
+  rotate: false
+  xy: 1, 1
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+goatIdle-1
+  rotate: false
+  xy: 22, 1
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1

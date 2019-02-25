@@ -1,0 +1,96 @@
+ammo.png
+size: 395, 32
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ammoIcon-0
+  rotate: false
+  xy: 1, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-1
+  rotate: false
+  xy: 31, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-2
+  rotate: false
+  xy: 61, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-3
+  rotate: false
+  xy: 91, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-4
+  rotate: false
+  xy: 121, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-5
+  rotate: false
+  xy: 151, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-6
+  rotate: false
+  xy: 181, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-7
+  rotate: false
+  xy: 211, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-8
+  rotate: false
+  xy: 241, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-9
+  rotate: false
+  xy: 271, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-10
+  rotate: false
+  xy: 301, 1
+  size: 30, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-11
+  rotate: false
+  xy: 333, 1
+  size: 31, 30
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+ammoIcon-12
+  rotate: false
+  xy: 366, 1
+  size: 28, 28
+  orig: 32, 32
+  offset: 1, 1
+  index: -1

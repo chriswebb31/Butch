@@ -40,7 +40,7 @@ public abstract class EquipableItem extends Renderable {
             if(parent.TAG == "player"){
                 sprite.setRegion(getFrame(delta));
                 this.setSprite(sprite);
-                this.getSprite().setScale(10);
+                this.getSprite().setScale(8);
                 Vector2 targetDir = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
                 float angle = (float) Math.atan2(targetDir.y - this.getSprite().getY(), targetDir.x - this.getSprite().getX());
                 angle = (float) Math.toDegrees(angle);
@@ -56,6 +56,13 @@ public abstract class EquipableItem extends Renderable {
                 try{
                     this.getSprite().setRotation(angle);
                     this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+                    if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
+                        //this.getSprite().setFlip(false, false);
+                        this.getSprite().setFlip(false, false);
+                    } else if (ButchGame.mousePosition().x < this.getPosition().x){ //if direction is left or not right
+                        //this.getSprite().setFlip(true, false);
+                        this.getSprite().setFlip(false, true); //
+                    }
                 } catch (NullPointerException e){
                     System.out.println(e);
                 }
@@ -107,7 +114,8 @@ public abstract class EquipableItem extends Renderable {
                     region = player.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, true);
                     break;
                 case IDLE:
-                    region = player.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, false);
+                    //region = player.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, false);
+                    region = player.getActiveWeapon().spriteImg;
             }
 
         else if(parent.TAG == "enemy")

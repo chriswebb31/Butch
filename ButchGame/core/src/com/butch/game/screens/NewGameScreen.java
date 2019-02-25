@@ -3,10 +3,7 @@ package com.butch.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -41,7 +38,7 @@ import java.util.ArrayList;
 public class NewGameScreen implements Screen {
     public int levelNumber;
     private SpriteBatch batch;
-    private Sprite cursor;
+    private Pixmap cursor;
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
     public ArrayList<NPC> NPCs;
@@ -77,8 +74,8 @@ public class NewGameScreen implements Screen {
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
-        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
-        this.cursor.setScale(10);
+//        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
+//        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
@@ -111,8 +108,11 @@ public class NewGameScreen implements Screen {
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
         outOfBullets = false;
+
+        this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
         //(int)enemies.get(0).getHealth()
-        enemyHb = new HealthBar(500,20);
+       // enemyHb = new HealthBar(500,20);
         stage= new Stage();
 
 
@@ -144,10 +144,10 @@ public class NewGameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
+        //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
-        cursor.draw(batch);
+        //cursor.draw(batch);
         batch.end();
 //
 //        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -179,7 +179,28 @@ public class NewGameScreen implements Screen {
 //        }
 //
 //        shapeRenderer.end();
-
+        switch(player.getActiveWeapon().clip) {
+            case 6:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar6, Texture.class));
+                break;
+            case 5:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar5, Texture.class));
+                break;
+            case 4:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar4, Texture.class));
+                break;
+            case 3:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar3, Texture.class));
+                break;
+            case 2:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar2, Texture.class));
+                break;
+            case 1:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar1, Texture.class));
+                break;
+            case 0:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar0, Texture.class));
+        }
         hud.coinLabel.setText(String.format("Coins: " + player.coin ));
         int thisReserve;
         if(player.getActiveWeapon().gunType == 0){
@@ -191,7 +212,7 @@ public class NewGameScreen implements Screen {
         }
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
-        if(player.getHealth() <0 && outOfBullets == false){
+        if(player.getHealth() <=0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
             hud.table.removeActor(hud.hb);

@@ -1,60 +1,60 @@
 npc7Walking.png
-size: 208, 26
+size: 224, 28
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 npc7Walking-0
   rotate: false
-  xy: 0, 0
+  xy: 1, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 npc7Walking-1
   rotate: false
-  xy: 26, 0
+  xy: 29, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 npc7Walking-2
   rotate: false
-  xy: 52, 0
+  xy: 57, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 npc7Walking-3
   rotate: false
-  xy: 78, 0
+  xy: 85, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 npc7Walking-4
   rotate: false
-  xy: 104, 0
+  xy: 113, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 npc7Walking-5
   rotate: false
-  xy: 130, 0
+  xy: 141, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 npc7Walking-6
   rotate: false
-  xy: 156, 0
+  xy: 169, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 npc7Walking-7
   rotate: false
-  xy: 182, 0
+  xy: 197, 1
   size: 26, 26
   orig: 26, 26
   offset: 0, 0

@@ -1,0 +1,19 @@
+npc9Idle.png
+size: 44, 22
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+npc9Idle-0
+  rotate: false
+  xy: 1, 1
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+npc9Idle-1
+  rotate: false
+  xy: 23, 1
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1

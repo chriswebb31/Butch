@@ -25,14 +25,14 @@ public class NPC extends Renderable {
     private Animation<TextureRegion> npcIdle;
     private float stateTimer = 0;
     private State currentState, previousState;
-    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class));
+    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
 
     public NPC(Vector2 position, TextureAtlas idleAtlas) {
         this.TAG = "npc";
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
         this.setPosition(position);
         this.health = 100;
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.cowboySprite, Texture.class)));
+        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class)));
         this.getSprite().setScale(10);
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
         this.activeForRender = true;

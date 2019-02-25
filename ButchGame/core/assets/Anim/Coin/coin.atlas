@@ -1,0 +1,96 @@
+coin.png
+size: 442, 34
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+coinIcon-0
+  rotate: false
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-1
+  rotate: false
+  xy: 35, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-2
+  rotate: false
+  xy: 69, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-3
+  rotate: false
+  xy: 103, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-4
+  rotate: false
+  xy: 137, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-5
+  rotate: false
+  xy: 171, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-6
+  rotate: false
+  xy: 205, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-7
+  rotate: false
+  xy: 239, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-8
+  rotate: false
+  xy: 273, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-9
+  rotate: false
+  xy: 307, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-10
+  rotate: false
+  xy: 341, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-11
+  rotate: false
+  xy: 375, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coinIcon-12
+  rotate: false
+  xy: 409, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

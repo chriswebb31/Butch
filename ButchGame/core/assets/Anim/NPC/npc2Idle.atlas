@@ -1,18 +1,18 @@
 npc2Idle.png
-size: 40, 20
+size: 44, 22
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 npc2Idle-0
   rotate: false
-  xy: 0, 0
+  xy: 1, 1
   size: 20, 20
   orig: 20, 20
   offset: 0, 0
   index: -1
 npc2Idle-1
   rotate: false
-  xy: 20, 0
+  xy: 23, 1
   size: 20, 20
   orig: 20, 20
   offset: 0, 0

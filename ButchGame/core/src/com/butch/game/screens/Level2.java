@@ -3,10 +3,7 @@ package com.butch.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -40,7 +37,7 @@ import java.util.ArrayList;
 public class Level2 implements Screen {
     public int levelNumber;
     private SpriteBatch batch;
-    private Sprite cursor;
+    private Pixmap cursor;
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
     public ArrayList<NPC> NPCs;
@@ -76,8 +73,8 @@ public class Level2 implements Screen {
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
-        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
-        this.cursor.setScale(10);
+        //this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
+        //this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
@@ -110,8 +107,10 @@ public class Level2 implements Screen {
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
         outOfBullets = false;
+        this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
         //(int)enemies.get(0).getHealth()
-        enemyHb = new HealthBar(500,20);
+        //enemyHb = new HealthBar(500,20);
         stage= new Stage();
 
 
@@ -143,10 +142,10 @@ public class Level2 implements Screen {
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
+        //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
-        cursor.draw(batch);
+        //cursor.draw(batch);
         batch.end();
 
 //        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);

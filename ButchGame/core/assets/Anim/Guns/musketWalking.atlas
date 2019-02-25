@@ -1,61 +1,61 @@
 musketWalking.png
-size: 400, 15
+size: 416, 15
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 musketWalking-0
   rotate: false
-  xy: 0, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 1, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1
 musketWalking-1
   rotate: false
-  xy: 50, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 53, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1
 musketWalking-2
   rotate: false
-  xy: 100, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 105, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1
 musketWalking-3
   rotate: false
-  xy: 150, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 157, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1
 musketWalking-4
   rotate: false
-  xy: 200, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 209, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1
 musketWalking-5
   rotate: false
-  xy: 250, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 261, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1
 musketWalking-6
   rotate: false
-  xy: 300, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 313, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1
 musketWalking-7
   rotate: false
-  xy: 350, 0
-  size: 50, 15
-  orig: 50, 15
+  xy: 365, 1
+  size: 50, 13
+  orig: 50, 13
   offset: 0, 0
   index: -1

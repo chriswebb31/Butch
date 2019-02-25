@@ -37,7 +37,7 @@ public class Hud implements Disposable{
         weaponLabel = new Label(String.format(player.getActiveWeapon().gunName), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
         weaponLabel.setFontScale(2.0f);
         table.top().left();
-        hb = new HealthBar((int)player.getHealth(),20);
+        hb = new HealthBar((int)player.getHealth(),20,0,0);
         table.setFillParent(true);
         table.row();
         table.add(hb).expandX().left().pad(5);

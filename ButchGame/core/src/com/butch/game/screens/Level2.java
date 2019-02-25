@@ -110,7 +110,7 @@ public class Level2 implements Screen {
         this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
         //(int)enemies.get(0).getHealth()
-        enemyHb = new HealthBar(500,20);
+        //enemyHb = new HealthBar(500,20);
         stage= new Stage();
 
 

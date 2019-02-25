@@ -2,16 +2,14 @@ package com.butch.game.gameobjects.spriterenderables;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gameobjects.HUDObjects.HealthBar;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
@@ -22,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public class Enemy extends Renderable {
+public class Enemy extends Renderable  {
     public enum State {IDLE, WALKING}
     private Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
     public float health;
@@ -69,6 +67,10 @@ public class Enemy extends Renderable {
     public Vector2 newDirection;
     private boolean swappedCombat = false;
     private float stateTimer = 0;
+    /// testing
+    private HealthBar healthBar;
+    private SpriteBatch batch;
+    ///
 
     public Enemy(Vector2 position, int enemyType){
         this.TAG = "enemy";
@@ -103,6 +105,9 @@ public class Enemy extends Renderable {
         enemy2Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
         enemy3Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
         enemy4Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
+      healthBar = new HealthBar((int)this.health, 10, this.getPosition().x,this.getPosition().y + this.sprite.getHeight() +20 );
+        batch = new SpriteBatch();
+
     }
 
     @Override
@@ -235,7 +240,15 @@ public class Enemy extends Renderable {
             this.activeForRender = false;
             this.weapon.activeForRender = false;
         }
+        ///
+   // healthBar.update(delta);
+//    healthBar.draw();
+        ///
+        batch.begin();
+        healthBar.draw(batch, delta);
+        batch.end();
     }
+
 
     @Override
     public void takeHit(float damage) {
@@ -360,18 +373,43 @@ public class Enemy extends Renderable {
         }
     }
     //E.L. Territory!!
-    private class HealthBar{
-        private Sprite healthBarBG;
-        private Sprite healthBarFG;
-        private Enemy owner;
-        private final short buffer = 20;
-        public HealthBar(Enemy owner){
-            this.owner = owner;
-            healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
-            healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
-            healthBarBG.setX(owner.getPosition().x);
-            healthBarBG.setX(owner.getPosition().y + owner.sprite.getHeight() + buffer);
-
-        }
-    }
+//   private class Hb{
+//        private Sprite healthBarBG;
+//        private Sprite healthBarFG;
+//        private Enemy owner;
+//        private SpriteBatch batch;
+//        private final short buffer = 20;
+//        public Hb(Enemy owner){
+//            this.owner = owner;
+//            healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
+//            healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
+//            healthBarBG.setX(owner.getPosition().x);
+//            healthBarBG.setY(owner.getPosition().y + owner.sprite.getHeight() + buffer);
+//            healthBarFG.setX(healthBarBG.getX());
+//            healthBarFG.setY(healthBarFG.getY());
+//            batch = new SpriteBatch();
+//        }
+//
+//        public void update(float delta){
+//            healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
+//            healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
+//            healthBarBG.setX(owner.getPosition().x);
+//            System.out.println("owner x =" + owner.getPosition().x);
+//            System.out.println("owner height = " + owner.sprite.getHeight() );
+//            healthBarBG.setY(owner.getPosition().y + owner.sprite.getHeight() + buffer);
+////            healthBarBG.setX(0);
+////            healthBarBG.setY(0);
+//            healthBarFG.setX(healthBarBG.getX());
+//            healthBarFG.setY(healthBarFG.getY());
+//            batch.begin();
+//            healthBarBG.draw(batch);
+//            healthBarFG.draw(batch);
+//            batch.end();
+//        }
+//
+//
+//
+//
+//
+//    }
 }

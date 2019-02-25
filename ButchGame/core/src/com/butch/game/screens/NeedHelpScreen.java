@@ -56,7 +56,7 @@ public class NeedHelpScreen implements Screen {
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
-        healthBar = new HealthBar(1000,20);
+        healthBar = new HealthBar(1000,20,0,0);
         healthBar.setPosition(10,game.TARGET_HEIGHT-healthBar.getHeight()-10);
         batch= new SpriteBatch();
         //healthBarBack = new Texture("HUD Stuff/healthBarBack.png");

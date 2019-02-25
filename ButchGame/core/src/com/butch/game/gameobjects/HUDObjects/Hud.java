@@ -29,6 +29,7 @@ public class Hud implements Disposable{
     public Player player;
     private Texture ammoCount;
     private Image ammoCountImage;
+    private Image healthBarBack;
 
     public Hud(SpriteBatch spriteBatch, Player player){
         this.player = player;
@@ -46,6 +47,9 @@ public class Hud implements Disposable{
         weaponLabel = new Label(String.format(player.getActiveWeapon().gunName), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
         weaponLabel.setFontScale(2.0f);
 //      ammoCountImage.setDrawable(new TextureRegionDrawable(new TextureRegion(ammoCount)));
+        healthBarBack = new Image(ButchGame.assets.get(ButchGame.assets.healthBarBack, Texture.class));
+        healthBarBack.setPosition(Gdx.graphics.getWidth()/14-healthBarBack.getWidth()*2,Gdx.graphics.getHeight()/1.1f-healthBarBack.getHeight()*2);
+        healthBarBack.setSize(healthBarBack.getWidth() * 6, healthBarBack.getHeight() * 6);
 
         table.top().left();
         hb = new HealthBar((int)player.getHealth(),20,0,0);
@@ -58,6 +62,7 @@ public class Hud implements Disposable{
 
         stage.addActor(table);
         stage.addActor(ammoCountImage);
+        stage.addActor(healthBarBack);
     }
 
     @Override

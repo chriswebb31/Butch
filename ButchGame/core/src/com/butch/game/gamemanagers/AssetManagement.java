@@ -47,6 +47,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String healthPotion = "healthPotion.png";
     public final String whiskyBottle = "whisky.png";
 
+    //HUD
+    //Health Bar Back
+    public final String healthBarBack = "HUD/healthBarFrame.png";
     //Revolver Ammo Bar
     public final String revolverAmmoBar6 = "HUD/RevolverAmmo/revolverAmmoBar-0.png";
     public final String revolverAmmoBar5 = "HUD/RevolverAmmo/revolverAmmoBar-1.png";
@@ -242,6 +245,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(musketSprite, Texture.class);
         load(musketSilhoutte, Texture.class);
 
+        //HUD
+        //Health Bar Back
+        load(healthBarBack, Texture.class);
         //Revolver Ammo Bar
         load(revolverAmmoBar0, Texture.class);
         load(revolverAmmoBar1, Texture.class);

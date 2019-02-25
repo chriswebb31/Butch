@@ -14,9 +14,9 @@ public class Colt extends Gun {
         this.id = 10;
         this.gunName = "Colt";
         this.gunType = 0;
-        this.clipSize = 8;
+        this.clipSize = 6;
         this.accuracy = 50;
-        this.clip = 8;
+        this.clip = 6;
         this.oneHanded = true;
         this.damage = 50;
         this.fireRate = 0.2f;

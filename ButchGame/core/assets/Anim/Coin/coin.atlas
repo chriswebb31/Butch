@@ -1,96 +1,96 @@
 coin.png
-size: 62, 162
+size: 442, 34
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 coinIcon-0
   rotate: false
-  xy: 31, 130
-  size: 28, 31
+  xy: 1, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 3, 1
+  offset: 0, 0
   index: -1
 coinIcon-1
   rotate: false
-  xy: 31, 97
-  size: 28, 31
+  xy: 35, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 3, 1
+  offset: 0, 0
   index: -1
 coinIcon-2
   rotate: false
-  xy: 27, 64
-  size: 24, 31
+  xy: 69, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 5, 1
+  offset: 0, 0
   index: -1
 coinIcon-3
   rotate: false
-  xy: 19, 31
-  size: 20, 31
+  xy: 103, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 7, 1
+  offset: 0, 0
   index: -1
 coinIcon-4
   rotate: false
-  xy: 1, 31
-  size: 16, 28
+  xy: 137, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 9, 3
+  offset: 0, 0
   index: -1
 coinIcon-5
   rotate: false
-  xy: 25, 1
-  size: 12, 28
+  xy: 171, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 11, 3
+  offset: 0, 0
   index: -1
 coinIcon-6
   rotate: false
-  xy: 1, 1
-  size: 8, 24
+  xy: 205, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 13, 5
+  offset: 0, 0
   index: -1
 coinIcon-7
   rotate: false
-  xy: 11, 1
-  size: 12, 28
+  xy: 239, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 11, 3
+  offset: 0, 0
   index: -1
 coinIcon-8
   rotate: false
-  xy: 39, 1
-  size: 16, 28
+  xy: 273, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 9, 3
+  offset: 0, 0
   index: -1
 coinIcon-9
   rotate: false
-  xy: 41, 31
-  size: 20, 31
+  xy: 307, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 7, 1
+  offset: 0, 0
   index: -1
 coinIcon-10
   rotate: false
-  xy: 1, 64
-  size: 24, 31
+  xy: 341, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 5, 1
+  offset: 0, 0
   index: -1
 coinIcon-11
   rotate: false
-  xy: 1, 130
-  size: 28, 31
+  xy: 375, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 3, 1
+  offset: 0, 0
   index: -1
 coinIcon-12
   rotate: false
-  xy: 1, 97
-  size: 28, 31
+  xy: 409, 1
+  size: 32, 32
   orig: 32, 32
-  offset: 3, 1
+  offset: 0, 0
   index: -1

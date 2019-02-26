@@ -13,7 +13,7 @@ public class EntityCreator {
         //i.e. Gun, Item, Enemy, Player
         String propertyType = "Gun" + "/";
         //Name of the entity
-        String propertyName = "MachineGun";
+        String propertyName = "Musket";
 
         try {
             output = new FileOutputStream(propertyType + propertyName + ".properties");
@@ -22,23 +22,17 @@ public class EntityCreator {
             //Comment all the ones that aren't required
 
             // Gun
-            prop.setProperty("id", "11");
-            prop.setProperty("gunName", "Machine Gun");
-            prop.setProperty("gunType", "1");
-            prop.setProperty("accuracy", "100");
-            prop.setProperty("clip", "25");
-            prop.setProperty("clipSize", "25");
-            prop.setProperty("damage", "25");
+            prop.setProperty("id", "13");
+            prop.setProperty("gunName", "Musket");
+            prop.setProperty("gunType", "0");
+            prop.setProperty("accuracy", "15");
+            prop.setProperty("clip", "1");
+            prop.setProperty("clipSize", "1");
+            prop.setProperty("damage", "100");
             prop.setProperty("oneHanded", "false");
-            prop.setProperty("fireRate", "0.25f");
-            prop.setProperty("reloadSpeed", "0.5f");
+            prop.setProperty("fireRate", "1");
+            prop.setProperty("reloadSpeed", "3");
             prop.setProperty("speed", "15");
-            prop.setProperty("gunWalking", "machineGunWalkingAtlas");
-            prop.setProperty("gunReloading", "machineGunReloadingAtlas");
-            prop.setProperty("gunShooting", "machineGunShootingAtlas");
-            prop.setProperty("spriteImg", "machineGunSprite");
-            prop.setProperty("gunShotSound", "gunShot");
-            prop.setProperty("reloadSoundEffect", "otherReloadEffect");
 
             //Item
 

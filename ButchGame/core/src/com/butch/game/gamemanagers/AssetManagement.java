@@ -60,6 +60,39 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String revolverAmmoBar2 = "HUD/RevolverAmmo/revolverAmmoBar-4.png";
     public final String revolverAmmoBar1 = "HUD/RevolverAmmo/revolverAmmoBar-5.png";
     public final String revolverAmmoBar0 = "HUD/RevolverAmmo/revolverAmmoBar-6.png";
+    //Machine Gun Ammo Bar
+    public final String machineGunAmmoBar24 = "HUD/machineGunAmmoBar/machineGunAmmoBar_00.png";
+    public final String machineGunAmmoBar23 = "HUD/machineGunAmmoBar/machineGunAmmoBar_01.png";
+    public final String machineGunAmmoBar22 = "HUD/machineGunAmmoBar/machineGunAmmoBar_02.png";
+    public final String machineGunAmmoBar21 = "HUD/machineGunAmmoBar/machineGunAmmoBar_03.png";
+    public final String machineGunAmmoBar20 = "HUD/machineGunAmmoBar/machineGunAmmoBar_04.png";
+    public final String machineGunAmmoBar19 = "HUD/machineGunAmmoBar/machineGunAmmoBar_05.png";
+    public final String machineGunAmmoBar18 = "HUD/machineGunAmmoBar/machineGunAmmoBar_06.png";
+    public final String machineGunAmmoBar17 = "HUD/machineGunAmmoBar/machineGunAmmoBar_07.png";
+    public final String machineGunAmmoBar16 = "HUD/machineGunAmmoBar/machineGunAmmoBar_08.png";
+    public final String machineGunAmmoBar15 = "HUD/machineGunAmmoBar/machineGunAmmoBar_09.png";
+    public final String machineGunAmmoBar14 = "HUD/machineGunAmmoBar/machineGunAmmoBar_10.png";
+    public final String machineGunAmmoBar13 = "HUD/machineGunAmmoBar/machineGunAmmoBar_11.png";
+    public final String machineGunAmmoBar12 = "HUD/machineGunAmmoBar/machineGunAmmoBar_12.png";
+    public final String machineGunAmmoBar11 = "HUD/machineGunAmmoBar/machineGunAmmoBar_13.png";
+    public final String machineGunAmmoBar10 = "HUD/machineGunAmmoBar/machineGunAmmoBar_14.png";
+    public final String machineGunAmmoBar9 = "HUD/machineGunAmmoBar/machineGunAmmoBar_15.png";
+    public final String machineGunAmmoBar8 = "HUD/machineGunAmmoBar/machineGunAmmoBar_16.png";
+    public final String machineGunAmmoBar7 = "HUD/machineGunAmmoBar/machineGunAmmoBar_17.png";
+    public final String machineGunAmmoBar6 = "HUD/machineGunAmmoBar/machineGunAmmoBar_18.png";
+    public final String machineGunAmmoBar5 = "HUD/machineGunAmmoBar/machineGunAmmoBar_19.png";
+    public final String machineGunAmmoBar4 = "HUD/machineGunAmmoBar/machineGunAmmoBar_20.png";
+    public final String machineGunAmmoBar3 = "HUD/machineGunAmmoBar/machineGunAmmoBar_21.png";
+    public final String machineGunAmmoBar2 = "HUD/machineGunAmmoBar/machineGunAmmoBar_22.png";
+    public final String machineGunAmmoBar1 = "HUD/machineGunAmmoBar/machineGunAmmoBar_23.png";
+    public final String machineGunAmmoBar0 = "HUD/machineGunAmmoBar/machineGunAmmoBar_24.png";
+    //Shotgun Ammo Bar
+    public final String shotgunAmmoBar2 = "HUD/shotgunAmmoBar/shotgunAmmoBar-0.png";
+    public final String shotgunAmmoBar1 = "HUD/shotgunAmmoBar/shotgunAmmoBar-1.png";
+    public final String shotgunAmmoBar0 = "HUD/shotgunAmmoBar/shotgunAmmoBar-2.png";
+    //Musket Ammo Bar
+    public final String musketAmmoBar1 = "HUD/musketAmmoBar/musketAmmoBar_0.png";
+    public final String musketAmmoBar0 = "HUD/musketAmmoBar/musketAmmoBar_1.png";
 
     //TEXTUREATLAS
     //MAIN MENU
@@ -261,6 +294,39 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverAmmoBar4, Texture.class);
         load(revolverAmmoBar5, Texture.class);
         load(revolverAmmoBar6, Texture.class);
+        //Machine Gun Ammo Bar
+        load(machineGunAmmoBar0, Texture.class);
+        load(machineGunAmmoBar1, Texture.class);
+        load(machineGunAmmoBar2, Texture.class);
+        load(machineGunAmmoBar3, Texture.class);
+        load(machineGunAmmoBar4, Texture.class);
+        load(machineGunAmmoBar5, Texture.class);
+        load(machineGunAmmoBar6, Texture.class);
+        load(machineGunAmmoBar7, Texture.class);
+        load(machineGunAmmoBar8, Texture.class);
+        load(machineGunAmmoBar9, Texture.class);
+        load(machineGunAmmoBar10, Texture.class);
+        load(machineGunAmmoBar11, Texture.class);
+        load(machineGunAmmoBar12, Texture.class);
+        load(machineGunAmmoBar13, Texture.class);
+        load(machineGunAmmoBar14, Texture.class);
+        load(machineGunAmmoBar15, Texture.class);
+        load(machineGunAmmoBar16, Texture.class);
+        load(machineGunAmmoBar17, Texture.class);
+        load(machineGunAmmoBar18, Texture.class);
+        load(machineGunAmmoBar19, Texture.class);
+        load(machineGunAmmoBar20, Texture.class);
+        load(machineGunAmmoBar21, Texture.class);
+        load(machineGunAmmoBar22, Texture.class);
+        load(machineGunAmmoBar23, Texture.class);
+        load(machineGunAmmoBar24, Texture.class);
+        //Shotgun Ammo Bar
+        load(shotgunAmmoBar0, Texture.class);
+        load(shotgunAmmoBar1, Texture.class);
+        load(shotgunAmmoBar2, Texture.class);
+        //Musket Ammo Bar
+        load(musketAmmoBar0, Texture.class);
+        load(musketAmmoBar1, Texture.class);
 
         //Coin
         load(coinSpin, TextureAtlas.class);

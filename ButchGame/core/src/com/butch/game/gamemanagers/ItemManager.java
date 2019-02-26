@@ -4,6 +4,7 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.gameobjects.weapons.Colt;
+import com.butch.game.gameobjects.weapons.GunCreator;
 
 import java.util.ArrayList;
 
@@ -34,8 +35,10 @@ public class ItemManager {
         gunList = new ArrayList<Gun>();
         itemList = new ArrayList<Item>();
 
-        gunList.add(new MachineGun());
-        gunList.add(new Colt());
+        gunList.add(new GunCreator("MachineGun"));
+        gunList.add(new GunCreator("Revolver"));
+        gunList.add(new GunCreator("Musket"));
+        gunList.add(new GunCreator("Shotgun"));
     }
 
     public Gun getGun(int id){

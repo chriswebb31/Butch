@@ -95,8 +95,10 @@ public class Player extends Renderable {
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
         this.itemCollection = new  ArrayList<ItemPickup>();
+        this.gunInventory.add(new GunCreator("Revolver"));
+        this.gunInventory.add(new GunCreator("Shotgun"));
         this.gunInventory.add(new GunCreator("MachineGun"));
-        this.gunInventory.add(new Colt());
+        this.gunInventory.add(new GunCreator("Musket"));
         this.activeGun = this.gunInventory.get(0);
         this.gunInvIterator = this.gunInventory.iterator();
 
@@ -165,7 +167,7 @@ public class Player extends Renderable {
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try {
                 if (gunInvIterator.hasNext()) {
-                    System.out.println(gunInvIterator.next());
+                    //System.out.println(gunInvIterator.next());
                     this.activeGun.activeForRender = false;
                     this.activeGun = gunInvIterator.next();
                     this.activeGun.activeForRender = true;

@@ -2,8 +2,6 @@ package com.butch.game.gamemanagers;
 
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Item;
-import com.butch.game.gameobjects.weapons.MachineGun;
-import com.butch.game.gameobjects.weapons.Colt;
 import com.butch.game.gameobjects.weapons.GunCreator;
 
 import java.util.ArrayList;

@@ -20,9 +20,7 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
-import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.gameobjects.weapons.GunCreator;
-import com.butch.game.gameobjects.weapons.Colt;
 
 
 import java.util.Iterator;

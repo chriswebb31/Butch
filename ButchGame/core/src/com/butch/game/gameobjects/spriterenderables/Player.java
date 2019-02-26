@@ -95,7 +95,7 @@ public class Player extends Renderable {
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
         this.itemCollection = new  ArrayList<ItemPickup>();
-//        this.gunInventory.add(new GunCreator("MachineGun"));
+        this.gunInventory.add(new GunCreator("MachineGun"));
         this.gunInventory.add(new Colt());
         this.activeGun = this.gunInventory.get(0);
         this.gunInvIterator = this.gunInventory.iterator();

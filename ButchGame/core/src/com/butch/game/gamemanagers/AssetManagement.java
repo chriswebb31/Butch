@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import javax.xml.soap.Text;
+
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
     public final String gunSprite = "weapon.png"; //Placeholder Gun
@@ -112,7 +114,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String npc11Idle = "Anim/NPC/npc11Idle.atlas";
     public final String npc12Idle = "Anim/NPC/npc12Idle.atlas";
     public final String npc13Idle = "Anim/NPC/npc13Idle.atlas";
+    //Coin
     public final String coinSpin = "Anim/Coin/coin.atlas";
+    //Whisky
+    public final String whisky = "Anim/Items/whisky.atlas";
 
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
@@ -259,6 +264,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         //Coin
         load(coinSpin, TextureAtlas.class);
+        //Whisky
+        load(whisky, TextureAtlas.class);
 
         //SOUNDS
         //Background Music

@@ -1,0 +1,61 @@
+butchHorseRiding.png
+size: 102, 126
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+butchRidingHorse-0
+  rotate: false
+  xy: 1, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+butchRidingHorse-1
+  rotate: false
+  xy: 35, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+butchRidingHorse-2
+  rotate: false
+  xy: 69, 1
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+butchRidingHorse-3
+  rotate: false
+  xy: 1, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+butchRidingHorse-4
+  rotate: false
+  xy: 35, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+butchRidingHorse-5
+  rotate: false
+  xy: 69, 43
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+butchRidingHorse-6
+  rotate: false
+  xy: 1, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
+butchRidingHorse-7
+  rotate: false
+  xy: 35, 85
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1

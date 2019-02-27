@@ -39,6 +39,12 @@ public abstract class ItemPickup extends Renderable{
                 this.setSprite(sprite);
                 System.out.println(getFrame(delta));
                 this.getSprite().setScale(4);
+            } else if (this.id == 4) {
+                sprite.setRegion(getFrame(delta));
+                sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
+                this.setSprite(sprite);
+                System.out.println(getFrame(delta));
+                this.getSprite().setScale(10);
             } else {
                 this.getSprite().setScale(10);
             }

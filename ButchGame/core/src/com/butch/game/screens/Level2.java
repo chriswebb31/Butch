@@ -208,11 +208,11 @@ public class Level2 implements Screen {
     }
 
     private void setupLevel() {
-        MapObjects collisionLayer = tiledMap.getLayers().get(3).getObjects();
-        MapObjects pointsLayer = tiledMap.getLayers().get(4).getObjects();
-        MapObjects itemLayer = tiledMap.getLayers().get(5).getObjects();
-        MapObjects enemyLayer = tiledMap.getLayers().get(6).getObjects();
-        MapObjects npcLayer = tiledMap.getLayers().get(7).getObjects();
+        MapObjects collisionLayer = tiledMap.getLayers().get(4).getObjects();
+        MapObjects pointsLayer = tiledMap.getLayers().get(5).getObjects();
+        MapObjects itemLayer = tiledMap.getLayers().get(6).getObjects();
+        MapObjects enemyLayer = tiledMap.getLayers().get(7).getObjects();
+        MapObjects npcLayer = tiledMap.getLayers().get(8).getObjects();
 
         for(RectangleMapObject colliderRectangle : collisionLayer.getByType(RectangleMapObject.class)){
             float newX = colliderRectangle.getRectangle().x * 10;

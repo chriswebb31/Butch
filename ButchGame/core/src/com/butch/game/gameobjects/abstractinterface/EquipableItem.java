@@ -82,11 +82,21 @@ public abstract class EquipableItem extends Renderable {
                     float angle = (float) Math.atan2(targetDir.y - this.getSprite().getY(), targetDir.x - this.getSprite().getX());
                     angle = (float) Math.toDegrees(angle);
                     this.getSprite().setRotation(angle);
+
+                    try {
+                        this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
+                        if (targetDir.x >= this.getPosition().x) { // if direction is right
+                            //this.getSprite().setFlip(false, false);
+                            this.getSprite().setFlip(false, false);
+                        } else if (targetDir.x < this.getPosition().x) { //if direction is left or not right
+                            //this.getSprite().setFlip(true, false);
+                            this.getSprite().setFlip(false, true); //
+                            this.getSprite().setPosition(this.getSprite().getX(), this.getSprite().getY() + 15);
+                        }
+
+                    } catch (NullPointerException e) {
+                        System.out.println(e);
                     }
-                try{
-                    this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
-                } catch (NullPointerException e){
-                    System.out.println(e);
                 }
             }
         }

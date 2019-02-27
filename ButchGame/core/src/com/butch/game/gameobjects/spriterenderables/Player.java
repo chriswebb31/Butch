@@ -458,13 +458,10 @@ public class Player extends Renderable {
             if(item.type == 0) {
                 gunInventory.add(ButchGame.itemManager.getGun(item.id));
                 gunInvIterator = gunInventory.iterator();
-
             } else if(item.type == 1){
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
-                System.out.println("DING");
             }
             else if(item.type == 2) {
-                System.out.println("DONG");
                 Item itemObj = (Item) item;
                 if(itemObj.id == 0){
                     this.pistolAmmo += itemObj.quantity;

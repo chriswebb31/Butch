@@ -84,8 +84,20 @@ public class Enemy extends Renderable  {
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0);
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
-        this.weapon = new GunCreator("MachineGun") {
-        };
+        switch(this.enemyType) {
+            case 0 :
+                this.weapon = new GunCreator("MachineGun");
+                break;
+            case 1 :
+                this.weapon = new GunCreator("MachineGun");
+                break;
+            case 2 :
+                this.weapon = new GunCreator("Shotgun");
+                break;
+            case 3 :
+                this.weapon = new GunCreator("Musket");
+                break;
+        }
         this.weapon.parent = this;
         this.weapon.activeForRender = true;
         this.setPosition(position);
@@ -260,9 +272,9 @@ public class Enemy extends Renderable  {
         //healthB.update();
 
     }
-        public void render(){
-      //  healthB.render(batch);
-}
+    public void render(){
+//        healthB.render(batch);
+    }
 
     @Override
     public void takeHit(float damage) {
@@ -347,10 +359,37 @@ public class Enemy extends Renderable  {
 
         switch(currentState) {
             case WALKING:
-                region = enemy1Walking.getKeyFrame(stateTimer, true);
+                switch(this.enemyType) {
+                    case 0 :
+                        region = enemy1Walking.getKeyFrame(stateTimer, true);
+                        break;
+                    case 1 :
+                        region = enemy2Walking.getKeyFrame(stateTimer, true);
+                        break;
+                    case 2 :
+                        region = enemy3Walking.getKeyFrame(stateTimer, true);
+                        break;
+                    case 3 :
+                        region = enemy4Walking.getKeyFrame(stateTimer, true);
+                        break;
+                }
                 break;
             case IDLE:
-                region = enemy1Idle.getKeyFrame(stateTimer, true);
+                switch(this.enemyType) {
+                    case 0 :
+                        region = enemy1Idle.getKeyFrame(stateTimer, true);
+                        break;
+                    case 1 :
+                        region = enemy2Idle.getKeyFrame(stateTimer, true);
+                        break;
+                    case 2 :
+                        region = enemy3Idle.getKeyFrame(stateTimer, true);
+                        break;
+                    case 3 :
+                        region = enemy4Idle.getKeyFrame(stateTimer, true);
+                        break;
+                }
+                break;
         }
 
         if(((direction.x < 0 || !movingRight) && !region.isFlipX())){

@@ -37,18 +37,15 @@ public abstract class ItemPickup extends Renderable{
             if(this.id == 3) {
                 sprite.setRegion(getFrame(delta));
                 this.setSprite(sprite);
-                System.out.println(getFrame(delta));
                 this.getSprite().setScale(4);
             } else if (this.id == 4) {
                 sprite.setRegion(getFrame(delta));
                 sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
                 this.setSprite(sprite);
-                System.out.println(getFrame(delta));
                 this.getSprite().setScale(10);
             } else {
                 this.getSprite().setScale(10);
             }
-            System.out.println(this.id);
 
             this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
             this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getWidth() / 3, this.getSprite().getHeight() / 2));
@@ -70,8 +67,6 @@ public abstract class ItemPickup extends Renderable{
     public TextureRegion getFrame(float dt) {
         TextureRegion region = null;
         currentState = GetState();
-//        System.out.println(this.id);
-//        System.out.println(this.itemAnim.getKeyFrame(stateTimer, true));
         switch(currentState) {
             case ACTIVE:
                 region = this.itemAnim.getKeyFrame(stateTimer, true);
@@ -79,7 +74,6 @@ public abstract class ItemPickup extends Renderable{
         }
         stateTimer = currentState == previousState ? stateTimer + dt : 0;
         previousState = currentState;
-        System.out.println(region);
         return region;
     }
 

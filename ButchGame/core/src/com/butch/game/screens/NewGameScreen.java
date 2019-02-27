@@ -85,7 +85,7 @@ private Sprite healthBarBG;
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
-        tiledMap = ButchGame.assets.get(ButchGame.assets.caveTransition); //get tiled map for this screen
+        tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
@@ -361,7 +361,6 @@ private Sprite healthBarBG;
             healthBarFG.setY(healthBarBG.getY());
            // healthBarFG.setSize(20, 5);
             //healthBarFG.setScale(enemies.get(i).getHealth()/100);
-            System.out.print("enemy health is = " + enemies.get(i).getHealth());
            // enemies.get(i).render();
             if(enemies.get(i).getHealth() <= 0) {
 
@@ -432,13 +431,12 @@ private Sprite healthBarBG;
         //SET ITEMS AND POSITIONING ITEMS
 
         for(PolygonMapObject enemy : enemyLayer.getByType(PolygonMapObject.class)){
-            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10), 1);
+            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10), Integer.parseInt(enemy.getName()));
             for (int i = 2; i < enemy.getPolygon().getTransformedVertices().length; i+=2){
                 Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i+1] * 10);
                 newEnemy.route.add(newRoutePosition);
                 newEnemy.targetPos = newEnemy.route.get(0);
                 System.out.println("NEW ROUTE POS: " + newRoutePosition);
-
             }
             enemies.add(newEnemy);
         }

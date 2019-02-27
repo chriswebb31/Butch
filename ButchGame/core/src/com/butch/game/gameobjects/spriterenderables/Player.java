@@ -28,7 +28,7 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
-    public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING };
+    public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING, RIDING };
     private static float maxHealth = 100;
     public State currentState;
     public State previousState;
@@ -38,6 +38,9 @@ public class Player extends Renderable {
     private Animation<TextureRegion> butchWalking;
     private Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
+    private Animation<TextureRegion> butchHorseRiding;
+
+    private boolean isRiding = false;
 
     private boolean movingRight = false;
     private boolean movingLeft;
@@ -111,9 +114,10 @@ public class Player extends Renderable {
 
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
 
-        butchIdle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchIdleAnim, TextureAtlas.class).getRegions());
-        butchDying = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.butchDying, TextureAtlas.class).getRegions());
-        butchWalking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.butchWalking, TextureAtlas.class).getRegions());
+        butchIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.butchIdleAnim, TextureAtlas.class).getRegions());
+        butchDying = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchDying, TextureAtlas.class).getRegions());
+        butchWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchWalking, TextureAtlas.class).getRegions());
+        butchHorseRiding = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchHorseRiding, TextureAtlas.class).getRegions());
 
         currentState = State.IDLE;
         previousState = State.IDLE;
@@ -157,7 +161,8 @@ public class Player extends Renderable {
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             try{
-                activeGun.Shoot();
+                if(!isRiding)
+                    activeGun.Shoot();
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
@@ -177,6 +182,13 @@ public class Player extends Renderable {
                 }
             } catch (NoSuchElementException w){
                 w.printStackTrace();
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            if (isRiding) {
+                isRiding = false;
+            } else {
+                isRiding = true;
             }
         }
 
@@ -369,11 +381,15 @@ public class Player extends Renderable {
             itemCollection.clear();
         }
         sprite.setRegion(getFrame(delta));
+        sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
         this.setSprite(sprite);
 
-        this.getSprite().setScale(8);
+        this.getSprite().setScale(10);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
-        this.activeGun.activeForRender = true;
+        if(isRiding)
+            this.activeGun.activeForRender = false;
+        else
+            this.activeGun.activeForRender = true;
 
 
 //        flipHandler();
@@ -482,6 +498,9 @@ public class Player extends Renderable {
             case RUNNING:
                 region = butchWalking.getKeyFrame(stateTimer, true);
                 break;
+            case RIDING :
+                region = butchHorseRiding.getKeyFrame(stateTimer, true);
+                break;
             case IDLE:
                 region = butchIdle.getKeyFrame(stateTimer, true);
                 break;
@@ -507,6 +526,9 @@ public class Player extends Renderable {
     public State getState(){
         if(health <= 0) {
             return State.DEAD;
+        }
+        else if(isRiding) {
+            return State.RIDING;
         }
         else if(xAxis > 0){
             return State.RUNNING;

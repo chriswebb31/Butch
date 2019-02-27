@@ -111,6 +111,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String butchGhost = "Anim/Butch/butchGhost.atlas";
     public final String butchDoorTransition = "Anim/Butch/butchDoorTransition.atlas";
     public final String butchHandsWalking = "Anim/Butch/handsWalking.atlas";
+    public final String butchHorseRiding = "Anim/Butch/butchHorseRiding.atlas";
     //ENEMIES
     public final String enemy1Idle = "Anim/Enemies/enemy1Idle.atlas";
     public final String enemy1Walking = "Anim/Enemies/enemy1Walking.atlas";
@@ -231,6 +232,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(butchDoorTransition, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchHandsWalking, TextureAtlas.class);//FrameDuration = 0.083f
+        load(butchHorseRiding, TextureAtlas.class);
 
         //ENEMY ATLAS
         load(enemy1Idle, TextureAtlas.class);

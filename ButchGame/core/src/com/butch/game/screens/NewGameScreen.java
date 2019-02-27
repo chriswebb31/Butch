@@ -69,7 +69,13 @@ public class NewGameScreen implements Screen {
     Stage stage;
     float enemyX = 8000, enemyY = 7500;
     float npcX = 6000, npcY = 8000;
+//
+private Sprite healthBarBG;
+    private Sprite healthBarFG;
 
+    //private Batch batch;
+    private final short buffer = 120;
+    //
     public NewGameScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -114,7 +120,18 @@ public class NewGameScreen implements Screen {
         //(int)enemies.get(0).getHealth()
        // enemyHb = new HealthBar(500,20);
         stage= new Stage();
+//
+        healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
+        healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
 
+//        healthBarBG.setSize(75,40);
+//        healthBarFG.setSize(75,40);
+//        for(int i = 0; i<= enemies.size()-1 ; i++){
+//            healthBarFG.setSize(enemies.get(i).health/4, 20);
+//            healthBarBG.setSize(enemies.get(i).health/4,20);
+//
+//        }
+        //
 
     }
 
@@ -147,6 +164,7 @@ public class NewGameScreen implements Screen {
         //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
+
         //cursor.draw(batch);
         batch.end();
 //
@@ -228,6 +246,25 @@ public class NewGameScreen implements Screen {
         }
 
         hud.stage.draw();
+        for(int i = 0; i<=enemies.size()-1;i++){
+            healthBarBG.setX(enemies.get(i).getPosition().x);
+            healthBarBG.setY(enemies.get(i).getPosition().y + enemies.get(i).getSprite().getHeight() + buffer);
+            healthBarFG.setX(healthBarBG.getX());
+            healthBarFG.setY(healthBarBG.getY());
+           // healthBarFG.setSize(20, 5);
+            //healthBarFG.setScale(enemies.get(i).getHealth()/100);
+            System.out.print("enemy health is = " + enemies.get(i).getHealth());
+           // enemies.get(i).render();
+            if(enemies.get(i).getHealth() <= 0) {
+
+            }
+            else{
+                batch.begin();
+                batch.draw(healthBarBG, healthBarBG.getX(), healthBarBG.getY(),100,20);
+                batch.draw(healthBarFG, healthBarFG.getX(), healthBarFG.getY(),enemies.get(i).getHealth(),20);
+                batch.end();
+            }
+        }
     }
 
     private void setupLevel() {
@@ -322,6 +359,7 @@ public class NewGameScreen implements Screen {
     //    public void update(float delta){
 //        stage.act(delta);
 //    }
+
     @Override
     public void pause() {
 

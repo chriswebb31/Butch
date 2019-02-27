@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.HUDObjects.HealthBar;
@@ -14,6 +15,7 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.gameobjects.weapons.Shotgun;
+import com.butch.game.screens.NewGameScreen;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -68,8 +70,8 @@ public class Enemy extends Renderable  {
     private boolean swappedCombat = false;
     private float stateTimer = 0;
     /// testing
-    private HealthBar healthBar;
-    private SpriteBatch batch;
+   // private Hb healthB;
+    private Batch batch;
     ///
 
     public Enemy(Vector2 position, int enemyType){
@@ -97,6 +99,7 @@ public class Enemy extends Renderable  {
         this.targetPos = new Vector2().setZero();
         this.localPos = new Vector2().setZero();
         this.iteration = 0;
+
         enemy1Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy1Idle, TextureAtlas.class).getRegions());
         enemy2Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy2Idle, TextureAtlas.class).getRegions());
         enemy3Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy3Idle, TextureAtlas.class).getRegions());
@@ -105,11 +108,15 @@ public class Enemy extends Renderable  {
         enemy2Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
         enemy3Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
         enemy4Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
-      healthBar = new HealthBar((int)this.health, 10, this.getPosition().x,this.getPosition().y + this.sprite.getHeight() +20 );
+     //
+        //healthB = new Hb(this);
+        //healthBar = new HealthBar((int)this.health, 10, this.getPosition().x,this.getPosition().y + this.sprite.getHeight() +20 );
         batch = new SpriteBatch();
-
+//
     }
-
+    public float getHealth(){
+        return this.health;
+    }
     @Override
     public void update(float delta ) {
         this.weapon.accuracy *= 3;
@@ -240,15 +247,17 @@ public class Enemy extends Renderable  {
             this.activeForRender = false;
             this.weapon.activeForRender = false;
         }
-        ///
-   // healthBar.update(delta);
+
+//        healthB.update(delta);
 //    healthBar.draw();
         ///
-        batch.begin();
-        healthBar.draw(batch, delta);
-        batch.end();
-    }
 
+        //healthB.update();
+
+    }
+        public void render(){
+      //  healthB.render(batch);
+}
 
     @Override
     public void takeHit(float damage) {
@@ -327,8 +336,6 @@ public class Enemy extends Renderable  {
     public Gun getActiveWeapon() {
         return this.weapon;
     }
-
-
     private TextureRegion getFrame(float dt) {
         TextureRegion region = null;
         currentState = getAnimState();
@@ -373,11 +380,11 @@ public class Enemy extends Renderable  {
         }
     }
     //E.L. Territory!!
-//   private class Hb{
+//    private class Hb{
 //        private Sprite healthBarBG;
 //        private Sprite healthBarFG;
 //        private Enemy owner;
-//        private SpriteBatch batch;
+//        //private Batch batch;
 //        private final short buffer = 20;
 //        public Hb(Enemy owner){
 //            this.owner = owner;
@@ -386,30 +393,33 @@ public class Enemy extends Renderable  {
 //            healthBarBG.setX(owner.getPosition().x);
 //            healthBarBG.setY(owner.getPosition().y + owner.sprite.getHeight() + buffer);
 //            healthBarFG.setX(healthBarBG.getX());
-//            healthBarFG.setY(healthBarFG.getY());
-//            batch = new SpriteBatch();
+//            healthBarFG.setY(healthBarBG.getY());
+//            healthBarBG.setSize(75,10);
+//            healthBarFG.setSize(75,10);
 //        }
 //
-//        public void update(float delta){
-//            healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
-//            healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
+//        public void update(){
+////            healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
+////            healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
 //            healthBarBG.setX(owner.getPosition().x);
-//            System.out.println("owner x =" + owner.getPosition().x);
+//            System.out.println("owner x =" + owner.getPosition().x + "back pos is" + healthBarFG.getX() + "" + healthBarFG.getY());
 //            System.out.println("owner height = " + owner.sprite.getHeight() );
 //            healthBarBG.setY(owner.getPosition().y + owner.sprite.getHeight() + buffer);
 ////            healthBarBG.setX(0);
 ////            healthBarBG.setY(0);
 //            healthBarFG.setX(healthBarBG.getX());
 //            healthBarFG.setY(healthBarFG.getY());
+//
+////           batch.begin();
+//
+////            batch.end();
+//        }
+//        public void render(Batch batch){
 //            batch.begin();
-//            healthBarBG.draw(batch);
-//            healthBarFG.draw(batch);
+//            batch.draw(healthBarBG, healthBarBG.getX(), healthBarBG.getY());
+//            //System.out.println("is printing? ");
+//            batch.draw(healthBarFG, healthBarFG.getX(), healthBarFG.getY());
 //            batch.end();
 //        }
-//
-//
-//
-//
-//
 //    }
 }

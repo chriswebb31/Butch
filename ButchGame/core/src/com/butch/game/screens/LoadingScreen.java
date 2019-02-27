@@ -36,7 +36,7 @@ public class LoadingScreen implements Screen {
         game.assets.includeMainMenuScreenAssets();
         this.gameViewPort = gameViewPort;
         batch = new SpriteBatch();
-        animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Gif/loading.gif").read());
+       // animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Gif/loading.gif").read());
     }
 
     @Override
@@ -50,19 +50,19 @@ public class LoadingScreen implements Screen {
 //        GSM.update();
         elapsed += Gdx.graphics.getDeltaTime();
         batch.begin();
-        if (elapsed < 3.0f){
-            batch.draw(animation.getKeyFrame(elapsed), 0,0,game.TARGET_WIDTH,game.TARGET_HEIGHT);
-        }
+       // if (elapsed < 3.0f){
+//            batch.draw(animation.getKeyFrame(elapsed), 0,0,game.TARGET_WIDTH,game.TARGET_HEIGHT);
+      //  }
 
-        else {
+       // else {
             if (game.assets.update()) {
                 if (ButchGame.assets.update()) {
-                    game.setScreen(new MainMenuScreen(game, gameViewPort));
+                    game.setScreen(new NewGameScreen(game, gameViewPort));
                 }
             }
-        }
+
         batch.end();
-    }
+   }
 
 
     @Override

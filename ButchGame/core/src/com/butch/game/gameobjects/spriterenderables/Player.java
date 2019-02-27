@@ -20,9 +20,7 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
-import com.butch.game.gameobjects.weapons.MachineGun;
 import com.butch.game.gameobjects.weapons.GunCreator;
-import com.butch.game.gameobjects.weapons.Colt;
 
 
 import java.util.Iterator;
@@ -30,7 +28,7 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
-    public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING };
+    public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING, RIDING };
     private static float maxHealth = 100;
     public State currentState;
     public State previousState;
@@ -40,6 +38,9 @@ public class Player extends Renderable {
     private Animation<TextureRegion> butchWalking;
     private Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
+    private Animation<TextureRegion> butchHorseRiding;
+
+    private boolean isRiding = false;
 
     private boolean movingRight = false;
     private boolean movingLeft;
@@ -95,8 +96,10 @@ public class Player extends Renderable {
         this.gunInventory = new ArrayList<Gun>();
         this.itemInventory = new ArrayList<ItemPickup>();
         this.itemCollection = new  ArrayList<ItemPickup>();
-//        this.gunInventory.add(new GunCreator("MachineGun"));
-        this.gunInventory.add(new Colt());
+        this.gunInventory.add(new GunCreator("Revolver"));
+        this.gunInventory.add(new GunCreator("Shotgun"));
+        this.gunInventory.add(new GunCreator("MachineGun"));
+        this.gunInventory.add(new GunCreator("Musket"));
         this.activeGun = this.gunInventory.get(0);
         this.gunInvIterator = this.gunInventory.iterator();
 
@@ -111,9 +114,10 @@ public class Player extends Renderable {
 
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width/2.5f, this.getSprite().getBoundingRectangle().height/1.5f));
 
-        butchIdle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchIdleAnim, TextureAtlas.class).getRegions());
-        butchDying = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.butchDying, TextureAtlas.class).getRegions());
-        butchWalking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.butchWalking, TextureAtlas.class).getRegions());
+        butchIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.butchIdleAnim, TextureAtlas.class).getRegions());
+        butchDying = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchDying, TextureAtlas.class).getRegions());
+        butchWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchWalking, TextureAtlas.class).getRegions());
+        butchHorseRiding = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchHorseRiding, TextureAtlas.class).getRegions());
 
         currentState = State.IDLE;
         previousState = State.IDLE;
@@ -157,7 +161,8 @@ public class Player extends Renderable {
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             try{
-                activeGun.Shoot();
+                if(!isRiding)
+                    activeGun.Shoot();
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
@@ -165,7 +170,7 @@ public class Player extends Renderable {
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try {
                 if (gunInvIterator.hasNext()) {
-                    System.out.println(gunInvIterator.next());
+                    //System.out.println(gunInvIterator.next());
                     this.activeGun.activeForRender = false;
                     this.activeGun = gunInvIterator.next();
                     this.activeGun.activeForRender = true;
@@ -177,6 +182,13 @@ public class Player extends Renderable {
                 }
             } catch (NoSuchElementException w){
                 w.printStackTrace();
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            if (isRiding) {
+                isRiding = false;
+            } else {
+                isRiding = true;
             }
         }
 
@@ -369,11 +381,19 @@ public class Player extends Renderable {
             itemCollection.clear();
         }
         sprite.setRegion(getFrame(delta));
+        sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
         this.setSprite(sprite);
 
-        this.getSprite().setScale(8);
+        this.getSprite().setScale(10);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
-        this.activeGun.activeForRender = true;
+        if(isRiding) {
+            this.speed = 15;
+            this.activeGun.activeForRender = false;
+        }
+        else {
+            this.speed = 10;
+            this.activeGun.activeForRender = true;
+        }
 
 
 //        flipHandler();
@@ -482,6 +502,9 @@ public class Player extends Renderable {
             case RUNNING:
                 region = butchWalking.getKeyFrame(stateTimer, true);
                 break;
+            case RIDING :
+                region = butchHorseRiding.getKeyFrame(stateTimer, true);
+                break;
             case IDLE:
                 region = butchIdle.getKeyFrame(stateTimer, true);
                 break;
@@ -507,6 +530,9 @@ public class Player extends Renderable {
     public State getState(){
         if(health <= 0) {
             return State.DEAD;
+        }
+        else if(isRiding) {
+            return State.RIDING;
         }
         else if(xAxis > 0){
             return State.RUNNING;

@@ -13,9 +13,13 @@ import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.HUDObjects.HealthBar;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
-import com.butch.game.gameobjects.weapons.MachineGun;
-import com.butch.game.gameobjects.weapons.Shotgun;
-import com.butch.game.screens.NewGameScreen;
+
+//import com.butch.game.gameobjects.weapons.MachineGun;
+//import com.butch.game.gameobjects.weapons.Shotgun;
+//import com.butch.game.screens.NewGameScreen;
+
+import com.butch.game.gameobjects.weapons.GunCreator;
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -80,7 +84,8 @@ public class Enemy extends Renderable  {
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0);
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
-        this.weapon = new MachineGun();
+        this.weapon = new GunCreator("MachineGun") {
+        };
         this.weapon.parent = this;
         this.weapon.activeForRender = true;
         this.setPosition(position);

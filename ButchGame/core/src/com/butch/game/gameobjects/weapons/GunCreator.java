@@ -27,6 +27,7 @@ public class GunCreator extends Gun {
 
             this.id = Integer.parseInt(prop.getProperty("id"));
             this.gunName = prop.getProperty("gunName");
+            System.out.print(this.gunName);
             this.gunType = Integer.parseInt(prop.getProperty("gunType"));
             this.accuracy = Integer.parseInt(prop.getProperty("accuracy"));
             this.clip = Integer.parseInt(prop.getProperty("clip"));
@@ -38,20 +39,40 @@ public class GunCreator extends Gun {
             this.speed = Integer.parseInt(prop.getProperty("speed"));
             switch(this.id) {
                 case 10 :
-                    this.gunWalking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.revolverWalking, TextureAtlas.class).getRegions());
-                    this.gunReloading = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.revolverReload, TextureAtlas.class).getRegions());
-                    this.gunShooting = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.revolverFiring, TextureAtlas.class).getRegions());
+                    this.gunWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.revolverWalking, TextureAtlas.class).getRegions());
+                    this.gunReloading = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.revolverReload, TextureAtlas.class).getRegions());
+                    this.gunShooting = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.revolverFiring, TextureAtlas.class).getRegions());
                     this.spriteImg = new TextureRegion(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class), 0, 0,28, 12);
                     this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
                     this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
+                    this.ammoBar = ButchGame.assets.get(ButchGame.assets.revolverAmmoBar6, Texture.class);
                     break;
                 case 11 :
-                    this.gunWalking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.machineGunWalking, TextureAtlas.class).getRegions());
-                    this.gunReloading = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.machineGunReload, TextureAtlas.class).getRegions());
-                    this.gunShooting = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.machineGunFiring, TextureAtlas.class).getRegions());
+                    this.gunWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.machineGunWalking, TextureAtlas.class).getRegions());
+                    this.gunReloading = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.machineGunReload, TextureAtlas.class).getRegions());
+                    this.gunShooting = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.machineGunFiring, TextureAtlas.class).getRegions());
                     this.spriteImg = new TextureRegion(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class), 0, 0,27, 7);
                     this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
                     this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
+                    this.ammoBar = ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar24, Texture.class);
+                    break;
+                case 12:
+                    this.gunWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.shotgunWalking, TextureAtlas.class).getRegions());
+                    this.gunReloading = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.shotgunReload, TextureAtlas.class).getRegions());
+                    this.gunShooting = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.shotgunFiring, TextureAtlas.class).getRegions());
+                    this.spriteImg = new TextureRegion(ButchGame.assets.get(ButchGame.assets.shotgunSprite, Texture.class), 0, 0,27, 8);
+                    this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
+                    this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
+                    this.ammoBar = ButchGame.assets.get(ButchGame.assets.shotgunAmmoBar2, Texture.class);
+                    break;
+                case 13:
+                    this.gunWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.musketWalking, TextureAtlas.class).getRegions());
+                    this.gunReloading = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.musketReload, TextureAtlas.class).getRegions());
+                    this.gunShooting = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.musketFiring, TextureAtlas.class).getRegions());
+                    this.spriteImg = new TextureRegion(ButchGame.assets.get(ButchGame.assets.musketSprite, Texture.class), 0, 0,44, 9);
+                    this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
+                    this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
+                    this.ammoBar = ButchGame.assets.get(ButchGame.assets.musketAmmoBar1, Texture.class);
                     break;
             }
 

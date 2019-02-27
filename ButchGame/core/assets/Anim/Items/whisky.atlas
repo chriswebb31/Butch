@@ -1,0 +1,33 @@
+whisky.png
+size: 11, 88
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+whiskey-2-0
+  rotate: false
+  xy: 1, 1
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskey-2-1
+  rotate: false
+  xy: 1, 23
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskey-2-2
+  rotate: false
+  xy: 1, 45
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskey-2-3
+  rotate: false
+  xy: 1, 67
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1

@@ -39,6 +39,7 @@ public abstract class EquipableItem extends Renderable {
 
             if(parent.TAG == "player"){
                 sprite.setRegion(getFrame(delta));
+                sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
                 this.setSprite(sprite);
                 this.getSprite().setScale(8);
                 Vector2 targetDir = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
@@ -62,6 +63,7 @@ public abstract class EquipableItem extends Renderable {
                     } else if (ButchGame.mousePosition().x < this.getPosition().x){ //if direction is left or not right
                         //this.getSprite().setFlip(true, false);
                         this.getSprite().setFlip(false, true); //
+                        this.getSprite().setPosition(this.getSprite().getX(), this.getSprite().getY() + 15);
                     }
                 } catch (NullPointerException e){
                     System.out.println(e);

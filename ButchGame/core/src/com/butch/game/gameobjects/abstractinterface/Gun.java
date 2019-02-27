@@ -41,6 +41,7 @@ public abstract class Gun extends EquipableItem {
     public Animation<TextureRegion> gunShooting;
     public Animation<TextureRegion> gunReloading;
     public TextureRegion spriteImg;
+    public Texture ammoBar;
 
     public Gun() {
 

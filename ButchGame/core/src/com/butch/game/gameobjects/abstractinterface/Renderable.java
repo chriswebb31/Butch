@@ -29,6 +29,7 @@ public abstract class Renderable {
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+        this.sprite.setSize(this.sprite.getWidth(), this.sprite.getHeight());
     }
 
     public Vector2 getPosition() {

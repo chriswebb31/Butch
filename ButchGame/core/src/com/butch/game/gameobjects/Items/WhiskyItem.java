@@ -20,6 +20,6 @@ public class WhiskyItem extends Item {
         autoPickup = false;
         this.collectionFX = ButchGame.assets.get(ButchGame.assets.potionCollection, Sound.class);
         this.activeForRender = true;
-        this.itemAnim = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.coinSpin, TextureAtlas.class).getRegions());
+        this.itemAnim = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.whisky, TextureAtlas.class).getRegions());
     }
 }

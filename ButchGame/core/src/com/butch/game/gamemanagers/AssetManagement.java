@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import javax.xml.soap.Text;
 
@@ -180,7 +181,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String tilemap1 = "TiledFiles/REALTOWNMAPCLEAN.tmx";
     public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
     public final String route1 = "TiledFiles/Route1.tmx";
+    public final String caveTransition = "TiledFiles/CaveTransition.tmx";
     public final String enemySprite = "enemy.png";
+
+
 
     public AssetManagement() {
 

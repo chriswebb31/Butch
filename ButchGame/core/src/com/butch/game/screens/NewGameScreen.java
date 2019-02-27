@@ -85,7 +85,7 @@ private Sprite healthBarBG;
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
-        tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
+        tiledMap = ButchGame.assets.get(ButchGame.assets.caveTransition); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
@@ -376,11 +376,11 @@ private Sprite healthBarBG;
     }
 
     private void setupLevel() {
-        MapObjects collisionLayer = tiledMap.getLayers().get(3).getObjects();
-        MapObjects pointsLayer = tiledMap.getLayers().get(4).getObjects();
-        MapObjects itemLayer = tiledMap.getLayers().get(5).getObjects();
-        MapObjects enemyLayer = tiledMap.getLayers().get(6).getObjects();
-        MapObjects npcLayer = tiledMap.getLayers().get(7).getObjects();
+        MapObjects collisionLayer = tiledMap.getLayers().get(4).getObjects();
+        MapObjects pointsLayer = tiledMap.getLayers().get(5).getObjects();
+        MapObjects itemLayer = tiledMap.getLayers().get(6).getObjects();
+        MapObjects enemyLayer = tiledMap.getLayers().get(7).getObjects();
+        MapObjects npcLayer = tiledMap.getLayers().get(8).getObjects();
 
         for(RectangleMapObject colliderRectangle : collisionLayer.getByType(RectangleMapObject.class)){
             float newX = colliderRectangle.getRectangle().x * 10;

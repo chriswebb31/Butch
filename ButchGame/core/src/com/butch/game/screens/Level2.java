@@ -129,8 +129,8 @@ public class Level2 implements Screen {
         //(int)enemies.get(0).getHealth()
         //enemyHb = new HealthBar(500,20);
         stage= new Stage();
-        healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
-        healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
+        healthBarBG = new Sprite(new Texture("HUD/enemyHealthBarBG.png"));
+        healthBarFG = new Sprite (new Texture("HUD/enemyHealthBarFG.png"));
 
     }
 
@@ -144,7 +144,7 @@ public class Level2 implements Screen {
         updateCameraPosition();
 
         if(player.getCollider().overlaps(endPoint)){
-            game.setScreen( new NewGameScreen(game, gameViewPort));
+            game.setScreen( new Level3(game, gameViewPort, player.getGunInventory()));
         }
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)

@@ -192,7 +192,7 @@ public class Level2 implements Screen {
         if(player.getHealth() <0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
-            hud.table.removeActor(hud.hb);
+//            hud.table.removeActor(hud.hb);
             hud.table.removeActor(hud.levelLabel);
             hud.table.reset();
             hud.table.center();
@@ -201,7 +201,7 @@ public class Level2 implements Screen {
             outOfBullets = true;
         }
         else{
-            hud.hb.setWidth(player.getHealth());
+//            hud.hb.setWidth(player.getHealth());
         }
 
         hud.stage.draw();

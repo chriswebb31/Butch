@@ -168,7 +168,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="11" name="ExtraLayer" width="40" height="40">
+ <layer id="4" name="ExtraLayer" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -212,7 +212,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="Collisions">
+ <objectgroup id="5" name="Collisions">
   <object id="1" x="290.896" y="928.39" width="29.0896" height="95.9337"/>
   <object id="2" x="352.169" y="929.628" width="126.88" height="95.9337"/>
   <object id="3" x="576.071" y="946.824"/>
@@ -244,7 +244,7 @@
   <object id="29" x="973.707" y="139.64" width="198.767" height="452.887"/>
   <object id="30" x="4.5527" y="95.6066" width="56.9087" height="450.717"/>
  </objectgroup>
- <objectgroup id="5" name="Points">
+ <objectgroup id="6" name="Points">
   <object id="31" name="0" x="416.667" y="811.333"/>
   <object id="33" name="1" x="28" y="558.667"/>
   <object id="55" name="1" x="374" y="861" width="81.5" height="40.5"/>
@@ -265,13 +265,13 @@
   <object id="53" name="3" x="1081" y="783"/>
  </objectgroup>
  <objectgroup id="9" name="Enemy Layer">
-  <object id="40" name="ENEMY" x="1085.5" y="847.5">
+  <object id="40" name="0" x="1085.5" y="847.5">
    <polygon points="0,0 37,-49 51,-110.5 0,-139 -54,-114 -132.5,-67.5 -70,-41 -141.5,7 -57.5,19.5 -30,1"/>
   </object>
-  <object id="41" name="enemy" x="454.5" y="234.5">
+  <object id="41" name="1" x="454.5" y="234.5">
    <polygon points="0,0 56,20 117,11.5 139.5,-23.5 139.5,-74 132,-92 162.5,-77 150,1 120,40.5 79.5,49.5 31,40 4,19"/>
   </object>
-  <object id="42" name="ENEMY" x="893.5" y="131">
+  <object id="42" name="2" x="893.5" y="131">
    <polygon points="0,0 0.5,126 -23.5,144.5 -53.5,154.5 -71.5,185 -97,214 -145,224 -214,231.5 -232.5,252 -283.5,271 -273.5,239 -220,211.5 -179,188 -126,186 -51,113.5 -23,105 -11,14.5"/>
   </object>
  </objectgroup>

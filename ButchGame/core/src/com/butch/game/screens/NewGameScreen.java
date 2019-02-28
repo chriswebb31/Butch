@@ -31,6 +31,8 @@ import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
+import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.weapons.GunCreator;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class NewGameScreen implements Screen {
     public ArrayList<Enemy> enemies;
     public ArrayList<NPC> NPCs;
     public ButchGame game;
+    private ArrayList<Gun> weaponCache;
 
     private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     private OrthographicCamera camera; //camera for height position of render
@@ -70,7 +73,7 @@ public class NewGameScreen implements Screen {
     float enemyX = 8000, enemyY = 7500;
     float npcX = 6000, npcY = 8000;
 //
-private Sprite healthBarBG;
+    private Sprite healthBarBG;
     private Sprite healthBarFG;
 
     //private Batch batch;
@@ -80,6 +83,7 @@ private Sprite healthBarBG;
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
+
 //        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
 //        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
@@ -97,14 +101,18 @@ private Sprite healthBarBG;
         RenderableManager.mapColliders = mapColliders;
         ButchGame.itemManager = new ItemManager();
 
+        this.weaponCache = new ArrayList<Gun>();
+        this.weaponCache.add(new GunCreator("Revolver"));
+        this.weaponCache.add(new GunCreator("MachineGun"));
+        this.weaponCache.add(new GunCreator("Musket"));
+        this.weaponCache.add(new GunCreator("Shotgun"));
         setupLevel();
 
-        player = new Player(spawnPoint, mapColliders);
+//        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
 
         camera.position.set(new Vector3(player.getPosition().x, player.getPosition().y, 40));
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
-
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
@@ -123,6 +131,8 @@ private Sprite healthBarBG;
 //
         healthBarBG = new Sprite(new Texture("HUD Stuff/healthBarBG.png"));
         healthBarFG = new Sprite (new Texture("HUD Stuff/healthBarFG.png"));
+
+
 
 //        healthBarBG.setSize(75,40);
 //        healthBarFG.setSize(75,40);
@@ -145,7 +155,7 @@ private Sprite healthBarBG;
         updateCameraPosition();
 
         if(player.getCollider().overlaps(endPoint)){
-           game.setScreen(new Level2(game, gameViewPort));
+           game.setScreen(new Level2(game, gameViewPort, player.getGunInventory()));
         }
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
@@ -395,7 +405,7 @@ private Sprite healthBarBG;
             int pointID = Integer.parseInt(point.getName());
             if(pointID == 0){
                 spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
-                player = new Player(spawnPoint, mapColliders);
+                player = new Player(spawnPoint, mapColliders, weaponCache);
             }else{
                 endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
             }

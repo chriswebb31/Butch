@@ -23,6 +23,7 @@ import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.weapons.GunCreator;
 
 
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.ArrayList;
@@ -57,14 +58,14 @@ public class Player extends Renderable {
     public float health = 100;
     public int coin;
 
-    public static ArrayList<Gun> gunInventory;
+    private static ArrayList<Gun> gunInventory;
     public static ArrayList<ItemPickup> itemInventory;
     private static ArrayList<ItemPickup> itemCollection; //items in range if collection
 
     private Gun activeGun;
     private int gunInventoryIteration = 0;
 
-    private ArrayList<Rectangle> mapColliders;
+    public ArrayList<Rectangle> mapColliders;
     private boolean canMove;
     private Vector2 velocity;
 
@@ -79,7 +80,7 @@ public class Player extends Renderable {
 
     private float stateTimer;
 
-    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
+    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache){
         this.setPosition(startPosition);
         System.out.println("STARTING POS:" + startPosition);
         this.mapColliders = mapStaticColliders;
@@ -94,13 +95,19 @@ public class Player extends Renderable {
         this.walkingFX.play();
         this.walkingFX.pause();
         this.gunInventory = new ArrayList<Gun>();
+        for(int j = 0; j < weaponCache.size(); j++) {
+            this.gunInventory.add(j, weaponCache.get(j));
+        }
+//        this.gunInventory.addAll(weaponCache);
+
         this.itemInventory = new ArrayList<ItemPickup>();
         this.itemCollection = new  ArrayList<ItemPickup>();
-        this.gunInventory.add(new GunCreator("Revolver"));
-        this.gunInventory.add(new GunCreator("Shotgun"));
-        this.gunInventory.add(new GunCreator("MachineGun"));
-        this.gunInventory.add(new GunCreator("Musket"));
+//        this.gunInventory.add(new GunCreator("Revolver"));
+//        this.gunInventory.add(new GunCreator("Shotgun"));
+//        this.gunInventory.add(new GunCreator("MachineGun"));
+//        this.gunInventory.add(new GunCreator("Musket"));
         this.activeGun = this.gunInventory.get(0);
+        System.out.println(this.gunInventory.get(0).gunName);
         this.gunInvIterator = this.gunInventory.iterator();
 
         for (Gun gun:gunInventory) {
@@ -178,7 +185,7 @@ public class Player extends Renderable {
                     this.activeGun.activeForRender = false;
                     this.activeGun = this.gunInventory.get(0);
                     this.activeGun.activeForRender = true;
-                    gunInvIterator = gunInventory.iterator();
+                    this.gunInvIterator = gunInventory.iterator();
                 }
             } catch (NoSuchElementException w){
                 w.printStackTrace();
@@ -562,8 +569,19 @@ public class Player extends Renderable {
     public float getHealth(){
         return health;
     }
+
     public Gun getActiveWeapon() {
         return this.activeGun;
     }
+
+    public void setActiveWeapon(Gun weapon) { this.activeGun = weapon; }
+
+    public Iterator<Gun> getGunInvIterator() { return this.gunInvIterator; }
+
+    public void setGunInvIterator(Iterator<Gun> gunIterator) { this.gunInvIterator = gunIterator; }
+
+    public ArrayList<Gun> getGunInventory() { return this.gunInventory; }
+
+    public void setGunInventory(ArrayList<Gun> gunList) { this.gunInventory = gunList; }
 }
 

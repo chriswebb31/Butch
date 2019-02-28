@@ -97,6 +97,17 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //Musket Ammo Bar
     public final String musketAmmoBar1 = "HUD/musketAmmoBar/musketAmmoBar_0.png";
     public final String musketAmmoBar0 = "HUD/musketAmmoBar/musketAmmoBar_1.png";
+    //Coin Counter
+    public final String coinCounter0 = "HUD/CoinCount/coinCount-9.png";
+    public final String coinCounter1 = "HUD/CoinCount/coinCount-0.png";
+    public final String coinCounter2 = "HUD/CoinCount/coinCount-1.png";
+    public final String coinCounter3 = "HUD/CoinCount/coinCount-2.png";
+    public final String coinCounter4 = "HUD/CoinCount/coinCount-3.png";
+    public final String coinCounter5 = "HUD/CoinCount/coinCount-4.png";
+    public final String coinCounter6 = "HUD/CoinCount/coinCount-5.png";
+    public final String coinCounter7 = "HUD/CoinCount/coinCount-6.png";
+    public final String coinCounter8 = "HUD/CoinCount/coinCount-7.png";
+    public final String coinCounter9 = "HUD/CoinCount/coinCount-8.png";
 
     //TEXTUREATLAS
     //MAIN MENU
@@ -339,6 +350,17 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //Musket Ammo Bar
         load(musketAmmoBar0, Texture.class);
         load(musketAmmoBar1, Texture.class);
+        //Coin Counter
+        load(coinCounter0, Texture.class);
+        load(coinCounter1, Texture.class);
+        load(coinCounter2, Texture.class);
+        load(coinCounter3, Texture.class);
+        load(coinCounter4, Texture.class);
+        load(coinCounter5, Texture.class);
+        load(coinCounter6, Texture.class);
+        load(coinCounter7, Texture.class);
+        load(coinCounter8, Texture.class);
+        load(coinCounter9, Texture.class);
 
         //Coin
         load(coinSpin, TextureAtlas.class);

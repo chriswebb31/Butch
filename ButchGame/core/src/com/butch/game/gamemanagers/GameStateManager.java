@@ -31,7 +31,7 @@ public class GameStateManager {
         if(playerObject != null){
             try{
                 if(playerObject.health <= 0){
-                    death(playerObject.coin, Player.gunInventory, Player.itemInventory);
+                    death(playerObject.coin, Player.itemInventory);
                 }
             } catch (NullPointerException e){
                 e.printStackTrace();
@@ -39,7 +39,7 @@ public class GameStateManager {
         }
     }
 
-    public void death(int coins, ArrayList<Gun> weaponInventory, ArrayList<ItemPickup> itemInventory){
+    public void death(int coins, ArrayList<ItemPickup> itemInventory){
         if(lives > 0) {
 //            playerObject.setPosition(level.spawnPoint);
             playerObject.health = 100;

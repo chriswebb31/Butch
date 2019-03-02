@@ -30,6 +30,7 @@ import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
+import com.butch.game.gameobjects.spriterenderables.Animal;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.weapons.GunCreator;
@@ -44,6 +45,7 @@ public class NewGameScreen implements Screen {
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
     public ArrayList<NPC> NPCs;
+    private ArrayList<Animal> animals;
     public ButchGame game;
     private ArrayList<Gun> weaponCache;
 
@@ -94,6 +96,7 @@ public class NewGameScreen implements Screen {
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
         this.NPCs = new ArrayList<NPC>();
+        this.animals = new ArrayList<Animal>();
         this.mapColliders = new ArrayList<Rectangle>();
         this.spawnPoint = new Vector2().setZero();
 
@@ -232,6 +235,16 @@ public void renderEnemyHB(){
         }
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
+        for(NPC npc : NPCs) {
+            if(npc.getInteractActive() && !npc.getHasSpoken()) {
+                Label npcTextLabel = new Label(npc.getNpcText(), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
+                npcTextLabel.setFontScale(3.0f);
+                hud.table.center();
+                hud.table.add(npcTextLabel).expandY().expandX().center();
+                npc.setHasSpoken(true);
+            }
+        }
+
         if(player.getHealth() <=0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
@@ -255,6 +268,8 @@ public void renderEnemyHB(){
         MapObjects itemLayer = tiledMap.getLayers().get(6).getObjects();
         MapObjects enemyLayer = tiledMap.getLayers().get(7).getObjects();
         MapObjects npcLayer = tiledMap.getLayers().get(8).getObjects();
+        MapObjects animalLayer = tiledMap.getLayers().get(9).getObjects();
+
 
         for(RectangleMapObject colliderRectangle : collisionLayer.getByType(RectangleMapObject.class)){
             float newX = colliderRectangle.getRectangle().x * 10;
@@ -301,6 +316,12 @@ public void renderEnemyHB(){
                 case 11:
                     itemPickups.add(new MachineGunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
+                case 12 :
+                    itemPickups.add(new ShotgunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 13 :
+                    itemPickups.add(new MusketItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
             }
         }
         //SET ITEMS AND POSITIONING ITEMS
@@ -319,9 +340,15 @@ public void renderEnemyHB(){
         //SET ENEMIES AND POSITIONS
 
         for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){
-            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), new TextureAtlas(ButchGame.assets.npc2Idle)));
+            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), "Dan"));
         }
         //SET NPCS AND POSITIONS
+
+        for(RectangleMapObject animal : animalLayer.getByType(RectangleMapObject.class)) {
+            int animalID = Integer.parseInt(animal.getName());
+            animals.add(new Animal(new Vector2(animal.getRectangle().x * 10, animal.getRectangle().y * 10), animalID));
+        }
+
     }
 
     private void updateCameraPosition() {

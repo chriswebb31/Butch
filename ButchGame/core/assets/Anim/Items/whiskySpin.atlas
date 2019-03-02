@@ -1,0 +1,61 @@
+whiskySpin.png
+size: 11, 176
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+whiskeySpin-0
+  rotate: false
+  xy: 1, 1
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskeySpin-1
+  rotate: false
+  xy: 1, 23
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskeySpin-2
+  rotate: false
+  xy: 1, 45
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskeySpin-3
+  rotate: false
+  xy: 1, 67
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskeySpin-4
+  rotate: false
+  xy: 1, 89
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskeySpin-5
+  rotate: false
+  xy: 1, 111
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskeySpin-6
+  rotate: false
+  xy: 1, 133
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1
+whiskeySpin-7
+  rotate: false
+  xy: 1, 155
+  size: 9, 20
+  orig: 9, 20
+  offset: 0, 0
+  index: -1

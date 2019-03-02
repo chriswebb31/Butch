@@ -57,13 +57,16 @@ public abstract class EquipableItem extends Renderable {
                 try{
                     this.getSprite().setRotation(angle);
                     this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
-                    if (ButchGame.mousePosition().x >= this.getPosition().x) { // if direction is right
-                        //this.getSprite().setFlip(false, false);
+                    if (ButchGame.mousePosition().x >= player.getPosition().x) { // if direction is right
                         this.getSprite().setFlip(false, false);
-                    } else if (ButchGame.mousePosition().x < this.getPosition().x){ //if direction is left or not right
+                        if(this.oneHanded)
+                            this.getSprite().setPosition(player.getSprite().getX() + 20, player.getSprite().getY() - 100);
+                        else
+                            this.getSprite().setPosition(player.getSprite().getX() + 10, player.getSprite().getY() - 80);
+                    } else if (ButchGame.mousePosition().x < player.getPosition().x){ //if direction is left or not right
                         //this.getSprite().setFlip(true, false);
                         this.getSprite().setFlip(false, true); //
-                        this.getSprite().setPosition(this.getSprite().getX(), this.getSprite().getY() + 15);
+                        this.getSprite().setPosition(player.getSprite().getX() - 80, player.getSprite().getY() - 60);
                     }
                 } catch (NullPointerException e){
                     System.out.println(e);

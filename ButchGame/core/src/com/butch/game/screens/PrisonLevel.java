@@ -38,7 +38,8 @@ import com.butch.game.gameobjects.weapons.GunCreator;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Level3 implements Screen {
+
+public class PrisonLevel implements Screen {
     public int levelNumber;
     private SpriteBatch batch;
     private Pixmap cursor;
@@ -78,7 +79,7 @@ public class Level3 implements Screen {
     private final short buffer = 120;
     private ArrayList<Gun> weaponCache;
 
-    public Level3(ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons){
+    public PrisonLevel(ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons) {
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
@@ -87,7 +88,7 @@ public class Level3 implements Screen {
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
-        tiledMap = ButchGame.assets.get(ButchGame.assets.caveTransition); //get tiled map for this screen
+        tiledMap = ButchGame.assets.get(ButchGame.assets.prison); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
@@ -120,22 +121,22 @@ public class Level3 implements Screen {
 
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
-        music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
+        music = ButchGame.assets.get(ButchGame.assets.townTheme, Music .class);
         music.setVolume(0.3f);
         music.setLooping(true);
         music.play();
-        //////////////////////hud ////////////////////
+    //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
         outOfBullets = false;
-        this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
+        this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap .class);
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
-        //(int)enemies.get(0).getHealth()
-        //enemyHb = new HealthBar(500,20);
+    //(int)enemies.get(0).getHealth()
+    //enemyHb = new HealthBar(500,20);
         stage= new Stage();
         healthBarBG = new Sprite(new Texture("HUD/enemyHealthBarBG.png"));
         healthBarFG = new Sprite (new Texture("HUD/enemyHealthBarFG.png"));
 
-    }
+}
 
     @Override
     public void show() {
@@ -147,7 +148,7 @@ public class Level3 implements Screen {
         updateCameraPosition();
 
         if(player.getCollider().overlaps(endPoint)){
-            game.setScreen( new PrisonLevel(game, gameViewPort, player.getGunInventory()));
+            game.setScreen( new NewGameScreen(game, gameViewPort));
         }
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)

@@ -1,0 +1,33 @@
+shotgunPickup.png
+size: 116, 12
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+shotgunPickup-0
+  rotate: false
+  xy: 1, 1
+  size: 27, 10
+  orig: 27, 10
+  offset: 0, 0
+  index: -1
+shotgunPickup-1
+  rotate: false
+  xy: 30, 1
+  size: 27, 10
+  orig: 27, 10
+  offset: 0, 0
+  index: -1
+shotgunPickup-2
+  rotate: false
+  xy: 59, 1
+  size: 27, 10
+  orig: 27, 10
+  offset: 0, 0
+  index: -1
+shotgunPickup-3
+  rotate: false
+  xy: 88, 1
+  size: 27, 10
+  orig: 27, 10
+  offset: 0, 0
+  index: -1

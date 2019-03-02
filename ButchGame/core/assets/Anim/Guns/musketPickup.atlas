@@ -1,0 +1,33 @@
+musketPickup.png
+size: 184, 13
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+musketPickup-0
+  rotate: false
+  xy: 1, 1
+  size: 44, 11
+  orig: 44, 11
+  offset: 0, 0
+  index: -1
+musketPickup-1
+  rotate: false
+  xy: 47, 1
+  size: 44, 11
+  orig: 44, 11
+  offset: 0, 0
+  index: -1
+musketPickup-2
+  rotate: false
+  xy: 93, 1
+  size: 44, 11
+  orig: 44, 11
+  offset: 0, 0
+  index: -1
+musketPickup-3
+  rotate: false
+  xy: 139, 1
+  size: 44, 11
+  orig: 44, 11
+  offset: 0, 0
+  index: -1

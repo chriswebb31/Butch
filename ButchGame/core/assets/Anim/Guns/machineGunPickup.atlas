@@ -1,0 +1,33 @@
+machineGunPickup.png
+size: 116, 11
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+machineGunPickup-0
+  rotate: false
+  xy: 1, 1
+  size: 27, 9
+  orig: 27, 9
+  offset: 0, 0
+  index: -1
+machineGunPickup-1
+  rotate: false
+  xy: 30, 1
+  size: 27, 9
+  orig: 27, 9
+  offset: 0, 0
+  index: -1
+machineGunPickup-2
+  rotate: false
+  xy: 59, 1
+  size: 27, 9
+  orig: 27, 9
+  offset: 0, 0
+  index: -1
+machineGunPickup-3
+  rotate: false
+  xy: 88, 1
+  size: 27, 9
+  orig: 27, 9
+  offset: 0, 0
+  index: -1

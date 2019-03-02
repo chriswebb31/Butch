@@ -29,7 +29,7 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
-    public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING, RIDING };
+    public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING, RIDING, RIDINGIDLE };
     private static float maxHealth = 100;
     public State currentState;
     public State previousState;
@@ -40,6 +40,7 @@ public class Player extends Renderable {
     private Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
     private Animation<TextureRegion> butchHorseRiding;
+    private Animation<TextureRegion> butchHorseIdle;
 
     private boolean isRiding = false;
 
@@ -125,6 +126,7 @@ public class Player extends Renderable {
         butchDying = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchDying, TextureAtlas.class).getRegions());
         butchWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchWalking, TextureAtlas.class).getRegions());
         butchHorseRiding = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchHorseRiding, TextureAtlas.class).getRegions());
+        butchHorseIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.butchHorseIdle, TextureAtlas.class).getRegions());
 
         currentState = State.IDLE;
         previousState = State.IDLE;
@@ -509,6 +511,9 @@ public class Player extends Renderable {
             case RIDING :
                 region = butchHorseRiding.getKeyFrame(stateTimer, true);
                 break;
+            case RIDINGIDLE :
+                region = butchHorseIdle.getKeyFrame(stateTimer, true);
+                break;
             case IDLE:
                 region = butchIdle.getKeyFrame(stateTimer, true);
                 break;
@@ -535,7 +540,7 @@ public class Player extends Renderable {
         if(health <= 0) {
             return State.DEAD;
         }
-        else if(isRiding) {
+        else if(isRiding && (xAxis > 0 || xAxis < 0 || yAxis > 0 || yAxis< 0)) {
             return State.RIDING;
         }
         else if(xAxis > 0){
@@ -549,6 +554,9 @@ public class Player extends Renderable {
         }
         else if(yAxis < 0){
             return State.RUNNING;
+        }
+        else if(isRiding) {
+            return State.RIDINGIDLE;
         }
         else{
             return State.IDLE;

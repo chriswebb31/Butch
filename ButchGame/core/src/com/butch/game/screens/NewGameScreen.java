@@ -219,7 +219,11 @@ public void renderEnemyHB(){
 //        }
 //
 //        shapeRenderer.end();
-        caseBreak();
+            caseBreak();
+            renderHUD();
+            renderEnemyHB();
+    }
+    private void renderHUD(){
         hud.coinLabel.setText(String.format("Coins: " + player.coin ));
         int thisReserve;
         if(player.getActiveWeapon().gunType == 0){
@@ -257,9 +261,7 @@ public void renderEnemyHB(){
         }
 
         hud.stage.draw();
-    renderEnemyHB();
     }
-
     private void setupLevel() {
         MapObjects collisionLayer = tiledMap.getLayers().get(4).getObjects();
         MapObjects pointsLayer = tiledMap.getLayers().get(5).getObjects();
@@ -362,10 +364,11 @@ public void renderEnemyHB(){
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, camera.position.z);
         camera.update();
     }
-    //    public void update(float delta){
+//    public void update(float delta){
 //        stage.act(delta);
 //    }
-public void caseBreak(){
+
+    public void caseBreak(){
 
     switch(player.getActiveWeapon().id) {
         case 10:
@@ -498,6 +501,7 @@ public void caseBreak(){
     }
 
 }
+
     @Override
     public void pause() {
 

@@ -117,14 +117,14 @@ public class Enemy extends Renderable  {
         this.localPos = new Vector2().setZero();
         this.iteration = 0;
 
-        enemy1Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy1Idle, TextureAtlas.class).getRegions());
-        enemy2Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy2Idle, TextureAtlas.class).getRegions());
-        enemy3Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy3Idle, TextureAtlas.class).getRegions());
-        enemy4Idle = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy4Idle, TextureAtlas.class).getRegions());
-        enemy1Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy1Walking, TextureAtlas.class).getRegions());
-        enemy2Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
-        enemy3Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
-        enemy4Walking = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
+        enemy1Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy1Idle, TextureAtlas.class).getRegions());
+        enemy2Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy2Idle, TextureAtlas.class).getRegions());
+        enemy3Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy3Idle, TextureAtlas.class).getRegions());
+        enemy4Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy4Idle, TextureAtlas.class).getRegions());
+        enemy1Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy1Walking, TextureAtlas.class).getRegions());
+        enemy2Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
+        enemy3Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
+        enemy4Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
      //
         //healthB = new Hb(this);
         //healthBar = new HealthBar((int)this.health, 10, this.getPosition().x,this.getPosition().y + this.sprite.getHeight() +20 );
@@ -252,9 +252,10 @@ public class Enemy extends Renderable  {
 //        }
 
         sprite.setRegion(getFrame(delta));
+        sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
         this.setSprite(sprite);
 
-        this.getSprite().setScale(8);
+        this.getSprite().setScale(10);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getCollider().setPosition(this.getPosition());
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);

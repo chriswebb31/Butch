@@ -56,8 +56,8 @@ public class NeedHelpScreen implements Screen {
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
-        healthBar = new HealthBar(1000,20,0,0);
-        healthBar.setPosition(10,game.TARGET_HEIGHT-healthBar.getHeight()-10);
+//        healthBar = new HealthBar(1000,20,0,0);
+//        healthBar.setPosition(10,game.TARGET_HEIGHT-healthBar.getHeight()-10);
         batch= new SpriteBatch();
         //healthBarBack = new Texture("HUD Stuff/healthBarBack.png");
         back = new Texture(Gdx.files.internal("needHelpPage.png"));
@@ -100,12 +100,12 @@ public class NeedHelpScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
         camera.update();
 
-        if(Gdx.input.isTouched()){
-            healthBar.setWidth(healthBar.getWidth() + 0.1f);
-        }
-        else{
-            healthBar.setWidth(healthBar.getWidth() - 0.1f);
-        }
+//        if(Gdx.input.isTouched()){
+//            healthBar.setWidth(healthBar.getWidth() + 0.1f);
+//        }
+//        else{
+//            healthBar.setWidth(healthBar.getWidth() - 0.1f);
+//        }
         update(delta);
         batch.begin();
         batch.draw(backS, 0, 0 );

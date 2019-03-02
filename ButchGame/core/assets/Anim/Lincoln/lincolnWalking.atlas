@@ -1,0 +1,61 @@
+lincolnWalking.png
+size: 224, 29
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+abrahamLincolnWalking-0
+  rotate: false
+  xy: 1, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+abrahamLincolnWalking-1
+  rotate: false
+  xy: 29, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+abrahamLincolnWalking-2
+  rotate: false
+  xy: 57, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+abrahamLincolnWalking-3
+  rotate: false
+  xy: 85, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+abrahamLincolnWalking-4
+  rotate: false
+  xy: 113, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+abrahamLincolnWalking-5
+  rotate: false
+  xy: 141, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+abrahamLincolnWalking-6
+  rotate: false
+  xy: 169, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+abrahamLincolnWalking-7
+  rotate: false
+  xy: 197, 1
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1

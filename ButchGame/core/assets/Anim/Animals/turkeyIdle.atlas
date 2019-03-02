@@ -1,0 +1,19 @@
+turkeyIdle.png
+size: 40, 20
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+turkeyIdle-0
+  rotate: false
+  xy: 1, 1
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+turkeyIdle-1
+  rotate: false
+  xy: 21, 1
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1

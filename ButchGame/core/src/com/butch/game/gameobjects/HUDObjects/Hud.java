@@ -29,7 +29,8 @@ public class Hud implements Disposable{
     public Player player;
     private Texture ammoCount;
     private Image ammoCountImage;
-    private Image healthBarBack;
+    private Image healthBarBG;
+    private Image healthBarFG;
 
     public Hud(SpriteBatch spriteBatch, Player player){
         this.player = player;
@@ -47,22 +48,25 @@ public class Hud implements Disposable{
         weaponLabel = new Label(String.format(player.getActiveWeapon().gunName), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
         weaponLabel.setFontScale(2.0f);
 //      ammoCountImage.setDrawable(new TextureRegionDrawable(new TextureRegion(ammoCount)));
-        healthBarBack = new Image(ButchGame.assets.get(ButchGame.assets.healthBarBack, Texture.class));
-        healthBarBack.setPosition(Gdx.graphics.getWidth()/14-healthBarBack.getWidth()*2,Gdx.graphics.getHeight()/1.1f-healthBarBack.getHeight()*2);
-        healthBarBack.setSize(healthBarBack.getWidth() * 6, healthBarBack.getHeight() * 6);
-
+        healthBarBG = new Image(ButchGame.assets.get(ButchGame.assets.playerHBBG, Texture.class));
+        healthBarFG = new Image(ButchGame.assets.get(ButchGame.assets.playerHBFG, Texture.class));
+        healthBarBG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2,Gdx.graphics.getHeight()/1.1f-healthBarBG.getHeight()*2);
+        healthBarFG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2 + 2,Gdx.graphics.getHeight()/1.1f-healthBarFG.getHeight()*2 -1);
+        healthBarBG.setSize(player.getHealth(), healthBarBG.getHeight() * 6);
+      //  hb = new HealthBar((int)player.getHealth(),20,0,0);
         table.top().left();
-        hb = new HealthBar((int)player.getHealth(),20,0,0);
+
         table.setFillParent(true);
         table.row();
-        table.add(hb).expandX().left().pad(5);
+        //table.add(hb).expandX().left().pad(5);
         table.add(levelLabel).expandX().right().pad(5);
         table.row();
         table.add(coinLabel).expand().bottom().left().pad(5);
 
         stage.addActor(table);
         stage.addActor(ammoCountImage);
-        stage.addActor(healthBarBack);
+        stage.addActor(healthBarBG);
+        stage.addActor(healthBarFG);
     }
 
     @Override

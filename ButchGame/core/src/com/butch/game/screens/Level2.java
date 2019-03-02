@@ -443,7 +443,7 @@ public class Level2 implements Screen {
         //SET ENEMIES AND POSITIONS
 
         for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){
-            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), new TextureAtlas(ButchGame.assets.npc2Idle)));
+            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), "Dan"));
         }
         //SET NPCS AND POSITIONS
     }

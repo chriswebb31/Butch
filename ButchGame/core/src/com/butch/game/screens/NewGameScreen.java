@@ -228,6 +228,16 @@ public void renderEnemyHB(){
         }
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
+        for(NPC npc : NPCs) {
+            if(npc.getInteractActive() && !npc.getHasSpoken()) {
+                Label npcTextLabel = new Label(npc.getNpcText(), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
+                npcTextLabel.setFontScale(3.0f);
+                hud.table.center();
+                hud.table.add(npcTextLabel).expandY().expandX().center();
+                npc.setHasSpoken(true);
+            }
+        }
+
         if(player.getHealth() <=0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
@@ -317,7 +327,7 @@ public void renderEnemyHB(){
         //SET ENEMIES AND POSITIONS
 
         for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){
-            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), new TextureAtlas(ButchGame.assets.npc2Idle)));
+            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), "Dan"));
         }
         //SET NPCS AND POSITIONS
     }

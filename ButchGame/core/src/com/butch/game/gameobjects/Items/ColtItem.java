@@ -15,7 +15,6 @@ public class ColtItem extends ItemPickup {
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.coltSprite, Texture.class)));
         this.type = 0;
         this.id = 10;
-        System.out.println("created at: " + position);
         this.activeForRender = true;
         this.itemAnim = new Animation<TextureRegion>(0.5f, ButchGame.assets.get(ButchGame.assets.revolverPickup, TextureAtlas.class).getRegions());
     }

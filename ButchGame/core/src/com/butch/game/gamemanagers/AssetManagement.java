@@ -226,6 +226,14 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(playSound, Music.class);
      }
     public void includeAssets() {
+        //Animals
+        load(chickenIdle, TextureAtlas.class);
+        load(cowIdle, TextureAtlas.class);
+        load(racoonIdle, TextureAtlas.class);
+        load(pigIdle, TextureAtlas.class);
+        load(goatIdle, TextureAtlas.class);
+        load(turkeyIdle, TextureAtlas.class);
+
         load(sliderKnob, Texture.class);
         load(sliderBack, Texture.class);
         load(gunSprite, Texture.class);

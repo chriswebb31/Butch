@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="201">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="207">
  <tileset firstgid="1" name="allTiles-3" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-3.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -408,5 +408,13 @@
   <object id="182" name="John" x="818" y="723"/>
   <object id="183" name="Jamerson" x="606" y="433"/>
   <object id="184" name="Morgan" x="596.5" y="208"/>
+ </objectgroup>
+ <objectgroup id="20" name="AnimalLayer">
+  <object id="201" name="0" x="682.667" y="429.333"/>
+  <object id="202" name="1" x="720" y="428"/>
+  <object id="203" name="2" x="758.667" y="428"/>
+  <object id="204" name="3" x="796" y="428"/>
+  <object id="205" name="4" x="833.333" y="425.333"/>
+  <object id="206" name="5" x="870.667" y="425.333"/>
  </objectgroup>
 </map>

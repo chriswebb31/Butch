@@ -181,7 +181,7 @@ public abstract class ModelGameScreen implements Screen {
         //SET ITEMS AND POSITIONING ITEMS
 
         for(PolygonMapObject enemy : enemyLayer.getByType(PolygonMapObject.class)){
-            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10), 1);
+            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10), Integer.parseInt(enemy.getName()));
             for (int i = 2; i < enemy.getPolygon().getTransformedVertices().length; i+=2){
                 Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i+1] * 10);
                 newEnemy.route.add(newRoutePosition);

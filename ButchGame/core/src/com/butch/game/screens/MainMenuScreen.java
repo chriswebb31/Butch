@@ -180,7 +180,7 @@ public class MainMenuScreen implements Screen {
                     public void onCompletion(Music music) {
 
 
-                        game.setScreen(new NewGameScreen(1,game, gameViewPort));
+                        game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
                     }
                 });
             }

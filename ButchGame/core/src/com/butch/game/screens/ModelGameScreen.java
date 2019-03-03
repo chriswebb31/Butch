@@ -79,7 +79,7 @@ public abstract class ModelGameScreen implements Screen {
     final short buffer = 120;
     //
     //
-    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort){
+    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap){
         this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -90,7 +90,8 @@ public abstract class ModelGameScreen implements Screen {
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
-        tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
+        this.tiledMap = tiledMap;
+        //tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
@@ -223,9 +224,7 @@ public abstract class ModelGameScreen implements Screen {
     @Override
     public void render(float delta) {
         updateCameraPosition();
-        if(player.getCollider().overlaps(endPoint)){
-            game.setScreen(new Level2(game, gameViewPort, player.getGunInventory()));
-        }
+
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.

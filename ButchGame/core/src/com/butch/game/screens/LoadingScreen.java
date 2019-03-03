@@ -57,7 +57,7 @@ public class LoadingScreen implements Screen {
        // else {
             if (game.assets.update()) {
                 if (ButchGame.assets.update()) {
-                    game.setScreen(new NewGameScreen(1,game, gameViewPort));
+                    game.setScreen(new NewGameScreen(1,game, gameViewPort, NewGameScreen.map));
                 }
             }
 

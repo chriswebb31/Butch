@@ -148,7 +148,7 @@ public class PrisonLevel implements Screen {
         updateCameraPosition();
 
         if(player.getCollider().overlaps(endPoint)){
-            game.setScreen( new NewGameScreen(1,game, gameViewPort));
+            game.setScreen( new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
         }
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)

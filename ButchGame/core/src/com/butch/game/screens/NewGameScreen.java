@@ -39,10 +39,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class NewGameScreen extends ModelGameScreen{
+   public static TiledMap map = ButchGame.assets.get(ButchGame.assets.tilemap1);
+    public NewGameScreen(int levelNumber,ButchGame game, FitViewport gameViewPort, TiledMap map){
 
-    public NewGameScreen(int levelNumber,ButchGame game, FitViewport gameViewPort){
-
-    super(levelNumber,game,gameViewPort);
+    super(levelNumber,game,gameViewPort, map);
         //tiledMap = ButchGame.assets.get(ButchGame.assets.route1);
 
     }
@@ -54,7 +54,9 @@ public class NewGameScreen extends ModelGameScreen{
 
     @Override
     public void render(float delta){
-
+        if(player.getCollider().overlaps(endPoint)){
+            game.setScreen(new Level2(2,game, gameViewPort, player.getGunInventory(), Level2.map));
+        }
 super.render(delta);
 //
 //        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);

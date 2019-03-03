@@ -56,11 +56,11 @@ public class Level3 extends ModelGameScreen {
         updateCameraPosition();
 
         if (player.getCollider().overlaps(endPoint)) {
-            game.setScreen(new PrisonLevel(game, gameViewPort, player.getGunInventory()));
+            game.setScreen(new PrisonLevel(4, game, gameViewPort, player.getGunInventory()));
         }
         super.render(delta);
     }
-    
+
     @Override
     public void pause() {
 

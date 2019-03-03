@@ -22,7 +22,7 @@ private Viewport viewport;
     private Label _label;
     private Image _transitionImage;
     public CutsSceneScreen(ButchGame game, FitViewport gameViewPort) {
-        super(game, gameViewPort);
+        super(1,game, gameViewPort, NewGameScreen.map);
     }
 
 }

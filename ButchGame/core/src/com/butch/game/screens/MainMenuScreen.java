@@ -32,16 +32,15 @@ import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 public class MainMenuScreen implements Screen {
     //Change to use actual buttons maybe? Scene2D is used for menus etc
     public enum State{CLICKED, NOTCLICKED};
-    private State currentState;
-    private State previousState;
+    private State currentState, previousState;
     static ButchGame game;
     Sound sound;
 
     OrthographicCamera camera;
     SpriteBatch batch;
-    Sprite texture_back;
+
     private Sprite sprite_back, playButtonActive,playButtonInactive,aboutButtonActive,aboutButtonInactive,
-            needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive;
+            needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive,texture_back;
     Stage stage;
     private FitViewport gameViewPort;
     private static Music music, playSound;
@@ -181,7 +180,7 @@ public class MainMenuScreen implements Screen {
                     public void onCompletion(Music music) {
 
 
-                        game.setScreen(new NewGameScreen(game, gameViewPort));
+                        game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
                     }
                 });
             }

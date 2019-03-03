@@ -50,9 +50,10 @@ public class Hud implements Disposable{
 //      ammoCountImage.setDrawable(new TextureRegionDrawable(new TextureRegion(ammoCount)));
         healthBarBG = new Image(ButchGame.assets.get(ButchGame.assets.playerHBBG, Texture.class));
         healthBarFG = new Image(ButchGame.assets.get(ButchGame.assets.playerHBFG, Texture.class));
-        healthBarBG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2,Gdx.graphics.getHeight()/1.1f-healthBarBG.getHeight()*2);
-        healthBarFG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2 + 2,Gdx.graphics.getHeight()/1.1f-healthBarFG.getHeight()*2 -1);
-        healthBarBG.setSize(player.getHealth(), healthBarBG.getHeight() * 6);
+        healthBarBG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2+10,Gdx.graphics.getHeight()/1.1f-healthBarBG.getHeight()*2);
+        healthBarFG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2 + 11,Gdx.graphics.getHeight()/1.1f-healthBarFG.getHeight()*2 -1);
+        healthBarBG.setSize(player.getHealth()*3, 50);
+        healthBarFG.setSize(player.getHealth()*3-4, 48);
       //  hb = new HealthBar((int)player.getHealth(),20,0,0);
         table.top().left();
 
@@ -68,6 +69,9 @@ public class Hud implements Disposable{
         stage.addActor(healthBarBG);
         stage.addActor(healthBarFG);
     }
+public void render(float width){
+        healthBarFG.setSize(width*3-4, 48);
+}
 
     @Override
     public void dispose() {

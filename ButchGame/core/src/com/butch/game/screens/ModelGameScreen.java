@@ -32,7 +32,6 @@ import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.weapons.GunCreator;
-
 import java.util.ArrayList;
 
 public abstract class ModelGameScreen implements Screen {
@@ -45,46 +44,33 @@ public abstract class ModelGameScreen implements Screen {
     ArrayList<Animal> animals;
     public ButchGame game;
     ArrayList<Gun> weaponCache;
-
-   FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
+    FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     OrthographicCamera camera; //camera for height position of render
     float distanceDivisor = 1.2f;
-
     public Vector2 spawnPoint;
     public Rectangle endPoint;
-
     public Player player;
-
     public TiledMap tiledMap;
-
     OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     public ArrayList<Rectangle> mapColliders;
-
     ShapeRenderer shapeRenderer;
     Music music;
     // private Stage stage;
     /////////initializing hud vars////////////////////
     Hud hud;
     boolean outOfBullets;
-    HealthBar enemyHb;
-    Label healthLabel;
     Stage stage;
     float enemyX = 8000, enemyY = 7500;
     float npcX = 6000, npcY = 8000;
-    //
     Sprite healthBarBG;
     Sprite healthBarFG;
-
-    //private Batch batch;
     final short buffer = 120;
-    //
-    //
+
     public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap){
         this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
-
 //        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
 //        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
@@ -136,6 +122,7 @@ public abstract class ModelGameScreen implements Screen {
         healthBarBG = new Sprite(ButchGame.assets.get(ButchGame.assets.enemyHBBG, Texture.class));
         healthBarFG = new Sprite (ButchGame.assets.get(ButchGame.assets.enemyHBFG, Texture.class));
     }
+
     private void setupLevel() {
         MapObjects collisionLayer = tiledMap.getLayers().get(4).getObjects();
         MapObjects pointsLayer = tiledMap.getLayers().get(5).getObjects();
@@ -216,6 +203,7 @@ public abstract class ModelGameScreen implements Screen {
             animals.add(new Animal(new Vector2(animal.getRectangle().x * 10, animal.getRectangle().y * 10), animalID));
         }
     }
+
     @Override
     public void show() {
 
@@ -249,6 +237,7 @@ public abstract class ModelGameScreen implements Screen {
         renderHUD();
         renderEnemyHB();
     }
+
     public void renderEnemyHB(){
         for(int i = 0; i<=enemies.size()-1;i++){
             healthBarBG.setX(enemies.get(i).getPosition().x);
@@ -266,12 +255,14 @@ public abstract class ModelGameScreen implements Screen {
             }
         }
     }
+
     void updateCameraPosition() {
         Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
         float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
         float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
         camera.position.slerp(new Vector3(newX, newY, camera.position.z), 0.1f);
     }
+
     void renderHUD(){
         hud.coinLabel.setText(String.format("Coins: " + player.coin ));
         int thisReserve;
@@ -311,6 +302,7 @@ public abstract class ModelGameScreen implements Screen {
         hud.render(player.getHealth());
         hud.stage.draw();
     }
+
     @Override
     public void resize(int width, int height) {
 
@@ -330,6 +322,7 @@ public abstract class ModelGameScreen implements Screen {
     public void hide() {
 
     }
+
     public void caseBreak(){
 
         switch(player.getActiveWeapon().id) {
@@ -463,8 +456,10 @@ public abstract class ModelGameScreen implements Screen {
         }
 
     }
+
     @Override
     public void dispose() {
 
     }
+
 }

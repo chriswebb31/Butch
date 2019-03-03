@@ -46,7 +46,7 @@ public class GameStateManager {
             lives -= 1;
         }
         else{
-            game.setScreen(new NewGameScreen(game, viewport));
+            game.setScreen(new NewGameScreen(1,game, viewport));
         }
     }
 

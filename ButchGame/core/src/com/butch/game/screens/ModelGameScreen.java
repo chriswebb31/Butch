@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -26,31 +25,30 @@ import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.HUDObjects.HealthBar;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.*;
+import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
-import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Animal;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
-import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.weapons.GunCreator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class Level2 implements Screen {
+public abstract class ModelGameScreen implements Screen {
     public int levelNumber;
-    private SpriteBatch batch;
-    private Pixmap cursor;
+     SpriteBatch batch;
+    Pixmap cursor;
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
     public ArrayList<NPC> NPCs;
-    private ArrayList<Animal> animals;
+    ArrayList<Animal> animals;
     public ButchGame game;
+    ArrayList<Gun> weaponCache;
 
-    private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
-    private OrthographicCamera camera; //camera for height position of render
-    private float distanceDivisor = 1.2f;
+   FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
+    OrthographicCamera camera; //camera for height position of render
+    float distanceDivisor = 1.2f;
 
     public Vector2 spawnPoint;
     public Rectangle endPoint;
@@ -59,35 +57,40 @@ public class Level2 implements Screen {
 
     public TiledMap tiledMap;
 
-    private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
+    OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     public ArrayList<Rectangle> mapColliders;
 
-    private ShapeRenderer shapeRenderer;
-    private Music music;
+    ShapeRenderer shapeRenderer;
+    Music music;
     // private Stage stage;
     /////////initializing hud vars////////////////////
-    private Hud hud;
-    private boolean outOfBullets;
+    Hud hud;
+    boolean outOfBullets;
     HealthBar enemyHb;
     Label healthLabel;
     Stage stage;
     float enemyX = 8000, enemyY = 7500;
     float npcX = 6000, npcY = 8000;
-    private Sprite healthBarBG;
-    private Sprite healthBarFG;
-    private final short buffer = 120;
-    private ArrayList<Gun> weaponCache;
+    //
+    Sprite healthBarBG;
+    Sprite healthBarFG;
 
-    public Level2(ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons){
+    //private Batch batch;
+    final short buffer = 120;
+    //
+    //
+    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort){
+        this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
-        //this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
-        //this.cursor.setScale(10);
+
+//        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
+//        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
-        tiledMap = ButchGame.assets.get(ButchGame.assets.route1); //get tiled map for this screen
+        tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
@@ -96,28 +99,22 @@ public class Level2 implements Screen {
         this.mapColliders = new ArrayList<Rectangle>();
         this.spawnPoint = new Vector2().setZero();
 
-        ButchGame.renderableManager = new RenderableManager();
+        ButchGame.renderableManager.reset();
         RenderableManager.mapColliders = mapColliders;
         ButchGame.itemManager = new ItemManager();
 
         this.weaponCache = new ArrayList<Gun>();
-        for(Gun gun:weapons) {
-            this.weaponCache.add(new GunCreator(gun.gunName));
-        }
+        this.weaponCache.add(new GunCreator("Revolver"));
+        this.weaponCache.add(new GunCreator("MachineGun"));
+        this.weaponCache.add(new GunCreator("Musket"));
+        this.weaponCache.add(new GunCreator("Shotgun"));
         setupLevel();
 
-//        player = new Player(spawnPoint, mapColliders);
-//        player.gunInventory.addAll(weaponCache);
-
-//        player.setGunInventory(weaponCache);
-//        player.setGunInvIterator(player.getGunInventory().iterator());
-//        player.getGunInvIterator().
-//        System.out.println(player.getGunInventory().size());
+//        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
 
         camera.position.set(new Vector3(player.getPosition().x, player.getPosition().y, 40));
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
-
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
@@ -127,231 +124,16 @@ public class Level2 implements Screen {
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
         outOfBullets = false;
+
         this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
         //(int)enemies.get(0).getHealth()
-        //enemyHb = new HealthBar(500,20);
+        // enemyHb = new HealthBar(500,20);
         stage= new Stage();
-
-    }
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void render(float delta) {
-        updateCameraPosition();
-
-        if (player.getCollider().overlaps(endPoint)) {
-            game.setScreen(new Level3(game, gameViewPort, player.getGunInventory()));
-        }
-
-        Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
-
-
-        camera.update();
-        ButchGame.renderableManager.update(delta);
-
-        orthogonalTiledMapRenderer.setView(camera); //update view of renderers to camera
-        orthogonalTiledMapRenderer.render();//draw t
-
-        batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
-        batch.begin();
-        ButchGame.renderableManager.render(batch); //render all objects on screen
-        //cursor.draw(batch);
-        batch.end();
-
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-//        shapeRenderer.setColor(Color.FIREBRICK);
 //
-//        for (Renderable renderable: RenderableManager.renderableObjects) {
-//            try{
-//                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
-//                    if((renderable.TAG == "item")) {
-//                        ItemPickup item = (ItemPickup) renderable;
-//                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
-//                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
-//                        Enemy enemy = (Enemy) renderable;
-//                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
-//                    }
-//                }
-//            } catch (NullPointerException e){
-//                e.printStackTrace();
-//            }
-//            try{
-//                if(renderable.activeCollision){
-//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-//                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
-//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-//                }
-//            } catch (NullPointerException e){
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        shapeRenderer.end();
-        switch (player.getActiveWeapon().id) {
-            case 10:
-                switch (player.getActiveWeapon().clip) {
-                    case 6:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar6, Texture.class));
-                        break;
-                    case 5:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar5, Texture.class));
-                        break;
-                    case 4:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar4, Texture.class));
-                        break;
-                    case 3:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar3, Texture.class));
-                        break;
-                    case 2:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar2, Texture.class));
-                        break;
-                    case 1:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar1, Texture.class));
-                        break;
-                    case 0:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar0, Texture.class));
-                        break;
-                }
-                break;
-            case 11:
-                switch (player.getActiveWeapon().clip) {
-                    case 24:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar24, Texture.class));
-                        break;
-                    case 23:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar23, Texture.class));
-                        break;
-                    case 22:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar22, Texture.class));
-                        break;
-                    case 21:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar21, Texture.class));
-                        break;
-                    case 20:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar20, Texture.class));
-                        break;
-                    case 19:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar19, Texture.class));
-                        break;
-                    case 18:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar18, Texture.class));
-                        break;
-                    case 17:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar17, Texture.class));
-                        break;
-                    case 16:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar16, Texture.class));
-                        break;
-                    case 15:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar15, Texture.class));
-                        break;
-                    case 14:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar14, Texture.class));
-                        break;
-                    case 13:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar13, Texture.class));
-                        break;
-                    case 12:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar12, Texture.class));
-                        break;
-                    case 11:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar11, Texture.class));
-                        break;
-                    case 10:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar10, Texture.class));
-                        break;
-                    case 9:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar9, Texture.class));
-                        break;
-                    case 8:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar8, Texture.class));
-                        break;
-                    case 7:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar7, Texture.class));
-                        break;
-                    case 6:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar6, Texture.class));
-                        break;
-                    case 5:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar5, Texture.class));
-                        break;
-                    case 4:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar4, Texture.class));
-                        break;
-                    case 3:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar3, Texture.class));
-                        break;
-                    case 2:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar2, Texture.class));
-                        break;
-                    case 1:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar1, Texture.class));
-                        break;
-                    case 0:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar0, Texture.class));
-                        break;
-                }
-                break;
-            case 12:
-                switch (player.getActiveWeapon().clip) {
-                    case 2:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.shotgunAmmoBar2, Texture.class));
-                        break;
-                    case 1:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.shotgunAmmoBar1, Texture.class));
-                        break;
-                    case 0:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.shotgunAmmoBar0, Texture.class));
-                        break;
-                }
-                break;
-            case 13:
-                switch (player.getActiveWeapon().clip) {
-                    case 1:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.musketAmmoBar1, Texture.class));
-                        break;
-                    case 0:
-                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.musketAmmoBar0, Texture.class));
-                        break;
-                }
-                break;
-        }
 
-        hud.coinLabel.setText(String.format("Coins: " + player.coin));
-        int thisReserve;
-        if (player.getActiveWeapon().gunType == 0) {
-            thisReserve = player.pistolAmmo;
-        } else if (player.getActiveWeapon().gunType == 1) {
-            thisReserve = player.rifleAmmo;
-        } else {
-            thisReserve = player.shotgunAmmo;
-        }
-        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip + "/" + thisReserve));
-
-        if (player.getHealth() <= 0 && outOfBullets == false) {
-            Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
-            healthLabel.setFontScale(3.0f);
-//            hud.table.removeActor(hud.hb);
-            hud.table.removeActor(hud.levelLabel);
-            hud.table.reset();
-            hud.table.center();
-            hud.table.add(healthLabel).expandY().expandX().center();
-
-            outOfBullets = true;
-        } else {
-//            hud.hb.setWidth(player.getHealth());
-        }
-
-        hud.stage.draw();
+        healthBarBG = new Sprite(ButchGame.assets.get(ButchGame.assets.enemyHBBG, Texture.class));
+        healthBarFG = new Sprite (ButchGame.assets.get(ButchGame.assets.enemyHBFG, Texture.class));
     }
     private void setupLevel() {
         MapObjects collisionLayer = tiledMap.getLayers().get(4).getObjects();
@@ -433,20 +215,108 @@ public class Level2 implements Screen {
             animals.add(new Animal(new Vector2(animal.getRectangle().x * 10, animal.getRectangle().y * 10), animalID));
         }
     }
+    @Override
+    public void show() {
 
-    private void updateCameraPosition() {
+    }
+
+    @Override
+    public void render(float delta) {
+        updateCameraPosition();
+        if(player.getCollider().overlaps(endPoint)){
+            game.setScreen(new Level2(game, gameViewPort, player.getGunInventory()));
+        }
+
+        Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
+
+
+        camera.update();
+        ButchGame.renderableManager.update(delta);
+
+        orthogonalTiledMapRenderer.setView(camera); //update view of renderers to camera
+        orthogonalTiledMapRenderer.render();//draw t
+
+        batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+        //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
+        batch.begin();
+        ButchGame.renderableManager.render(batch); //render all objects on screen
+
+        //cursor.draw(batch);
+        batch.end();
+        caseBreak();
+        renderHUD();
+        renderEnemyHB();
+    }
+    public void renderEnemyHB(){
+        for(int i = 0; i<=enemies.size()-1;i++){
+            healthBarBG.setX(enemies.get(i).getPosition().x);
+            healthBarBG.setY(enemies.get(i).getPosition().y + enemies.get(i).getSprite().getHeight() + buffer);
+            healthBarFG.setX(healthBarBG.getX());
+            healthBarFG.setY(healthBarBG.getY());
+            if(enemies.get(i).getHealth() <= 0) {
+
+            }
+            else{
+                batch.begin();
+                batch.draw(healthBarBG, healthBarBG.getX(), healthBarBG.getY(),100,20);
+                batch.draw(healthBarFG, healthBarFG.getX(), healthBarFG.getY(),enemies.get(i).getHealth(),20);
+                batch.end();
+            }
+        }
+    }
+    void updateCameraPosition() {
         Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
         float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
         float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
         camera.position.slerp(new Vector3(newX, newY, camera.position.z), 0.1f);
     }
+    void renderHUD(){
+        hud.coinLabel.setText(String.format("Coins: " + player.coin ));
+        int thisReserve;
+        if(player.getActiveWeapon().gunType == 0){
+            thisReserve = player.pistolAmmo;
+        } else if(player.getActiveWeapon().gunType == 1){
+            thisReserve = player.rifleAmmo;
+        }else{
+            thisReserve = player.shotgunAmmo;
+        }
+        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
-    @Override
-    public void resize(int width, int height) { //if window is resized
-        gameViewPort.update(width, height);
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, camera.position.z);
-        camera.update();
+        for(NPC npc : NPCs) {
+            if(npc.getInteractActive() && !npc.getHasSpoken()) {
+                Label npcTextLabel = new Label(npc.getNpcText(), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
+                npcTextLabel.setFontScale(3.0f);
+                hud.table.center();
+                hud.table.add(npcTextLabel).expandY().expandX().center();
+                npc.setHasSpoken(true);
+            }
+        }
+
+        if(player.getHealth() <=0 && outOfBullets == false){
+            Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
+            healthLabel.setFontScale(3.0f);
+            //hud.table.removeActor(hud.hb);
+            hud.table.removeActor(hud.levelLabel);
+            hud.table.reset();
+            hud.table.center();
+            hud.table.add(healthLabel).expandY().expandX().center();
+
+            outOfBullets = true;
+        }
+        else{
+            //hud.hb.setWidth(player.getHealth());
+        }
+        hud.render(player.getHealth());
+        hud.stage.draw();
     }
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
     @Override
     public void pause() {
 
@@ -461,7 +331,139 @@ public class Level2 implements Screen {
     public void hide() {
 
     }
+    public void caseBreak(){
 
+        switch(player.getActiveWeapon().id) {
+            case 10:
+                switch(player.getActiveWeapon().clip) {
+                    case 6:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar6, Texture.class));
+                        break;
+                    case 5:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar5, Texture.class));
+                        break;
+                    case 4:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar4, Texture.class));
+                        break;
+                    case 3:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar3, Texture.class));
+                        break;
+                    case 2:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar2, Texture.class));
+                        break;
+                    case 1:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar1, Texture.class));
+                        break;
+                    case 0:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.revolverAmmoBar0, Texture.class));
+                        break;
+                }
+                break;
+            case 11:
+                switch(player.getActiveWeapon().clip) {
+                    case 24:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar24, Texture.class));
+                        break;
+                    case 23:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar23, Texture.class));
+                        break;
+                    case 22:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar22, Texture.class));
+                        break;
+                    case 21:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar21, Texture.class));
+                        break;
+                    case 20:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar20, Texture.class));
+                        break;
+                    case 19:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar19, Texture.class));
+                        break;
+                    case 18:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar18, Texture.class));
+                        break;
+                    case 17:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar17, Texture.class));
+                        break;
+                    case 16:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar16, Texture.class));
+                        break;
+                    case 15:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar15, Texture.class));
+                        break;
+                    case 14:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar14, Texture.class));
+                        break;
+                    case 13:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar13, Texture.class));
+                        break;
+                    case 12:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar12, Texture.class));
+                        break;
+                    case 11:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar11, Texture.class));
+                        break;
+                    case 10:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar10, Texture.class));
+                        break;
+                    case 9:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar9, Texture.class));
+                        break;
+                    case 8:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar8, Texture.class));
+                        break;
+                    case 7:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar7, Texture.class));
+                        break;
+                    case 6:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar6, Texture.class));
+                        break;
+                    case 5:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar5, Texture.class));
+                        break;
+                    case 4:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar4, Texture.class));
+                        break;
+                    case 3:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar3, Texture.class));
+                        break;
+                    case 2:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar2, Texture.class));
+                        break;
+                    case 1:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar1, Texture.class));
+                        break;
+                    case 0:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.machineGunAmmoBar0, Texture.class));
+                        break;
+                }
+                break;
+            case 12:
+                switch(player.getActiveWeapon().clip) {
+                    case 2:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.shotgunAmmoBar2, Texture.class));
+                        break;
+                    case 1:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.shotgunAmmoBar1, Texture.class));
+                        break;
+                    case 0:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.shotgunAmmoBar0, Texture.class));
+                        break;
+                }
+                break;
+            case 13:
+                switch(player.getActiveWeapon().clip) {
+                    case 1:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.musketAmmoBar1, Texture.class));
+                        break;
+                    case 0:
+                        hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.musketAmmoBar0, Texture.class));
+                        break;
+                }
+                break;
+        }
+
+    }
     @Override
     public void dispose() {
 

@@ -146,6 +146,7 @@ public abstract class ModelGameScreen implements Screen {
             if(pointID == 0){
                 spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
                 player = new Player(spawnPoint, mapColliders, weaponCache);
+                player.setCam(camera);
             }else{
                 endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
             }
@@ -211,7 +212,7 @@ public abstract class ModelGameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        updateCameraPosition();
+//        updateCameraPosition();
 
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)

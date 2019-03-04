@@ -3,6 +3,7 @@ package com.butch.game.gameobjects.spriterenderables;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.Items.PistolAmmo;
@@ -29,6 +31,16 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
+    private boolean followCamera = true;
+
+    public OrthographicCamera getCam() {
+        return cam;
+    }
+
+    public void setCam(OrthographicCamera cam) {
+        this.cam = cam;
+    }
+
     public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING, RIDING, RIDINGIDLE };
     private static float maxHealth = 100;
     public State currentState;
@@ -78,6 +90,8 @@ public class Player extends Renderable {
 
     public Sound walkingFX;
     public Sound hitEffect;
+
+    private OrthographicCamera cam;
 
     private float stateTimer;
 
@@ -369,6 +383,16 @@ public class Player extends Renderable {
                 }
             }
         }
+
+        if(cam != null){
+            Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
+            float newX = mousePosition.x + (this.getPosition().x - mousePosition.x) / 1.2f; //gets position  divirsor percentage) along vector instead of midpoint
+            float newY = mousePosition.y + (this.getPosition().y - mousePosition.y) / 1.2f; //gets position  divirsor percentage) along vector instad of midpoint
+            Vector3 camTarget = new Vector3(newX, newY,  cam.position.z);
+
+            cam.position.slerp(camTarget, 0.07f);
+        }
+
 
         for (Renderable renderable:RenderableManager.renderableObjects) {
             if(renderable.TAG == "item" && renderable.activeForRender){

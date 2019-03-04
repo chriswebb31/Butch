@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gameobjects.spriterenderables.Bullet;
-import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.Shell;
 
 import java.util.Random;
@@ -47,7 +46,7 @@ public abstract class Gun extends EquipableItem {
 
     }
 
-    public void Shoot(){
+    public boolean Shoot(){
         if(this.parent.TAG == "player"){
             friendly = true;
         }
@@ -80,6 +79,7 @@ public abstract class Gun extends EquipableItem {
                     Shell shell = new Shell(this.getPosition());
                     lastShot = thisShot;
                     clip -= 1;
+                    return true;
                 }
                 else if (clip <= 0  && this.reserve!=0) {
                     if (!isReloading)
@@ -87,15 +87,18 @@ public abstract class Gun extends EquipableItem {
 
                     isReloading = true;
                     Reload();
+                    return false;
                 }
                 else if((clip < 0) && isReloading  && this.reserve!=0){
                     lastReload = System.currentTimeMillis();
                     Reload();
+                    return false;
                 }
             }catch (NullPointerException e){
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
     public void Reload(){

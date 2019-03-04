@@ -52,7 +52,7 @@ public class ButchGame extends Game {
 		assets.load(assets.caveTransition, TiledMap.class);
 		assets.load(assets.prison, TiledMap.class);
 		renderableManager = new RenderableManager();
-
+//        Gdx.input.setCursorCatched(true);
 		log = new FPSLogger();
 		GSM = new GameStateManager(gameViewPort, this);
 		themeVolume = 0.3f;

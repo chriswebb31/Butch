@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 public class Player extends Renderable {
     private boolean followCamera = true;
+    public Vector3 shake;
 
     public OrthographicCamera getCam() {
         return cam;
@@ -47,7 +48,7 @@ public class Player extends Renderable {
     public State previousState;
     float xAxis, yAxis, speed = 0;
     private Sprite sprite;
-
+    public float shakeAmount = 25;
     private Animation<TextureRegion> butchWalking;
     private Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
@@ -97,6 +98,7 @@ public class Player extends Renderable {
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache){
         this.setPosition(startPosition);
+        this.shake = new Vector3();
         System.out.println("STARTING POS:" + startPosition);
         this.mapColliders = mapStaticColliders;
         this.TAG = "player";
@@ -185,7 +187,15 @@ public class Player extends Renderable {
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             try{
                 if(!isRiding)
-                    activeGun.Shoot();
+                    if(activeGun.Shoot()){
+                        Vector3 tempShake = new Vector3();
+                        tempShake.x = this.getRecoilDirection().x;
+                        tempShake.y = this.getRecoilDirection().y;
+                        tempShake.z = 40;
+
+                        shake.slerp(tempShake, 0.1f);
+                        shake = Vector3.Zero;
+                    }
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
@@ -340,6 +350,11 @@ public class Player extends Renderable {
         return aimDirection;
     }
 
+    public Vector2 getRecoilDirection() {
+        Vector2 recoilDirection = new Vector2(this.getPosition().x - ButchGame.mousePosition().x, this.getPosition().y - ButchGame.mousePosition().y);
+        return recoilDirection;
+    }
+
     public Vector2 getWeaponPosition(){
         Vector2 pos;
         if(ButchGame.mousePosition().x >= getPosition().x){
@@ -366,6 +381,7 @@ public class Player extends Renderable {
         return Math.max(min, Math.min(max, val));
     }
 
+
     public void update(float delta) {
 
         if(!this.butchDead) {
@@ -390,7 +406,17 @@ public class Player extends Renderable {
             float newY = mousePosition.y + (this.getPosition().y - mousePosition.y) / 1.2f; //gets position  divirsor percentage) along vector instad of midpoint
             Vector3 camTarget = new Vector3(newX, newY,  cam.position.z);
 
-            cam.position.slerp(camTarget, 0.07f);
+            camTarget.add(shake);
+            camTarget.z = 40;
+            cam.position.slerp(camTarget, 0.1f);
+            shake = Vector3.Zero;
+
+            mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
+            newX = mousePosition.x + (this.getPosition().x - mousePosition.x) / 1.2f; //gets position  divirsor percentage) along vector instead of midpoint
+            newY = mousePosition.y + (this.getPosition().y - mousePosition.y) / 1.2f; //gets position  divirsor percentage) along vector instad of midpoint
+            camTarget = new Vector3(newX, newY,  cam.position.z);
+            cam.position.slerp(camTarget, 0.1f);
+
         }
 
 

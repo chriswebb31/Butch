@@ -469,6 +469,8 @@ public class Player extends Renderable {
     @Override
     public void takeHit(float damage) {
         health -= damage;
+        rumble = new Rumble();
+        rumble.rumble(damage, 0.2f);
     }
 
     public void addItem(ItemPickup item){

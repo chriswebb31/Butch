@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gamemanagers.Rumble;
 import com.butch.game.gameobjects.Items.PistolAmmo;
 import com.butch.game.gameobjects.Items.RifleAmmo;
 import com.butch.game.gameobjects.Items.ShotgunAmmo;
@@ -33,6 +34,9 @@ import java.util.ArrayList;
 public class Player extends Renderable {
     private boolean followCamera = true;
     public Vector3 shake;
+    public Vector3 reverseShake;
+    private float shakeY;
+    private float shakeX;
 
     public OrthographicCamera getCam() {
         return cam;
@@ -93,12 +97,13 @@ public class Player extends Renderable {
     public Sound hitEffect;
 
     private OrthographicCamera cam;
-
+    Rumble rumble;
     private float stateTimer;
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache){
         this.setPosition(startPosition);
         this.shake = new Vector3();
+        rumble = new Rumble();
         System.out.println("STARTING POS:" + startPosition);
         this.mapColliders = mapStaticColliders;
         this.TAG = "player";
@@ -188,13 +193,8 @@ public class Player extends Renderable {
             try{
                 if(!isRiding)
                     if(activeGun.Shoot()){
-                        Vector3 tempShake = new Vector3();
-                        tempShake.x = this.getRecoilDirection().x;
-                        tempShake.y = this.getRecoilDirection().y;
-                        tempShake.z = 40;
-
-                        shake.slerp(tempShake, 0.1f);
-                        shake = Vector3.Zero;
+                        rumble = new Rumble();
+                        rumble.rumble(activeGun.damage, activeGun.fireRate);
                     }
             } catch (NullPointerException e){
                 e.printStackTrace();
@@ -406,17 +406,11 @@ public class Player extends Renderable {
             float newY = mousePosition.y + (this.getPosition().y - mousePosition.y) / 1.2f; //gets position  divirsor percentage) along vector instad of midpoint
             Vector3 camTarget = new Vector3(newX, newY,  cam.position.z);
 
-            camTarget.add(shake);
-            camTarget.z = 40;
             cam.position.slerp(camTarget, 0.1f);
-            shake = Vector3.Zero;
-
-            mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
-            newX = mousePosition.x + (this.getPosition().x - mousePosition.x) / 1.2f; //gets position  divirsor percentage) along vector instead of midpoint
-            newY = mousePosition.y + (this.getPosition().y - mousePosition.y) / 1.2f; //gets position  divirsor percentage) along vector instad of midpoint
-            camTarget = new Vector3(newX, newY,  cam.position.z);
-            cam.position.slerp(camTarget, 0.1f);
-
+            if (Rumble.getRumbleTimeLeft() > 0) {
+                Rumble.tick(Gdx.graphics.getDeltaTime());
+                cam.translate(rumble.getPos());
+            }
         }
 
 

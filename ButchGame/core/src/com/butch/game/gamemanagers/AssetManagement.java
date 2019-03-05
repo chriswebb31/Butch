@@ -225,6 +225,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(needHelpButtonActiveSprite, Texture.class);
          load(needHelpButtonInactiveSprite, Texture.class);
          load(settingsButtonActiveSprite, Texture.class);
+         load(doorsMain,TextureAtlas.class);
          load(playSound, Music.class);
      }
     public void includeAssets() {
@@ -268,7 +269,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //BUTCH ATLAS
         load(butchDying, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchIdleAnim, TextureAtlas.class);//FrameDuration = 0.25f
-        load(butchDoorTransition, TextureAtlas.class);//FrameDuration = 0.083f
+        load(butchDoorTransition, TextureAtlas.class);//FrameDuration = 0.15f
         load(butchWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchHandsWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchHorseRiding, TextureAtlas.class);

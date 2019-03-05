@@ -157,114 +157,116 @@ public class MainMenuScreen implements Screen {
         exitButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
         exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
         exitButton.setBounds(10,10,251,71);
-        /** adding actions of when hovering over a button and clicking */
-        playButton.addListener(new ClickListener(){
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                playButton.setBounds(75,game.TARGET_HEIGHT-452,331,147);
-
-            }
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
-
-            }
-            public void clicked(InputEvent event, float x, float y){
-                music.stop();
-                playSound.play();
-                removeButtons();
-                stateTimer = 0;
-                startClicked = true;
-                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(Music music) {
-
-
-                        game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
-                    }
-                });
-            }
-        });
-        aboutButton.addListener(new ClickListener(){
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                aboutButton.setBounds(75,game.TARGET_HEIGHT-639,331,147);
-
-            }
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
-
-            }
-            public void clicked(InputEvent event, float x, float y){
-                sound.play();
-               removeButtons();
-                game.setScreen(new AboutScreen(game, gameViewPort));
-            }
-
-        });
-        needHelpButton.addListener(new ClickListener(){
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                needHelpButton.setBounds(75,game.TARGET_HEIGHT-826,331,147);
-
-            }
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                needHelpButton.setBounds(80,game.TARGET_HEIGHT -821,321,137);
-
-            }
-            public void clicked(InputEvent event, float x, float y){
-                sound.play();
-                removeButtons();
-                game.setScreen(new NeedHelpScreen(game, gameViewPort));
-            }
-
-        });
-        settingsButton.addListener(new ClickListener(){
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                settingsButton.setBounds(0,game.TARGET_HEIGHT-70,70,70);
-
-            }
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                settingsButton.setBounds(0,game.TARGET_HEIGHT-60,60,60);
-
-            }
-            public void clicked(InputEvent event, float x, float y){
-                sound.play();
-                //game.setScreen(new SettingsScreen(game, gameViewPort, this));
-                changeS();
-            }
-
-        });
-
-        exitButton.addListener(new ClickListener(){
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                exitButton.setSize(261,81);
-
-            }
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                exitButton.setSize(251,71);
-
-            }
-            public void clicked(InputEvent event, float x, float y){
-                sound.play();
-              Gdx.app.exit();
-
-            }
-
-        });
+        addActions();
         stage.addActor(exitButton);
         stage.addActor(playButton);
         stage.addActor(aboutButton);
         stage.addActor(needHelpButton);
         stage.addActor(settingsButton);
     }
+    void addActions(){
+     /** adding actions of when hovering over a button and clicking */
+     playButton.addListener(new ClickListener(){
+         @Override
+         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+             playButton.setBounds(75,game.TARGET_HEIGHT-452,331,147);
 
+         }
+         @Override
+         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+             playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+
+         }
+         public void clicked(InputEvent event, float x, float y){
+             music.stop();
+             playSound.play();
+             removeButtons();
+             stateTimer = 0;
+             startClicked = true;
+             playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                 @Override
+                 public void onCompletion(Music music) {
+
+
+                     game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
+                 }
+             });
+         }
+     });
+     aboutButton.addListener(new ClickListener(){
+         @Override
+         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+             aboutButton.setBounds(75,game.TARGET_HEIGHT-639,331,147);
+
+         }
+         @Override
+         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+             aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
+
+         }
+         public void clicked(InputEvent event, float x, float y){
+             sound.play();
+             removeButtons();
+             game.setScreen(new AboutScreen(game, gameViewPort));
+         }
+
+     });
+     needHelpButton.addListener(new ClickListener(){
+         @Override
+         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+             needHelpButton.setBounds(75,game.TARGET_HEIGHT-826,331,147);
+
+         }
+         @Override
+         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+             needHelpButton.setBounds(80,game.TARGET_HEIGHT -821,321,137);
+
+         }
+         public void clicked(InputEvent event, float x, float y){
+             sound.play();
+             removeButtons();
+             game.setScreen(new NeedHelpScreen(game, gameViewPort));
+         }
+
+     });
+     settingsButton.addListener(new ClickListener(){
+         @Override
+         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+             settingsButton.setBounds(0,game.TARGET_HEIGHT-70,70,70);
+
+         }
+         @Override
+         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+             settingsButton.setBounds(0,game.TARGET_HEIGHT-60,60,60);
+
+         }
+         public void clicked(InputEvent event, float x, float y){
+             sound.play();
+             //game.setScreen(new SettingsScreen(game, gameViewPort, this));
+             changeS();
+         }
+
+     });
+
+     exitButton.addListener(new ClickListener(){
+         @Override
+         public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+             exitButton.setSize(261,81);
+
+         }
+         @Override
+         public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+             exitButton.setSize(251,71);
+
+         }
+         public void clicked(InputEvent event, float x, float y){
+             sound.play();
+             Gdx.app.exit();
+
+         }
+
+     });
+ }
     void removeButtons(){
         playButton.remove();
         aboutButton.remove();

@@ -22,15 +22,11 @@ import com.butch.game.gamemanagers.GifDecoder;
 public class LoadingScreen implements Screen {
     private ButchGame game;
     private FitViewport gameViewPort;
-    public static final boolean DEBUG = true;
-    public static Engine ashleyEngine;
     public static AssetManagement assets;
     public Sprite loadingImageBack;
     public Sprite loadingImageFront;
-    //////////////////Temporary gif loader///////////////////////
     private SpriteBatch batch;
-    public MainMenuScreen game_screen;
-    float elapsed,assetsNum;
+    float assetsNum;
 
     public LoadingScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
@@ -39,11 +35,6 @@ public class LoadingScreen implements Screen {
         batch = new SpriteBatch();
         assetsNum = 1000;
         loadingImageBack = new Sprite(new Texture("HUD/healthBarBack.png"));
-//        batch.begin();
-//
-//        batch.draw(loadingImageBack, Gdx.graphics.getWidth()/2 - loadingImageBack.getWidth()/2,
-//                Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2,100, 50 );
-//        batch.end();
         loadingImageFront= new Sprite(new Texture("HUD/playerHealthBarFG.png"));
     }
 
@@ -61,21 +52,16 @@ public class LoadingScreen implements Screen {
                 if (ButchGame.assets.update()) {
                     game.setScreen(new MainMenuScreen(game, gameViewPort));
             }
-
         }
             else{
                 batch.begin();
 
                 batch.draw(loadingImageBack, Gdx.graphics.getWidth()/2 - loadingImageBack.getWidth()/2,
                         Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2,assetsNum,50);
-                System.out.println("assetsNum = " + assetsNum + "renderAssetsNum = " + game.assets.getQueuedAssets() + "loaded Assets = " + game.assets.getLoadedAssets()
-                + "progress =" + (int)game.assets.getProgress());
                 batch.draw(loadingImageFront, Gdx.graphics.getWidth()/2 - loadingImageBack.getWidth()/2+2,
                         Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2+1,game.assets.getProgress()*1000, 50-2);
-
                 batch.end();
             }
-
     }
 
 

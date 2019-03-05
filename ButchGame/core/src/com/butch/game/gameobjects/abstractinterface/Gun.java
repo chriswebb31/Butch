@@ -75,7 +75,11 @@ public abstract class Gun extends EquipableItem {
                 }
                 if((clip > 0) && (!isReloading) && this.reserve!=0) {
                     gunShotSound.play();
-                    Bullet shot = new Bullet(this.getPosition(), this.aimDirection().nor(), speed, damage, friendly);
+                    Bullet shot;
+                    if(this.player.getAimDirection().x > 0)
+                        shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed, damage, friendly);
+                    else
+                        shot = new Bullet(new Vector2(this.getPosition().x - (6 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed, damage, friendly);
                     Shell shell = new Shell(this.getPosition());
                     lastShot = thisShot;
                     clip -= 1;

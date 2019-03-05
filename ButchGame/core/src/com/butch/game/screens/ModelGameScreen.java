@@ -171,6 +171,9 @@ public abstract class ModelGameScreen implements Screen {
                 case 4:
                     itemPickups.add(new WhiskyItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
+                case 7:
+                    itemPickups.add(new LevelUpItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
                 case 10:
                     itemPickups.add(new ColtItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;

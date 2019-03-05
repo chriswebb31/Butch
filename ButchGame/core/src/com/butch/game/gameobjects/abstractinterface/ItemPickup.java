@@ -43,11 +43,13 @@ public abstract class ItemPickup extends Renderable{
                 sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
                 this.setSprite(sprite);
                 this.getSprite().setScale(10);
-            } else  if (this.id == 10 || this.id == 11 || this.id == 12 || this.id == 13) {
+            } else if (this.id == 10 || this.id == 11 || this.id == 12 || this.id == 13) {
                 sprite.setRegion(getFrame(delta));
                 sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
                 this.setSprite(sprite);
                 this.getSprite().setScale(10);
+            } else if (this.id == 7) {
+                this.getSprite().setScale(2);
             } else {
                 this.getSprite().setScale(10);
             }

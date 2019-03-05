@@ -32,6 +32,7 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
+    private int playerLevel = 1;
     private boolean followCamera = true;
     public Vector3 shake;
     public Vector3 reverseShake;
@@ -504,6 +505,9 @@ public class Player extends Renderable {
                     if(this.health > maxHealth)
                         this.health = maxHealth;
                 }
+                else if(itemObj.id == 7){
+                    this.playerLevel += 1;
+                }
                 item.activeForRender = false;
                 item.collected();
             }
@@ -637,5 +641,9 @@ public class Player extends Renderable {
     public ArrayList<Gun> getGunInventory() { return this.gunInventory; }
 
     public void setGunInventory(ArrayList<Gun> gunList) { this.gunInventory = gunList; }
+
+    public int getPlayerLevel() { return this.playerLevel; }
+
+    public void setPlayerLevel(int playerLevel) { this.playerLevel = playerLevel; }
 }
 

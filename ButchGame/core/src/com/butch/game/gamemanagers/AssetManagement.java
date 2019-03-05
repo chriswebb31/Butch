@@ -13,6 +13,7 @@ import javax.xml.soap.Text;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
+    public final String levelUpSprite = "DButt.jpg"; //Placeholder LevelUpItem
     public final String gunSprite = "weapon.png"; //Placeholder Gun
     public final String bulletSprite = "bullet.png"; //Standard Bullet
     //Idle Gun Textures
@@ -227,6 +228,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(playSound, Music.class);
      }
     public void includeAssets() {
+        load(levelUpSprite, Texture.class);
         //Animals
         load(chickenIdle, TextureAtlas.class);
         load(cowIdle, TextureAtlas.class);

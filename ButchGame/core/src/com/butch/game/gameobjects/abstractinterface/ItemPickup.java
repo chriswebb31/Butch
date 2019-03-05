@@ -49,7 +49,7 @@ public abstract class ItemPickup extends Renderable{
                 this.setSprite(sprite);
                 this.getSprite().setScale(10);
             } else if (this.id == 7) {
-                this.getSprite().setScale(2);
+                this.getSprite().setScale(1);
             } else {
                 this.getSprite().setScale(10);
             }

@@ -32,7 +32,7 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
-    private int playerLevel = 1;
+    private int playerLevel;
     private boolean followCamera = true;
     public Vector3 shake;
     public Vector3 reverseShake;
@@ -48,7 +48,8 @@ public class Player extends Renderable {
     }
 
     public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING, RIDING, RIDINGIDLE };
-    private static float maxHealth = 100;
+    private float maxHealth;
+    private static float baseHealth = 100;
     public State currentState;
     public State previousState;
     float xAxis, yAxis, speed = 0;
@@ -101,8 +102,11 @@ public class Player extends Renderable {
     Rumble rumble;
     private float stateTimer;
 
-    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache){
+    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache, int playerLevel){
         this.setPosition(startPosition);
+        this.playerLevel = playerLevel;
+        this.maxHealth = baseHealth + ((playerLevel-1) * 10);
+        this.health = maxHealth;
         this.shake = new Vector3();
         rumble = new Rumble();
         System.out.println("STARTING POS:" + startPosition);
@@ -470,6 +474,8 @@ public class Player extends Renderable {
     @Override
     public void takeHit(float damage) {
         health -= damage;
+        if(health < 0)
+            health = 0;
         rumble = new Rumble();
         rumble.rumble(damage, 0.2f);
     }
@@ -507,6 +513,8 @@ public class Player extends Renderable {
                 }
                 else if(itemObj.id == 7){
                     this.playerLevel += 1;
+                    this.maxHealth = this.baseHealth + ((playerLevel-1) * 10);
+                    this.health = maxHealth;
                 }
                 item.activeForRender = false;
                 item.collected();
@@ -645,5 +653,7 @@ public class Player extends Renderable {
     public int getPlayerLevel() { return this.playerLevel; }
 
     public void setPlayerLevel(int playerLevel) { this.playerLevel = playerLevel; }
+
+    public float getPlayerHealthPercent() { return (this.health / this.maxHealth * 100); }
 }
 

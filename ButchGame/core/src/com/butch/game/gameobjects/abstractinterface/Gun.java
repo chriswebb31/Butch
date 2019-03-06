@@ -78,9 +78,9 @@ public abstract class Gun extends EquipableItem {
                     Bullet shot;
                     if(this.parent.TAG == "player") {
                         if (this.player.getAimDirection().x > 0)
-                            shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + (player.getPlayerLevel() * 3), damage + (player.getPlayerLevel() * 5), friendly);
+                            shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel()-1) * 3), damage + ((player.getPlayerLevel()-1) * 5), friendly);
                         else
-                            shot = new Bullet(new Vector2(this.getPosition().x - (6 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + (player.getPlayerLevel() * 3), damage + (player.getPlayerLevel() * 5), friendly);
+                            shot = new Bullet(new Vector2(this.getPosition().x - (6 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel()-1) * 3), damage + ((player.getPlayerLevel()-1) * 5), friendly);
                     } else {
                         shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed, damage, friendly);
                     }

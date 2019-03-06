@@ -36,6 +36,7 @@ import java.util.ArrayList;
 
 public abstract class ModelGameScreen implements Screen {
     public int levelNumber;
+    private int playerLevel;
      SpriteBatch batch;
     Pixmap cursor;
     public ArrayList<ItemPickup> itemPickups;
@@ -66,7 +67,7 @@ public abstract class ModelGameScreen implements Screen {
     Sprite healthBarFG;
     final short buffer = 120;
 
-    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap){
+    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
         this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -85,6 +86,7 @@ public abstract class ModelGameScreen implements Screen {
         this.animals = new ArrayList<Animal>();
         this.mapColliders = new ArrayList<Rectangle>();
         this.spawnPoint = new Vector2().setZero();
+        this.playerLevel = playerLevel;
 
         ButchGame.renderableManager.reset();
         RenderableManager.mapColliders = mapColliders;
@@ -145,7 +147,7 @@ public abstract class ModelGameScreen implements Screen {
             int pointID = Integer.parseInt(point.getName());
             if(pointID == 0){
                 spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
-                player = new Player(spawnPoint, mapColliders, weaponCache);
+                player = new Player(spawnPoint, mapColliders, weaponCache, playerLevel);
                 player.setCam(camera);
             }else{
                 endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
@@ -303,7 +305,7 @@ public abstract class ModelGameScreen implements Screen {
         else{
             //hud.hb.setWidth(player.getHealth());
         }
-        hud.render(player.getHealth());
+        hud.render(player.getPlayerHealthPercent());
         hud.stage.draw();
     }
 

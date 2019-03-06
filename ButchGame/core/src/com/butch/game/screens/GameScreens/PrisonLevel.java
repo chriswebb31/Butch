@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class PrisonLevel extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.prison);
 
-    public PrisonLevel(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons) {
-        super(level, game, gameViewPort,map);
+    public PrisonLevel(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons, int playerLevel) {
+        super(level, game, gameViewPort,map, playerLevel);
 
 }
 

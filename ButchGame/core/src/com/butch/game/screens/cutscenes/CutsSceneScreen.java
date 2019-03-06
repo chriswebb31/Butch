@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.butch.game.ButchGame;
-import com.butch.game.screens.NewGameScreen;
+import com.butch.game.screens.GameScreens.NewGameScreen;
 
 public class CutsSceneScreen extends NewGameScreen {
 private ButchGame game;

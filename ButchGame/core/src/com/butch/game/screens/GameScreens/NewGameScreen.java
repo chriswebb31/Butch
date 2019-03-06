@@ -1,44 +1,12 @@
-package com.butch.game.screens;
+package com.butch.game.screens.GameScreens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.gamemanagers.ItemManager;
-import com.butch.game.gamemanagers.RenderableManager;
-import com.butch.game.gameobjects.HUDObjects.HealthBar;
-import com.butch.game.gameobjects.HUDObjects.Hud;
-import com.butch.game.gameobjects.Items.*;
-import com.butch.game.gameobjects.abstractinterface.ItemPickup;
-import com.butch.game.gameobjects.abstractinterface.Renderable;
-import com.butch.game.gameobjects.spriterenderables.Enemy;
-import com.butch.game.gameobjects.spriterenderables.NPC;
-import com.butch.game.gameobjects.spriterenderables.Animal;
-import com.butch.game.gameobjects.spriterenderables.Player;
-import com.butch.game.gameobjects.abstractinterface.Gun;
-import com.butch.game.gameobjects.weapons.GunCreator;
+import com.butch.game.screens.GameScreens.Level2;
+import com.butch.game.screens.GameScreens.ModelGameScreen;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-
-public class NewGameScreen extends ModelGameScreen{
+public class NewGameScreen extends ModelGameScreen {
    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.tilemap1);
     public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map){
 

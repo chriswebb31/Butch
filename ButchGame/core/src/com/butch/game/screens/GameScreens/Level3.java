@@ -1,16 +1,18 @@
-package com.butch.game.screens;
+package com.butch.game.screens.GameScreens;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+
 import java.util.ArrayList;
 
+public class Level3 extends ModelGameScreen {
+    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.caveTransition);
 
-public class Level2 extends ModelGameScreen{
-    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.route1);
-    public Level2(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons, TiledMap map){
-        super(level,game,gameViewPort, map);
+
+    public Level3(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons){
+    super(level, game, gameViewPort,map);
     }
 
     @Override
@@ -19,14 +21,15 @@ public class Level2 extends ModelGameScreen{
     }
 
     @Override
-    public void render(float delta) {
+    public void render(float delta){
         updateCameraPosition();
 
         if (player.getCollider().overlaps(endPoint)) {
-            game.setScreen(new Level3(3,game, gameViewPort, player.getGunInventory()));
+            game.setScreen(new PrisonLevel(4, game, gameViewPort, player.getGunInventory()));
         }
         super.render(delta);
     }
+
     @Override
     public void pause() {
 

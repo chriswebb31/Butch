@@ -52,11 +52,12 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String whiskyBottle = "whisky.png";
 
     //HUD
-    //Health Bar Back
-    public final String enemyHBBG = "HUD/enemyHealthBarBG.png";
-    public final String enemyHBFG = "HUD/enemyHealthBarFG.png";
-    public final String playerHBBG = "HUD/playerHealthBarBG.png";
-    public final String playerHBFG = "HUD/playerHealthBarFG.png";
+    //Health Bars
+    public final String enemyHBBG = "HUD/bars/enemyHealthBarBG.png";
+    public final String enemyHBFG = "HUD/bars/enemyHealthBarFG.png";
+    public final String playerHBBG = "HUD/bars/playerHealthBarBG.png";
+    public final String playerHBFG = "HUD/bars/playerHealthBarFG.png";
+    public final String loadingBarBack = "HUD/bars/loadingBarBack.png";
     //Revolver Ammo Bar
     public final String revolverAmmoBar6 = "HUD/RevolverAmmo/revolverAmmoBar-0.png";
     public final String revolverAmmoBar5 = "HUD/RevolverAmmo/revolverAmmoBar-1.png";
@@ -210,12 +211,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String prison = "TiledFiles/Prison.tmx";
     public final String enemySprite = "enemy.png";
 
-
-
     public AssetManagement() {
-
         includeAssets();
     }
+
      public void includeMainMenuScreenAssets(){
          load(backgroundTexture, Texture.class);
          load(playButtonActiveSprite, Texture.class);
@@ -228,7 +227,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(doorsMain,TextureAtlas.class);
          load(playSound, Music.class);
      }
+
     public void includeAssets() {
+
         load(levelUpSprite, Texture.class);
         //Animals
         load(chickenIdle, TextureAtlas.class);
@@ -332,6 +333,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         //HUD
         //Health Bars
+
         load(enemyHBBG, Texture.class);
         load(enemyHBFG, Texture.class);
         load(playerHBBG, Texture.class);

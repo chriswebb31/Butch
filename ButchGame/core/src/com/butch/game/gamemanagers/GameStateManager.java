@@ -5,7 +5,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.spriterenderables.Player;
-import com.butch.game.screens.NewGameScreen;
+import com.butch.game.screens.GameScreens.NewGameScreen;
 
 import java.util.ArrayList;
 

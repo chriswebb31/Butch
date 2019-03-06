@@ -1,4 +1,4 @@
-package com.butch.game.screens;
+package com.butch.game.screens.GameScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

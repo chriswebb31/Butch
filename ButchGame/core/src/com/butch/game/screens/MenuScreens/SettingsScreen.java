@@ -103,9 +103,11 @@ public class SettingsScreen implements Screen {
     public void hide() {
 
     }
+
     public void update(float delta){
         stage.act(delta);
     }
+
     public void createButtons(){
         homeButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.homeButtonActive, Texture.class));
         homeButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.homeButtonInactive, Texture.class));

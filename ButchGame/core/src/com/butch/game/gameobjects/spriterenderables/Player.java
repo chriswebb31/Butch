@@ -163,34 +163,34 @@ public class Player extends Renderable {
     }
 
     private void inputHandler() { // handle inputs
-        if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             xAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.UP)) {
             yAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.S)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             yAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             xAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.LEFT) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT) || !Gdx.input.isKeyPressed(Input.Keys.UP) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             isButchIdle = true;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) {
             yAxis = 1;
             isButchIdle = false;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             yAxis = -1;
             isButchIdle = false;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             xAxis = -1;
             isButchIdle = false;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             xAxis = 1;
             isButchIdle = false;
         }

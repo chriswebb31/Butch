@@ -388,6 +388,10 @@ public class Player extends Renderable {
 
 
     public void update(float delta) {
+        int first = 15;
+        int second = 10;
+        System.out.println(first/second);
+        System.out.println(first % second);
 
         if(!this.butchDead) {
             this.activeGun.player = this;

@@ -331,6 +331,72 @@ public abstract class ModelGameScreen implements Screen {
 
     public void caseBreak(){
 
+        switch(player.coin / 10) {
+            case 0:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter0, Texture.class));
+                break;
+            case 1:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter1, Texture.class));
+                break;
+            case 2:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter2, Texture.class));
+                break;
+            case 3:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter3, Texture.class));
+                break;
+            case 4:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter4, Texture.class));
+                break;
+            case 5:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter5, Texture.class));
+                break;
+            case 6:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter6, Texture.class));
+                break;
+            case 7:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter7, Texture.class));
+                break;
+            case 8:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter8, Texture.class));
+                break;
+            case 9:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter9, Texture.class));
+                break;
+        }
+
+        switch(player.coin % 10) {
+            case 0:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter0, Texture.class));
+                break;
+            case 1:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter1, Texture.class));
+                break;
+            case 2:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter2, Texture.class));
+                break;
+            case 3:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter3, Texture.class));
+                break;
+            case 4:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter4, Texture.class));
+                break;
+            case 5:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter5, Texture.class));
+                break;
+            case 6:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter6, Texture.class));
+                break;
+            case 7:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter7, Texture.class));
+                break;
+            case 8:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter8, Texture.class));
+                break;
+            case 9:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter9, Texture.class));
+                break;
+        }
+
         switch(player.getActiveWeapon().id) {
             case 10:
                 switch(player.getActiveWeapon().clip) {

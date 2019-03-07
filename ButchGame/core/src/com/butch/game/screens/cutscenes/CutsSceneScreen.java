@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.butch.game.ButchGame;
-import com.butch.game.screens.NewGameScreen;
+import com.butch.game.screens.GameScreens.NewGameScreen;
 
 public class CutsSceneScreen extends NewGameScreen {
 private ButchGame game;
@@ -22,7 +22,7 @@ private Viewport viewport;
     private Label _label;
     private Image _transitionImage;
     public CutsSceneScreen(ButchGame game, FitViewport gameViewPort) {
-        super(game, gameViewPort);
+        super(1,game, gameViewPort, NewGameScreen.map);
     }
 
 }

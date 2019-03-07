@@ -5,7 +5,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.spriterenderables.Player;
-import com.butch.game.screens.NewGameScreen;
+import com.butch.game.screens.GameScreens.NewGameScreen;
 
 import java.util.ArrayList;
 
@@ -46,7 +46,7 @@ public class GameStateManager {
             lives -= 1;
         }
         else{
-            game.setScreen(new NewGameScreen(game, viewport));
+            game.setScreen(new NewGameScreen(1,game, viewport, NewGameScreen.map));
         }
     }
 

@@ -373,7 +373,7 @@
  </objectgroup>
  <objectgroup id="13" name="ItemLayer">
   <object id="165" name="3" x="912.5" y="307"/>
-  <object id="166" name="3" x="919.5" y="316.5"/>
+  <object id="166" name="7" x="919.5" y="316.5"/>
   <object id="167" name="3" x="888" y="303"/>
   <object id="168" name="3" x="754.333" y="756.5"/>
   <object id="169" name="10" x="723.333" y="751.5" visible="0"/>

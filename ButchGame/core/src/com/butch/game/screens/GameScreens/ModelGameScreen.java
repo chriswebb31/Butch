@@ -1,4 +1,4 @@
-package com.butch.game.screens;
+package com.butch.game.screens.GameScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -26,68 +25,60 @@ import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.HUDObjects.HealthBar;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.*;
+import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
-import com.butch.game.gameobjects.abstractinterface.Renderable;
 import com.butch.game.gameobjects.spriterenderables.Animal;
 import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
-import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.weapons.GunCreator;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class Level2 implements Screen {
+public abstract class ModelGameScreen implements Screen {
     public int levelNumber;
-    private SpriteBatch batch;
-    private Pixmap cursor;
+    private int playerLevel;
+     SpriteBatch batch;
+    Pixmap cursor;
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
     public ArrayList<NPC> NPCs;
-    private ArrayList<Animal> animals;
+    ArrayList<Animal> animals;
     public ButchGame game;
-
-    private FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
-    private OrthographicCamera camera; //camera for height position of render
-    private float distanceDivisor = 1.2f;
-
+    ArrayList<Gun> weaponCache;
+    FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
+    OrthographicCamera camera; //camera for height position of render
+    float distanceDivisor = 1.2f;
     public Vector2 spawnPoint;
     public Rectangle endPoint;
-
     public Player player;
-
     public TiledMap tiledMap;
-
-    private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
+    OrthogonalTiledMapRenderer orthogonalTiledMapRenderer; //tiled map renderer
     public ArrayList<Rectangle> mapColliders;
-
-    private ShapeRenderer shapeRenderer;
-    private Music music;
+    ShapeRenderer shapeRenderer;
+    Music music;
     // private Stage stage;
     /////////initializing hud vars////////////////////
-    private Hud hud;
-    private boolean outOfBullets;
-    HealthBar enemyHb;
-    Label healthLabel;
+    Hud hud;
+    boolean outOfBullets;
     Stage stage;
     float enemyX = 8000, enemyY = 7500;
     float npcX = 6000, npcY = 8000;
-    private Sprite healthBarBG;
-    private Sprite healthBarFG;
-    private final short buffer = 120;
-    private ArrayList<Gun> weaponCache;
+    Sprite healthBarBG;
+    Sprite healthBarFG;
+    final short buffer = 120;
 
-    public Level2(ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons){
+    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
+        this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
-        //this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
-        //this.cursor.setScale(10);
+//        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
+//        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
         this.camera = new OrthographicCamera();
         this.camera.zoom = 2.5f;
-        tiledMap = ButchGame.assets.get(ButchGame.assets.route1); //get tiled map for this screen
+        this.tiledMap = tiledMap;
+        //tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
         this.itemPickups = new ArrayList<ItemPickup>();
         this.enemies = new ArrayList<Enemy>();
@@ -95,29 +86,24 @@ public class Level2 implements Screen {
         this.animals = new ArrayList<Animal>();
         this.mapColliders = new ArrayList<Rectangle>();
         this.spawnPoint = new Vector2().setZero();
+        this.playerLevel = playerLevel;
 
-        ButchGame.renderableManager = new RenderableManager();
+        ButchGame.renderableManager.reset();
         RenderableManager.mapColliders = mapColliders;
         ButchGame.itemManager = new ItemManager();
 
         this.weaponCache = new ArrayList<Gun>();
-        for(Gun gun:weapons) {
-            this.weaponCache.add(new GunCreator(gun.gunName));
-        }
+        this.weaponCache.add(new GunCreator("Revolver"));
+        this.weaponCache.add(new GunCreator("MachineGun"));
+        this.weaponCache.add(new GunCreator("Musket"));
+        this.weaponCache.add(new GunCreator("Shotgun"));
         setupLevel();
 
-//        player = new Player(spawnPoint, mapColliders);
-//        player.gunInventory.addAll(weaponCache);
-
-//        player.setGunInventory(weaponCache);
-//        player.setGunInvIterator(player.getGunInventory().iterator());
-//        player.getGunInvIterator().
-//        System.out.println(player.getGunInventory().size());
+//        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
 
         camera.position.set(new Vector3(player.getPosition().x, player.getPosition().y, 40));
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
-
         gameViewPort.setCamera(camera); //set main camera
         gameViewPort.apply(); //apply changes to vp settings
         music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
@@ -127,14 +113,101 @@ public class Level2 implements Screen {
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
         outOfBullets = false;
+
         this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
         //(int)enemies.get(0).getHealth()
-        //enemyHb = new HealthBar(500,20);
+        // enemyHb = new HealthBar(500,20);
         stage= new Stage();
-        healthBarBG = new Sprite(new Texture("HUD/enemyHealthBarBG.png"));
-        healthBarFG = new Sprite (new Texture("HUD/enemyHealthBarFG.png"));
+//
 
+        healthBarBG = new Sprite(ButchGame.assets.get(ButchGame.assets.enemyHBBG, Texture.class));
+        healthBarFG = new Sprite (ButchGame.assets.get(ButchGame.assets.enemyHBFG, Texture.class));
+    }
+
+    private void setupLevel() {
+        MapObjects collisionLayer = tiledMap.getLayers().get(4).getObjects();
+        MapObjects pointsLayer = tiledMap.getLayers().get(5).getObjects();
+        MapObjects itemLayer = tiledMap.getLayers().get(6).getObjects();
+        MapObjects enemyLayer = tiledMap.getLayers().get(7).getObjects();
+        MapObjects npcLayer = tiledMap.getLayers().get(8).getObjects();
+        MapObjects animalLayer = tiledMap.getLayers().get(9).getObjects();
+
+        for(RectangleMapObject colliderRectangle : collisionLayer.getByType(RectangleMapObject.class)){
+            float newX = colliderRectangle.getRectangle().x * 10;
+            float newY = colliderRectangle.getRectangle().y * 10;
+            float newWidth = colliderRectangle.getRectangle().width * 10;
+            float newHeight = colliderRectangle.getRectangle().height * 10;
+            Rectangle collider = new Rectangle(newX, newY, newWidth, newHeight);
+            mapColliders.add(collider);
+        }
+        // ADD ALL COLLIDERS TO GAME
+
+        for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
+            int pointID = Integer.parseInt(point.getName());
+            if(pointID == 0){
+                spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
+                player = new Player(spawnPoint, mapColliders, weaponCache, playerLevel);
+                player.setCam(camera);
+            }else{
+                endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
+            }
+        }
+        //SET SPAWN AND ENDS OF LEVELS
+
+        for(RectangleMapObject item : itemLayer.getByType(RectangleMapObject.class)){
+            int itemId = Integer.parseInt(item.getName());
+            switch (itemId){
+                case 0:
+                    itemPickups.add(new PistolAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 1:
+                    itemPickups.add(new RifleAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 2:
+                    itemPickups.add(new ShotgunAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 3:
+                    itemPickups.add(new CoinItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 4:
+                    itemPickups.add(new WhiskyItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 7:
+                    itemPickups.add(new LevelUpItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 10:
+                    itemPickups.add(new ColtItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 11:
+                    itemPickups.add(new MachineGunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+            }
+        }
+        //SET ITEMS AND POSITIONING ITEMS
+
+        for(PolygonMapObject enemy : enemyLayer.getByType(PolygonMapObject.class)){
+            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10), Integer.parseInt(enemy.getName()));
+            for (int i = 2; i < enemy.getPolygon().getTransformedVertices().length; i+=2){
+                Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i+1] * 10);
+                newEnemy.route.add(newRoutePosition);
+                newEnemy.targetPos = newEnemy.route.get(0);
+                System.out.println("NEW ROUTE POS: " + newRoutePosition);
+
+            }
+            enemies.add(newEnemy);
+        }
+
+        //SET ENEMIES AND POSITIONS
+
+        for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){
+            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), "Dan"));
+        }
+        //SET NPCS AND POSITIONS
+        for(RectangleMapObject animal : animalLayer.getByType(RectangleMapObject.class)) {
+            int animalID = Integer.parseInt(animal.getName());
+            animals.add(new Animal(new Vector2(animal.getRectangle().x * 10, animal.getRectangle().y * 10), animalID));
+        }
     }
 
     @Override
@@ -143,12 +216,9 @@ public class Level2 implements Screen {
     }
 
     @Override
-    public void render(float delta){
-        updateCameraPosition();
+    public void render(float delta) {
+//        updateCameraPosition();
 
-        if(player.getCollider().overlaps(endPoint)){
-            game.setScreen( new Level3(game, gameViewPort, player.getGunInventory()));
-        }
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
@@ -166,38 +236,101 @@ public class Level2 implements Screen {
         //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
+
         //cursor.draw(batch);
         batch.end();
+        caseBreak();
+        renderHUD();
+        renderEnemyHB();
+    }
 
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-//        shapeRenderer.setColor(Color.FIREBRICK);
-//
-//        for (Renderable renderable: RenderableManager.renderableObjects) {
-//            try{
-//                if((renderable.TAG == "item" || renderable.TAG == "enemy") && renderable.activeForRender){
-//                    if((renderable.TAG == "item")) {
-//                        ItemPickup item = (ItemPickup) renderable;
-//                        shapeRenderer.circle(item.collectionRange.x, item.collectionRange.y, item.collectionRange.radius);
-//                    } else if(renderable.TAG == "enemy" && renderable.activeCollision){
-//                        Enemy enemy = (Enemy) renderable;
-//                        shapeRenderer.circle(enemy.activateRange.x, enemy.activateRange.y, enemy.activateRange.radius);
-//                    }
-//                }
-//            } catch (NullPointerException e){
-//                e.printStackTrace();
-//            }
-//            try{
-//                if(renderable.activeCollision){
-//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-//                } else if(renderable.TAG == "item" || renderable.TAG == "player"){
-//                    shapeRenderer.rect(renderable.getCollider().x, renderable.getCollider().y, renderable.getCollider().width, renderable.getCollider().height);
-//                }
-//            } catch (NullPointerException e){
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        shapeRenderer.end();
+    public void renderEnemyHB(){
+        for(int i = 0; i<=enemies.size()-1;i++){
+            healthBarBG.setX(enemies.get(i).getPosition().x);
+            healthBarBG.setY(enemies.get(i).getPosition().y + enemies.get(i).getSprite().getHeight() + buffer);
+            healthBarFG.setX(healthBarBG.getX());
+            healthBarFG.setY(healthBarBG.getY());
+            if(enemies.get(i).getHealth() <= 0) {
+
+            }
+            else{
+                batch.begin();
+                batch.draw(healthBarBG, healthBarBG.getX(), healthBarBG.getY(),100,20);
+                batch.draw(healthBarFG, healthBarFG.getX(), healthBarFG.getY(),enemies.get(i).getHealth(),20);
+                batch.end();
+            }
+        }
+    }
+
+    void updateCameraPosition() {
+        Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
+        float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
+        float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
+        camera.position.slerp(new Vector3(newX, newY, camera.position.z), 0.1f);
+    }
+
+    void renderHUD(){
+        hud.coinLabel.setText(String.format("Coins: " + player.coin ));
+        int thisReserve;
+        if(player.getActiveWeapon().gunType == 0){
+            thisReserve = player.pistolAmmo;
+        } else if(player.getActiveWeapon().gunType == 1){
+            thisReserve = player.rifleAmmo;
+        }else{
+            thisReserve = player.shotgunAmmo;
+        }
+        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
+
+        for(NPC npc : NPCs) {
+            if(npc.getInteractActive() && !npc.getHasSpoken()) {
+                Label npcTextLabel = new Label(npc.getNpcText(), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
+                npcTextLabel.setFontScale(3.0f);
+                hud.table.center();
+                hud.table.add(npcTextLabel).expandY().expandX().center();
+                npc.setHasSpoken(true);
+            }
+        }
+
+        if(player.getHealth() <=0 && outOfBullets == false){
+            Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
+            healthLabel.setFontScale(3.0f);
+            //hud.table.removeActor(hud.hb);
+            hud.table.removeActor(hud.levelLabel);
+            hud.table.reset();
+            hud.table.center();
+            hud.table.add(healthLabel).expandY().expandX().center();
+
+            outOfBullets = true;
+        }
+        else{
+            //hud.hb.setWidth(player.getHealth());
+        }
+        hud.render(player.getPlayerHealthPercent());
+        hud.stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    public void caseBreak(){
+
         switch(player.getActiveWeapon().id) {
             case 10:
                 switch(player.getActiveWeapon().clip) {
@@ -328,167 +461,11 @@ public class Level2 implements Screen {
                 break;
         }
 
-        hud.coinLabel.setText(String.format("Coins: " + player.coin ));
-        int thisReserve;
-        if(player.getActiveWeapon().gunType == 0){
-            thisReserve = player.pistolAmmo;
-        } else if(player.getActiveWeapon().gunType == 1){
-            thisReserve = player.rifleAmmo;
-        }else{
-            thisReserve = player.shotgunAmmo;
-        }
-        hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
-
-        if(player.getHealth() <=0 && outOfBullets == false){
-            Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
-            healthLabel.setFontScale(3.0f);
-//            hud.table.removeActor(hud.hb);
-            hud.table.removeActor(hud.levelLabel);
-            hud.table.reset();
-            hud.table.center();
-            hud.table.add(healthLabel).expandY().expandX().center();
-
-            outOfBullets = true;
-        }
-        else{
-//            hud.hb.setWidth(player.getHealth());
-        }
-
-        hud.stage.draw();
-        for(int i = 0; i<=enemies.size()-1;i++){
-            healthBarBG.setX(enemies.get(i).getPosition().x);
-            healthBarBG.setY(enemies.get(i).getPosition().y + enemies.get(i).getSprite().getHeight() + buffer);
-            healthBarFG.setX(healthBarBG.getX());
-            healthBarFG.setY(healthBarBG.getY());
-            // healthBarFG.setSize(20, 5);
-            //healthBarFG.setScale(enemies.get(i).getHealth()/100);
-            // enemies.get(i).render();
-            if(enemies.get(i).getHealth() <= 0) {
-
-            }
-            else{
-                batch.begin();
-                batch.draw(healthBarBG, healthBarBG.getX(), healthBarBG.getY(),100,20);
-                batch.draw(healthBarFG, healthBarFG.getX(), healthBarFG.getY(),enemies.get(i).getHealth(),20);
-                batch.end();
-            }
-        }
-    }
-
-    private void setupLevel() {
-        MapObjects collisionLayer = tiledMap.getLayers().get(4).getObjects();
-        MapObjects pointsLayer = tiledMap.getLayers().get(5).getObjects();
-        MapObjects itemLayer = tiledMap.getLayers().get(6).getObjects();
-        MapObjects enemyLayer = tiledMap.getLayers().get(7).getObjects();
-        MapObjects npcLayer = tiledMap.getLayers().get(8).getObjects();
-        MapObjects animalLayer = tiledMap.getLayers().get(9).getObjects();
-
-        for(RectangleMapObject colliderRectangle : collisionLayer.getByType(RectangleMapObject.class)){
-            float newX = colliderRectangle.getRectangle().x * 10;
-            float newY = colliderRectangle.getRectangle().y * 10;
-            float newWidth = colliderRectangle.getRectangle().width * 10;
-            float newHeight = colliderRectangle.getRectangle().height * 10;
-            Rectangle collider = new Rectangle(newX, newY, newWidth, newHeight);
-            mapColliders.add(collider);
-        }
-        // ADD ALL COLLIDERS TO GAME
-
-        for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
-            int pointID = Integer.parseInt(point.getName());
-            if(pointID == 0){
-                spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
-                player = new Player(spawnPoint, mapColliders, weaponCache);
-            }else{
-                endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
-            }
-        }
-        //SET SPAWN AND ENDS OF LEVELS
-
-        for(RectangleMapObject item : itemLayer.getByType(RectangleMapObject.class)){
-            int itemId = Integer.parseInt(item.getName());
-            switch (itemId){
-                case 0:
-                    itemPickups.add(new PistolAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
-                    break;
-                case 1:
-                    itemPickups.add(new RifleAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
-                    break;
-                case 2:
-                    itemPickups.add(new ShotgunAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
-                    break;
-                case 3:
-                    itemPickups.add(new CoinItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
-                    break;
-                case 4:
-                    itemPickups.add(new WhiskyItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
-                    break;
-                case 10:
-                    itemPickups.add(new ColtItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
-                    break;
-                case 11:
-                    itemPickups.add(new MachineGunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
-                    break;
-            }
-        }
-        //SET ITEMS AND POSITIONING ITEMS
-
-        for(PolygonMapObject enemy : enemyLayer.getByType(PolygonMapObject.class)){
-            Enemy newEnemy = new Enemy(new Vector2(enemy.getPolygon().getTransformedVertices()[2] * 10, enemy.getPolygon().getTransformedVertices()[3] * 10), 1);
-            for (int i = 2; i < enemy.getPolygon().getTransformedVertices().length; i+=2){
-                Vector2 newRoutePosition = new Vector2(enemy.getPolygon().getTransformedVertices()[i] * 10, enemy.getPolygon().getTransformedVertices()[i+1] * 10);
-                newEnemy.route.add(newRoutePosition);
-                newEnemy.targetPos = newEnemy.route.get(0);
-                System.out.println("NEW ROUTE POS: " + newRoutePosition);
-
-            }
-            enemies.add(newEnemy);
-        }
-
-        //SET ENEMIES AND POSITIONS
-
-        for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){
-            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), "Dan"));
-        }
-        //SET NPCS AND POSITIONS
-        for(RectangleMapObject animal : animalLayer.getByType(RectangleMapObject.class)) {
-            int animalID = Integer.parseInt(animal.getName());
-            animals.add(new Animal(new Vector2(animal.getRectangle().x * 10, animal.getRectangle().y * 10), animalID));
-        }
-    }
-
-    private void updateCameraPosition() {
-        Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
-        float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
-        float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
-        camera.position.slerp(new Vector3(newX, newY, camera.position.z), 0.1f);
-    }
-
-    @Override
-    public void resize(int width, int height) { //if window is resized
-        gameViewPort.update(width, height);
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, camera.position.z);
-        camera.update();
-    }
-    //    public void update(float delta){
-//        stage.act(delta);
-//    }
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
     }
 
     @Override
     public void dispose() {
 
     }
+
 }

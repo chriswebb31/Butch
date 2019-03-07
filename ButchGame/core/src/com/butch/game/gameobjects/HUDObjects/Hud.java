@@ -37,6 +37,8 @@ public class Hud implements Disposable{
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
         // health = new Integer(1000);
+
+
         levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         levelLabel.setFontScale(2.0f);
         coinLabel = new Label(String.format("0"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
@@ -50,9 +52,10 @@ public class Hud implements Disposable{
 //      ammoCountImage.setDrawable(new TextureRegionDrawable(new TextureRegion(ammoCount)));
         healthBarBG = new Image(ButchGame.assets.get(ButchGame.assets.playerHBBG, Texture.class));
         healthBarFG = new Image(ButchGame.assets.get(ButchGame.assets.playerHBFG, Texture.class));
-        healthBarBG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2,Gdx.graphics.getHeight()/1.1f-healthBarBG.getHeight()*2);
-        healthBarFG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth()*2 + 2,Gdx.graphics.getHeight()/1.1f-healthBarFG.getHeight()*2 -1);
-        healthBarBG.setSize(player.getHealth(), healthBarBG.getHeight() * 6);
+        healthBarBG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth(),Gdx.graphics.getHeight()/1.1f-healthBarBG.getHeight()*2);
+        healthBarFG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth() + 4,Gdx.graphics.getHeight()/1.1f-healthBarFG.getHeight()*2 + 1);
+        healthBarBG.setSize(player.getPlayerHealthPercent()*3 + 8, 54);
+        healthBarFG.setSize(player.getPlayerHealthPercent()*3, 43);
       //  hb = new HealthBar((int)player.getHealth(),20,0,0);
         table.top().left();
 
@@ -68,6 +71,9 @@ public class Hud implements Disposable{
         stage.addActor(healthBarBG);
         stage.addActor(healthBarFG);
     }
+public void render(float width){
+        healthBarFG.setSize(width*3, 43);
+}
 
     @Override
     public void dispose() {

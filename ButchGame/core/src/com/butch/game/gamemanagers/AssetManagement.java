@@ -13,6 +13,7 @@ import javax.xml.soap.Text;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
+    public final String levelUpSprite = "DButt.jpg"; //Placeholder LevelUpItem
     public final String gunSprite = "weapon.png"; //Placeholder Gun
     public final String bulletSprite = "bullet.png"; //Standard Bullet
     //Idle Gun Textures
@@ -27,7 +28,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String revolverSilhouette = "Anim/Guns/revolverSilhouette.png";
     public final String shotgunSilhouette = "Anim/Guns/shotgunSilhouette.png";
 
-    public final String backgroundTexture = "saloonDoors.jpg";
+    public final String backgroundTexture = "Anim/doorAtlas/mainDoors-0.png";
     public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
     public final String playButtonInactiveSprite = "Buttons/playButtonInactive.png";
     public final String aboutButtonActiveSprite = "Buttons/aboutButtonActive.png";
@@ -37,6 +38,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String settingsButtonActiveSprite = "Buttons/settingsButton.png";
     public final String exitButtonActive = "Buttons/exitButtonActive.png";
     public final String exitButtonInactive = "Buttons/exitButtonInactive.png";
+    public final String homeButtonInactive = "Buttons/homeButtonInactive.png";
+    public final String homeButtonActive = "Buttons/homeButtonActive.png";
     public final String barrelSprite = "Barrel.png";
     public final String sliderBack = "Buttons/sliderBack.png";
     public final String sliderKnob = "Buttons/sliderKnob.png";
@@ -49,13 +52,14 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String cursor = "cursor.png";
     public final String healthPotion = "healthPotion.png";
     public final String whiskyBottle = "whisky.png";
-
+    public final String aboutPage = "Pages/aboutPage.png";
     //HUD
-    //Health Bar Back
-    public final String enemyHBBG = "HUD/enemyHealthBarBG.png";
-    public final String enemyHBFG = "HUD/enemyHealthBarFG.png";
-    public final String playerHBBG = "HUD/playerHealthBarBG.png";
-    public final String playerHBFG = "HUD/playerHealthBarFG.png";
+    //Health Bars
+    public final String enemyHBBG = "HUD/bars/enemyHealthBarBG.png";
+    public final String enemyHBFG = "HUD/bars/enemyHealthBarFG.png";
+    public final String playerHBBG = "HUD/bars/playerHealthBarBG.png";
+    public final String playerHBFG = "HUD/bars/playerHealthBarFG.png";
+    public final String loadingBarBack = "HUD/bars/loadingBarBack.png";
     //Revolver Ammo Bar
     public final String revolverAmmoBar6 = "HUD/RevolverAmmo/revolverAmmoBar-0.png";
     public final String revolverAmmoBar5 = "HUD/RevolverAmmo/revolverAmmoBar-1.png";
@@ -209,12 +213,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String prison = "TiledFiles/Prison.tmx";
     public final String enemySprite = "enemy.png";
 
-
-
     public AssetManagement() {
-
         includeAssets();
     }
+
      public void includeMainMenuScreenAssets(){
          load(backgroundTexture, Texture.class);
          load(playButtonActiveSprite, Texture.class);
@@ -224,9 +226,16 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(needHelpButtonActiveSprite, Texture.class);
          load(needHelpButtonInactiveSprite, Texture.class);
          load(settingsButtonActiveSprite, Texture.class);
+         load(doorsMain,TextureAtlas.class);
          load(playSound, Music.class);
+         load(exitButtonActive,Texture.class);
+         load(exitButtonInactive,Texture.class);
      }
+
     public void includeAssets() {
+        //page Contents
+        load(aboutPage, Texture.class);
+        load(levelUpSprite, Texture.class);
         //Animals
         load(chickenIdle, TextureAtlas.class);
         load(cowIdle, TextureAtlas.class);
@@ -245,8 +254,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);
-        load(exitButtonActive,Texture.class);
-        load(exitButtonInactive,Texture.class);
+        load(homeButtonInactive,Texture.class);
+        load(homeButtonActive,Texture.class);
         load(barrelSprite, Texture.class);
         load(pistolAmmo, Texture.class);
         load(rifleAmmo, Texture.class);
@@ -266,7 +275,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //BUTCH ATLAS
         load(butchDying, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchIdleAnim, TextureAtlas.class);//FrameDuration = 0.25f
-        load(butchDoorTransition, TextureAtlas.class);//FrameDuration = 0.083f
+        load(butchDoorTransition, TextureAtlas.class);//FrameDuration = 0.15f
         load(butchWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchHandsWalking, TextureAtlas.class);//FrameDuration = 0.083f
         load(butchHorseRiding, TextureAtlas.class);
@@ -329,6 +338,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         //HUD
         //Health Bars
+
         load(enemyHBBG, Texture.class);
         load(enemyHBFG, Texture.class);
         load(playerHBBG, Texture.class);

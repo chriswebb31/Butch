@@ -3,6 +3,7 @@ package com.butch.game.gameobjects.spriterenderables;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -11,8 +12,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gamemanagers.Rumble;
 import com.butch.game.gameobjects.Items.PistolAmmo;
 import com.butch.game.gameobjects.Items.RifleAmmo;
 import com.butch.game.gameobjects.Items.ShotgunAmmo;
@@ -29,13 +32,29 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
 public class Player extends Renderable {
+    private int playerLevel;
+    private boolean followCamera = true;
+    public Vector3 shake;
+    public Vector3 reverseShake;
+    private float shakeY;
+    private float shakeX;
+
+    public OrthographicCamera getCam() {
+        return cam;
+    }
+
+    public void setCam(OrthographicCamera cam) {
+        this.cam = cam;
+    }
+
     public enum State { RUNNING, IDLE, DEAD, RELOADING, SHOOTING, RIDING, RIDINGIDLE };
-    private static float maxHealth = 100;
+    private float maxHealth;
+    private static float baseHealth = 100;
     public State currentState;
     public State previousState;
     float xAxis, yAxis, speed = 0;
     private Sprite sprite;
-
+    public float shakeAmount = 25;
     private Animation<TextureRegion> butchWalking;
     private Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
@@ -79,10 +98,17 @@ public class Player extends Renderable {
     public Sound walkingFX;
     public Sound hitEffect;
 
+    private OrthographicCamera cam;
+    Rumble rumble;
     private float stateTimer;
 
-    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache){
+    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache, int playerLevel){
         this.setPosition(startPosition);
+        this.playerLevel = playerLevel;
+        this.maxHealth = baseHealth + ((playerLevel-1) * 10);
+        this.health = maxHealth;
+        this.shake = new Vector3();
+        rumble = new Rumble();
         System.out.println("STARTING POS:" + startPosition);
         this.mapColliders = mapStaticColliders;
         this.TAG = "player";
@@ -137,41 +163,44 @@ public class Player extends Renderable {
     }
 
     private void inputHandler() { // handle inputs
-        if (!Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             xAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.UP)) {
             yAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.S)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             yAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             xAxis = 0;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.LEFT) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT) || !Gdx.input.isKeyPressed(Input.Keys.UP) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             isButchIdle = true;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) {
             yAxis = 1;
             isButchIdle = false;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             yAxis = -1;
             isButchIdle = false;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             xAxis = -1;
             isButchIdle = false;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             xAxis = 1;
             isButchIdle = false;
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             try{
                 if(!isRiding)
-                    activeGun.Shoot();
+                    if(activeGun.Shoot()){
+                        rumble = new Rumble();
+                        rumble.rumble(activeGun.damage, activeGun.fireRate);
+                    }
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
@@ -326,6 +355,11 @@ public class Player extends Renderable {
         return aimDirection;
     }
 
+    public Vector2 getRecoilDirection() {
+        Vector2 recoilDirection = new Vector2(this.getPosition().x - ButchGame.mousePosition().x, this.getPosition().y - ButchGame.mousePosition().y);
+        return recoilDirection;
+    }
+
     public Vector2 getWeaponPosition(){
         Vector2 pos;
         if(ButchGame.mousePosition().x >= getPosition().x){
@@ -352,6 +386,7 @@ public class Player extends Renderable {
         return Math.max(min, Math.min(max, val));
     }
 
+
     public void update(float delta) {
 
         if(!this.butchDead) {
@@ -369,6 +404,20 @@ public class Player extends Renderable {
                 }
             }
         }
+
+        if(cam != null){
+            Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
+            float newX = mousePosition.x + (this.getPosition().x - mousePosition.x) / 1.2f; //gets position  divirsor percentage) along vector instead of midpoint
+            float newY = mousePosition.y + (this.getPosition().y - mousePosition.y) / 1.2f; //gets position  divirsor percentage) along vector instad of midpoint
+            Vector3 camTarget = new Vector3(newX, newY,  cam.position.z);
+
+            cam.position.slerp(camTarget, 0.1f);
+            if (Rumble.getRumbleTimeLeft() > 0) {
+                Rumble.tick(Gdx.graphics.getDeltaTime());
+                cam.translate(rumble.getPos());
+            }
+        }
+
 
         for (Renderable renderable:RenderableManager.renderableObjects) {
             if(renderable.TAG == "item" && renderable.activeForRender){
@@ -412,7 +461,9 @@ public class Player extends Renderable {
             this.butchDead = true;
 //            this.destroy = true;
            this.activeGun.activeForRender = false;
-
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                Gdx.app.exit();
+            }
         }
         else{
             //
@@ -425,6 +476,10 @@ public class Player extends Renderable {
     @Override
     public void takeHit(float damage) {
         health -= damage;
+        if(health < 0)
+            health = 0;
+        rumble = new Rumble();
+        rumble.rumble(damage, 0.2f);
     }
 
     public void addItem(ItemPickup item){
@@ -457,6 +512,11 @@ public class Player extends Renderable {
                     this.health += itemObj.quantity;
                     if(this.health > maxHealth)
                         this.health = maxHealth;
+                }
+                else if(itemObj.id == 7){
+                    this.playerLevel += 1;
+                    this.maxHealth = this.baseHealth + ((playerLevel-1) * 10);
+                    this.health = maxHealth;
                 }
                 item.activeForRender = false;
                 item.collected();
@@ -591,5 +651,11 @@ public class Player extends Renderable {
     public ArrayList<Gun> getGunInventory() { return this.gunInventory; }
 
     public void setGunInventory(ArrayList<Gun> gunList) { this.gunInventory = gunList; }
+
+    public int getPlayerLevel() { return this.playerLevel; }
+
+    public void setPlayerLevel(int playerLevel) { this.playerLevel = playerLevel; }
+
+    public float getPlayerHealthPercent() { return (this.health / this.maxHealth * 100); }
 }
 

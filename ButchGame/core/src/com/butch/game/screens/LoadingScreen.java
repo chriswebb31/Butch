@@ -37,22 +37,19 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        /**setting the background white, however this doesn't matter as there will be a background anyway.*/
         Gdx.gl.glClearColor(1f,1f,1f,1f);
-        /**setting the background white, however this doesn't
-         * matter as there will be a background anyway.*/
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             if (game.assets.update()) {
-
                     game.setScreen(new MainMenuScreen(game, gameViewPort));
-
         }
             else{
                 batch.begin();
-
                 batch.draw(loadingImageBack, Gdx.graphics.getWidth()/2 - loadingImageBack.getWidth()/2,
                         Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2,assetsNum,50);
                 batch.draw(loadingImageFront, Gdx.graphics.getWidth()/2 - loadingImageBack.getWidth()/2+2,
-                        Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2+1,game.assets.getProgress()*1000, 50-2);
+                        Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2+1,game.assets.getProgress()
+                                *1000, 50-2);
                 batch.end();
             }
     }
@@ -79,6 +76,7 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void dispose() {
-
+    loadingImageBack.getTexture().dispose();
+    loadingImageFront.getTexture().dispose();
     }
 }

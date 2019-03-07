@@ -25,9 +25,9 @@ public class AboutScreen implements Screen {
     private OrthographicCamera camera;
     private Sound sound;
     Texture back;
-    Sprite backS, exitButtonActive,exitButtonInactive;
+    Sprite backS, homeButtonActive,homeButtonInactive;
     Stage stage;
-    public ImageButton exitButton;
+    public ImageButton homeButton;
     FitViewport gameViewPort;
 
     public AboutScreen(ButchGame game, FitViewport gameViewPort){
@@ -37,7 +37,7 @@ public class AboutScreen implements Screen {
         camera.setToOrtho(true, 1920, 1080);
         // import picture to sprite and then using sprite to render background image with canvas dimensions
         batch = new SpriteBatch();
-        back = new Texture(Gdx.files.internal("aboutPage.png"));
+        back = ButchGame.assets.get(ButchGame.assets.aboutPage);
         back.setFilter(Linear, Linear);
         backS = new Sprite(back);
         backS.setRegionWidth(1920);
@@ -45,9 +45,6 @@ public class AboutScreen implements Screen {
         backS.flip(false,true);
         stage = new Stage(gameViewPort);
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
-
-
-
     }
     @Override
     public void show() {
@@ -64,8 +61,7 @@ public class AboutScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(backS, 0, 0 );
-
-      batch.end();
+        batch.end();
         camera.update();
         update(delta);
         stage.draw();
@@ -94,20 +90,20 @@ public class AboutScreen implements Screen {
         stage.act(delta);
     }
     public void createButtons(){
-        exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
-        exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
-        exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
-        exitButton.setBounds(10,10,251,71);
+        homeButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.homeButtonActive, Texture.class));
+        homeButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.homeButtonInactive, Texture.class));
+        homeButton = new ImageButton(new SpriteDrawable(homeButtonInactive), new SpriteDrawable(homeButtonActive));
+        homeButton.setBounds(10,10,251,71);
 
-        exitButton.addListener(new ClickListener(){
+        homeButton.addListener(new ClickListener(){
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                exitButton.setBounds(10,10,251,81);
+                homeButton.setBounds(10,10,251,81);
 
             }
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                exitButton.setBounds(10,10,251,71);
+                homeButton.setBounds(10,10,251,71);
 
             }
             public void clicked(InputEvent event, float x, float y){
@@ -116,11 +112,12 @@ public class AboutScreen implements Screen {
             }
 
         });
-        stage.addActor(exitButton);
+        stage.addActor(homeButton);
     }
 
     @Override
     public void dispose() {
-
+    stage.dispose();
+    back.dispose();
     }
 }

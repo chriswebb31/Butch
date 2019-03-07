@@ -25,9 +25,9 @@ public class SettingsScreen implements Screen {
     private SpriteBatch batch;
     private ButchGame game;
     private OrthographicCamera camera;
-    private Sprite exitButtonActive,exitButtonInactive, sliderBack, sliderKnob;
+    private Sprite homeButtonActive,homeButtonInactive, sliderBack, sliderKnob;
     Stage stage;
-    public ImageButton exitButton;
+    public ImageButton homeButton;
     private Sound sound;
     FitViewport gameViewPort;
     Slider.SliderStyle sliderStyle;
@@ -107,35 +107,35 @@ public class SettingsScreen implements Screen {
         stage.act(delta);
     }
     public void createButtons(){
-        exitButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
-        exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
-        exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
-        exitButton.setBounds(10,10,251,71);
+        homeButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.homeButtonActive, Texture.class));
+        homeButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.homeButtonInactive, Texture.class));
+        homeButton = new ImageButton(new SpriteDrawable(homeButtonInactive), new SpriteDrawable(homeButtonActive));
+        homeButton.setBounds(10,10,251,71);
 
-        exitButton.addListener(new ClickListener(){
+        homeButton.addListener(new ClickListener(){
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                exitButton.setBounds(10,10,251,81);
+                homeButton.setBounds(10,10,251,81);
 
             }
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                exitButton.setBounds(10,10,251,71);
+                homeButton.setBounds(10,10,251,71);
 
             }
             public void clicked(InputEvent event, float x, float y){
                 sound.play();
-
-              game.setScreen(new MainMenuScreen(game, gameViewPort));
+                game.setScreen(new MainMenuScreen(game, gameViewPort));
             }
 
         });
-        stage.addActor(exitButton);
+        stage.addActor(homeButton);
     }
     @Override
     public void dispose() {
         this.dispose();
-        exitButtonActive.getTexture().dispose();
-        exitButtonInactive.getTexture().dispose();
+        homeButtonActive.getTexture().dispose();
+        homeButtonInactive.getTexture().dispose();
+        stage.dispose();
     }
 }

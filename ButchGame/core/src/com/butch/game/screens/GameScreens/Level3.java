@@ -11,8 +11,8 @@ public class Level3 extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.caveTransition);
 
 
-    public Level3(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons){
-    super(level, game, gameViewPort,map);
+    public Level3(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons, int playerLevel){
+    super(level, game, gameViewPort,map, playerLevel);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class Level3 extends ModelGameScreen {
         updateCameraPosition();
 
         if (player.getCollider().overlaps(endPoint)) {
-            game.setScreen(new PrisonLevel(4, game, gameViewPort, player.getGunInventory()));
+            game.setScreen(new PrisonLevel(4, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel()));
         }
         super.render(delta);
     }

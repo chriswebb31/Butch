@@ -10,7 +10,7 @@ public class NewGameScreen extends ModelGameScreen {
    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.tilemap1);
     public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map){
 
-    super(levelNumber,game,gameViewPort, map);
+    super(levelNumber,game,gameViewPort, map, 1);
         //tiledMap = ButchGame.assets.get(ButchGame.assets.route1);
 
     }
@@ -23,7 +23,7 @@ public class NewGameScreen extends ModelGameScreen {
     @Override
     public void render(float delta){
         if(player.getCollider().overlaps(endPoint)){
-            game.setScreen(new Level2(2,game, gameViewPort, player.getGunInventory(), Level2.map));
+            game.setScreen(new Level2(2,game, gameViewPort, player.getGunInventory(), Level2.map, player.getPlayerLevel()));
         }
         super.render(delta);
 //

@@ -270,7 +270,6 @@ public abstract class ModelGameScreen implements Screen {
     }
 
     void renderHUD(){
-        hud.coinLabel.setText(String.format("Coins: " + player.coin ));
         int thisReserve;
         if(player.getActiveWeapon().gunType == 0){
             thisReserve = player.pistolAmmo;

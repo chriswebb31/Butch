@@ -44,8 +44,6 @@ public class Hud implements Disposable{
 
         levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         levelLabel.setFontScale(2.0f);
-        coinLabel = new Label(String.format("0"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-        coinLabel.setFontScale(2.0f);
         ammoCount = player.getActiveWeapon().ammoBar;
         ammoCountImage = new Image(ammoCount);
         ammoCountImage.setPosition(Gdx.graphics.getWidth()/1.1f-ammoCountImage.getWidth()*2,Gdx.graphics.getHeight()/14-ammoCountImage.getHeight()*2);

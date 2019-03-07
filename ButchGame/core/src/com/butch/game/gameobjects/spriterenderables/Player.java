@@ -461,7 +461,9 @@ public class Player extends Renderable {
             this.butchDead = true;
 //            this.destroy = true;
            this.activeGun.activeForRender = false;
-
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                Gdx.app.exit();
+            }
         }
         else{
             //

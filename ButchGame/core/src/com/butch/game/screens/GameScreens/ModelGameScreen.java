@@ -283,12 +283,13 @@ public abstract class ModelGameScreen implements Screen {
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
         for(NPC npc : NPCs) {
-            if(npc.getInteractActive() && !npc.getHasSpoken()) {
-                Label npcTextLabel = new Label(npc.getNpcText(), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
-                npcTextLabel.setFontScale(3.0f);
-                hud.table.center();
-                hud.table.add(npcTextLabel).expandY().expandX().center();
-                npc.setHasSpoken(true);
+            if(npc.getInteractActive()) {
+                hud.setNpcTextVisibility(true);
+                hud.setNpcText(String.format(npc.getNpcText()));
+                System.out.println("Oh Hi Mark");
+            } else if (!npc.getInteractActive() && npc.getInteractDeactivate()) {
+                hud.setNpcText(String.format(""));
+                System.out.println("Oh Bye Mark");
             }
         }
 
@@ -296,7 +297,7 @@ public abstract class ModelGameScreen implements Screen {
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
             //hud.table.removeActor(hud.hb);
-            hud.table.removeActor(hud.levelLabel);
+//            hud.table.removeActor(hud.levelLabel);
             hud.table.reset();
             hud.table.center();
             hud.table.add(healthLabel).expandY().expandX().center();

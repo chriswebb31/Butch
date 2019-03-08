@@ -34,6 +34,7 @@ public class Hud implements Disposable{
     private Image healthBarFG;
     private Image coinCounterTen;
     private Image coinCounterOne;
+    private Label npcText;
 
     public Hud(SpriteBatch spriteBatch, Player player){
         this.player = player;
@@ -42,8 +43,8 @@ public class Hud implements Disposable{
         // health = new Integer(1000);
 
 
-        levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-        levelLabel.setFontScale(2.0f);
+//        levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
+//        levelLabel.setFontScale(2.0f);
         ammoCount = player.getActiveWeapon().ammoBar;
         ammoCountImage = new Image(ammoCount);
         ammoCountImage.setPosition(Gdx.graphics.getWidth()/1.1f-ammoCountImage.getWidth()*2,Gdx.graphics.getHeight()/14-ammoCountImage.getHeight()*2);
@@ -67,12 +68,17 @@ public class Hud implements Disposable{
         coinCounterOne.setPosition(Gdx.graphics.getWidth()/10-coinCounterOne.getWidth()*2,Gdx.graphics.getHeight()/14-coinCounterOne.getHeight()*2);
         coinCounterOne.setSize(coinCountImg.getWidth() * 6, coinCountImg.getHeight() * 6);
 
+        npcText = new Label(String.format("Oh hi Mark!"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        npcText.setFontScale(2.0f);
+
         table.top().left();
 
         table.setFillParent(true);
         table.row();
-        //table.add(hb).expandX().left().pad(5);
-        table.add(levelLabel).expandX().right().pad(5);
+//        //table.add(hb).expandX().left().pad(5);
+//        table.add(levelLabel).expandX().right().pad(5);
+//        table.row();
+        table.add(npcText).expand().center().bottom().pad(10);
 //        table.row();
 //        table.add(coinLabel).expand().bottom().left().pad(5);
 
@@ -91,6 +97,17 @@ public void render(float width){
     public void dispose() {
         //stage.dispose();
     }
+
+    public Label getNpcText() { return npcText; }
+
+    public void setNpcText(String npcText) {
+        this.npcText.setText(npcText);
+    }
+
+    public void setNpcTextVisibility(boolean isVisible) {
+        this.npcText.setVisible(isVisible);
+    }
+
 
     public void setAmmoCount(Texture newAmmoCount) {
         ammoCountImage.setDrawable(new TextureRegionDrawable(new TextureRegion(newAmmoCount)));

@@ -7,11 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,8 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.screens.GameScreens.NewGameScreen;
 import com.butch.game.screens.TransitionScreen;
+import com.butch.game.screens.cutscenes.CutSceneScreen;
 
 public class MainMenuScreen implements Screen {
     //Change to use actual buttons maybe? Scene2D is used for menus etc
@@ -183,7 +179,7 @@ public class MainMenuScreen implements Screen {
              playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                  @Override
                  public void onCompletion(Music music) {
-                     transitionScreen.transitionOut(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map),stage,game);
+                     transitionScreen.transitionOut(new CutSceneScreen(game, gameViewPort),stage,game);
                  }
              });
          }

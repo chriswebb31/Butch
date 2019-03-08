@@ -15,17 +15,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.screens.GameScreens.NewGameScreen;
-
-//import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-///import com.badlogic.gdx.graphics.g2d.TextureRegion;
-//import com.badlogic.gdx.maps.tiled.TiledMap;
-//import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.butch.game.screens.TransitionScreen;
 
 public class MainMenuScreen implements Screen {
     //Change to use actual buttons maybe? Scene2D is used for menus etc
@@ -48,7 +45,7 @@ public class MainMenuScreen implements Screen {
     private TextureAtlas doorsOpenAtlas;
     private float stateTimer;
     private boolean startClicked = false;
-
+    static TransitionScreen transitionScreen;
 
     public MainMenuScreen(ButchGame game, FitViewport gameViewport){
         this.game = game;
@@ -81,6 +78,12 @@ public class MainMenuScreen implements Screen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
         createButtons();
+        stage.addActor(exitButton);
+        stage.addActor(playButton);
+        stage.addActor(aboutButton);
+        stage.addActor(needHelpButton);
+        stage.addActor(settingsButton);
+        transitionScreen.transitionIn(stage);
     }
 
     public void setVolume(float volume) {
@@ -156,11 +159,7 @@ public class MainMenuScreen implements Screen {
         exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
         exitButton.setBounds(10,10,251,71);
         addActions();
-        stage.addActor(exitButton);
-        stage.addActor(playButton);
-        stage.addActor(aboutButton);
-        stage.addActor(needHelpButton);
-        stage.addActor(settingsButton);
+
     }
     void addActions(){
      /** adding actions of when hovering over a button and clicking */
@@ -184,9 +183,7 @@ public class MainMenuScreen implements Screen {
              playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                  @Override
                  public void onCompletion(Music music) {
-
-
-                     game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
+                     transitionScreen.transitionOut(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map),stage,game);
                  }
              });
          }
@@ -204,10 +201,8 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
-             removeButtons();
-             game.setScreen(new AboutScreen(game, gameViewPort));
+             transitionScreen.transitionOut(new AboutScreen(game, gameViewPort),stage,game);
          }
-
      });
      needHelpButton.addListener(new ClickListener(){
          @Override
@@ -222,8 +217,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
-             removeButtons();
-             game.setScreen(new NeedHelpScreen(game, gameViewPort));
+             transitionScreen.transitionOut(new NeedHelpScreen(game,gameViewPort),stage,game);
          }
 
      });
@@ -240,10 +234,8 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
-             //game.setScreen(new SettingsScreen(game, gameViewPort, this));
-             changeS();
+             transitionScreen.transitionOut(new SettingsScreen(game, gameViewPort, returnThis()),stage,game);
          }
-
      });
 
      exitButton.addListener(new ClickListener(){
@@ -259,13 +251,19 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
-             Gdx.app.exit();
+             stage.addAction(Actions.sequence(Actions.fadeOut(0.5f),
+                     Actions.run(new Runnable(){
+                         @Override
+                         public void run(){
+                             Gdx.app.exit();
+                         }
+                     })));
+
 
          }
 
      });
  }
-
     void removeButtons(){
         playButton.remove();
         aboutButton.remove();
@@ -273,11 +271,9 @@ public class MainMenuScreen implements Screen {
         exitButton.remove();
         settingsButton.remove();
     }
-
-    public void changeS(){
-        removeButtons();
-        game.setScreen(new SettingsScreen(game, gameViewPort, this));
-    }
+     public MainMenuScreen returnThis(){
+        return this;
+     }
 
     @Override public void dispose() {
        playButtonActive.getTexture().dispose();
@@ -285,6 +281,7 @@ public class MainMenuScreen implements Screen {
        exitButtonActive.getTexture().dispose();
        exitButtonInactive.getTexture().dispose();
        music.dispose();
+       removeButtons();
     }
 
     public TextureRegion getFrame(float dt){

@@ -22,7 +22,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
-import com.butch.game.gameobjects.HUDObjects.HealthBar;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.*;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -32,6 +31,8 @@ import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.weapons.GunCreator;
+import com.butch.game.screens.TransitionScreen;
+
 import java.util.ArrayList;
 
 public abstract class ModelGameScreen implements Screen {
@@ -66,7 +67,7 @@ public abstract class ModelGameScreen implements Screen {
     Sprite healthBarBG;
     Sprite healthBarFG;
     final short buffer = 120;
-
+    static TransitionScreen transitionScreen;
     public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
         this.levelNumber = levelNumber;
         this.game = game;
@@ -212,7 +213,8 @@ public abstract class ModelGameScreen implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
+        transitionScreen.transitionIn(stage);
     }
 
     @Override

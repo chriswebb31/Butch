@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.screens.MenuScreens.MainMenuScreen;
+import com.butch.game.screens.TransitionScreen;
 
 public class SettingsScreen implements Screen {
     private SpriteBatch batch;
@@ -34,6 +34,7 @@ public class SettingsScreen implements Screen {
     Slider volumeSlider;
     MainMenuScreen menuScreen;
     Table table = new Table();
+    static TransitionScreen transitionScreen;
     public SettingsScreen(final ButchGame game, FitViewport gameViewPort, final MainMenuScreen menuScreen){
         this.gameViewPort = gameViewPort;
         this.game = game;
@@ -72,6 +73,7 @@ public class SettingsScreen implements Screen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
         createButtons();
+        transitionScreen.transitionIn(stage);
     }
 
     @Override

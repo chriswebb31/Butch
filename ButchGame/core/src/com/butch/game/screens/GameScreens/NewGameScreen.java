@@ -3,8 +3,6 @@ package com.butch.game.screens.GameScreens;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.screens.GameScreens.Level2;
-import com.butch.game.screens.GameScreens.ModelGameScreen;
 
 public class NewGameScreen extends ModelGameScreen {
    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.tilemap1);
@@ -23,6 +21,14 @@ public class NewGameScreen extends ModelGameScreen {
     @Override
     public void render(float delta){
         if(player.getCollider().overlaps(endPoint)){
+
+//            Actions.run(new Runnable(){
+//                @Override
+//                public void run(){
+//                    game.setScreen(new Level2(2,game, gameViewPort, player.getGunInventory(), Level2.map, player.getPlayerLevel()));
+//                }
+//                        }
+//            )));
             game.setScreen(new Level2(2,game, gameViewPort, player.getGunInventory(), Level2.map, player.getPlayerLevel()));
         }
         super.render(delta);

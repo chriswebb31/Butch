@@ -176,6 +176,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //Whisky
     public final String whisky = "Anim/Items/whisky.atlas";
     public final String whiskySpin = "Anim/Items/whiskySpin.atlas";
+    //Level Up Item
+    public final String lvlItem = "Anim/Items/lvlItem.atlas";
 
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
@@ -403,6 +405,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //Whisky
         load(whisky, TextureAtlas.class);
         load(whiskySpin, TextureAtlas.class);
+        //Level Up Item
+        load(lvlItem, TextureAtlas.class);
 
         //SOUNDS
         //Background Music

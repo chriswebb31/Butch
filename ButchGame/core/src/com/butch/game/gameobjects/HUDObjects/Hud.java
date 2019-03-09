@@ -70,6 +70,7 @@ public class Hud implements Disposable{
 
         npcText = new Label(String.format("Oh hi Mark!"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         npcText.setFontScale(2.0f);
+        npcText.setVisible(false);
 
         table.top().left();
 

@@ -287,9 +287,12 @@ public abstract class ModelGameScreen implements Screen {
             if(npc.getInteractActive()) {
                 hud.setNpcTextVisibility(true);
                 hud.setNpcText(String.format(npc.getNpcText()));
+//                hud.getNpcText().setPosition(npc.getPosition().x, npc.getPosition().y);
+
                 System.out.println("Oh Hi Mark");
             } else if (!npc.getInteractActive() && npc.getInteractDeactivate()) {
-                hud.setNpcText(String.format(""));
+                hud.setNpcTextVisibility(false);
+//                hud.setNpcText(String.format(""));
                 System.out.println("Oh Bye Mark");
             }
         }

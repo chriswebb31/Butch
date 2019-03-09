@@ -2,13 +2,15 @@ package com.butch.game.screens.cutscenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.screens.GameScreens.NewGameScreen;
@@ -24,36 +26,91 @@ public class CutSceneScreen implements Screen {
     private Animation<TextureRegion> npcAnim;
     float stateTime;
     SpriteBatch batch;
+    private Label welcomeText, briefText;
+    private Image introBack, bubbleSpeech;
+    boolean skip = false;
     public CutSceneScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
-        stage = new Stage(gameViewPort);
         npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc1Idle, TextureAtlas.class).getRegions());
         batch = new SpriteBatch();
+        stage = new Stage(gameViewPort);
+        introBack = new Image(ButchGame.assets.get(ButchGame.assets.introBack, Texture.class));
+        introBack.setSize(game.TARGET_WIDTH, game.TARGET_HEIGHT);
+        bubbleSpeech = new Image(ButchGame.assets.get(ButchGame.assets.bubbleSpeech, Texture.class));
+        bubbleSpeech.setPosition(game.TARGET_WIDTH*0.35f, game.TARGET_HEIGHT*0.45f);
+        welcomeText = new Label(String.format("Welcome to BUTCH"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        bubbleSpeech.setSize(1000,500);
+        welcomeText.setPosition(game.TARGET_WIDTH*0.4f, game.TARGET_HEIGHT*0.8f);
+        welcomeText.setFontScale(5.0f);
+        briefText = new Label(String.format("This is an Adventure Game which will blow your mind"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        briefText.setPosition(game.TARGET_WIDTH*0.4f, game.TARGET_HEIGHT*0.65f);
+        briefText.setFontScale(2.5f);
     }
     @Override
     public void show() {
 
-       transitionScreen.transitionIn(stage);
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if (Gdx.input.isTouched()){
-            transitionScreen.transitionOut(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map),stage,game);
+        if (Gdx.input.isTouched()&& skip == true){
+            game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
         }
-        camera.update();
-        update(delta);
-        stateTime += delta;
-        batch.begin();
-       batch.draw(npcAnim.getKeyFrame(stateTime,true), game.TARGET_WIDTH/10,game.TARGET_HEIGHT/10, 500,600);
-       batch.end();
-       //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);
-       stage.draw();
+        else {
+            stage.addActor(introBack);
+            stage.addAction(Actions.sequence(
+                    Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //stage.addActor(introBack);
+                                        stage.addActor(bubbleSpeech);
+                                        stage.draw();
+                                    }
+                                }
+                    ),
+                    Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        stage.addActor(welcomeText);
+                                        stage.draw();
+                                    }
+                                }
+                    ),
+                    Actions.delay(1),
+                    Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        stage.addActor(briefText);
+                                        stage.draw();
+
+                                    }
+                                }
+                    ),Actions.delay(3),
+                    Actions.run(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        skip = true;
+                                    }
+                                }
+                    )
+
+            ));
+            transitionScreen.transitionIn(stage);
+            camera.update();
+            update(delta);
+            stateTime += delta;
+            batch.begin();
+            batch.draw(npcAnim.getKeyFrame(stateTime, true), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, 500, 600);
+            batch.end();
+
+            //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);
+            //stage.draw();
+        }
     }
     public void update(float delta){
         stage.act(delta);

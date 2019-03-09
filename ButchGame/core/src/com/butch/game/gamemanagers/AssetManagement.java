@@ -2,14 +2,9 @@ package com.butch.game.gamemanagers;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-
-import javax.xml.soap.Text;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
@@ -213,6 +208,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String prison = "TiledFiles/Prison.tmx";
     public final String enemySprite = "enemy.png";
 
+    //CutScenes Assets
+    public final String bubbleSpeech = "CutScenes/speechBubble.png";
+    public final String introBack = "CutScenes/introback.jpg";
+
     public AssetManagement() {
         includeAssets();
     }
@@ -233,6 +232,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
      }
 
     public void includeAssets() {
+        //cutScenes loading
+        load(bubbleSpeech, Texture.class);
+        load(introBack, Texture.class);
         //page Contents
         load(aboutPage, Texture.class);
         load(levelUpSprite, Texture.class);

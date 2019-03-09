@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,7 +23,7 @@ public class CutSceneScreen implements Screen {
     FitViewport gameViewPort;
     private Animation<TextureRegion> npcAnim;
     float stateTime;
-
+    SpriteBatch batch;
     public CutSceneScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -30,12 +31,12 @@ public class CutSceneScreen implements Screen {
         camera.setToOrtho(true, 1920, 1080);
         stage = new Stage(gameViewPort);
         npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc1Idle, TextureAtlas.class).getRegions());
-
+        batch = new SpriteBatch();
     }
     @Override
     public void show() {
 
-        transitionScreen.transitionIn(stage);
+       transitionScreen.transitionIn(stage);
     }
 
     @Override
@@ -48,9 +49,9 @@ public class CutSceneScreen implements Screen {
         camera.update();
         update(delta);
         stateTime += delta;
-        game.batch.begin();
-       game.batch.draw(npcAnim.getKeyFrame(stateTime,true), game.TARGET_WIDTH/10,game.TARGET_HEIGHT/10, 500,600);
-       game.batch.end();
+        batch.begin();
+       batch.draw(npcAnim.getKeyFrame(stateTime,true), game.TARGET_WIDTH/10,game.TARGET_HEIGHT/10, 500,600);
+       batch.end();
        //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);
        stage.draw();
     }
@@ -79,6 +80,7 @@ public class CutSceneScreen implements Screen {
 
     @Override
     public void dispose() {
-    stage.dispose();
+        batch.dispose();
+        stage.dispose();
     }
 }

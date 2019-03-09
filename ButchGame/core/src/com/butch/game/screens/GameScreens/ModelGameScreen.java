@@ -213,8 +213,8 @@ public abstract class ModelGameScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
-        transitionScreen.transitionIn(stage);
+       // Gdx.input.setInputProcessor(stage);
+      //  transitionScreen.transitionIn(stage);
     }
 
     @Override
@@ -241,6 +241,7 @@ public abstract class ModelGameScreen implements Screen {
 
         //cursor.draw(batch);
         batch.end();
+        camera.update();
         caseBreak();
         renderHUD();
         renderEnemyHB();

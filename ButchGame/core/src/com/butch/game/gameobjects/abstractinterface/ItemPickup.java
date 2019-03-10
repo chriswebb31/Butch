@@ -34,7 +34,7 @@ public abstract class ItemPickup extends Renderable{
     @Override
     public void update(float delta) {
         if (activeForRender && getSprite() != null) {
-            if(this.id == 3) {
+            if(this.id == 5) {
                 sprite.setRegion(getFrame(delta));
                 this.setSprite(sprite);
                 this.getSprite().setScale(4);

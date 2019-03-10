@@ -75,6 +75,7 @@ public class Player extends Renderable {
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
     public int shotgunAmmo = 10;
+    public int musketAmmo = 10;
     public float health = 100;
     public int coin;
 
@@ -229,14 +230,14 @@ public class Player extends Renderable {
                 isRiding = true;
             }
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.R)){
-            try{
-                this.activeGun.Reload();
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
+//
+//        if(Gdx.input.isKeyPressed(Input.Keys.R)){
+//            try{
+//                this.activeGun.Reload();
+//            } catch (NullPointerException e){
+//                e.printStackTrace();
+//            }
+//        }
 
         if(Gdx.input.isKeyPressed(Input.Keys.E)){
             for (Renderable renderable:RenderableManager.renderableObjects) {
@@ -492,10 +493,8 @@ public class Player extends Renderable {
 
             } else if(item.type == 1){
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
-                System.out.println("DING");
             }
             else if(item.type == 2) {
-                System.out.println("DONG");
                 Item itemObj = (Item) item;
                 if(itemObj.id == 0){
                     this.pistolAmmo += itemObj.quantity;
@@ -505,13 +504,16 @@ public class Player extends Renderable {
                 else if(itemObj.id == 2){
                     this.shotgunAmmo += itemObj.quantity;
                 }
-                else if(itemObj.id == 3){
-                    this.coin += itemObj.quantity;
+                else if(itemObj.id == 3) {
+                    this.musketAmmo += itemObj.quantity;
                 }
                 else if(itemObj.id == 4){
                     this.health += itemObj.quantity;
                     if(this.health > maxHealth)
                         this.health = maxHealth;
+                }
+                else if(itemObj.id == 5){
+                    this.coin += itemObj.quantity;
                 }
                 else if(itemObj.id == 7){
                     this.playerLevel += 1;
@@ -540,13 +542,21 @@ public class Player extends Renderable {
                 else if(itemObj.id == 2){
                     this.shotgunAmmo += itemObj.quantity;
                 }
-                else if(itemObj.id == 3){
-                    this.coin += itemObj.quantity;
+                else if(itemObj.id == 3) {
+                    this.musketAmmo += itemObj.quantity;
                 }
                 else if(itemObj.id == 4){
                     this.health += itemObj.quantity;
                     if(this.health > maxHealth)
                         this.health = maxHealth;
+                }
+                else if(itemObj.id == 5){
+                    this.coin += itemObj.quantity;
+                }
+                else if(itemObj.id == 7){
+                    this.playerLevel += 1;
+                    this.maxHealth = this.baseHealth + ((playerLevel-1) * 10);
+                    this.health = maxHealth;
                 }
                 item.activeForRender = false;
                 item.collected();

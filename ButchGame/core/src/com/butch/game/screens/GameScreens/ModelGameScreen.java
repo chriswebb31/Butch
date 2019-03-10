@@ -169,10 +169,13 @@ public abstract class ModelGameScreen implements Screen {
                     itemPickups.add(new ShotgunAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
                 case 3:
-                    itemPickups.add(new CoinItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    itemPickups.add(new MusketAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
                 case 4:
                     itemPickups.add(new WhiskyItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 5 :
+                    itemPickups.add(new CoinItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
                 case 7:
                     itemPickups.add(new LevelUpItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
@@ -182,6 +185,12 @@ public abstract class ModelGameScreen implements Screen {
                     break;
                 case 11:
                     itemPickups.add(new MachineGunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 12:
+                    itemPickups.add(new ShotgunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 13:
+                    itemPickups.add(new MusketItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
             }
         }

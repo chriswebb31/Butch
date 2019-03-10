@@ -1,0 +1,124 @@
+cannonFiring.png
+size: 198, 396
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+cannonFiring-0
+  rotate: false
+  xy: 1, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-1
+  rotate: false
+  xy: 67, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-2
+  rotate: false
+  xy: 133, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-3
+  rotate: false
+  xy: 1, 67
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-4
+  rotate: false
+  xy: 67, 67
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-5
+  rotate: false
+  xy: 133, 67
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-6
+  rotate: false
+  xy: 1, 133
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-7
+  rotate: false
+  xy: 67, 133
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-8
+  rotate: false
+  xy: 133, 133
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-9
+  rotate: false
+  xy: 1, 199
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-10
+  rotate: false
+  xy: 67, 199
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-11
+  rotate: false
+  xy: 133, 199
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-12
+  rotate: false
+  xy: 1, 265
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-13
+  rotate: false
+  xy: 67, 265
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-14
+  rotate: false
+  xy: 133, 265
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-15
+  rotate: false
+  xy: 1, 331
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cannonFiring-16
+  rotate: false
+  xy: 67, 331
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

@@ -190,6 +190,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //Musket Ammo
     public final String musketAmmo = "Anim/Items/musketAmmo.atlas";
 
+    //Cannon
+    public final String cannonFiring = "Anim/Cannon/cannonFiring.atlas";
+    public final String cannonIdle = "Anim/Cannon/cannonIdle.png";
+
     //SOUNDS
     public final String gunShot = "SoundFX/gunShot1.mp3";
     public final String menuClick = "SoundFX/clickingSound.mp3";
@@ -427,6 +431,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(shotgunAmmo, TextureAtlas.class);
         //Musket
         load(musketAmmo, TextureAtlas.class);
+
+        //Cannon
+        load(cannonFiring, TextureAtlas.class);
+        load(cannonIdle, Texture.class);
 
         //SOUNDS
         //Background Music

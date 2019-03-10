@@ -212,7 +212,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Collisions" visible="0">
+ <objectgroup id="5" name="Collisions">
   <object id="1" x="290.896" y="928.39" width="29.0896" height="95.9337"/>
   <object id="2" x="352.169" y="929.628" width="126.88" height="95.9337"/>
   <object id="3" x="576.071" y="946.824"/>
@@ -244,12 +244,12 @@
   <object id="30" x="4.5527" y="95.6066" width="56.9087" height="450.717"/>
   <object id="56" x="362" y="208" width="42" height="16"/>
  </objectgroup>
- <objectgroup id="6" name="Points" visible="0">
+ <objectgroup id="6" name="Points">
   <object id="31" name="0" x="411.667" y="888.333"/>
   <object id="33" name="1" x="28" y="558.667"/>
   <object id="55" name="1" x="886" y="86" width="81.5" height="40.5"/>
  </objectgroup>
- <objectgroup id="7" name="Item Layer" visible="0">
+ <objectgroup id="7" name="Item Layer">
   <object id="34" name="3" x="476" y="217.5"/>
   <object id="35" name="3" x="534" y="220.5"/>
   <object id="36" name="3" x="520.5" y="216"/>
@@ -264,7 +264,7 @@
   <object id="52" name="3" x="1052" y="773"/>
   <object id="53" name="3" x="1081" y="783"/>
  </objectgroup>
- <objectgroup id="9" name="Enemy Layer" visible="0">
+ <objectgroup id="9" name="Enemy Layer">
   <object id="40" name="0" x="1085.5" y="847.5">
    <polygon points="0,0 37,-49 51,-110.5 0,-139 -54,-114 -132.5,-67.5 -70,-41 -141.5,7 -57.5,19.5 -30,1"/>
   </object>
@@ -281,7 +281,7 @@
   <object id="45" x="1037.5" y="809.5"/>
   <object id="46" x="956.5" y="175.5"/>
  </objectgroup>
- <objectgroup id="12" name="AnimalLayer" visible="0">
+ <objectgroup id="12" name="AnimalLayer">
   <object id="57" name="0" x="683" y="712"/>
  </objectgroup>
 </map>

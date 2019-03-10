@@ -218,6 +218,7 @@ public abstract class ModelGameScreen implements Screen {
             int animalID = Integer.parseInt(animal.getName());
             animals.add(new Animal(new Vector2(animal.getRectangle().x * 10, animal.getRectangle().y * 10), animalID));
         }
+
     }
 
     @Override
@@ -233,7 +234,6 @@ public abstract class ModelGameScreen implements Screen {
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
-
 
         camera.update();
         ButchGame.renderableManager.update(delta);

@@ -374,7 +374,7 @@
   <object id="214" x="578" y="320.667" width="58" height="3.66667"/>
  </objectgroup>
  <objectgroup id="14" name="Points">
-  <object id="178" name="0" x="757" y="701.833"/>
+  <object id="178" name="0" x="649.667" y="443.166" width="22.6667" height="18.6667"/>
   <object id="191" name="1" x="612" y="4.667" width="52.6667" height="214"/>
  </objectgroup>
  <objectgroup id="13" name="ItemLayer">

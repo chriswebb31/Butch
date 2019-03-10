@@ -27,6 +27,7 @@ public class CutSceneScreen implements Screen {
     float stateTime;
     SpriteBatch batch;
     private Label welcomeText, briefText;
+    private Label continueText;
     private Image introBack, bubbleSpeech;
     boolean skip = false;
     public CutSceneScreen(ButchGame game, FitViewport gameViewPort){
@@ -48,6 +49,9 @@ public class CutSceneScreen implements Screen {
         briefText = new Label(String.format("This is an Adventure Game which will blow your mind"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         briefText.setPosition(game.TARGET_WIDTH*0.4f, game.TARGET_HEIGHT*0.65f);
         briefText.setFontScale(2.5f);
+        continueText = new Label(String.format("Click To Continue!"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        continueText.setPosition(game.TARGET_WIDTH/1.5f, game.TARGET_HEIGHT/14);
+        continueText.setFontScale(2.5f);
     }
     @Override
     public void show() {
@@ -94,6 +98,8 @@ public class CutSceneScreen implements Screen {
                     Actions.run(new Runnable() {
                                     @Override
                                     public void run() {
+                                        stage.addActor(continueText);
+                                        stage.draw();
                                         skip = true;
                                     }
                                 }

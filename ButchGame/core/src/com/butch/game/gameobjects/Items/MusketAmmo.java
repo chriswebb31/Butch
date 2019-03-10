@@ -17,6 +17,6 @@ public class MusketAmmo extends Item {
         this.quantity = 5;
         this.type = 2;
         this.activeForRender = true;
-        this.itemAnim = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.coinSpin, TextureAtlas.class).getRegions());
+        this.itemAnim = new Animation<TextureRegion>(0.5f, ButchGame.assets.get(ButchGame.assets.musketAmmo, TextureAtlas.class).getRegions());
     }
 }

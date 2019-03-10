@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="207">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="209">
  <tileset firstgid="1" name="allTiles-3" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-3.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -253,7 +253,7 @@
   <object id="34" x="801.655" y="737.125" width="125.336" height="45.6339"/>
   <object id="35" x="353.257" y="737.125" width="349.948" height="48.7143"/>
   <object id="36" x="354.518" y="225.881" width="58.9587" height="509.188"/>
-  <object id="38" x="417.601" y="225.62" width="29.2219" height="49.5019"/>
+  <object id="38" x="417.601" y="225.62" width="29.2219" height="54.1686"/>
   <object id="39" x="467.351" y="1.40627" width="56.2509" height="370.725"/>
   <object id="40" x="449.017" y="280.076" width="26.441" height="27.5115"/>
   <object id="42" x="546.442" y="225.704" width="123.883" height="47.7596"/>
@@ -369,21 +369,21 @@
  </objectgroup>
  <objectgroup id="14" name="Points">
   <object id="178" name="0" x="757" y="701.833"/>
-  <object id="191" name="1" x="612" y="74.667" width="72" height="144"/>
+  <object id="191" name="1" x="612" y="4.667" width="52.6667" height="214"/>
  </objectgroup>
  <objectgroup id="13" name="ItemLayer">
-  <object id="165" name="3" x="912.5" y="307"/>
+  <object id="165" name="5" x="912.5" y="307"/>
   <object id="166" name="7" x="919.5" y="316.5"/>
-  <object id="167" name="3" x="888" y="303"/>
-  <object id="168" name="3" x="754.333" y="756.5"/>
+  <object id="167" name="5" x="888" y="303"/>
+  <object id="168" name="5" x="754.333" y="756.5"/>
   <object id="169" name="10" x="723.333" y="751.5" visible="0"/>
   <object id="171" name="0" x="635.5" y="846.5"/>
-  <object id="172" name="1" x="650.5" y="616.5"/>
-  <object id="173" name="3" x="1000.5" y="816.5"/>
-  <object id="174" name="3" x="976.5" y="828.5"/>
-  <object id="175" name="3" x="1002.5" y="841.5"/>
-  <object id="176" name="3" x="1019" y="826"/>
-  <object id="177" name="3" x="983" y="840.5"/>
+  <object id="172" name="1" x="669.833" y="609.833"/>
+  <object id="173" name="5" x="1000.5" y="816.5"/>
+  <object id="174" name="5" x="976.5" y="828.5"/>
+  <object id="175" name="5" x="1002.5" y="841.5"/>
+  <object id="176" name="5" x="1019" y="826"/>
+  <object id="177" name="5" x="983" y="840.5"/>
   <object id="192" name="4" x="665" y="867.5"/>
   <object id="193" name="4" x="989" y="820"/>
  </objectgroup>

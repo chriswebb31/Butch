@@ -423,7 +423,7 @@ public class Player extends Renderable {
         for (Renderable renderable:RenderableManager.renderableObjects) {
             if(renderable.TAG == "item" && renderable.activeForRender){
                 ItemPickup itemPickupOG = (ItemPickup) renderable;
-                if(itemPickupOG.id == 3){
+                if(itemPickupOG.id == 5){
                     Item itemPickup = (Item) renderable;
                     intersector = new Rectangle();
                     if(Intersector.overlaps(itemPickup.collectionRange, this.getCollider()) && itemPickup.autoPickup){

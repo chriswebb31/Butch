@@ -27,6 +27,7 @@ html, body{
 }
 .card{
 	margin:5px;
+	background-color: #cd5c5c;
 }
 .about-text .card{
 	height:400px:

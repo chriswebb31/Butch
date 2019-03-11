@@ -597,7 +597,7 @@
  <objectgroup id="8" name="Points">
   <object id="1" name="0" x="2480" y="3056"/>
   <object id="6" name="1" x="3079" y="2636" width="107" height="69"/>
-  <object id="47" name="1" x="1029" y="210" width="56" height="88"/>
+  <object id="47" name="1" x="943.223" y="210" width="221.024" height="51.4928"/>
  </objectgroup>
  <objectgroup id="9" name="ItemLayer">
   <object id="3" name="3" x="2512" y="2900"/>

@@ -22,7 +22,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
-import com.butch.game.gameobjects.HUDObjects.HealthBar;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.*;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -32,6 +31,8 @@ import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.weapons.GunCreator;
+import com.butch.game.screens.TransitionScreen;
+
 import java.util.ArrayList;
 
 public abstract class ModelGameScreen implements Screen {
@@ -66,7 +67,7 @@ public abstract class ModelGameScreen implements Screen {
     Sprite healthBarBG;
     Sprite healthBarFG;
     final short buffer = 120;
-
+    static TransitionScreen transitionScreen;
     public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
         this.levelNumber = levelNumber;
         this.game = game;
@@ -168,10 +169,13 @@ public abstract class ModelGameScreen implements Screen {
                     itemPickups.add(new ShotgunAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
                 case 3:
-                    itemPickups.add(new CoinItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    itemPickups.add(new MusketAmmo(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
                 case 4:
                     itemPickups.add(new WhiskyItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 5 :
+                    itemPickups.add(new CoinItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
                 case 7:
                     itemPickups.add(new LevelUpItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
@@ -181,6 +185,12 @@ public abstract class ModelGameScreen implements Screen {
                     break;
                 case 11:
                     itemPickups.add(new MachineGunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 12:
+                    itemPickups.add(new ShotgunItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
+                    break;
+                case 13:
+                    itemPickups.add(new MusketItem(new Vector2(item.getRectangle().x * 10, item.getRectangle().y * 10)));
                     break;
             }
         }
@@ -208,11 +218,13 @@ public abstract class ModelGameScreen implements Screen {
             int animalID = Integer.parseInt(animal.getName());
             animals.add(new Animal(new Vector2(animal.getRectangle().x * 10, animal.getRectangle().y * 10), animalID));
         }
+
     }
 
     @Override
     public void show() {
-
+       // Gdx.input.setInputProcessor(stage);
+      //  transitionScreen.transitionIn(stage);
     }
 
     @Override
@@ -222,7 +234,6 @@ public abstract class ModelGameScreen implements Screen {
 
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
-
 
         camera.update();
         ButchGame.renderableManager.update(delta);
@@ -239,6 +250,7 @@ public abstract class ModelGameScreen implements Screen {
 
         //cursor.draw(batch);
         batch.end();
+        camera.update();
         caseBreak();
         renderHUD();
         renderEnemyHB();
@@ -270,7 +282,6 @@ public abstract class ModelGameScreen implements Screen {
     }
 
     void renderHUD(){
-        hud.coinLabel.setText(String.format("Coins: " + player.coin ));
         int thisReserve;
         if(player.getActiveWeapon().gunType == 0){
             thisReserve = player.pistolAmmo;
@@ -282,12 +293,16 @@ public abstract class ModelGameScreen implements Screen {
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
         for(NPC npc : NPCs) {
-            if(npc.getInteractActive() && !npc.getHasSpoken()) {
-                Label npcTextLabel = new Label(npc.getNpcText(), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
-                npcTextLabel.setFontScale(3.0f);
-                hud.table.center();
-                hud.table.add(npcTextLabel).expandY().expandX().center();
-                npc.setHasSpoken(true);
+            if(npc.getInteractActive()) {
+                hud.setNpcTextVisibility(true);
+                hud.setNpcText(String.format(npc.getNpcText()));
+//                hud.getNpcText().setPosition(npc.getPosition().x, npc.getPosition().y);
+
+                System.out.println("Oh Hi Mark");
+            } else if (!npc.getInteractActive() && npc.getInteractDeactivate()) {
+                hud.setNpcTextVisibility(false);
+//                hud.setNpcText(String.format(""));
+                System.out.println("Oh Bye Mark");
             }
         }
 
@@ -295,7 +310,7 @@ public abstract class ModelGameScreen implements Screen {
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
             healthLabel.setFontScale(3.0f);
             //hud.table.removeActor(hud.hb);
-            hud.table.removeActor(hud.levelLabel);
+//            hud.table.removeActor(hud.levelLabel);
             hud.table.reset();
             hud.table.center();
             hud.table.add(healthLabel).expandY().expandX().center();
@@ -330,6 +345,72 @@ public abstract class ModelGameScreen implements Screen {
     }
 
     public void caseBreak(){
+
+        switch(player.coin / 10) {
+            case 0:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter0, Texture.class));
+                break;
+            case 1:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter1, Texture.class));
+                break;
+            case 2:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter2, Texture.class));
+                break;
+            case 3:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter3, Texture.class));
+                break;
+            case 4:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter4, Texture.class));
+                break;
+            case 5:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter5, Texture.class));
+                break;
+            case 6:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter6, Texture.class));
+                break;
+            case 7:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter7, Texture.class));
+                break;
+            case 8:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter8, Texture.class));
+                break;
+            case 9:
+                hud.setCoinCounterTen(ButchGame.assets.get(ButchGame.assets.coinCounter9, Texture.class));
+                break;
+        }
+
+        switch(player.coin % 10) {
+            case 0:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter0, Texture.class));
+                break;
+            case 1:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter1, Texture.class));
+                break;
+            case 2:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter2, Texture.class));
+                break;
+            case 3:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter3, Texture.class));
+                break;
+            case 4:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter4, Texture.class));
+                break;
+            case 5:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter5, Texture.class));
+                break;
+            case 6:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter6, Texture.class));
+                break;
+            case 7:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter7, Texture.class));
+                break;
+            case 8:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter8, Texture.class));
+                break;
+            case 9:
+                hud.setCoinCounterOne(ButchGame.assets.get(ButchGame.assets.coinCounter9, Texture.class));
+                break;
+        }
 
         switch(player.getActiveWeapon().id) {
             case 10:

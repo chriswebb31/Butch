@@ -19,6 +19,6 @@ public class LevelUpItem extends Item {
         autoPickup = true;
         this.activeForRender = true;
         this.collectionFX = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
-//        this.itemAnim = new Animation<TextureRegion>(0.083f, ButchGame.assets.get(ButchGame.assets.coinSpin, TextureAtlas.class).getRegions());
+        this.itemAnim = new Animation<TextureRegion>(0.5f, ButchGame.assets.get(ButchGame.assets.lvlItem, TextureAtlas.class).getRegions());
     }
 }

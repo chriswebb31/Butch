@@ -34,11 +34,16 @@ public abstract class ItemPickup extends Renderable{
     @Override
     public void update(float delta) {
         if (activeForRender && getSprite() != null) {
-            if(this.id == 3) {
+            if(this.id == 0 || this.id == 1 || this.id == 2 || this.id == 3) {
+                sprite.setRegion(getFrame(delta));
+                sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
+                this.setSprite(sprite);
+                this.getSprite().setScale(10);
+            } else if(this.id == 5) {
                 sprite.setRegion(getFrame(delta));
                 this.setSprite(sprite);
                 this.getSprite().setScale(4);
-            } else if (this.id == 4) {
+            } else if (this.id == 4 || this.id == 7) {
                 sprite.setRegion(getFrame(delta));
                 sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
                 this.setSprite(sprite);
@@ -48,8 +53,6 @@ public abstract class ItemPickup extends Renderable{
                 sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
                 this.setSprite(sprite);
                 this.getSprite().setScale(10);
-            } else if (this.id == 7) {
-                this.getSprite().setScale(1);
             } else {
                 this.getSprite().setScale(10);
             }

@@ -41,6 +41,7 @@ public class Enemy extends Renderable  {
     public int rifleAmmo = 100000;
     public int pistolAmmo = 100000;
     public int shotgunAmmo = 100000;
+    public int musketAmmo = 100000;
     private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
     private boolean movingRight = false;
 

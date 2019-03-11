@@ -9,14 +9,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Item;
 
-public class RifleAmmo extends Item {
-    public RifleAmmo(Vector2 position) {
+public class MusketAmmo extends Item {
+    public MusketAmmo(Vector2 position) {
         super(position);
-        this.id = 1;
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.rifleAmmo, Texture.class)));
-        this.quantity = 20;
+        this.id = 3;
+        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.pistolAmmo, Texture.class)));
+        this.quantity = 5;
         this.type = 2;
         this.activeForRender = true;
-        this.itemAnim = new Animation<TextureRegion>(0.5f, ButchGame.assets.get(ButchGame.assets.machineGunAmmo, TextureAtlas.class).getRegions());
+        this.itemAnim = new Animation<TextureRegion>(0.5f, ButchGame.assets.get(ButchGame.assets.musketAmmo, TextureAtlas.class).getRegions());
     }
 }

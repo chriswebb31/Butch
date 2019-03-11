@@ -69,6 +69,8 @@ public abstract class Gun extends EquipableItem {
                             this.reserve = player.rifleAmmo;
                         case 2:
                             this.reserve = player.shotgunAmmo;
+                        case 3:
+                            this.reserve = player.musketAmmo;
                     }
                 }else{
                     this.reserve = 100;
@@ -120,6 +122,8 @@ public abstract class Gun extends EquipableItem {
                 reserve = player.rifleAmmo;
             } else if (gunType == 2) {
                 reserve = player.shotgunAmmo;
+            } else if (gunType == 3) {
+                reserve = player.musketAmmo;
             }
             System.out.println("Player RELOAD!");
             System.out.println("Player RESERVE AMMO:" + reserve);
@@ -133,6 +137,8 @@ public abstract class Gun extends EquipableItem {
                         player.rifleAmmo += clip;
                     } else if (gunType == 2) {
                         player.shotgunAmmo += clip;
+                    } else if (gunType == 3) {
+                        player.musketAmmo += clip;
                     }
 
                     clip = clipSize;
@@ -143,6 +149,8 @@ public abstract class Gun extends EquipableItem {
                         player.rifleAmmo -= clipSize;
                     } else if (gunType == 2) {
                         player.shotgunAmmo -= clipSize;
+                    } else if (gunType == 3) {
+                        player.musketAmmo -= clipSize;
                     }
                 } else {
                     clip = reserve;
@@ -153,6 +161,8 @@ public abstract class Gun extends EquipableItem {
                         player.rifleAmmo = 0;
                     } else if (gunType == 2) {
                         player.shotgunAmmo = 0;
+                    } else if (gunType == 3) {
+                        player.musketAmmo = 0;
                     }
                 }
 
@@ -167,6 +177,8 @@ public abstract class Gun extends EquipableItem {
                 reserve = enemy.rifleAmmo;
             } else if (gunType == 2) {
                 reserve = enemy.shotgunAmmo;
+            } else if (gunType == 3) {
+                reserve = enemy.musketAmmo;
             }
             System.out.println("Enemy RELOAD!");
             System.out.println("Enemy RESERVE AMMO:" + reserve);
@@ -181,6 +193,8 @@ public abstract class Gun extends EquipableItem {
                         enemy.rifleAmmo -= clipSize;
                     } else if (gunType == 2) {
                         enemy.shotgunAmmo -= clipSize;
+                    } else if (gunType == 3) {
+                        enemy.musketAmmo -= clipSize;
                     }
                 } else {
                     clip = reserve;
@@ -191,6 +205,8 @@ public abstract class Gun extends EquipableItem {
                         enemy.rifleAmmo = 0;
                     } else if (gunType == 2) {
                         enemy.shotgunAmmo = 0;
+                    } else if (gunType == 3) {
+                        enemy.musketAmmo = 0;
                     }
                 }
 

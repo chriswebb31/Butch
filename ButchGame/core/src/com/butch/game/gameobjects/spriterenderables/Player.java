@@ -5,10 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -16,20 +16,14 @@ import com.badlogic.gdx.math.Vector3;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gamemanagers.Rumble;
-import com.butch.game.gameobjects.Items.PistolAmmo;
-import com.butch.game.gameobjects.Items.RifleAmmo;
-import com.butch.game.gameobjects.Items.ShotgunAmmo;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.abstractinterface.Item;
 import com.butch.game.gameobjects.abstractinterface.ItemPickup;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
-import com.butch.game.gameobjects.weapons.GunCreator;
 
-
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.ArrayList;
 
 public class Player extends Renderable {
     private int playerLevel;
@@ -55,8 +49,8 @@ public class Player extends Renderable {
     float xAxis, yAxis, speed = 0;
     private Sprite sprite;
     public float shakeAmount = 25;
-    private Animation<TextureRegion> butchWalking;
-    private Animation<TextureRegion> butchIdle;
+    public Animation<TextureRegion> butchWalking;
+    public Animation<TextureRegion> butchIdle;
     private Animation<TextureRegion> butchDying;
     private Animation<TextureRegion> butchHorseRiding;
     private Animation<TextureRegion> butchHorseIdle;
@@ -75,6 +69,7 @@ public class Player extends Renderable {
     public int rifleAmmo = 10;
     public int pistolAmmo = 10;
     public int shotgunAmmo = 10;
+    public int musketAmmo = 10;
     public float health = 100;
     public int coin;
 
@@ -229,14 +224,14 @@ public class Player extends Renderable {
                 isRiding = true;
             }
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.R)){
-            try{
-                this.activeGun.Reload();
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
+//
+//        if(Gdx.input.isKeyPressed(Input.Keys.R)){
+//            try{
+//                this.activeGun.Reload();
+//            } catch (NullPointerException e){
+//                e.printStackTrace();
+//            }
+//        }
 
         if(Gdx.input.isKeyPressed(Input.Keys.E)){
             for (Renderable renderable:RenderableManager.renderableObjects) {
@@ -422,7 +417,7 @@ public class Player extends Renderable {
         for (Renderable renderable:RenderableManager.renderableObjects) {
             if(renderable.TAG == "item" && renderable.activeForRender){
                 ItemPickup itemPickupOG = (ItemPickup) renderable;
-                if(itemPickupOG.id == 3){
+                if(itemPickupOG.id == 5){
                     Item itemPickup = (Item) renderable;
                     intersector = new Rectangle();
                     if(Intersector.overlaps(itemPickup.collectionRange, this.getCollider()) && itemPickup.autoPickup){
@@ -492,10 +487,8 @@ public class Player extends Renderable {
 
             } else if(item.type == 1){
                 itemInventory.add(ButchGame.itemManager.getItem(item.id));
-                System.out.println("DING");
             }
             else if(item.type == 2) {
-                System.out.println("DONG");
                 Item itemObj = (Item) item;
                 if(itemObj.id == 0){
                     this.pistolAmmo += itemObj.quantity;
@@ -505,13 +498,16 @@ public class Player extends Renderable {
                 else if(itemObj.id == 2){
                     this.shotgunAmmo += itemObj.quantity;
                 }
-                else if(itemObj.id == 3){
-                    this.coin += itemObj.quantity;
+                else if(itemObj.id == 3) {
+                    this.musketAmmo += itemObj.quantity;
                 }
                 else if(itemObj.id == 4){
                     this.health += itemObj.quantity;
                     if(this.health > maxHealth)
                         this.health = maxHealth;
+                }
+                else if(itemObj.id == 5){
+                    this.coin += itemObj.quantity;
                 }
                 else if(itemObj.id == 7){
                     this.playerLevel += 1;
@@ -540,13 +536,21 @@ public class Player extends Renderable {
                 else if(itemObj.id == 2){
                     this.shotgunAmmo += itemObj.quantity;
                 }
-                else if(itemObj.id == 3){
-                    this.coin += itemObj.quantity;
+                else if(itemObj.id == 3) {
+                    this.musketAmmo += itemObj.quantity;
                 }
                 else if(itemObj.id == 4){
                     this.health += itemObj.quantity;
                     if(this.health > maxHealth)
                         this.health = maxHealth;
+                }
+                else if(itemObj.id == 5){
+                    this.coin += itemObj.quantity;
+                }
+                else if(itemObj.id == 7){
+                    this.playerLevel += 1;
+                    this.maxHealth = this.baseHealth + ((playerLevel-1) * 10);
+                    this.health = maxHealth;
                 }
                 item.activeForRender = false;
                 item.collected();

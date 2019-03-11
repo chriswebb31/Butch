@@ -6,24 +6,18 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-
-import com.butch.game.screens.MenuScreens.MainMenuScreen;
-
-import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
+import com.butch.game.screens.TransitionScreen;
 
 
 public class NeedHelpScreen implements Screen {
@@ -33,12 +27,10 @@ public class NeedHelpScreen implements Screen {
     private Sprite homeButtonActive,homeButtonInactive;
     public ImageButton homeButton;
     Stage stage;
-    Texture back;
-    Sprite backS;
     private Sound sound;
     FitViewport gameViewPort;
-
-
+    Image backg;
+    static TransitionScreen transitionScreen;
     public NeedHelpScreen(ButchGame game, FitViewport gameViewPort){
         this.gameViewPort = gameViewPort;
         this.game = game;
@@ -49,29 +41,25 @@ public class NeedHelpScreen implements Screen {
         homeButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.homeButtonActive, Texture.class));
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
         batch= new SpriteBatch();
-        back = new Texture(Gdx.files.internal("needHelpPage.png"));
-        back.setFilter(Linear, Linear);
-        backS = new Sprite(back);
-        backS.flip(false,true);
+        backg = new Image(new Texture(Gdx.files.internal("needHelpPage.png")));
+
     }
 
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
         createButtons();
+        stage.addActor(backg);
+        stage.addActor(homeButton);
+        transitionScreen.transitionIn(stage);
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(255f,215f,0f,1f); // setting the background white, however this doesn't...
-        //...matter as there will be a background anyway.
+        Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
         camera.update();
-        update(delta);
-        batch.begin();
-        batch.draw(backS, 0, 0 );
-        batch.end();
         update(delta);
         stage.draw();
     }
@@ -114,18 +102,15 @@ public class NeedHelpScreen implements Screen {
             }
             public void clicked(InputEvent event, float x, float y){
                 sound.play();
-                game.setScreen(new MainMenuScreen(game, gameViewPort));
+                transitionScreen.transitionOut(new MainMenuScreen(game, gameViewPort),stage,game);
             }
 
         });
-        stage.addActor(homeButton);
+
     }
 
     @Override
     public void dispose() {
-        this.dispose();
-        homeButtonActive.getTexture().dispose();
-        homeButtonInactive.getTexture().dispose();
         stage.dispose();
     }
 }

@@ -110,6 +110,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String coinCounter8 = "HUD/CoinCount/coinCount-7.png";
     public final String coinCounter9 = "HUD/CoinCount/coinCount-8.png";
 
+    //dialogue stuff
+    public final String dialougueBox= "dialogueBox.png";
+
     //TEXTUREATLAS
     //MAIN MENU
     public final String doorsMain = "Anim/doorAtlas/mainDoors.atlas";
@@ -362,6 +365,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(enemyHBFG, Texture.class);
         load(playerHBBG, Texture.class);
         load(playerHBFG, Texture.class);
+        // dialogue
+        load(dialougueBox, Texture.class);
         //Revolver Ammo Bar
         load(revolverAmmoBar0, Texture.class);
         load(revolverAmmoBar1, Texture.class);

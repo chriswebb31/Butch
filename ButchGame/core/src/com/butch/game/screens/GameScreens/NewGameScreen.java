@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.butch.game.ButchGame;
@@ -28,6 +29,8 @@ public class NewGameScreen extends ModelGameScreen {
         //tiledMap = ButchGame.assets.get(ButchGame.assets.route1);
         currentPos = player.getPosition().x;
         statetime = 0;
+       // dialogueBox = new DialogueBox(new Skin(Gdx.files.internal("Data/uiskin.json")));
+        initUI();
     }
 
     @Override
@@ -51,7 +54,9 @@ public class NewGameScreen extends ModelGameScreen {
         }
 
         super.render(delta);
-        initUI();
+        uiStage.act(delta);
+        uiStage.draw();
+
 
 //
 //        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -120,18 +125,19 @@ public class NewGameScreen extends ModelGameScreen {
 
     }
     private void initUI(){
-     uiStage =new Stage(new ScreenViewport(new OrthographicCamera()));
+     uiStage =new Stage(new ScreenViewport());
      uiStage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),true);
      root = new Table();
      root.setFillParent(true);
      uiStage.addActor(root);
-     dialogueBox =new DialogueBox();
-     dialogueBox.animateText("test case example");
-     dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+     Skin skin = new Skin(Gdx.files.internal("Data/uiskin.json"));
+     dialogueBox = new DialogueBox(skin);
+     dialogueBox.animateText("test case examp this shouls be a rolling test example and some shit \n i like dogs and want more play time ");
+     //dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
      root.add(dialogueBox)
              .expand()
              .align(Align.bottom)
              .pad(8f);
-      uiStage.draw();
+      //stage.draw();
     }
 }

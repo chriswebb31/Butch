@@ -16,7 +16,6 @@ public class DialogueBox extends Table{
     private float time_per_character = 0.05f;
     private STATE state = STATE.IDLE;
     private Label textLabel;
-    private Skin uiskin;
 
 
     private enum STATE{
@@ -25,18 +24,19 @@ public class DialogueBox extends Table{
         ;
     }
 
-    public DialogueBox(){
-        //super(skin);
-        uiskin = new Skin(Gdx.files.internal("Data/uiskin.json"));
-        textLabel = new Label(String.format("\n"),  uiskin);
-        this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("dialogueBox.png"))));
+    public DialogueBox(Skin skin){
+        super(skin);
+        //uiskin = new Skin(Gdx.files.internal("Data/uiskin.json"));
+        this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("HUD/bars/playerHealthBarBG.png"))));
+        textLabel = new Label("\n",  skin);
         this.add(textLabel).expand().align(Align.left).pad(5f);
     }
     public void animateText(String text){
         targetText = text;
-        animationTotalTime =text.length()*time_per_character;
+        animationTotalTime = targetText.length()*time_per_character;
         state= STATE.ANIMATING;
         animTimer=0f;
+        //act(0.01f);
     }
     public Boolean isFinished(){
         if (state==STATE.IDLE ){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="225">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="225">
  <tileset firstgid="1" name="allTiles-3" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-3.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -412,15 +412,15 @@
   <object id="221" name="3" x="337.86" y="1003.96">
    <polygon points="0,0 55.5971,103.71 219.181,47.0437 49.1821,-83.3957"/>
   </object>
-  <object id="222" x="483.267" y="836.095">
+  <object id="222" name="2" x="483.267" y="836.095">
    <polygon points="0,0 -95.1566,84.4649 153.961,45.9746 111.194,-19.2452"/>
   </object>
-  <object id="224" x="952.636" y="997.541">
+  <object id="224" name="1" x="952.636" y="997.541">
    <polygon points="0,0 -42.767,-153.961 66.2889,-126.163 -4.2767,80.1882"/>
   </object>
  </objectgroup>
  <objectgroup id="16" name="NPCLayer">
-  <object id="182" name="John" x="818" y="723"/>
+  <object id="182" name="James" x="818" y="723"/>
   <object id="183" name="Jamerson" x="606" y="433"/>
   <object id="184" name="Morgan" x="683.103" y="149.195"/>
   <object id="216" name="John" x="753.023" y="427.196"/>

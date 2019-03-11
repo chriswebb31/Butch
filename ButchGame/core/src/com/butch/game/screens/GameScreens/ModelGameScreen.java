@@ -211,7 +211,7 @@ public abstract class ModelGameScreen implements Screen {
         //SET ENEMIES AND POSITIONS
 
         for(RectangleMapObject npc : npcLayer.getByType(RectangleMapObject.class)){
-            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), "Dan"));
+            NPCs.add(new NPC(new Vector2(npc.getRectangle().x * 10, npc.getRectangle().y * 10), npc.getName()));
         }
         //SET NPCS AND POSITIONS
         for(RectangleMapObject animal : animalLayer.getByType(RectangleMapObject.class)) {

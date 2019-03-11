@@ -1,18 +1,25 @@
 package com.butch.game.dialouge;
 //import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-public class DialougeBox extends Table{
+import com.butch.game.ButchGame;
+
+public class DialogueBox extends Table{
     private String targetText ="";
     private float animTimer =0.0f;
     private float animationTotalTime = 0.0f;
     private float time_per_character = 0.05f;
     private STATE state = STATE.IDLE;
     private Label textLabel;
+    private Skin uiskin;
 
 
     private enum STATE{
@@ -21,10 +28,11 @@ public class DialougeBox extends Table{
         ;
     }
 
-    public DialougeBox(){
+    public DialogueBox(){
         //super(skin);
-       // this.setBackground("dialoguebox");
-        textLabel = new Label(String.format("\n"),  new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
+        uiskin = new Skin(Gdx.files.internal("Data/uiskin.json"));
+        textLabel = new Label(String.format("\n"),  uiskin);
+        this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("dialogueBox.png"))));
         this.add(textLabel).expand().align(Align.left).pad(5f);
     }
     public void animateText(String text){

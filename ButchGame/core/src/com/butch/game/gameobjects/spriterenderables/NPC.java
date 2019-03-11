@@ -64,19 +64,19 @@ public class NPC extends Renderable {
             //npcMove = new Animation<TextureRegion>(0.1f, moveAtlas.getRegions());
             switch(npcType) {
                 case 0:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc1Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.225f, ButchGame.assets.get(ButchGame.assets.npc1Idle, TextureAtlas.class).getRegions());
                     break;
                 case 1:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc2Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.275f, ButchGame.assets.get(ButchGame.assets.npc2Idle, TextureAtlas.class).getRegions());
                     break;
                 case 2:
                     this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc3Idle, TextureAtlas.class).getRegions());
                     break;
                 case 3:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc4Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.npc4Idle, TextureAtlas.class).getRegions());
                     break;
                 case 4:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc5Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.24f, ButchGame.assets.get(ButchGame.assets.npc5Idle, TextureAtlas.class).getRegions());
                     break;
                 case 5:
                     this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc6Walking, TextureAtlas.class).getRegions());
@@ -88,16 +88,16 @@ public class NPC extends Renderable {
                     this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc8Walking, TextureAtlas.class).getRegions());
                     break;
                 case 8:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc9Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.26f, ButchGame.assets.get(ButchGame.assets.npc9Idle, TextureAtlas.class).getRegions());
                     break;
                 case 9:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc10Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.275f, ButchGame.assets.get(ButchGame.assets.npc10Idle, TextureAtlas.class).getRegions());
                     break;
                 case 10:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc11Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.245f, ButchGame.assets.get(ButchGame.assets.npc11Idle, TextureAtlas.class).getRegions());
                     break;
                 case 11:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc12Idle, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.235f, ButchGame.assets.get(ButchGame.assets.npc12Idle, TextureAtlas.class).getRegions());
                     break;
                 case 12:
                     this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc13Idle, TextureAtlas.class).getRegions());

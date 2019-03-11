@@ -423,11 +423,11 @@
   <object id="182" name="James" x="818" y="723"/>
   <object id="183" name="Jamerson" x="606" y="433"/>
   <object id="184" name="Morgan" x="683.103" y="149.195"/>
-  <object id="216" name="John" x="751.356" y="401.529"/>
-  <object id="217" name="Abigail" x="830.696" y="415.805"/>
-  <object id="218" name="Lesley" x="724.9" y="491.248"/>
-  <object id="219" name="Billy" x="793.136" y="490.418"/>
-  <object id="220" name="Chris" x="852.44" y="469.352"/>
+  <object id="216" name="John" x="752.023" y="376.529"/>
+  <object id="217" name="Abigail" x="848.363" y="406.138"/>
+  <object id="218" name="Lesley" x="707.233" y="529.915"/>
+  <object id="219" name="Billy" x="777.469" y="485.418"/>
+  <object id="220" name="Chris" x="864.107" y="476.019"/>
  </objectgroup>
  <objectgroup id="20" name="AnimalLayer">
   <object id="201" name="5" x="478.784" y="577.324"/>

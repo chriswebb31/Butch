@@ -85,16 +85,18 @@ public class NewGameScreen extends ModelGameScreen {
 //        shapeRenderer.end();
 
 //            renderEnemyHB();
-        statetime = statetime + delta;
+
         if(player.getPosition().x <= currentPos + 2000&& cutsceneStart ==true){
-            movingpos = new Vector2(player.getPosition().x+10.0f, player.getPosition().y);
-           // player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,true));
+
+            movingpos = new Vector2(player.getPosition().x+20.0f, player.getPosition().y);
+//            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,true));
             player.setPosition(movingpos);
 
         }
         else{
             cutsceneStart=false;
-          // player.getFrame(statetime);
+//            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,false));
+            // player.getFrame(statetime);
             //player.currentState = player.getState();
         }
     }
@@ -119,12 +121,16 @@ public class NewGameScreen extends ModelGameScreen {
     public void dispose() {
 
     }
+
     private void initUI(){
+
      uiStage =new Stage(new ScreenViewport(new OrthographicCamera()));
      uiStage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),true);
+
      root = new Table();
      root.setFillParent(true);
-     uiStage.addActor(root);
+     stage.addActor(root);
+//     uiStage.addActor(root);
      dialogueBox =new DialogueBox();
      dialogueBox.animateText("test case example");
      dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
@@ -132,6 +138,8 @@ public class NewGameScreen extends ModelGameScreen {
              .expand()
              .align(Align.bottom)
              .pad(8f);
-      uiStage.draw();
+     root.toBack();
+     stage.draw();
+
     }
 }

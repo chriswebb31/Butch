@@ -128,39 +128,22 @@ public class NewGameScreen extends ModelGameScreen {
     }
 
     private void initUI(){
-<<<<<<< HEAD
-     uiStage =new Stage(new ScreenViewport());
-=======
 
-     uiStage =new Stage(new ScreenViewport(new OrthographicCamera()));
->>>>>>> master
+     uiStage =new Stage(new ScreenViewport());
      uiStage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),true);
 
      root = new Table();
      root.setFillParent(true);
-<<<<<<< HEAD
      uiStage.addActor(root);
      Skin skin = new Skin(Gdx.files.internal("Data/uiskin.json"));
      dialogueBox = new DialogueBox(skin);
-     dialogueBox.animateText("test case examp this shouls be a rolling test example and some shit \n i like dogs and want more play time ");
+     dialogueBox.animateText(" test case examp this shouls be a rolling test example and some shit \n i like dogs and want more play time ");
      //dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-=======
-     stage.addActor(root);
-//     uiStage.addActor(root);
-     dialogueBox =new DialogueBox();
-     dialogueBox.animateText("test case example");
-     dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
->>>>>>> master
+
      root.add(dialogueBox)
              .expand()
              .align(Align.bottom)
              .pad(8f);
-<<<<<<< HEAD
-      //stage.draw();
-=======
-     root.toBack();
-     stage.draw();
 
->>>>>>> master
     }
 }

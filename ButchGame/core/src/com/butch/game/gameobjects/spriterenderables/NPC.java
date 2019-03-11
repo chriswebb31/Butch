@@ -52,8 +52,8 @@ public class NPC extends Renderable {
             this.npcText = prop.getProperty("speech");
             this.npcTextFollowup = prop.getProperty("speechFollowup");
             this.npcName = npcName;
-            this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 400);
-            this.deActivateRange = new Circle(this.getPosition().x, this.getPosition().y, 500);
+            this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 100);
+            this.deActivateRange = new Circle(this.getPosition().x, this.getPosition().y, 110);
             this.setPosition(position);
             this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class)));
             this.getSprite().setScale(10);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="229">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="229">
  <tileset firstgid="1" name="allTiles-3" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-3.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -374,7 +374,7 @@
   <object id="214" x="578" y="320.667" width="58" height="3.66667"/>
  </objectgroup>
  <objectgroup id="14" name="Points">
-  <object id="178" name="0" x="649.667" y="443.166" width="22.6667" height="18.6667"/>
+  <object id="178" name="0" x="644.667" y="439.166" width="22.6667" height="18.6667"/>
   <object id="191" name="1" x="612" y="4.667" width="52.6667" height="214"/>
  </objectgroup>
  <objectgroup id="13" name="ItemLayer">
@@ -423,17 +423,16 @@
   <object id="182" name="James" x="818" y="723"/>
   <object id="183" name="Jamerson" x="606" y="433"/>
   <object id="184" name="Morgan" x="683.103" y="149.195"/>
-  <object id="216" name="John" x="753.023" y="427.196"/>
-  <object id="217" name="Abigail" x="799.363" y="426.472"/>
-  <object id="218" name="Lesley" x="726.233" y="469.915"/>
-  <object id="219" name="Billy" x="775.469" y="493.085"/>
-  <object id="220" name="Chris" x="829.773" y="467.019"/>
+  <object id="216" name="John" x="751.356" y="401.529"/>
+  <object id="217" name="Abigail" x="830.696" y="415.805"/>
+  <object id="218" name="Lesley" x="724.9" y="491.248"/>
+  <object id="219" name="Billy" x="793.136" y="490.418"/>
+  <object id="220" name="Chris" x="852.44" y="469.352"/>
  </objectgroup>
  <objectgroup id="20" name="AnimalLayer">
-  <object id="201" name="5" x="487.784" y="570.657"/>
-  <object id="225" name="5" x="503.712" y="548.843"/>
-  <object id="226" name="0" x="470.229" y="549.328"/>
-  <object id="227" name="0" x="508.565" y="584.753"/>
-  <object id="228" name="0" x="467.802" y="583.297"/>
+  <object id="201" name="5" x="478.784" y="577.324"/>
+  <object id="225" name="5" x="501.045" y="556.51"/>
+  <object id="226" name="0" x="476.229" y="555.661"/>
+  <object id="227" name="0" x="500.565" y="580.086"/>
  </objectgroup>
 </map>

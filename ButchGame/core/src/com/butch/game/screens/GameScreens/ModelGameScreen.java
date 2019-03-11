@@ -18,8 +18,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+import com.butch.game.dialouge.DialogueBox;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.gameobjects.HUDObjects.Hud;
@@ -68,6 +71,8 @@ public abstract class ModelGameScreen implements Screen {
     Sprite healthBarFG;
     final short buffer = 120;
     static TransitionScreen transitionScreen;
+    private boolean isTalking = false;
+
     public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
         this.levelNumber = levelNumber;
         this.game = game;
@@ -252,6 +257,7 @@ public abstract class ModelGameScreen implements Screen {
         batch.end();
         camera.update();
         caseBreak();
+        hud.stage.act(delta);
         renderHUD();
         renderEnemyHB();
     }
@@ -293,18 +299,26 @@ public abstract class ModelGameScreen implements Screen {
         hud.weaponLabel.setText(String.format(hud.player.getActiveWeapon().gunName + " " + player.getActiveWeapon().clip+"/"+thisReserve));
 
         for(NPC npc : NPCs) {
+
             if(npc.getInteractActive()) {
-                hud.setNpcTextVisibility(true);
-                hud.setNpcText(String.format(npc.getNpcText()));
+                hud.setDialogueBoxVisibility(true);
+                if(!isTalking) {
+                    hud.setDialogueBox(npc.getNpcText());
+                    isTalking = true;
+                }
+
 //                hud.getNpcText().setPosition(npc.getPosition().x, npc.getPosition().y);
 
                 System.out.println("Oh Hi Mark");
             } else if (!npc.getInteractActive() && npc.getInteractDeactivate()) {
-                hud.setNpcTextVisibility(false);
+                hud.setDialogueBoxVisibility(false);
+                isTalking = false;
 //                hud.setNpcText(String.format(""));
                 System.out.println("Oh Bye Mark");
             }
         }
+
+
 
         if(player.getHealth() <=0 && outOfBullets == false){
             Label healthLabel = new Label(String.format("Ag... I don't feel so good"), new Label.LabelStyle(new BitmapFont(), Color.RED));
@@ -321,7 +335,9 @@ public abstract class ModelGameScreen implements Screen {
             //hud.hb.setWidth(player.getHealth());
         }
         hud.render(player.getPlayerHealthPercent());
+
         hud.stage.draw();
+
     }
 
     @Override

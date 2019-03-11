@@ -54,8 +54,8 @@ public class NewGameScreen extends ModelGameScreen {
         }
 
         super.render(delta);
-        uiStage.act(delta);
-        uiStage.draw();
+//        uiStage.act(delta);
+//        uiStage.draw();
 
 
 //
@@ -129,21 +129,21 @@ public class NewGameScreen extends ModelGameScreen {
 
     private void initUI(){
 
-     uiStage =new Stage(new ScreenViewport());
-     uiStage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),true);
-
-     root = new Table();
-     root.setFillParent(true);
-     uiStage.addActor(root);
-     Skin skin = new Skin(Gdx.files.internal("Data/uiskin.json"));
-     dialogueBox = new DialogueBox(skin);
-     dialogueBox.animateText(" test case examp this shouls be a rolling test example and some shit \n i like dogs and want more play time ");
-     //dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-
-     root.add(dialogueBox)
-             .expand()
-             .align(Align.bottom)
-             .pad(8f);
-
+//     uiStage =new Stage(new ScreenViewport());
+//     uiStage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),true);
+//
+//     root = new Table();
+//     root.setFillParent(true);
+//     uiStage.addActor(root);
+//     Skin skin = new Skin(Gdx.files.internal("Data/uiskin.json"));
+//     dialogueBox = new DialogueBox(skin);
+//     dialogueBox.animateText(" test case examp this shouls be a rolling test example and some shit \n i like dogs and want more play time ");
+//     //dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+//
+//     root.add(dialogueBox)
+//             .expand()
+//             .align(Align.bottom)
+//             .pad(8f);
+//
     }
 }

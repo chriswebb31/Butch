@@ -41,8 +41,8 @@ public class Hud implements Disposable{
         viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
         // health = new Integer(1000);
-//        levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-//        levelLabel.setFontScale(2.0f);
+//      levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
+//      levelLabel.setFontScale(2.0f);
         ammoCount = player.getActiveWeapon().ammoBar;
         ammoCountImage = new Image(ammoCount);
         ammoCountImage.setPosition(Gdx.graphics.getWidth()/1.1f-ammoCountImage.getWidth()*2,Gdx.graphics.getHeight()/14-ammoCountImage.getHeight()*2);
@@ -68,6 +68,7 @@ public class Hud implements Disposable{
 
         npcText = new Label(String.format("Oh hi Mark!"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         npcText.setFontScale(2.0f);
+        npcText.toFront();
         npcText.setVisible(false);
 
         table.top().left();

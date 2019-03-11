@@ -90,16 +90,18 @@ public class NewGameScreen extends ModelGameScreen {
 //        shapeRenderer.end();
 
 //            renderEnemyHB();
-        statetime = statetime + delta;
+
         if(player.getPosition().x <= currentPos + 2000&& cutsceneStart ==true){
-            movingpos = new Vector2(player.getPosition().x+10.0f, player.getPosition().y);
-           // player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,true));
+
+            movingpos = new Vector2(player.getPosition().x+20.0f, player.getPosition().y);
+//            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,true));
             player.setPosition(movingpos);
 
         }
         else{
             cutsceneStart=false;
-          // player.getFrame(statetime);
+//            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,false));
+            // player.getFrame(statetime);
             //player.currentState = player.getState();
         }
     }
@@ -124,20 +126,41 @@ public class NewGameScreen extends ModelGameScreen {
     public void dispose() {
 
     }
+
     private void initUI(){
+<<<<<<< HEAD
      uiStage =new Stage(new ScreenViewport());
+=======
+
+     uiStage =new Stage(new ScreenViewport(new OrthographicCamera()));
+>>>>>>> master
      uiStage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),true);
+
      root = new Table();
      root.setFillParent(true);
+<<<<<<< HEAD
      uiStage.addActor(root);
      Skin skin = new Skin(Gdx.files.internal("Data/uiskin.json"));
      dialogueBox = new DialogueBox(skin);
      dialogueBox.animateText("test case examp this shouls be a rolling test example and some shit \n i like dogs and want more play time ");
      //dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+=======
+     stage.addActor(root);
+//     uiStage.addActor(root);
+     dialogueBox =new DialogueBox();
+     dialogueBox.animateText("test case example");
+     dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+>>>>>>> master
      root.add(dialogueBox)
              .expand()
              .align(Align.bottom)
              .pad(8f);
+<<<<<<< HEAD
       //stage.draw();
+=======
+     root.toBack();
+     stage.draw();
+
+>>>>>>> master
     }
 }

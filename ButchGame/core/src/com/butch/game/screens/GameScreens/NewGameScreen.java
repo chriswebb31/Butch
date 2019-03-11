@@ -132,6 +132,6 @@ public class NewGameScreen extends ModelGameScreen {
              .expand()
              .align(Align.bottom)
              .pad(8f);
-
+      uiStage.draw();
     }
 }

@@ -231,10 +231,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //CutScenes Assets
     public final String bubbleSpeech = "CutScenes/speechBubble.png";
     public final String introBack = "CutScenes/introback.jpg";
-    public final String introBackMusic1 = "CutScenes/Audio/introBackMusic1.mp3";
-    public final String saloonBackNoise1 = "CutScenes/Audio/saloonBackNoise1.mp3";
-    public final String saloonBackNoise2 = "CutScenes/Audio/saloonBackNoise2.mp3";
-    public final String prisonMusic1 = "CutScenes/Audio/prisonMusic1.mp3";
+
     public AssetManagement() {
         includeAssets();
     }
@@ -256,10 +253,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     public void includeAssets() {
         //cutScenes loading
-        load(prisonMusic1, Sound.class );
-        load(saloonBackNoise1, Sound.class );
-        load(saloonBackNoise2, Sound.class );
-        load(introBackMusic1, Sound.class );
         load(bubbleSpeech, Texture.class);
         load(introBack, Texture.class);
         //page Contents

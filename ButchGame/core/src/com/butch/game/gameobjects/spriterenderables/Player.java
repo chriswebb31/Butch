@@ -209,17 +209,6 @@ public class Player extends Renderable {
                     activeWeaponNumber = 0;
                 }
                 this.activeGun = this.gunInventory.get(activeWeaponNumber);
-//                if (gunInvIterator.hasNext()) {
-//                    //System.out.println(gunInvIterator.next());
-//                    this.activeGun.activeForRender = false;
-//                    this.activeGun = gunInvIterator.next();
-//                    this.activeGun.activeForRender = true;
-//                } else {
-//                    this.activeGun.activeForRender = false;
-//                    this.activeGun = this.gunInventory.get(0);
-//                    this.activeGun.activeForRender = true;
-//                    this.gunInvIterator = gunInventory.iterator();
-//                }
             } catch (NoSuchElementException w){
                 w.printStackTrace();
             }

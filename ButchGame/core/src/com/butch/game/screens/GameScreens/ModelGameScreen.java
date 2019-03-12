@@ -1,6 +1,7 @@
 package com.butch.game.screens.GameScreens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.*;
@@ -72,6 +73,7 @@ public abstract class ModelGameScreen implements Screen {
     final short buffer = 120;
     static TransitionScreen transitionScreen;
     private boolean isTalking = false;
+    private boolean showHud = true;
 
     public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
         this.levelNumber = levelNumber;
@@ -253,12 +255,25 @@ public abstract class ModelGameScreen implements Screen {
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
 
+
+
         //cursor.draw(batch);
         batch.end();
         camera.update();
         caseBreak();
-        hud.stage.act(delta);
-        renderHUD();
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+            if(showHud) {
+                showHud = false;
+            } else {
+                showHud = true;
+            }
+        }
+        if(showHud) {
+            hud.stage.act(delta);
+            renderHUD();
+        }
+//        hud.stage.act(delta);
+//        renderHUD();
         renderEnemyHB();
     }
 

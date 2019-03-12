@@ -26,6 +26,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.dialouge.DialogueBox;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.*;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -74,6 +75,7 @@ public abstract class ModelGameScreen implements Screen {
     static TransitionScreen transitionScreen;
     private boolean isTalking = false;
     private boolean showHud = true;
+    private CharacterScreen inventory;
 
     public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
         this.levelNumber = levelNumber;
@@ -120,7 +122,9 @@ public abstract class ModelGameScreen implements Screen {
         music.play();
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
+        inventory = new CharacterScreen(game.batch, player);
         outOfBullets = false;
+
 
         this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
@@ -273,7 +277,11 @@ public abstract class ModelGameScreen implements Screen {
         if(showHud) {
             hud.stage.act(delta);
             renderHUD();
+        } else {
+
+            inventory.drawStage();
         }
+
 //        hud.stage.act(delta);
 //        renderHUD();
         renderEnemyHB();

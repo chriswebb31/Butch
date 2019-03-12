@@ -1,16 +1,11 @@
 package com.butch.game.screens.GameScreens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.butch.game.ButchGame;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.butch.game.ButchGame;
 import com.butch.game.dialouge.DialogueBox;
 
 public class NewGameScreen extends ModelGameScreen {
@@ -93,9 +88,9 @@ public class NewGameScreen extends ModelGameScreen {
 
         if(player.getPosition().x <= currentPos + 2000&& cutsceneStart ==true){
 
-            movingpos = new Vector2(player.getPosition().x+20.0f, player.getPosition().y);
+           // movingpos = new Vector2(player.getPosition().x+10.0f, player.getPosition().y);
 //            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,true));
-            player.setPosition(movingpos);
+           // player.setPosition(movingpos);
 
         }
         else{

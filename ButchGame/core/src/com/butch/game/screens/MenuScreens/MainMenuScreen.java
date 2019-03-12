@@ -143,7 +143,8 @@ public class MainMenuScreen implements Screen {
         playButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonActiveSprite, Texture.class));
         playButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonInactiveSprite, Texture.class));
         playButton = new ImageButton(new SpriteDrawable(playButtonInactive),new SpriteDrawable(playButtonActive));
-        playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+//        playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+        playButton.setBounds(80,game.TARGET_HEIGHT -447,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class));
         aboutButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonInactiveSprite, Texture.class));
         aboutButton = new ImageButton(new SpriteDrawable(aboutButtonInactive),new SpriteDrawable(aboutButtonActive));

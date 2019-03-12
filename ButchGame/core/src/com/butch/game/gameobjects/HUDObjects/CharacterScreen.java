@@ -58,23 +58,23 @@ public class CharacterScreen implements Disposable {
             Label gunLabel = new Label("Hi", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
             switch(gun.id) {
                 case 10:
-                    gunLabel.setText(String.format(gun.clip + "/" + player.pistolAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+                    gunLabel.setText(String.format("Revolver Ammo: " + gun.clip + "/" + player.pistolAmmo));
+                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/1.9f);
                     ammoInventory.add(gunLabel);
                     break;
                 case 11:
-                    gunLabel.setText(String.format(gun.clip + "/" + player.rifleAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.1f);
+                    gunLabel.setText(String.format("Machine Gun Ammo: " + gun.clip + "/" + player.rifleAmmo));
+                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.0f);
                     ammoInventory.add(gunLabel);
                     break;
                 case 12:
-                    gunLabel.setText(String.format(gun.clip + "/" + player.shotgunAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.2f);
+                    gunLabel.setText(String.format("Shotgun Ammo" + gun.clip + "/" + player.shotgunAmmo));
+                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.1f);
                     ammoInventory.add(gunLabel);
                     break;
                 case 13:
-                    gunLabel.setText(String.format(gun.clip + "/" + player.musketAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/1.9f);
+                    gunLabel.setText(String.format("Musket Ammo" + gun.clip + "/" + player.musketAmmo));
+                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.2f);
                     ammoInventory.add(gunLabel);
                     break;
             }

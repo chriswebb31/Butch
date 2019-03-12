@@ -278,7 +278,6 @@ public abstract class ModelGameScreen implements Screen {
             hud.stage.act(delta);
             renderHUD();
         } else {
-
             inventory.drawStage();
         }
 

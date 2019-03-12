@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -22,17 +23,17 @@ import com.butch.game.screens.cutscenes.CutSceneScreen;
 
 public class MainMenuScreen implements Screen {
     //Change to use actual buttons maybe? Scene2D is used for menus etc
-    public enum State{CLICKED, NOTCLICKED};
+    public enum State{CLICKED, NOTCLICKED}
     private State currentState, previousState;
-    static ButchGame game;
-    Sound sound;
-
+    private static ButchGame game;
+    private Sound sound;
+    public Table table = new Table();
     OrthographicCamera camera;
     SpriteBatch batch;
 
     private Sprite sprite_back, playButtonActive,playButtonInactive,aboutButtonActive,aboutButtonInactive,
             needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive,texture_back;
-    Stage stage;
+    private Stage stage;
     private FitViewport gameViewPort;
     private static Music music, playSound;
     public ImageButton exitButton, playButton, aboutButton, settingsButton, needHelpButton;
@@ -41,7 +42,7 @@ public class MainMenuScreen implements Screen {
     private TextureAtlas doorsOpenAtlas;
     private float stateTimer;
     private boolean startClicked = false;
-    static TransitionScreen transitionScreen;
+//    private static TransitionScreen transitionScreen;
 
     public MainMenuScreen(ButchGame game, FitViewport gameViewport){
         this.game = game;
@@ -79,7 +80,7 @@ public class MainMenuScreen implements Screen {
         stage.addActor(aboutButton);
         stage.addActor(needHelpButton);
         stage.addActor(settingsButton);
-        transitionScreen.transitionIn(stage);
+        TransitionScreen.transitionIn(stage);
     }
 
     public void setVolume(float volume) {
@@ -131,10 +132,11 @@ public class MainMenuScreen implements Screen {
     public void hide() {
 
     }
-    public void createButtons(){
+    private void createButtons(){
         /** creating the Active and Inactive Sprites
             creating the Buttons as Image Buttons
             setting position and size with .setBounds method. */
+
         settingsButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class));
         settingsButton = new ImageButton(new SpriteDrawable(settingsButtonActive));
         settingsButton.setBounds(0,game.TARGET_HEIGHT-60,60,60);
@@ -179,7 +181,7 @@ public class MainMenuScreen implements Screen {
              playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                  @Override
                  public void onCompletion(Music music) {
-                     transitionScreen.transitionOut(new CutSceneScreen(game, gameViewPort),stage,game);
+                     TransitionScreen.transitionOut(new CutSceneScreen(game, gameViewPort),stage,game);
                  }
              });
          }
@@ -197,7 +199,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
-             transitionScreen.transitionOut(new AboutScreen(game, gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new AboutScreen(game, gameViewPort),stage,game);
          }
      });
      needHelpButton.addListener(new ClickListener(){
@@ -213,7 +215,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
-             transitionScreen.transitionOut(new NeedHelpScreen(game,gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new NeedHelpScreen(game,gameViewPort),stage,game);
          }
 
      });
@@ -230,7 +232,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
-             transitionScreen.transitionOut(new SettingsScreen(game, gameViewPort, returnThis()),stage,game);
+             TransitionScreen.transitionOut(new SettingsScreen(game, gameViewPort, returnThis()),stage,game);
          }
      });
 
@@ -281,9 +283,10 @@ public class MainMenuScreen implements Screen {
     }
 
     public TextureRegion getFrame(float dt){
-        TextureRegion region = null;
         currentState = getState();
 
+        TextureRegion region;
+        region = null;
         switch(currentState) {
             case CLICKED:
                 region = doorsOpenAnim.getKeyFrame(stateTimer, false);

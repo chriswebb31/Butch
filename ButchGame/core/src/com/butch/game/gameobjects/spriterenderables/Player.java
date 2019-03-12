@@ -657,5 +657,7 @@ public class Player extends Renderable {
     public void setPlayerLevel(int playerLevel) { this.playerLevel = playerLevel; }
 
     public float getPlayerHealthPercent() { return (this.health / this.maxHealth * 100); }
+
+    public boolean getButchDead() { return butchDead; }
 }
 

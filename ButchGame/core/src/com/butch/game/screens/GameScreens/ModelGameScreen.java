@@ -261,11 +261,13 @@ public abstract class ModelGameScreen implements Screen {
         batch.end();
         camera.update();
         caseBreak();
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
-            if(showHud) {
-                showHud = false;
-            } else {
-                showHud = true;
+        if(!player.getButchDead()) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+                if (showHud) {
+                    showHud = false;
+                } else {
+                    showHud = true;
+                }
             }
         }
         if(showHud) {

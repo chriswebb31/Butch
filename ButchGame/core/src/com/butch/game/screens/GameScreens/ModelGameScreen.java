@@ -301,12 +301,12 @@ public abstract class ModelGameScreen implements Screen {
         for(NPC npc : NPCs) {
 
             if(npc.getInteractActive()) {
-                hud.setDialogueBoxVisibility(true);
+
                 if(!isTalking) {
                     hud.setDialogueBox(npc.getNpcText());
                     isTalking = true;
                 }
-
+                hud.setDialogueBoxVisibility(true);
 //                hud.getNpcText().setPosition(npc.getPosition().x, npc.getPosition().y);
 
                 System.out.println("Oh Hi Mark");

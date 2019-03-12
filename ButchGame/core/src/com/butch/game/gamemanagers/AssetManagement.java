@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-import javax.xml.soap.Text;
-
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
     public final String levelUpSprite = "DButt.jpg"; //Placeholder LevelUpItem
@@ -216,9 +214,12 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
 
+
     //PARTICLES
 
+
     //FONTS
+
 
     //TileMapData
     public final String tilemap1 = "TiledFiles/REALTOWNMAPCLEAN.tmx";

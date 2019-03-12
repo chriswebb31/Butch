@@ -14,8 +14,7 @@ public class CoinItem extends Item {
     public CoinItem(Vector2 position) {
 
         super(position);
-        this.messageCheck = "COME ON";
-        this.id = 3;
+        this.id = 5;
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.coinItemSprite, Texture.class)));
         this.quantity = 1;
         autoPickup = true;

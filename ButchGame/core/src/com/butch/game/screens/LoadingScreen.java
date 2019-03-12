@@ -1,42 +1,33 @@
 package com.butch.game.screens;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.AssetManagement;
-import com.butch.game.gamemanagers.GameStateManager;
-import com.butch.game.gamemanagers.GifDecoder;
+import com.butch.game.screens.MenuScreens.MainMenuScreen;
 
 public class LoadingScreen implements Screen {
     private ButchGame game;
     private FitViewport gameViewPort;
-    public static final boolean DEBUG = true;
-    public static final float TARGET_WIDTH = 1920;
-    public static final float TARGET_HEIGHT = 1080;
-
-    public static Engine ashleyEngine;
     public static AssetManagement assets;
-    public static GameStateManager GSM;
-    private static FPSLogger log;
-
-    //////////////////Temporary gif loader///////////////////////
+    public Sprite loadingImageBack;
+    public Sprite loadingImageFront;
     private SpriteBatch batch;
-    public MainMenuScreen game_screen;
-    float elapsed;
-    Animation<TextureRegion> animation;
+    float assetsNum;
 
     public LoadingScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         game.assets.includeMainMenuScreenAssets();
         this.gameViewPort = gameViewPort;
         batch = new SpriteBatch();
-       // animation = GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("Gif/loading.gif").read());
+        assetsNum = 1000;
+        loadingImageFront= new Sprite(new Texture(game.assets.playerHBFG));
+        loadingImageBack = new Sprite(new Texture(game.assets.loadingBarBack));
     }
 
     @Override
@@ -46,24 +37,22 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
-//        log.log();
-//        GSM.update();
-        elapsed += Gdx.graphics.getDeltaTime();
-        batch.begin();
-       // if (elapsed < 3.0f){
-//            batch.draw(animation.getKeyFrame(elapsed), 0,0,game.TARGET_WIDTH,game.TARGET_HEIGHT);
-      //  }
-
-       // else {
+        /**setting the background white, however this doesn't matter as there will be a background anyway.*/
+        Gdx.gl.glClearColor(1f,1f,1f,1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             if (game.assets.update()) {
-                if (ButchGame.assets.update()) {
-                    game.setScreen(new NewGameScreen(game, gameViewPort));
-                }
+                    game.setScreen(new MainMenuScreen(game, gameViewPort));
+        }
+            else{
+                batch.begin();
+                batch.draw(loadingImageBack, Gdx.graphics.getWidth()/2 - loadingImageBack.getWidth()/2,
+                        Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2,assetsNum,50);
+                batch.draw(loadingImageFront, Gdx.graphics.getWidth()/2 - loadingImageBack.getWidth()/2+2,
+                        Gdx.graphics.getHeight()/2 - loadingImageBack.getHeight()/2+1,game.assets.getProgress()
+                                *1000, 50-2);
+                batch.end();
             }
-
-        batch.end();
-   }
-
+    }
 
     @Override
     public void resize(int width, int height) {
@@ -87,6 +76,7 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void dispose() {
-
+    loadingImageBack.getTexture().dispose();
+    loadingImageFront.getTexture().dispose();
     }
 }

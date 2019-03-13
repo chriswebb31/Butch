@@ -47,12 +47,16 @@ public class ButchGame extends Game {
 		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
 		assets = new AssetManagement();
 		assets.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+		assets.load(assets.startTavern, TiledMap.class);
 		assets.load(assets.tilemap1, TiledMap.class);
 		assets.load(assets.route1, TiledMap.class);
 		assets.load(assets.caveTransition, TiledMap.class);
 		assets.load(assets.prison, TiledMap.class);
 		assets.load(assets.cave, TiledMap.class);
 		assets.load(assets.warzone, TiledMap.class);
+		assets.load(assets.route3, TiledMap.class);
+		assets.load(assets.route4, TiledMap.class);
+		assets.load(assets.snowyMountain, TiledMap.class);
 		renderableManager = new RenderableManager();
 //        Gdx.input.setCursorCatched(true);
 		log = new FPSLogger();

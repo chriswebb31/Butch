@@ -389,12 +389,12 @@
   <object id="168" x="893.124" y="1413.75" width="86.9599" height="25.3185"/>
  </objectgroup>
  <objectgroup id="11" name="Points">
-  <object id="177" name="0" x="546" y="1382"/>
+  <object id="177" name="0" x="534" y="1383"/>
   <object id="178" name="1" x="520" y="1414" width="52" height="12"/>
   <object id="179" name="3" x="757" y="299" width="49" height="74"/>
  </objectgroup>
- <objectgroup id="12" name="Item Layer"/>
- <objectgroup id="13" name="Enemy Layer">
+ <objectgroup id="12" name="ItemLayer"/>
+ <objectgroup id="13" name="EnemyLayer">
   <object id="169" name="0" x="641.966" y="1007.9">
    <polygon points="0,0 165.334,20.1467 66.627,181.32"/>
   </object>
@@ -414,10 +414,10 @@
    <polygon points="0,0 -241.246,107.527 -153.019,242.625 45.4921,144.748"/>
   </object>
  </objectgroup>
- <objectgroup id="14" name="NPC Layer">
+ <objectgroup id="14" name="NPCLayer">
   <object id="176" name="Fear" x="431.93" y="1321.3"/>
  </objectgroup>
- <objectgroup id="15" name="Animal Layer">
+ <objectgroup id="15" name="AnimalLayer">
   <object id="175" name="2" x="654.274" y="431.93"/>
  </objectgroup>
 </map>

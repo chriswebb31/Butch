@@ -82,8 +82,8 @@ public class CharacterScreen implements Disposable {
 
         table.add(ammoInventory.get(0)).expandX().right();
         table.row();
-        table.add(ammoInventory.get(1)).expandX().center().right();
-        table.row();
+//        table.add(ammoInventory.get(1)).expandX().center().right();
+//        table.row();
 
         table.top().left();
         stage.addActor(table);

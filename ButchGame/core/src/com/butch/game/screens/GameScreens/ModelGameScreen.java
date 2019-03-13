@@ -106,15 +106,76 @@ public abstract class ModelGameScreen implements Screen {
 
         this.weaponCache = new ArrayList<Gun>();
         this.weaponCache.add(new GunCreator("Revolver"));
-        this.weaponCache.add(new GunCreator("MachineGun"));
-        this.weaponCache.add(new GunCreator("Musket"));
-        this.weaponCache.add(new GunCreator("Shotgun"));
         setupLevel();
 
         player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
         player.setCam(camera);
 //        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
+
+        camera.position.set(new Vector3(player.getPosition().x, player.getPosition().y, 40));
+        orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
+        gameViewPort.setCamera(camera); //set main camera
+        gameViewPort.apply(); //apply changes to vp settings
+        music = ButchGame.assets.get(ButchGame.assets.townTheme, Music.class);
+        music.setVolume(0.3f);
+        music.setLooping(true);
+        music.play();
+        //////////////////////hud ////////////////////
+        hud = new Hud(game.batch, player);
+        inventory = new CharacterScreen(game.batch, player);
+        outOfBullets = false;
+
+
+        this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
+        Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
+        //(int)enemies.get(0).getHealth()
+        // enemyHb = new HealthBar(500,20);
+        stage= new Stage();
+//
+
+        healthBarBG = new Sprite(ButchGame.assets.get(ButchGame.assets.enemyHBBG, Texture.class));
+        healthBarFG = new Sprite (ButchGame.assets.get(ButchGame.assets.enemyHBFG, Texture.class));
+    }
+    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap tiledMap, ArrayList<Gun> weapons, int playerLevel, int spawnPointLoc) {
+        this.levelNumber = levelNumber;
+        this.game = game;
+        this.gameViewPort = gameViewPort;
+        this.batch = new SpriteBatch();
+//        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
+//        this.cursor.setScale(10);
+        this.shapeRenderer = new ShapeRenderer();
+        this.camera = new OrthographicCamera();
+        this.camera.zoom = 2.5f;
+        this.tiledMap = tiledMap;
+        //tiledMap = ButchGame.assets.get(ButchGame.assets.tilemap1); //get tiled map for this screen
+        orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 10); //render tilemap with scalar of ten
+        this.itemPickups = new ArrayList<ItemPickup>();
+        this.enemies = new ArrayList<Enemy>();
+        this.NPCs = new ArrayList<NPC>();
+        this.animals = new ArrayList<Animal>();
+        this.mapColliders = new ArrayList<Rectangle>();
+        this.spawnPoint = new Vector2().setZero();
+        this.playerLevel = playerLevel;
+
+        ButchGame.renderableManager.reset();
+        RenderableManager.mapColliders = mapColliders;
+        ButchGame.itemManager = new ItemManager();
+
+        this.weaponCache = new ArrayList<Gun>();
+        for(Gun gun : weapons) {
+            Gun newGun = new GunCreator(gun.gunName);
+            newGun.clip = gun.clip;
+            this.weaponCache.add(newGun);
+        }
+        setupLevel();
+
+        player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
+        player.setCam(camera);
+//        player = new Player(spawnPoint, mapColliders, weaponCache);
+        player.activeForRender = true;
+        System.out.println(player.getActiveWeapon().activeForRender + " + " + player.getActiveWeapon().gunName);
+
 
         camera.position.set(new Vector3(player.getPosition().x, player.getPosition().y, 40));
         orthogonalTiledMapRenderer.setView(camera); //render using camera perspective
@@ -341,12 +402,10 @@ public abstract class ModelGameScreen implements Screen {
                 hud.setDialogueBoxVisibility(true);
 //                hud.getNpcText().setPosition(npc.getPosition().x, npc.getPosition().y);
 
-                System.out.println("Oh Hi Mark");
             } else if (!npc.getInteractActive() && npc.getInteractDeactivate()) {
                 hud.setDialogueBoxVisibility(false);
                 isTalking = false;
 //                hud.setNpcText(String.format(""));
-                System.out.println("Oh Bye Mark");
             }
         }
 

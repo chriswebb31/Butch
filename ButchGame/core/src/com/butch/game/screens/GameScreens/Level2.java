@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class Level2 extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.route1);
-    public Level2(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons, TiledMap map, int playerLevel, int spawnLocation){
-        super(level,game,gameViewPort, map ,playerLevel, spawnLocation);
+    public Level2(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation){
+        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
     }
 
     @Override
@@ -27,9 +27,9 @@ public class Level2 extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new NewGameScreen(1, game, gameViewPort, NewGameScreen.map,  player.getPlayerLevel(), 2));
+                    game.setScreen( new NewGameScreen(1, game, gameViewPort, NewGameScreen.map, player.getGunInventory(), player.getPlayerLevel(), 2));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Level3(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                    game.setScreen((new Level3(2, game, gameViewPort, Level3.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 }
             }
         }

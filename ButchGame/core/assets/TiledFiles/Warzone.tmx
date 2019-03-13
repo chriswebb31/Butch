@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="55" height="55" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="223">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="55" height="55" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="225">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-4.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -456,9 +456,11 @@
  <objectgroup id="19" name="Points">
   <object id="221" name="0" x="833" y="1617"/>
   <object id="222" name="1" x="806" y="1691" width="52" height="58"/>
+  <object id="223" name="3" x="834" y="224" width="60" height="18"/>
+  <object id="224" name="2" x="865" y="266"/>
  </objectgroup>
- <objectgroup id="17" name="Item Layer"/>
- <objectgroup id="18" name="Enemy Layer">
+ <objectgroup id="17" name="ItemLayer"/>
+ <objectgroup id="18" name="EnemyLayer">
   <object id="201" name="0" x="254.902" y="952.941">
    <polygon points="0,0 28.7582,65.3595 69.281,62.7451 111.111,66.6667 79.7386,-11.7647"/>
   </object>
@@ -511,7 +513,7 @@
    <polygon points="0,0 28.979,95.8538 258.582,100.312 220.687,-2.22916"/>
   </object>
  </objectgroup>
- <objectgroup id="15" name="NPC Layer">
+ <objectgroup id="15" name="NPCLayer">
   <object id="190" name="Jasper" x="757.353" y="1465.99"/>
   <object id="191" name="JJ" x="750" y="1423.71"/>
   <object id="192" name="Nathan" x="718.683" y="1325.7"/>
@@ -525,7 +527,7 @@
   <object id="200" name="Layide" x="934.86" y="1245.53"/>
   <object id="219" name="Judas" x="249.433" y="646.259"/>
  </objectgroup>
- <objectgroup id="16" name="Animal Layer">
+ <objectgroup id="16" name="AnimalLayer">
   <object id="218" name="2" x="1465.42" y="515.873"/>
  </objectgroup>
 </map>

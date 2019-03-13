@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.screens.GameScreens.NewGameScreen;
+import com.butch.game.screens.GameScreens.StartTavern;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.weapons.GunCreator;
@@ -79,7 +80,7 @@ public class CutSceneScreen implements Screen {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (Gdx.input.isTouched()&& skip == true){
-            game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map, 1, 0));
+            game.setScreen(new StartTavern(1,game, gameViewPort, StartTavern.map, 1, 0));
         }
         else {
             stage.addActor(introBack);

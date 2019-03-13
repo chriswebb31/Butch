@@ -153,10 +153,8 @@ public class NPC extends Renderable {
                     if (renderable.TAG == "player") {
                         if (Intersector.overlaps(this.deActivateRange, renderable.getCollider())) {
                             this.interactDeactivate = true;
-                            System.out.println("Test1");
                         } else {
                             this.interactDeactivate = false;
-                            System.out.println("Test2");
                         }
                     }
                 }

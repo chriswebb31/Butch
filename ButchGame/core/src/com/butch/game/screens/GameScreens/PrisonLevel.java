@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class PrisonLevel extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.prison);
 
-    public PrisonLevel(int level, ButchGame game, FitViewport gameViewPort, ArrayList<Gun> weapons, int playerLevel, int spawnLocation) {
-        super(level, game, gameViewPort,map, playerLevel, spawnLocation);
+    public PrisonLevel(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
+        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
 
 }
 
@@ -28,7 +28,7 @@ public class PrisonLevel extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new Warzone(1, game, gameViewPort, player.getGunInventory(),  player.getPlayerLevel(), 0));
+                    game.setScreen( new SnowyMountain(1, game, gameViewPort, SnowyMountain.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
                 }
             }
         }

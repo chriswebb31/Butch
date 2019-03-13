@@ -225,6 +225,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
 
     //TileMapData
+    public final String startTavern = "TiledFiles/TavernInterior.tmx";
     public final String tilemap1 = "TiledFiles/REALTOWNMAPCLEAN.tmx";
     public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
     public final String route1 = "TiledFiles/Route1.tmx";
@@ -232,6 +233,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String prison = "TiledFiles/Prison.tmx";
     public final String cave = "TiledFiles/Cave.tmx";
     public final String warzone = "TiledFiles/Warzone.tmx";
+    public final String route3 = "TiledFiles/Route3.tmx";
+    public final String route4 = "TiledFiles/Route4.tmx";
+    public final String snowyMountain = "TiledFiles/SnowyPasture.tmx";
     public final String enemySprite = "enemy.png";
 
     //CutScenes Assets

@@ -27,7 +27,6 @@ public class GunCreator extends Gun {
 
             this.id = Integer.parseInt(prop.getProperty("id"));
             this.gunName = prop.getProperty("gunName");
-            System.out.print(this.gunName);
             this.gunType = Integer.parseInt(prop.getProperty("gunType"));
             this.accuracy = Integer.parseInt(prop.getProperty("accuracy"));
             this.clip = Integer.parseInt(prop.getProperty("clip"));

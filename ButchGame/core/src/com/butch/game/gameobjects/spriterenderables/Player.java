@@ -118,8 +118,8 @@ public class Player extends Renderable {
         this.walkingFX.play();
         this.walkingFX.pause();
         this.gunInventory = new ArrayList<Gun>();
-        for(int j = 0; j < weaponCache.size(); j++) {
-            this.gunInventory.add(j, weaponCache.get(j));
+        for(Gun gun : weaponCache) {
+            this.gunInventory.add(gun);
         }
 //        this.gunInventory.addAll(weaponCache);
 
@@ -474,9 +474,7 @@ public class Player extends Renderable {
     }
 
     public void addItem(ItemPickup item){
-        System.out.println(item);
         if(item.getCollider().overlaps(this.getCollider())){
-            System.out.println(item.type);
             if(item.type == 0) {
                 gunInventory.add(ButchGame.itemManager.getGun(item.id));
                 gunInvIterator = gunInventory.iterator();

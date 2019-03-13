@@ -8,14 +8,12 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 
 import java.util.ArrayList;
 
+public class Route4 extends ModelGameScreen {
+    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.route4);
 
-public class Warzone extends ModelGameScreen {
-    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.warzone);
-
-    public Warzone(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
+    public Route4(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
         super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
     }
-
 
     @Override
     public void show() {
@@ -25,14 +23,15 @@ public class Warzone extends ModelGameScreen {
     @Override
     public void render(float delta){
         updateCameraPosition();
-
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen(new NewGameScreen(1, game, gameViewPort, NewGameScreen.map, weaponCache, player.getPlayerLevel(), 0));
+                    game.setScreen( new Route3(1, game, gameViewPort, Route3.map, player.getGunInventory(),  player.getPlayerLevel(), 1));
                 }
             }
         }
+
+
         super.render(delta);
     }
 

@@ -14,21 +14,21 @@ import java.util.ArrayList;
 
 public class NewGameScreen extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.tilemap1);
-    private int uiScale=2;
-    private Stage uiStage;
-    private Table root;
-    private DialogueBox dialogueBox;
-    boolean cutsceneStart = true;
-    Vector2 movingpos;
-    float currentPos, statetime;
+//    private int uiScale=2;
+//    private Stage uiStage;
+//    private Table root;
+//    private DialogueBox dialogueBox;
+//    boolean cutsceneStart = true;
+//    Vector2 movingpos;
+//    float currentPos, statetime;
 
-    public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, int playerLevel, int spawnLocation){
+    public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation){
 
-        super(levelNumber, game, gameViewPort, map, playerLevel, spawnLocation);
-        System.out.println();
+        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
+//        System.out.println();
         //tiledMap = ButchGame.assets.get(ButchGame.assets.route1);
-        currentPos = player.getPosition().x;
-        statetime = 0;
+//        currentPos = player.getPosition().x;
+//        statetime = 0;
        // dialogueBox = new DialogueBox(new Skin(Gdx.files.internal("Data/uiskin.json")));
 //        initUI();
     }
@@ -44,11 +44,11 @@ public class NewGameScreen extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 2) {
-                    game.setScreen( new Level2(1, game, gameViewPort, player.getGunInventory(), Level2.map,  player.getPlayerLevel(), 0));
+                    game.setScreen( new Level2(1, game, gameViewPort, Level2.map, player.getGunInventory(), player.getPlayerLevel(), 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Cave(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                    game.setScreen((new Cave(2, game, gameViewPort, Cave.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen((new PrisonLevel(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                    game.setScreen((new StartTavern(2, game, gameViewPort, StartTavern.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 }
             }
         }
@@ -91,19 +91,19 @@ public class NewGameScreen extends ModelGameScreen {
 
 //            renderEnemyHB();
 
-        if(player.getPosition().x <= currentPos + 2000&& cutsceneStart ==true){
+//        if(player.getPosition().x <= currentPos + 2000&& cutsceneStart ==true){
 
            // movingpos = new Vector2(player.getPosition().x+10.0f, player.getPosition().y);
 //            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,true));
            // player.setPosition(movingpos);
 
-        }
-        else{
-            cutsceneStart=false;
+//        }
+//        else{
+//            cutsceneStart=false;
 //            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,false));
             // player.getFrame(statetime);
             //player.currentState = player.getState();
-        }
+//        }
     }
 
 

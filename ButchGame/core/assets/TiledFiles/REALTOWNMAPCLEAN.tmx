@@ -374,12 +374,12 @@
   <object id="214" x="578" y="320.667" width="58" height="3.66667"/>
  </objectgroup>
  <objectgroup id="14" name="Points">
-   <object id="232" name="0" x="566" y="439.5"/>
-   <object id="233" name="1" x="561" y="401.5" width="11.5" height="12.5"/>
-   <object id="231" name="2" x="602" y="606.5"/>
-   <object id="230" name="3" x="596" y="571" width="8" height="10.5"/>
-   <object id="234" name="4" x="641.5" y="70"/>
-   <object id="191" name="5" x="609.5" y="4.667" width="61.1667" height="27"/>
+  <object id="232" name="0" x="566" y="439.5"/>
+  <object id="233" name="1" x="561" y="401.5" width="11.5" height="12.5"/>
+  <object id="231" name="2" x="602" y="606.5"/>
+  <object id="230" name="3" x="596" y="571" width="8" height="10.5"/>
+  <object id="234" name="4" x="641.5" y="70"/>
+  <object id="191" name="5" x="609.5" y="4.667" width="61.1667" height="27"/>
  </objectgroup>
  <objectgroup id="13" name="ItemLayer">
   <object id="165" name="5" x="912.5" y="307"/>

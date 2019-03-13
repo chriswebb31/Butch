@@ -54,6 +54,8 @@ public abstract class ModelGameScreen implements Screen {
     FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     OrthographicCamera camera; //camera for height position of render
     float distanceDivisor = 1.2f;
+    public ArrayList<Vector2> spawnPoints = new ArrayList<Vector2>();
+    public ArrayList<Rectangle> endPoints = new ArrayList<Rectangle>();
     public Vector2 spawnPoint;
     public Rectangle endPoint;
     public Player player;
@@ -77,7 +79,7 @@ public abstract class ModelGameScreen implements Screen {
     private boolean showHud = true;
     private CharacterScreen inventory;
 
-    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
+    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel, int spawnPointLoc){
         this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -109,6 +111,8 @@ public abstract class ModelGameScreen implements Screen {
         this.weaponCache.add(new GunCreator("Shotgun"));
         setupLevel();
 
+        player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
+        player.setCam(camera);
 //        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
 
@@ -157,12 +161,16 @@ public abstract class ModelGameScreen implements Screen {
 
         for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
             int pointID = Integer.parseInt(point.getName());
-            if(pointID == 0){
+            if((pointID % 2) == 0){
                 spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
-                player = new Player(spawnPoint, mapColliders, weaponCache, playerLevel);
-                player.setCam(camera);
+                spawnPoints.add(spawnPoint);
+                System.out.println(spawnPoints);
+//                player = new Player(spawnPoint, mapColliders, weaponCache, playerLevel);
+//                player.setCam(camera);
             }else{
                 endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
+                endPoints.add(endPoint);
+                System.out.println(endPoints);
             }
         }
         //SET SPAWN AND ENDS OF LEVELS

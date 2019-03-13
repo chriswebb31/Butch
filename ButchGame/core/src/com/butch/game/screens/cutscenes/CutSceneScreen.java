@@ -17,6 +17,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.screens.GameScreens.NewGameScreen;
 import com.butch.game.screens.TransitionScreen;
+import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.weapons.GunCreator;
+
+import java.util.ArrayList;
 
 
 public class CutSceneScreen implements Screen {
@@ -32,6 +36,7 @@ public class CutSceneScreen implements Screen {
     private Label continueText;
     private Image introBack, bubbleSpeech;
     boolean skip = false;
+    private ArrayList<Gun> weaponCache;
     public CutSceneScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -58,6 +63,11 @@ public class CutSceneScreen implements Screen {
         continueText = new Label(String.format("Click To Continue!"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         continueText.setPosition(game.TARGET_WIDTH/1.5f, game.TARGET_HEIGHT/14);
         continueText.setFontScale(2.5f);
+        //        this.weaponCache = new ArrayList<Gun>();
+//        this.weaponCache.add(new GunCreator("Revolver"));
+//        this.weaponCache.add(new GunCreator("MachineGun"));
+//        this.weaponCache.add(new GunCreator("Musket"));
+//        this.weaponCache.add(new GunCreator("Shotgun"));
     }
     @Override
     public void show() {
@@ -69,7 +79,7 @@ public class CutSceneScreen implements Screen {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (Gdx.input.isTouched()&& skip == true){
-            game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
+            game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map, 1, 0));
         }
         else {
             stage.addActor(introBack);

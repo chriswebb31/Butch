@@ -39,7 +39,7 @@ public class EntityCreator {
             prop.setProperty("speech","Lincoln ran off north Butch! Go! Chase him!");
             prop.setProperty("speechFollowup", "Stop Talking To Me");
             //Item
-
+            System.out.println((3%2) + " + " + (2%2) + " + " + (1%2) + " + " + (0%2));
             //Breakable
 
             // save properties to project root folder

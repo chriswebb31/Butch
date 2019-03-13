@@ -25,8 +25,16 @@ public class Level3 extends ModelGameScreen {
     public void render(float delta){
         updateCameraPosition();
 
-        if (player.getCollider().overlaps(endPoint)) {
-            game.setScreen(new PrisonLevel(4, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0));
+        for(Rectangle endPointLoc : endPoints) {
+            if(player.getCollider().overlaps(endPointLoc)) {
+                if(endPoints.indexOf(endPointLoc) == 0) {
+                    game.setScreen( new Level2(1, game, gameViewPort, player.getGunInventory(), Level2.map,  player.getPlayerLevel(), 1));
+                } else if (endPoints.indexOf(endPointLoc) == 1) {
+                    game.setScreen((new Level3(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                } else if (endPoints.indexOf(endPointLoc) == 2) {
+                    game.setScreen(new Cave(1, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0));
+                }
+            }
         }
         super.render(delta);
     }

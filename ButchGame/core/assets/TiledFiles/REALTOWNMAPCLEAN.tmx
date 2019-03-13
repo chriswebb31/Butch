@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="232">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="235">
  <tileset firstgid="1" name="allTiles-3" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-3.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -248,7 +248,7 @@
   <object id="12" x="705.824" y="1.23396" width="61.6979" height="112.63"/>
   <object id="29" x="770.255" y="65.3242" width="91.9613" height="49.5189"/>
   <object id="30" x="801.332" y="129.063" width="61.8361" height="94.1811"/>
-  <object id="32" x="801.015" y="224.83" width="189.631" height="61.2018"/>
+  <object id="32" x="801.015" y="224.83" width="189.631" height="52.2018"/>
   <object id="33" x="929.799" y="290.2" width="60.4852" height="491.689"/>
   <object id="34" x="801.655" y="737.125" width="125.336" height="45.6339"/>
   <object id="35" x="353.257" y="737.125" width="349.948" height="48.7143"/>
@@ -358,8 +358,8 @@
   <object id="145" x="660.423" y="693.953" width="11.7427" height="11.6013"/>
   <object id="146" x="682.966" y="816.52" width="9.8252" height="50.8746"/>
   <object id="147" x="811.722" y="816.406" width="8.45424" height="43.1031"/>
-  <object id="187" x="519.041" y="4.06559" width="88.0878" height="26.4263"/>
-  <object id="188" x="673.126" y="1.86333" width="183.072" height="27.9499"/>
+  <object id="187" x="519.041" y="4.06559" width="88.0878" height="18.9263"/>
+  <object id="188" x="673.126" y="1.86333" width="183.072" height="21.4499"/>
   <object id="189" x="853.869" y="2.32916" width="19.5649" height="27.9499"/>
   <object id="194" x="229.333" y="740" width="117.333" height="26.6667"/>
   <object id="195" x="230.667" y="765.333" width="14.6667" height="380"/>
@@ -374,10 +374,12 @@
   <object id="214" x="578" y="320.667" width="58" height="3.66667"/>
  </objectgroup>
  <objectgroup id="14" name="Points">
-  <object id="178" name="0" x="644.667" y="439.166" width="22.6667" height="18.6667"/>
-  <object id="191" name="1" x="612" y="4.667" width="52.6667" height="214"/>
-  <object id="230" name="3" x="596" y="571" width="8" height="10.5"/>
-  <object id="231" name="2" x="602" y="606.5"/>
+   <object id="232" name="0" x="566" y="439.5"/>
+   <object id="233" name="1" x="561" y="401.5" width="11.5" height="12.5"/>
+   <object id="231" name="2" x="602" y="606.5"/>
+   <object id="230" name="3" x="596" y="571" width="8" height="10.5"/>
+   <object id="234" name="4" x="641.5" y="70"/>
+   <object id="191" name="5" x="609.5" y="4.667" width="61.1667" height="27"/>
  </objectgroup>
  <objectgroup id="13" name="ItemLayer">
   <object id="165" name="5" x="912.5" y="307"/>

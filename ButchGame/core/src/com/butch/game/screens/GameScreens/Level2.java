@@ -1,6 +1,7 @@
 package com.butch.game.screens.GameScreens;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -23,8 +24,14 @@ public class Level2 extends ModelGameScreen {
     public void render(float delta) {
         updateCameraPosition();
 
-        if (player.getCollider().overlaps(endPoint)) {
-            game.setScreen(new Level3(3,game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0));
+        for(Rectangle endPointLoc : endPoints) {
+            if(player.getCollider().overlaps(endPointLoc)) {
+                if(endPoints.indexOf(endPointLoc) == 0) {
+                    game.setScreen( new NewGameScreen(1, game, gameViewPort, NewGameScreen.map,  player.getPlayerLevel(), 2));
+                } else if (endPoints.indexOf(endPointLoc) == 1) {
+                    game.setScreen((new Level3(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                }
+            }
         }
         super.render(delta);
     }

@@ -28,7 +28,7 @@ public class PrisonLevel extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new NewGameScreen(1, game, gameViewPort, NewGameScreen.map,  player.getPlayerLevel(), 1));
+                    game.setScreen( new Warzone(1, game, gameViewPort, player.getGunInventory(),  player.getPlayerLevel(), 1));
                 }
             }
         }

@@ -43,23 +43,14 @@ public class NewGameScreen extends ModelGameScreen {
 
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
-                if(endPoints.indexOf(endPointLoc) == 0) {
+                if(endPoints.indexOf(endPointLoc) == 2) {
                     game.setScreen( new Level2(1, game, gameViewPort, player.getGunInventory(), Level2.map,  player.getPlayerLevel(), 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Level3(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                    game.setScreen((new Cave(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                } else if (endPoints.indexOf(endPointLoc) == 0) {
+                    game.setScreen((new PrisonLevel(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 }
             }
-        }
-        if(player.getCollider().overlaps(endPoint)){
-
-//            Actions.run(new Runnable(){
-//                @Override
-//                public void run(){
-//                    game.setScreen(new Level2(2,game, gameViewPort, player.getGunInventory(), Level2.map, player.getPlayerLevel()));
-//                }
-//                        }
-//            )));
-       //  game.setScreen(new PrisonLevel(4, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel()));
         }
 
         super.render(delta);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="188">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="193">
  <tileset firstgid="1" source="TileSets/Path.tsx"/>
  <tileset firstgid="129" source="TileSets/Path 2.tsx"/>
  <tileset firstgid="257" source="TileSets/Rocks.tsx"/>
@@ -596,7 +596,11 @@
  </objectgroup>
  <objectgroup id="8" name="Points">
   <object id="1" name="0" x="2480" y="3056"/>
-  <object id="47" name="1" x="1035.22" y="215.333" width="46.3573" height="51.4928"/>
+  <object id="190" name="1" x="2437.33" y="3102.67" width="81.3333" height="88"/>
+  <object id="189" name="2" x="3098.67" y="2672"/>
+  <object id="188" name="3" x="3126.67" y="2628" width="53.3333" height="82.6667"/>
+  <object id="192" name="4" x="1056" y="324.333"/>
+  <object id="47" name="5" x="1035.22" y="215.333" width="46.3573" height="51.4928"/>
  </objectgroup>
  <objectgroup id="9" name="ItemLayer">
   <object id="3" name="3" x="2512" y="2900"/>

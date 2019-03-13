@@ -230,6 +230,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String route1 = "TiledFiles/Route1.tmx";
     public final String caveTransition = "TiledFiles/CaveTransition.tmx";
     public final String prison = "TiledFiles/Prison.tmx";
+    public final String cave = "TiledFiles/Cave.tmx";
+    public final String warzone = "TiledFiles/Warzone.tmx";
     public final String enemySprite = "enemy.png";
 
     //CutScenes Assets

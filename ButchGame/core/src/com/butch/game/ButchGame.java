@@ -51,6 +51,8 @@ public class ButchGame extends Game {
 		assets.load(assets.route1, TiledMap.class);
 		assets.load(assets.caveTransition, TiledMap.class);
 		assets.load(assets.prison, TiledMap.class);
+		assets.load(assets.cave, TiledMap.class);
+		assets.load(assets.warzone, TiledMap.class);
 		renderableManager = new RenderableManager();
 //        Gdx.input.setCursorCatched(true);
 		log = new FPSLogger();

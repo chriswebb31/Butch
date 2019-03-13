@@ -134,12 +134,12 @@ public class MainMenuScreen implements Screen {
     }
     private void createButtons(){
         /** creating the Active and Inactive Sprites
-            creating the Buttons as Image Buttons
-            setting position and size with .setBounds method. */
+         * creating the Buttons as Image Buttons
+         * setting position and size with .setBounds method. */
 
         settingsButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class));
         settingsButton = new ImageButton(new SpriteDrawable(settingsButtonActive));
-        settingsButton.setBounds(0,game.TARGET_HEIGHT-60,60,60);
+        settingsButton.setBounds(0,game.TARGET_HEIGHT/1.0588f,game.TARGET_WIDTH/32,game.TARGET_HEIGHT/18);
         playButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonActiveSprite, Texture.class));
         playButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonInactiveSprite, Texture.class));
         playButton = new ImageButton(new SpriteDrawable(playButtonInactive),new SpriteDrawable(playButtonActive));
@@ -158,7 +158,7 @@ public class MainMenuScreen implements Screen {
         exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
         exitButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
         exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
-        exitButton.setBounds(10,10,251,71);
+        exitButton.setBounds(10,10,game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/15.21126f);
         addActions();
 
     }
@@ -229,13 +229,11 @@ public class MainMenuScreen implements Screen {
      settingsButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-             settingsButton.setBounds(0,game.TARGET_HEIGHT-70,70,70);
-
+             settingsButton.setBounds(0,game.TARGET_HEIGHT/1.06930f,game.TARGET_WIDTH/27.42f,game.TARGET_HEIGHT/15.4285f);
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-             settingsButton.setBounds(0,game.TARGET_HEIGHT-60,60,60);
-
+             settingsButton.setBounds(0,game.TARGET_HEIGHT/1.0588f,game.TARGET_WIDTH/32,game.TARGET_HEIGHT/18);
          }
          public void clicked(InputEvent event, float x, float y){
              sound.play();
@@ -246,12 +244,12 @@ public class MainMenuScreen implements Screen {
      exitButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-             exitButton.setSize(261,81);
+             exitButton.setSize(game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/13.333f);
 
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-             exitButton.setSize(251,71);
+             exitButton.setSize(game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/15.21126f);
 
          }
          public void clicked(InputEvent event, float x, float y){

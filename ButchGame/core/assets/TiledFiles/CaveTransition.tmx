@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="187">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="188">
  <tileset firstgid="1" source="TileSets/Path.tsx"/>
  <tileset firstgid="129" source="TileSets/Path 2.tsx"/>
  <tileset firstgid="257" source="TileSets/Rocks.tsx"/>
@@ -596,8 +596,7 @@
  </objectgroup>
  <objectgroup id="8" name="Points">
   <object id="1" name="0" x="2480" y="3056"/>
-  <object id="6" name="1" x="3079" y="2636" width="107" height="69"/>
-  <object id="47" name="1" x="943.223" y="210" width="221.024" height="51.4928"/>
+  <object id="47" name="1" x="1035.22" y="215.333" width="46.3573" height="51.4928"/>
  </objectgroup>
  <objectgroup id="9" name="ItemLayer">
   <object id="3" name="3" x="2512" y="2900"/>
@@ -608,7 +607,8 @@
   </object>
  </objectgroup>
  <objectgroup id="11" name="NPCLayer">
-  <object id="5" name="John" x="2513" y="2830"/>
+  <object id="5" name="Lloyd" x="2513" y="2830"/>
+  <object id="187" name="Betsy" x="1934.67" y="2706.67"/>
  </objectgroup>
  <objectgroup id="12" name="AnimalLayer">
   <object id="186" name="3" x="2462.67" y="2766.67"/>

@@ -11,10 +11,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.screens.GameScreens.NewGameScreen;
 import com.butch.game.screens.TransitionScreen;
+import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.weapons.GunCreator;
+
+import java.util.ArrayList;
 
 
 public class CutSceneScreen implements Screen {
@@ -30,6 +36,7 @@ public class CutSceneScreen implements Screen {
     private Label continueText;
     private Image introBack, bubbleSpeech;
     boolean skip = false;
+    private ArrayList<Gun> weaponCache;
     public CutSceneScreen(ButchGame game, FitViewport gameViewPort){
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -41,17 +48,26 @@ public class CutSceneScreen implements Screen {
         introBack = new Image(ButchGame.assets.get(ButchGame.assets.introBack, Texture.class));
         introBack.setSize(game.TARGET_WIDTH, game.TARGET_HEIGHT);
         bubbleSpeech = new Image(ButchGame.assets.get(ButchGame.assets.bubbleSpeech, Texture.class));
-        bubbleSpeech.setPosition(game.TARGET_WIDTH*0.35f, game.TARGET_HEIGHT*0.45f);
-        welcomeText = new Label(String.format("Welcome to BUTCH"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        bubbleSpeech.setSize(1000,500);
+        bubbleSpeech.setBounds(game.TARGET_WIDTH/1.855072464f,game.TARGET_HEIGHT/2.07293666f,game.TARGET_WIDTH/2.391033624f,game.TARGET_HEIGHT/2.720403023f);
+        welcomeText = new Label (String.format("Welcome to Butch"), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
+        welcomeText.setColor(Color.BLACK);
         welcomeText.setPosition(game.TARGET_WIDTH*0.4f, game.TARGET_HEIGHT*0.8f);
         welcomeText.setFontScale(5.0f);
-        briefText = new Label(String.format("This is an Adventure Game which will blow your mind"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        briefText.setPosition(game.TARGET_WIDTH*0.4f, game.TARGET_HEIGHT*0.65f);
+        welcomeText.setPosition(game.TARGET_WIDTH/1.75663312f,game.TARGET_HEIGHT/1.341614907f);
+        briefText = new Label(String.format("This is an Adventure Game which will\n blow your mind"), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
+        briefText.setColor(Color.BLACK);
+        briefText.setAlignment(Align.center);
         briefText.setFontScale(2.5f);
+        briefText.setPosition(game.TARGET_WIDTH/1.4803312f,game.TARGET_HEIGHT/1.610140845f);
+        //briefText.setFontScale(2.5f);
         continueText = new Label(String.format("Click To Continue!"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         continueText.setPosition(game.TARGET_WIDTH/1.5f, game.TARGET_HEIGHT/14);
         continueText.setFontScale(2.5f);
+        //        this.weaponCache = new ArrayList<Gun>();
+//        this.weaponCache.add(new GunCreator("Revolver"));
+//        this.weaponCache.add(new GunCreator("MachineGun"));
+//        this.weaponCache.add(new GunCreator("Musket"));
+//        this.weaponCache.add(new GunCreator("Shotgun"));
     }
     @Override
     public void show() {
@@ -63,7 +79,7 @@ public class CutSceneScreen implements Screen {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (Gdx.input.isTouched()&& skip == true){
-            game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map));
+            game.setScreen(new NewGameScreen(1,game, gameViewPort,NewGameScreen.map, 1, 0));
         }
         else {
             stage.addActor(introBack);
@@ -111,7 +127,7 @@ public class CutSceneScreen implements Screen {
             update(delta);
             stateTime += delta;
             batch.begin();
-            batch.draw(npcAnim.getKeyFrame(stateTime, true), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, 500, 600);
+            batch.draw(npcAnim.getKeyFrame(stateTime, true), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
             batch.end();
 
             //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);

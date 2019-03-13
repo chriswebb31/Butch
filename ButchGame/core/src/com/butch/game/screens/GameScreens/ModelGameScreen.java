@@ -1,6 +1,7 @@
 package com.butch.game.screens.GameScreens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.*;
@@ -25,6 +26,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.dialouge.DialogueBox;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
+import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.Items.*;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -52,6 +54,8 @@ public abstract class ModelGameScreen implements Screen {
     FitViewport gameViewPort; //viewports define how the camera will render to the screen. FIT | STRETCH | FILL
     OrthographicCamera camera; //camera for height position of render
     float distanceDivisor = 1.2f;
+    public ArrayList<Vector2> spawnPoints = new ArrayList<Vector2>();
+    public ArrayList<Rectangle> endPoints = new ArrayList<Rectangle>();
     public Vector2 spawnPoint;
     public Rectangle endPoint;
     public Player player;
@@ -72,8 +76,10 @@ public abstract class ModelGameScreen implements Screen {
     final short buffer = 120;
     static TransitionScreen transitionScreen;
     private boolean isTalking = false;
+    private boolean showHud = true;
+    private CharacterScreen inventory;
 
-    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel){
+    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel, int spawnPointLoc){
         this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -105,6 +111,8 @@ public abstract class ModelGameScreen implements Screen {
         this.weaponCache.add(new GunCreator("Shotgun"));
         setupLevel();
 
+        player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
+        player.setCam(camera);
 //        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
 
@@ -118,7 +126,9 @@ public abstract class ModelGameScreen implements Screen {
         music.play();
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
+        inventory = new CharacterScreen(game.batch, player);
         outOfBullets = false;
+
 
         this.cursor = ButchGame.assets.get(ButchGame.assets.cursor, Pixmap.class);
         Gdx.graphics.setCursor(Gdx.graphics.newCursor(this.cursor, 0, 0));
@@ -151,12 +161,16 @@ public abstract class ModelGameScreen implements Screen {
 
         for(RectangleMapObject point : pointsLayer.getByType(RectangleMapObject.class)){
             int pointID = Integer.parseInt(point.getName());
-            if(pointID == 0){
+            if((pointID % 2) == 0){
                 spawnPoint = new Vector2(point.getRectangle().x * 10, point.getRectangle().getY() * 10);
-                player = new Player(spawnPoint, mapColliders, weaponCache, playerLevel);
-                player.setCam(camera);
+                spawnPoints.add(spawnPoint);
+                System.out.println(spawnPoints);
+//                player = new Player(spawnPoint, mapColliders, weaponCache, playerLevel);
+//                player.setCam(camera);
             }else{
                 endPoint = new Rectangle(point.getRectangle().x * 10, point.getRectangle().y * 10, point.getRectangle().width * 10, point.getRectangle().height * 10);
+                endPoints.add(endPoint);
+                System.out.println(endPoints);
             }
         }
         //SET SPAWN AND ENDS OF LEVELS
@@ -253,12 +267,30 @@ public abstract class ModelGameScreen implements Screen {
         batch.begin();
         ButchGame.renderableManager.render(batch); //render all objects on screen
 
+
+
         //cursor.draw(batch);
         batch.end();
         camera.update();
         caseBreak();
-        hud.stage.act(delta);
-        renderHUD();
+        if(!player.getButchDead()) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+                if (showHud) {
+                    showHud = false;
+                } else {
+                    showHud = true;
+                }
+            }
+        }
+        if(showHud) {
+            hud.stage.act(delta);
+            renderHUD();
+        } else {
+            inventory.drawStage();
+        }
+
+//        hud.stage.act(delta);
+//        renderHUD();
         renderEnemyHB();
     }
 
@@ -301,12 +333,12 @@ public abstract class ModelGameScreen implements Screen {
         for(NPC npc : NPCs) {
 
             if(npc.getInteractActive()) {
-                hud.setDialogueBoxVisibility(true);
+
                 if(!isTalking) {
                     hud.setDialogueBox(npc.getNpcText());
                     isTalking = true;
                 }
-
+                hud.setDialogueBoxVisibility(true);
 //                hud.getNpcText().setPosition(npc.getPosition().x, npc.getPosition().y);
 
                 System.out.println("Oh Hi Mark");

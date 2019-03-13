@@ -1,36 +1,36 @@
 package com.butch.game.screens.GameScreens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.butch.game.ButchGame;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.butch.game.ButchGame;
 import com.butch.game.dialouge.DialogueBox;
+import com.butch.game.gameobjects.abstractinterface.Gun;
+
+import java.util.ArrayList;
 
 public class NewGameScreen extends ModelGameScreen {
-   public static TiledMap map = ButchGame.assets.get(ButchGame.assets.tilemap1);
-   private int uiScale=2;
-   private Stage uiStage;
-   private Table root;
-   private DialogueBox dialogueBox;
+    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.tilemap1);
+    private int uiScale=2;
+    private Stage uiStage;
+    private Table root;
+    private DialogueBox dialogueBox;
     boolean cutsceneStart = true;
     Vector2 movingpos;
     float currentPos, statetime;
 
-    public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map){
+    public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, int playerLevel, int spawnLocation){
 
-    super(levelNumber,game,gameViewPort, map, 1);
+        super(levelNumber, game, gameViewPort, map, playerLevel, spawnLocation);
+        System.out.println();
         //tiledMap = ButchGame.assets.get(ButchGame.assets.route1);
         currentPos = player.getPosition().x;
         statetime = 0;
        // dialogueBox = new DialogueBox(new Skin(Gdx.files.internal("Data/uiskin.json")));
-        initUI();
+//        initUI();
     }
 
     @Override
@@ -40,6 +40,16 @@ public class NewGameScreen extends ModelGameScreen {
 
     @Override
     public void render(float delta){
+
+        for(Rectangle endPointLoc : endPoints) {
+            if(player.getCollider().overlaps(endPointLoc)) {
+                if(endPoints.indexOf(endPointLoc) == 0) {
+                    game.setScreen( new Level2(1, game, gameViewPort, player.getGunInventory(), Level2.map,  player.getPlayerLevel(), 0));
+                } else if (endPoints.indexOf(endPointLoc) == 1) {
+                    game.setScreen((new Level3(2, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                }
+            }
+        }
         if(player.getCollider().overlaps(endPoint)){
 
 //            Actions.run(new Runnable(){
@@ -49,7 +59,6 @@ public class NewGameScreen extends ModelGameScreen {
 //                }
 //                        }
 //            )));
-            game.setScreen(new Level2(2,game, gameViewPort, player.getGunInventory(), Level2.map, player.getPlayerLevel()));
        //  game.setScreen(new PrisonLevel(4, game, gameViewPort, player.getGunInventory(), player.getPlayerLevel()));
         }
 
@@ -93,9 +102,9 @@ public class NewGameScreen extends ModelGameScreen {
 
         if(player.getPosition().x <= currentPos + 2000&& cutsceneStart ==true){
 
-            movingpos = new Vector2(player.getPosition().x+20.0f, player.getPosition().y);
+           // movingpos = new Vector2(player.getPosition().x+10.0f, player.getPosition().y);
 //            player.getFrame(delta).setRegion(player.butchWalking.getKeyFrame(statetime,true));
-            player.setPosition(movingpos);
+           // player.setPosition(movingpos);
 
         }
         else{

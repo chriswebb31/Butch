@@ -96,6 +96,7 @@ public class Player extends Renderable {
     private OrthographicCamera cam;
     Rumble rumble;
     private float stateTimer;
+    private int activeWeaponNumber = 0;
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache, int playerLevel){
         this.setPosition(startPosition);
@@ -202,17 +203,12 @@ public class Player extends Renderable {
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             try {
-                if (gunInvIterator.hasNext()) {
-                    //System.out.println(gunInvIterator.next());
-                    this.activeGun.activeForRender = false;
-                    this.activeGun = gunInvIterator.next();
-                    this.activeGun.activeForRender = true;
+                if(activeWeaponNumber < (gunInventory.size() - 1)) {
+                    activeWeaponNumber++;
                 } else {
-                    this.activeGun.activeForRender = false;
-                    this.activeGun = this.gunInventory.get(0);
-                    this.activeGun.activeForRender = true;
-                    this.gunInvIterator = gunInventory.iterator();
+                    activeWeaponNumber = 0;
                 }
+                this.activeGun = this.gunInventory.get(activeWeaponNumber);
             } catch (NoSuchElementException w){
                 w.printStackTrace();
             }
@@ -661,5 +657,9 @@ public class Player extends Renderable {
     public void setPlayerLevel(int playerLevel) { this.playerLevel = playerLevel; }
 
     public float getPlayerHealthPercent() { return (this.health / this.maxHealth * 100); }
+
+    public boolean getButchDead() { return butchDead; }
+
+    public float getMaxHealth() { return maxHealth; }
 }
 

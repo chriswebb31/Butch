@@ -143,15 +143,18 @@ public class MainMenuScreen implements Screen {
         playButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonActiveSprite, Texture.class));
         playButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonInactiveSprite, Texture.class));
         playButton = new ImageButton(new SpriteDrawable(playButtonInactive),new SpriteDrawable(playButtonActive));
-        playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+//        playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+        playButton.setBounds(80,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class));
         aboutButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonInactiveSprite, Texture.class));
         aboutButton = new ImageButton(new SpriteDrawable(aboutButtonInactive),new SpriteDrawable(aboutButtonActive));
-        aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
+//        aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
+        aboutButton.setBounds(80, game.TARGET_HEIGHT/2.4215f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         needHelpButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class));
         needHelpButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonInactiveSprite, Texture.class));
         needHelpButton = new ImageButton(new SpriteDrawable( needHelpButtonInactive), new SpriteDrawable(needHelpButtonActive));
-        needHelpButton.setBounds(80, game.TARGET_HEIGHT - 821, 321, 137);
+//        needHelpButton.setBounds(80, game.TARGET_HEIGHT - 821, 321, 137);
+        needHelpButton.setBounds(80, game.TARGET_HEIGHT/4.16988f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
         exitButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
         exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
@@ -164,12 +167,14 @@ public class MainMenuScreen implements Screen {
      playButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-             playButton.setBounds(75,game.TARGET_HEIGHT-452,331,147);
+//             playButton.setBounds(75,game.TARGET_HEIGHT-540,331,147);
+             playButton.setBounds(75,game.TARGET_HEIGHT/2,game.TARGET_WIDTH/5.80060f,game.TARGET_HEIGHT/3.34693f);
 
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-             playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+//             playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+             playButton.setBounds(80,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
 
          }
          public void clicked(InputEvent event, float x, float y){
@@ -189,12 +194,13 @@ public class MainMenuScreen implements Screen {
      aboutButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-             aboutButton.setBounds(75,game.TARGET_HEIGHT-639,331,147);
-
+//             aboutButton.setBounds(75,game.TARGET_HEIGHT-639,331,147);
+             aboutButton.setBounds(75,game.TARGET_HEIGHT/2.448979f,game.TARGET_WIDTH/5.8006f,game.TARGET_HEIGHT/7.3469f);
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-             aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
+//             aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
+             aboutButton.setBounds(80, game.TARGET_HEIGHT/2.4215f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
 
          }
          public void clicked(InputEvent event, float x, float y){
@@ -205,12 +211,13 @@ public class MainMenuScreen implements Screen {
      needHelpButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-             needHelpButton.setBounds(75,game.TARGET_HEIGHT-826,331,147);
-
+//             needHelpButton.setBounds(75,game.TARGET_HEIGHT-826,331,147);
+             needHelpButton.setBounds(75,game.TARGET_HEIGHT/4.2519f,game.TARGET_WIDTH/5.8006f,game.TARGET_HEIGHT/7.346938f);
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-             needHelpButton.setBounds(80,game.TARGET_HEIGHT -821,321,137);
+//             needHelpButton.setBounds(80,game.TARGET_HEIGHT -821,321,137);
+             needHelpButton.setBounds(80, game.TARGET_HEIGHT/4.16988f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
 
          }
          public void clicked(InputEvent event, float x, float y){

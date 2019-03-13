@@ -42,7 +42,7 @@ public class Hud implements Disposable{
 
     public Hud(SpriteBatch spriteBatch, Player player){
         this.player = player;
-        viewport = new FitViewport(ButchGame.TARGET_WIDTH, ButchGame.TARGET_HEIGHT, new OrthographicCamera());
+        viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
         // health = new Integer(1000);
 //      levelLabel = new Label(String.format("Level 1: A Land far far away"), new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
@@ -82,7 +82,7 @@ public class Hud implements Disposable{
         table.add(dialogueBox)
                 .expand()
                 .align(Align.bottom)
-                .pad(100f);
+                .pad(50f);
         //     root.add(dialogueBox)
 //             .expand()
 //             .align(Align.bottom)

@@ -27,7 +27,7 @@ public class DialogueBox extends Table{
     public DialogueBox(Skin skin){
         super(skin);
         //uiskin = new Skin(Gdx.files.internal("Data/uiskin.json"));
-        this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("HUD/bars/playerHealthBarBG.png"))));
+        this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("dialogueBox .png"))));
         textLabel = new Label("\n",  skin);
         this.add(textLabel).expand().align(Align.left).pad(5f);
     }

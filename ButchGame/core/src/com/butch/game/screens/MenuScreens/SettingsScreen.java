@@ -49,8 +49,8 @@ public class SettingsScreen implements Screen {
         sliderKnob = new Sprite(ButchGame.assets.get(ButchGame.assets.sliderKnob,Texture.class));
         sliderStyle = new Slider.SliderStyle( new SpriteDrawable(sliderBack),new SpriteDrawable(sliderKnob));
         volumeSlider = new Slider(0f,1f,0.1f,false,sliderStyle);
-        volumeSlider.setPosition(500,500);
-        volumeSlider.setSize(1000,100);
+        volumeSlider.setPosition(game.TARGET_WIDTH/3.84f,game.TARGET_HEIGHT/2.16f);
+        volumeSlider.setSize(game.TARGET_WIDTH/1.92f,game.TARGET_HEIGHT/10.8f);
         volumeSlider.setValue(game.getVolume());
         volumeSlider.addListener(new ChangeListener() {
             @Override

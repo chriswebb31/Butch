@@ -87,17 +87,17 @@ public class NeedHelpScreen implements Screen {
         homeButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.homeButtonActive, Texture.class));
         homeButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.homeButtonInactive, Texture.class));
         homeButton = new ImageButton(new SpriteDrawable(homeButtonInactive), new SpriteDrawable(homeButtonActive));
-        homeButton.setBounds(10,10,251,71);
+        homeButton.setBounds(10,10,game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/15.21126f);
 
         homeButton.addListener(new ClickListener(){
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
-                homeButton.setBounds(10,10,251,81);
+                homeButton.setBounds(10,10,game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/13.333f);
 
             }
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
-                homeButton.setBounds(10,10,251,71);
+                homeButton.setBounds(10,10,game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/15.21126f);
 
             }
             public void clicked(InputEvent event, float x, float y){

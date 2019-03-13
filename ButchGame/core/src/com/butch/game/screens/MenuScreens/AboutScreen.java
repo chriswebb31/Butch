@@ -39,6 +39,7 @@ public class AboutScreen implements Screen {
         stage = new Stage(gameViewPort);
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
         backG = new Image(ButchGame.assets.get(ButchGame.assets.aboutPage, Texture.class));
+        backG.setSize(game.TARGET_WIDTH,game.TARGET_HEIGHT);
     }
 
     @Override

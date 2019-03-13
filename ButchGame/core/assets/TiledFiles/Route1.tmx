@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="46" height="46" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="60">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="46" height="46" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="68">
  <tileset firstgid="1" name="allTiles-4" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-4.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -288,26 +288,44 @@
   <object id="51" name="3" x="1156.5" y="892"/>
   <object id="52" name="3" x="1148" y="869"/>
   <object id="53" name="3" x="1177" y="879"/>
+  <object id="66" name="3" x="1177" y="896"/>
+  <object id="67" name="5" x="1166" y="859"/>
  </objectgroup>
  <objectgroup id="9" name="Enemy Layer">
   <object id="40" name="0" x="1181.5" y="943.5">
    <polygon points="0,0 37,-49 51,-110.5 0,-139 -54,-114 -132.5,-67.5 -70,-41 -141.5,7 -57.5,19.5 -30,1"/>
   </object>
-  <object id="41" name="1" x="550.5" y="330.5">
+  <object id="41" name="1" x="550.5" y="328.5">
    <polygon points="0,0 56,20 117,11.5 139.5,-23.5 139.5,-74 132,-92 162.5,-77 150,1 120,40.5 79.5,49.5 31,40 4,19"/>
   </object>
-  <object id="42" name="2" x="798.822" y="169.034">
+  <object id="42" name="2" x="771.822" y="224.034">
    <polygon points="0,0 0.5,126 -23.5,144.5 -53.5,154.5 -71.5,185 -97,214 -145,224 -214,231.5 -232.5,252 -283.5,271 -273.5,239 -220,211.5 -179,188 -126,186 -51,113.5 -23,105 -11,14.5"/>
   </object>
   <object id="59" name="0" x="1108.74" y="838.597">
    <polygon points="0,0 10.6537,-105.776 95.8831,-108.059 79.9026,-3.04391"/>
   </object>
+  <object id="60" name="3" x="535" y="498">
+   <polygon points="0,0 12,-94 258,-234 232,-92"/>
+  </object>
+  <object id="61" name="2" x="715" y="257">
+   <polygon points="0,0 103,21 -14,261 -238,150 -10,93"/>
+  </object>
+  <object id="62" name="2" x="1025" y="888">
+   <polygon points="0,0 94,-143 92,57 31,74"/>
+  </object>
+  <object id="63" name="1" x="992" y="835">
+   <polygon points="0,0 205,-80 135,94"/>
+  </object>
+  <object id="64" name="2" x="1000" y="952">
+   <polygon points="0,0 8,-166 129,-139 62,31"/>
+  </object>
+  <object id="65" name="3" x="984" y="951">
+   <polygon points="0,0 223,-191 116,-251 -49,-106"/>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="NPC Layer">
-  <object id="43" x="633" y="272.5"/>
-  <object id="44" x="1165.5" y="867.5"/>
-  <object id="45" x="1133.5" y="905.5"/>
-  <object id="46" x="1052.5" y="271.5"/>
+  <object id="43" name="Curtis" x="633" y="272.5"/>
+  <object id="46" name="Cheryl" x="1052.5" y="271.5"/>
  </objectgroup>
  <objectgroup id="12" name="AnimalLayer">
   <object id="57" name="0" x="779" y="808"/>

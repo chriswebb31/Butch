@@ -13,7 +13,7 @@ public class EntityCreator {
         //i.e. Gun, Item, Enemy, Player
         String propertyType = "NPC" + "/";
         //Name of the entity
-        String propertyName = "Morgan";
+        String propertyName = "Judas";
 
         try {
             output = new FileOutputStream(propertyType + propertyName + ".properties");
@@ -35,8 +35,8 @@ public class EntityCreator {
 //            prop.setProperty("speed", "15");
 
             // NPC
-            prop.setProperty("type", "0");
-            prop.setProperty("speech", "I think I heard some scuffling up ahead!");
+            prop.setProperty("type", "11");
+            prop.setProperty("speech","Lincoln ran off north Butch! Go! Chase him!");
             prop.setProperty("speechFollowup", "Stop Talking To Me");
             //Item
 

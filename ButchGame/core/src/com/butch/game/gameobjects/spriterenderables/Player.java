@@ -156,6 +156,15 @@ public class Player extends Renderable {
         butchDead = false;
         ////////////////////////////
        // health = 1000;
+
+        if(ButchGame.continueGame){
+            this.health = Integer.parseInt(ButchGame.saveProgress.getProperty("HEALTH"));
+            this.coin = Integer.parseInt(ButchGame.saveProgress.getProperty("COINS"));
+            this.pistolAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("PISTOLAMMO"));
+            this.rifleAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("RIFLEAMMO"));
+            this.shotgunAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("SHOTGUNAMMO"));
+            this.musketAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("MUSKETAMMO"));
+        }
     }
 
     private void inputHandler() { // handle inputs
@@ -460,8 +469,6 @@ public class Player extends Renderable {
             //
         }
 //        this.gunInvIterator = this.gunInventory.iterator();
-
-
     }
 
     @Override

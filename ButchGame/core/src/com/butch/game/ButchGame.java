@@ -19,6 +19,7 @@ import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.screens.LoadingScreen;
 
 import java.awt.*;
+import java.util.Properties;
 
 public class ButchGame extends Game {
     /*
@@ -41,6 +42,8 @@ public class ButchGame extends Game {
     //public MainMenuScreen game_screen;
     public float themeVolume;
 	public SpriteBatch batch;
+	public static Properties saveProgress;
+	public static boolean continueGame;
 
 
 	public ButchGame() {
@@ -64,7 +67,9 @@ public class ButchGame extends Game {
 		themeVolume = 0.3f;
 
 
-  	}
+        saveProgress = new Properties();
+        continueGame = false;
+    }
   	public float getVolume(){
 		return themeVolume;
 	}

@@ -21,6 +21,12 @@ import com.butch.game.ButchGame;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.cutscenes.CutSceneScreen;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
+
 public class MainMenuScreen implements Screen {
     //Change to use actual buttons maybe? Scene2D is used for menus etc
     public enum State{CLICKED, NOTCLICKED}
@@ -43,19 +49,20 @@ public class MainMenuScreen implements Screen {
     private float stateTimer;
     private boolean startClicked = false;
 //    private static TransitionScreen transitionScreen;
+    private boolean continueGame = false;
 
-    public MainMenuScreen(ButchGame game, FitViewport gameViewport){
+    public MainMenuScreen(ButchGame game, FitViewport gameViewport) {
         this.game = game;
 
         this.gameViewPort = gameViewport;
         camera = new OrthographicCamera();
-        camera.setToOrtho(true, 1920,1080);
+        camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();
         texture_back = new Sprite(ButchGame.assets.get(ButchGame.assets.backgroundTexture, Texture.class)); // locating the background
         //texture_back.setFilter(Linear,Linear);
         sprite_back = new Sprite(texture_back);
-        sprite_back.setRegionWidth((int)camera.viewportWidth);
-        sprite_back.setRegionHeight((int)camera.viewportHeight);
+        sprite_back.setRegionWidth((int) camera.viewportWidth);
+        sprite_back.setRegionHeight((int) camera.viewportHeight);
         sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
         sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
         stage = new Stage();
@@ -69,6 +76,33 @@ public class MainMenuScreen implements Screen {
         doorsOpenAnim = new Animation<TextureRegion>(0.15f, doorsOpenAtlas.getRegions());
         currentState = State.NOTCLICKED;
         previousState = State.NOTCLICKED;
+
+        Properties saveProgress = new Properties();
+        InputStream inputStream = null;
+
+        try {
+            inputStream = getClass().getClassLoader().getResourceAsStream("savegame.properties");
+            if(inputStream != null){
+                saveProgress.load(inputStream);
+                if(Integer.parseInt(saveProgress.getProperty("PROGRESS")) < 0){
+                    //LOAD INTO LEVEL ETC
+                    continueGame = true;
+                    ButchGame.saveProgress = saveProgress;
+                    ButchGame.continueGame = true;
+                }
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
     @Override

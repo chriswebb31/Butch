@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
@@ -49,6 +50,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String whiskyBottle = "whisky.png";
     public final String aboutPage = "Pages/aboutPage.png";
     //HUD
+    //Skin
+    public final String uiskin = "Data/uiskin.json";
     //Health Bars
     public final String enemyHBBG = "HUD/bars/enemyHealthBarBG.png";
     public final String enemyHBFG = "HUD/bars/enemyHealthBarFG.png";
@@ -361,7 +364,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         //HUD
         //Health Bars
-
+        load(uiskin, Skin.class);
         load(enemyHBBG, Texture.class);
         load(enemyHBFG, Texture.class);
         load(playerHBBG, Texture.class);

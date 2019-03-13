@@ -25,7 +25,7 @@ public class NewGameScreen extends ModelGameScreen {
         currentPos = player.getPosition().x;
         statetime = 0;
        // dialogueBox = new DialogueBox(new Skin(Gdx.files.internal("Data/uiskin.json")));
-        initUI();
+//        initUI();
     }
 
     @Override

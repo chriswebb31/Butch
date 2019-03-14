@@ -239,7 +239,6 @@
  <objectgroup id="5" name="Collisions">
   <object id="1" x="386.896" y="1024.39" width="29.0896" height="95.9337"/>
   <object id="2" x="448.169" y="1050.63" width="126.88" height="70.9337"/>
-  <object id="3" x="672.071" y="1042.82"/>
   <object id="4" x="577.973" y="1002.43" width="567.995" height="49.926"/>
   <object id="5" x="1157.35" y="967.6" width="54.396" height="51.8659"/>
   <object id="6" x="1221.87" y="933.445" width="49.3359" height="54.396"/>
@@ -254,7 +253,7 @@
   <object id="15" x="1281.33" y="804.412" width="59.456" height="56.926"/>
   <object id="16" x="1285.12" y="738.631" width="50.6009" height="59.456"/>
   <object id="17" x="1281.33" y="679.175" width="58.191" height="53.1309"/>
-  <object id="18" x="392.089" y="225.888" width="61.8324" height="800.279"/>
+  <object id="18" x="392.089" y="225.888" width="65.3324" height="800.279"/>
   <object id="19" x="403.287" y="239.766" width="153.644" height="73.1141"/>
   <object id="20" x="550.041" y="228.33" width="67.523" height="65.2773"/>
   <object id="21" x="641.166" y="237.876" width="29.3185" height="8.6022"/>
@@ -271,7 +270,7 @@
  </objectgroup>
  <objectgroup id="6" name="Points">
   <object id="31" name="0" x="511.667" y="976.333"/>
-  <object id="69" name="1" x="470" y="1002" width="96" height="16"/>
+  <object id="69" name="1" x="463" y="1002" width="105.5" height="16"/>
   <object id="68" name="2" x="1024" y="236"/>
   <object id="55" name="3" x="980" y="168" width="81.5" height="40.5"/>
  </objectgroup>

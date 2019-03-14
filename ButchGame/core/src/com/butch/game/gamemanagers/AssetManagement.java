@@ -50,6 +50,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String whiskyBottle = "whisky.png";
     public final String aboutPage = "Pages/aboutPage.png";
     //HUD
+    //Character Screen
+    public final String characterScreen = "HUD/characterScreen.png";
     //Skin
     public final String uiskin = "Data/uiskin.json";
     //Health Bars
@@ -379,6 +381,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(musketSilhoutte, Texture.class);
 
         //HUD
+        //Character Screen
+        load(characterScreen, Texture.class);
         //Health Bars
         load(uiskin, Skin.class);
         load(enemyHBBG, Texture.class);

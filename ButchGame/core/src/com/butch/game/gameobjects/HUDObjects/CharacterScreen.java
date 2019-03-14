@@ -43,12 +43,17 @@ public class CharacterScreen implements Disposable {
     private Texture machineGunImage;
     private Texture shotgunImage;
     private Texture musketImage;
-
+    private Texture characterScreen;
+    private Image characterScreenImage;
 
     public CharacterScreen(SpriteBatch spriteBatch, Player player) {
         this.player = player;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
+        characterScreen = ButchGame.assets.get(ButchGame.assets.characterScreen, Texture.class);
+        characterScreenImage = new Image(characterScreen);
+        characterScreenImage.setSize(characterScreen.getWidth() * 2.5f, characterScreen.getHeight() * 2.5f);
+        characterScreenImage.setPosition(Gdx.graphics.getWidth() / 5f, Gdx.graphics.getHeight() / 5f);
         butchLevel = new Label(String.format(Integer.toString(player.getPlayerLevel())), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         butchHealth = new Label(String.format(player.getHealth() + "/" + player.getMaxHealth()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         butchDamage = new Label(String.format(Float.toString(player.getActiveWeapon().damage + ((player.getPlayerLevel() - 1) * 5))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
@@ -86,7 +91,9 @@ public class CharacterScreen implements Disposable {
 //        table.row();
 
         table.top().left();
+        stage.addActor(characterScreenImage);
         stage.addActor(table);
+
         for(Label label : ammoInventory) {
             stage.addActor(label);
         }

@@ -80,7 +80,7 @@ public class CutSceneScreen implements Screen {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (Gdx.input.isTouched()&& skip == true){
-            game.setScreen(new StartTavern(1,game, gameViewPort, StartTavern.map, 1, 0));
+            game.setScreen(new StartTavern(0,game, gameViewPort, StartTavern.map, 1, 0));
         }
         else {
             stage.addActor(introBack);

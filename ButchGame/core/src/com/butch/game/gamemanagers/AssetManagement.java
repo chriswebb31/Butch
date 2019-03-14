@@ -238,6 +238,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String route3 = "TiledFiles/Route3.tmx";
     public final String route4 = "TiledFiles/Route4.tmx";
     public final String snowyMountain = "TiledFiles/SnowyPasture.tmx";
+    public final String bigBoyTown = "TiledFiles/BigCity.tmx";
     public final String enemySprite = "enemy.png";
 
     //CutScenes Assets

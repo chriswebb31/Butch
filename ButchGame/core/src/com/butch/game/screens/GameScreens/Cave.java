@@ -28,7 +28,7 @@ public class Cave extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen( new PrisonLevel(coinCounter, game, gameViewPort, PrisonLevel.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
+                    game.setScreen( new PrisonLevel(player.coin, game, gameViewPort, PrisonLevel.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
                     game.setScreen((new Level3(player.coin, game, gameViewPort, Level3.map, player.getGunInventory(), player.getPlayerLevel(), 2)));
                 }

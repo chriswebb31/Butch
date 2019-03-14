@@ -8,13 +8,10 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 
 import java.util.ArrayList;
 
-public class SnowyMountain extends ModelGameScreen {
-    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.snowyMountain);
-    private int coinCounter;
-
-    public SnowyMountain(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
+public class BigTown extends ModelGameScreen {
+    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.bigBoyTown);
+    public BigTown(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
         super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
-        coinCounter = levelNumber;
     }
 
     @Override
@@ -25,15 +22,16 @@ public class SnowyMountain extends ModelGameScreen {
     @Override
     public void render(float delta){
         updateCameraPosition();
+
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
-                if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new BigTown(player.coin, game, gameViewPort, BigTown.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
+                if(endPoints.indexOf(endPointLoc) == 1) {
+                    game.setScreen( new Warzone(player.coin, game, gameViewPort, Warzone.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
+                } else if (endPoints.indexOf(endPointLoc) == 0) {
+                    game.setScreen((new SnowyMountain(player.coin, game, gameViewPort, SnowyMountain.map, player.getGunInventory(), player.getPlayerLevel(), 1)));
                 }
             }
         }
-
-
         super.render(delta);
     }
 

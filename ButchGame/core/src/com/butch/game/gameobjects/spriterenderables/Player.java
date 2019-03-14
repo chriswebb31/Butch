@@ -46,7 +46,7 @@ public class Player extends Renderable {
     private static float baseHealth = 100;
     public State currentState;
     public State previousState;
-    float xAxis, yAxis, speed = 0;
+    public float xAxis, yAxis, speed = 0;
     private Sprite sprite;
     public float shakeAmount = 25;
     public Animation<TextureRegion> butchWalking;

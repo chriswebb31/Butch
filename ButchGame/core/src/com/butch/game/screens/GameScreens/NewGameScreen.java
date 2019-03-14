@@ -50,6 +50,8 @@ public class NewGameScreen extends ModelGameScreen {
                     game.setScreen((new Warzone(player.coin, game, gameViewPort, Warzone.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
                     player.isAllowedToMove = false;
+                    player.xAxis = 0;
+                    player.yAxis = 0;
                     player.getFrame(delta, Player.State.IDLE);
                     playSound.play();
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {

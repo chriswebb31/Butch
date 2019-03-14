@@ -46,6 +46,8 @@ public class StartTavern extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     player.isAllowedToMove = false;
+                    player.xAxis = 0;
+                    player.yAxis = 0;
                     player.getFrame(delta, Player.State.IDLE);
                     playSound.play();
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {

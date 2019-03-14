@@ -1,13 +1,10 @@
 package com.butch.game.screens.GameScreens;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.dialouge.DialogueBox;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 
 import java.util.ArrayList;
@@ -21,7 +18,7 @@ public class NewGameScreen extends ModelGameScreen {
 //    boolean cutsceneStart = true;
 //    Vector2 movingpos;
 //    float currentPos, statetime;
-
+    Music playSound;
     public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation){
 
         super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
@@ -31,6 +28,7 @@ public class NewGameScreen extends ModelGameScreen {
 //        statetime = 0;
        // dialogueBox = new DialogueBox(new Skin(Gdx.files.internal("Data/uiskin.json")));
 //        initUI();
+        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
     }
 
     @Override
@@ -48,7 +46,18 @@ public class NewGameScreen extends ModelGameScreen {
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
                     game.setScreen((new Cave(2, game, gameViewPort, Cave.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen((new StartTavern(2, game, gameViewPort, StartTavern.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
+
+                    playSound.play();
+                    playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(Music music) {
+
+                            music.play();
+                            playSound.dispose();
+                            game.setScreen((new StartTavern(2, game, gameViewPort, StartTavern.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                        }
+                    });
+
                 }
             }
         }

@@ -269,10 +269,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     public void includeAssets() {
         //cutScenes loading
-        load(prisonMusic1, Sound.class );
-        load(saloonBackNoise1, Sound.class );
-        load(saloonBackNoise2, Sound.class );
-        load(introBackMusic1, Sound.class );
+        load(prisonMusic1, Music.class );
+        load(saloonBackNoise1, Music.class );
+        load(saloonBackNoise2, Music.class );
+        load(introBackMusic1, Music.class );
         load(bubbleSpeech, Texture.class);
         load(introBack, Texture.class);
         //page Contents

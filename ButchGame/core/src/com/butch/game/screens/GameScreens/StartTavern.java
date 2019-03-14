@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.spriterenderables.Player;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,8 @@ public class StartTavern extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-
+                    player.isAllowedToMove = false;
+                    player.getFrame(delta, Player.State.IDLE);
                     playSound.play();
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                         @Override
@@ -51,6 +53,7 @@ public class StartTavern extends ModelGameScreen {
                             music.play();
                             tavernMusic.dispose();
                             playSound.dispose();
+                            player.isAllowedToMove = true;
                             game.setScreen( new NewGameScreen(1, game, gameViewPort, NewGameScreen.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
                         }
                     });

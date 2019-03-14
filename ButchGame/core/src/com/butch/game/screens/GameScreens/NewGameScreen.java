@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.gameobjects.spriterenderables.Player;
 
 import java.util.ArrayList;
 
@@ -44,16 +45,17 @@ public class NewGameScreen extends ModelGameScreen {
                 if(endPoints.indexOf(endPointLoc) == 2) {
                     game.setScreen( new Level2(1, game, gameViewPort, Level2.map, player.getGunInventory(), player.getPlayerLevel(), 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Cave(2, game, gameViewPort, Cave.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                    game.setScreen((new Warzone(2, game, gameViewPort, Warzone.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
-
+                    player.isAllowedToMove = false;
+                    player.getFrame(delta, Player.State.IDLE);
                     playSound.play();
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                         @Override
                         public void onCompletion(Music music) {
-
                             music.play();
                             playSound.dispose();
+                            player.isAllowedToMove = true;
                             game.setScreen((new StartTavern(2, game, gameViewPort, StartTavern.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                         }
                     });

@@ -97,6 +97,7 @@ public class Player extends Renderable {
     Rumble rumble;
     private float stateTimer;
     private int activeWeaponNumber = 0;
+    public boolean isAllowedToMove = true;
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache, int playerLevel){
         this.setPosition(startPosition);
@@ -168,67 +169,68 @@ public class Player extends Renderable {
     }
 
     private void inputHandler() { // handle inputs
-        if (!Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            xAxis = 0;
-        }
-        if (!Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            yAxis = 0;
-        }
-        if (!Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            yAxis = 0;
-        }
-        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            xAxis = 0;
-        }
-        if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.LEFT) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT) || !Gdx.input.isKeyPressed(Input.Keys.UP) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            isButchIdle = true;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            yAxis = 1;
-            isButchIdle = false;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            yAxis = -1;
-            isButchIdle = false;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            xAxis = -1;
-            isButchIdle = false;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            xAxis = 1;
-            isButchIdle = false;
-        }
-        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-            try{
-                if(!isRiding)
-                    if(activeGun.Shoot()){
-                        rumble = new Rumble();
-                        rumble.rumble(activeGun.damage, activeGun.fireRate);
-                    }
-            } catch (NullPointerException e){
-                e.printStackTrace();
+        if(isAllowedToMove) {
+            if (!Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                xAxis = 0;
             }
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            try {
-                if(activeWeaponNumber < (gunInventory.size() - 1)) {
-                    activeWeaponNumber++;
-                } else {
-                    activeWeaponNumber = 0;
+            if (!Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                yAxis = 0;
+            }
+            if (!Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                yAxis = 0;
+            }
+            if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                xAxis = 0;
+            }
+            if (!Gdx.input.isKeyPressed(Input.Keys.A) || !Gdx.input.isKeyPressed(Input.Keys.S) || !Gdx.input.isKeyPressed(Input.Keys.W) || !Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.LEFT) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT) || !Gdx.input.isKeyPressed(Input.Keys.UP) || !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                isButchIdle = true;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                yAxis = 1;
+                isButchIdle = false;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                yAxis = -1;
+                isButchIdle = false;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                xAxis = -1;
+                isButchIdle = false;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                xAxis = 1;
+                isButchIdle = false;
+            }
+            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                try {
+                    if (!isRiding)
+                        if (activeGun.Shoot()) {
+                            rumble = new Rumble();
+                            rumble.rumble(activeGun.damage, activeGun.fireRate);
+                        }
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
                 }
-                this.activeGun = this.gunInventory.get(activeWeaponNumber);
-            } catch (NoSuchElementException w){
-                w.printStackTrace();
             }
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
-            if (isRiding) {
-                isRiding = false;
-            } else {
-                isRiding = true;
+            if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+                try {
+                    if (activeWeaponNumber < (gunInventory.size() - 1)) {
+                        activeWeaponNumber++;
+                    } else {
+                        activeWeaponNumber = 0;
+                    }
+                    this.activeGun = this.gunInventory.get(activeWeaponNumber);
+                } catch (NoSuchElementException w) {
+                    w.printStackTrace();
+                }
             }
-        }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+                if (isRiding) {
+                    isRiding = false;
+                } else {
+                    isRiding = true;
+                }
+            }
 //
 //        if(Gdx.input.isKeyPressed(Input.Keys.R)){
 //            try{
@@ -238,14 +240,15 @@ public class Player extends Renderable {
 //            }
 //        }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.E)){
-            for (Renderable renderable:RenderableManager.renderableObjects) {
-                if(renderable.TAG == "item" && renderable.activeForRender){
-                    ItemPickup itemPickup = (ItemPickup) renderable;
-                    intersector = new Rectangle();
-                    if(Intersector.overlaps(itemPickup.collectionRange, this.getCollider())){
-                        itemCollection.add(itemPickup);
-                        itemPickup.activeForRender = false;
+            if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+                for (Renderable renderable : RenderableManager.renderableObjects) {
+                    if (renderable.TAG == "item" && renderable.activeForRender) {
+                        ItemPickup itemPickup = (ItemPickup) renderable;
+                        intersector = new Rectangle();
+                        if (Intersector.overlaps(itemPickup.collectionRange, this.getCollider())) {
+                            itemCollection.add(itemPickup);
+                            itemPickup.activeForRender = false;
+                        }
                     }
                 }
             }
@@ -562,6 +565,48 @@ public class Player extends Renderable {
     public TextureRegion getFrame(float dt){
         TextureRegion region = null;
         currentState = getState();
+
+        switch(currentState){
+            case DEAD:
+                if(previousState != currentState) {
+                    stateTimer = 0;
+                }
+                region = butchDying.getKeyFrame(stateTimer, false);
+                break;
+            case RUNNING:
+                region = butchWalking.getKeyFrame(stateTimer, true);
+                break;
+            case RIDING :
+                region = butchHorseRiding.getKeyFrame(stateTimer, true);
+                break;
+            case RIDINGIDLE :
+                region = butchHorseIdle.getKeyFrame(stateTimer, true);
+                break;
+            case IDLE:
+                region = butchIdle.getKeyFrame(stateTimer, true);
+                break;
+        }
+
+        if(((ButchGame.mousePosition().x < getPosition().x) || !movingRight) && !region.isFlipX()){
+            region.flip(true, false);
+            movingRight = false;
+        }
+
+        if(((ButchGame.mousePosition().x >= getPosition().x) || movingRight) && region.isFlipX()) {
+            region.flip(true, false);
+            movingRight = true;
+        }
+
+
+        stateTimer = currentState == previousState ? stateTimer + dt : 0;
+        previousState = currentState;
+        return region;
+
+    }
+
+    public TextureRegion getFrame(float dt, State state){
+        TextureRegion region = null;
+        currentState = state;
 
         switch(currentState){
             case DEAD:

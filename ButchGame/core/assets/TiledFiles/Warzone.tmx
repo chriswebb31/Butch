@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="55" height="55" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="227">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="55" height="55" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="227">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-4.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -451,9 +451,8 @@
   <object id="189" x="1176.33" y="255.723" width="8.52411" height="31.661"/>
  </objectgroup>
  <objectgroup id="19" name="Points">
-  <object id="224" x="833.739" y="1584.75" height="1.62206"/>
-  <object id="225" name="0" x="836.983" y="1596.11"/>
-  <object id="226" name="1" x="811.03" y="1657.75" width="43.7956" height="17.8427"/>
+  <object id="225" name="0" x="831.983" y="1591.84"/>
+  <object id="226" name="1" x="803.03" y="1623.75" width="59.7956" height="17.8427"/>
  </objectgroup>
  <objectgroup id="17" name="Item Layer"/>
  <objectgroup id="18" name="Enemy Layer">

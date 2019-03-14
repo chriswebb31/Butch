@@ -52,9 +52,15 @@ public class CharacterScreen implements Disposable {
         characterScreenImage = new Image(characterScreen);
         characterScreenImage.setSize(characterScreen.getWidth() * 2.5f, characterScreen.getHeight() * 2.5f);
         characterScreenImage.setPosition(Gdx.graphics.getWidth() / 5f, Gdx.graphics.getHeight() / 5f);
-        butchLevel = new Label(String.format(Integer.toString(player.getPlayerLevel())), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        butchHealth = new Label(String.format(player.getHealth() + "/" + player.getMaxHealth()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        butchDamage = new Label(String.format(Float.toString(player.getActiveWeapon().damage + ((player.getPlayerLevel() - 1) * 5))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        butchLevel = new Label(String.format("LEVEL: " + player.getPlayerLevel()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        butchLevel.setPosition(Gdx.graphics.getWidth()/3f, Gdx.graphics.getHeight()/1.34f);
+        butchLevel.setFontScale(2);
+        butchHealth = new Label(String.format("HEALTH: " + (int)player.getHealth() + "/" + (int)player.getMaxHealth()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        butchHealth.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/1.39f);
+        butchHealth.setFontScale(2);
+        butchDamage = new Label(String.format(player.getActiveWeapon().gunName.toUpperCase() + ": " + (player.getActiveWeapon().damage + ((player.getPlayerLevel() - 1) * 5))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        butchDamage.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/1.45f);
+        butchDamage.setFontScale(2);
         butchShotSpeed = new Label(String.format(Float.toString(player.getActiveWeapon().speed + ((player.getPlayerLevel() - 1) * 3))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         butchAccuracy = new Label(String.format(Float.toString(player.getActiveWeapon().accuracy)), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         for(Gun gun : player.getGunInventory()) {
@@ -62,7 +68,8 @@ public class CharacterScreen implements Disposable {
             switch(gun.id) {
                 case 10:
                     gunLabel.setText(String.format("Revolver Ammo: " + gun.clip + "/" + player.pistolAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/1.9f);
+                    gunLabel.setFontScale(2);
+                    gunLabel.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/3.5f);
                     ammoInventory.add(gunLabel);
                     break;
                 case 11:
@@ -83,15 +90,14 @@ public class CharacterScreen implements Disposable {
             }
         }
 
-        table.add(ammoInventory.get(0)).expandX().right();
-        table.row();
 //        table.add(ammoInventory.get(1)).expandX().center().right();
 //        table.row();
 
         table.top().left();
         stage.addActor(characterScreenImage);
-        stage.addActor(table);
-
+        stage.addActor(butchLevel);
+        stage.addActor(butchHealth);
+        stage.addActor(butchDamage);
         for(Label label : ammoInventory) {
             stage.addActor(label);
         }

@@ -661,7 +661,7 @@
   </object>
  </objectgroup>
  <objectgroup id="38" name="NPCLayer">
-  <object id="359" name="0" x="699" y="502"/>
+  <object id="359" name="John" x="699" y="502"/>
  </objectgroup>
  <objectgroup id="39" name="AnimalLayer">
   <object id="360" name="4" x="714" y="60"/>

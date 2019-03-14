@@ -10,10 +10,11 @@ import java.util.ArrayList;
 
 public class Level3 extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.caveTransition);
-
+    private int coinCounter;
 
     public Level3(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation){
-    super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
+        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
+        coinCounter = levelNumber;
     }
 
     @Override
@@ -28,11 +29,11 @@ public class Level3 extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new Level2(1, game, gameViewPort, Level2.map, player.getGunInventory(), player.getPlayerLevel(), 1));
+                    game.setScreen( new Level2(player.coin, game, gameViewPort, Level2.map, player.getGunInventory(), player.getPlayerLevel(), 1));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Route3(2, game, gameViewPort, Route3.map ,player.getGunInventory(), player.getPlayerLevel(), 0)));
+                    game.setScreen((new Route3(player.coin, game, gameViewPort, Route3.map ,player.getGunInventory(), player.getPlayerLevel(), 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 2) {
-                    game.setScreen(new Cave(1, game, gameViewPort, Cave.map, player.getGunInventory(), player.getPlayerLevel(), 0));
+                    game.setScreen(new Cave(player.coin, game, gameViewPort, Cave.map, player.getGunInventory(), player.getPlayerLevel(), 0));
                 }
             }
         }

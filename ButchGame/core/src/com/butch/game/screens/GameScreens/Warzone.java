@@ -11,9 +11,10 @@ import java.util.ArrayList;
 
 public class Warzone extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.warzone);
-
+    private int coinCounter;
     public Warzone(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
         super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
+        coinCounter = levelNumber;
     }
 
 
@@ -29,7 +30,7 @@ public class Warzone extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen(new NewGameScreen(1, game, gameViewPort, NewGameScreen.map, weaponCache, player.getPlayerLevel(), 0));
+                    game.setScreen(new NewGameScreen(player.coin, game, gameViewPort, NewGameScreen.map, weaponCache, player.getPlayerLevel(), 0));
                 }
             }
         }

@@ -41,9 +41,9 @@ import com.butch.game.screens.TransitionScreen;
 import java.util.ArrayList;
 
 public abstract class ModelGameScreen implements Screen {
-    public int levelNumber;
+//    public int levelNumber;
     private int playerLevel;
-     SpriteBatch batch;
+    SpriteBatch batch;
     Pixmap cursor;
     public ArrayList<ItemPickup> itemPickups;
     public ArrayList<Enemy> enemies;
@@ -79,8 +79,8 @@ public abstract class ModelGameScreen implements Screen {
     private boolean showHud = true;
     private CharacterScreen inventory;
 
-    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel, int spawnPointLoc){
-        this.levelNumber = levelNumber;
+    public ModelGameScreen(int coinCounter, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel, int spawnPointLoc){
+//        this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
@@ -109,6 +109,7 @@ public abstract class ModelGameScreen implements Screen {
         setupLevel();
 
         player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
+        player.coin = coinCounter;
         player.setCam(camera);
 //        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
@@ -137,8 +138,8 @@ public abstract class ModelGameScreen implements Screen {
         healthBarBG = new Sprite(ButchGame.assets.get(ButchGame.assets.enemyHBBG, Texture.class));
         healthBarFG = new Sprite (ButchGame.assets.get(ButchGame.assets.enemyHBFG, Texture.class));
     }
-    public ModelGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap tiledMap, ArrayList<Gun> weapons, int playerLevel, int spawnPointLoc) {
-        this.levelNumber = levelNumber;
+    public ModelGameScreen(int coinCounter, ButchGame game, FitViewport gameViewPort, TiledMap tiledMap, ArrayList<Gun> weapons, int playerLevel, int spawnPointLoc) {
+//        this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
@@ -171,6 +172,7 @@ public abstract class ModelGameScreen implements Screen {
         setupLevel();
 
         player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
+        player.coin = coinCounter;
         player.setCam(camera);
 //        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;

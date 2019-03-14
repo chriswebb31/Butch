@@ -9,10 +9,12 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import java.util.ArrayList;
 
 public class SnowyMountain extends ModelGameScreen {
-    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.snowyMountain    );
+    public static TiledMap map = ButchGame.assets.get(ButchGame.assets.snowyMountain);
+    private int coinCounter;
 
     public SnowyMountain(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
         super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
+        coinCounter = levelNumber;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class SnowyMountain extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new Warzone(1, game, gameViewPort, Warzone.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
+                    game.setScreen( new Warzone(player.coin, game, gameViewPort, Warzone.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
                 }
             }
         }

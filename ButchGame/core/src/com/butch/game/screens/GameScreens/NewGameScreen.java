@@ -20,9 +20,11 @@ public class NewGameScreen extends ModelGameScreen {
 //    Vector2 movingpos;
 //    float currentPos, statetime;
     Music playSound;
+    private int coinCounter;
     public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation){
 
         super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
+        coinCounter = levelNumber;
 //        System.out.println();
         //tiledMap = ButchGame.assets.get(ButchGame.assets.route1);
 //        currentPos = player.getPosition().x;
@@ -43,9 +45,9 @@ public class NewGameScreen extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 2) {
-                    game.setScreen( new Level2(1, game, gameViewPort, Level2.map, player.getGunInventory(), player.getPlayerLevel(), 0));
+                    game.setScreen( new Level2(player.coin, game, gameViewPort, Level2.map, player.getGunInventory(), player.getPlayerLevel(), 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Warzone(2, game, gameViewPort, Warzone.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                    game.setScreen((new Warzone(player.coin, game, gameViewPort, Warzone.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
                     player.isAllowedToMove = false;
                     player.getFrame(delta, Player.State.IDLE);
@@ -56,7 +58,7 @@ public class NewGameScreen extends ModelGameScreen {
                             music.play();
                             playSound.dispose();
                             player.isAllowedToMove = true;
-                            game.setScreen((new StartTavern(2, game, gameViewPort, StartTavern.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                            game.setScreen((new StartTavern(player.coin, game, gameViewPort, StartTavern.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                         }
                     });
 

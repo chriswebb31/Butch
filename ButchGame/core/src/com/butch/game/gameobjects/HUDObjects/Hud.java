@@ -106,9 +106,9 @@ public class Hud implements Disposable{
         stage.addActor(coinCounterOne);
         stage.addActor(coinCounterTen);
     }
-public void render(float width){
+    public void render(float width){
         healthBarFG.setSize(width*3, 43);
-}
+    }
 
     @Override
     public void dispose() {

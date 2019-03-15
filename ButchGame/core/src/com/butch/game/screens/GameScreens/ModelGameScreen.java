@@ -124,7 +124,7 @@ public abstract class ModelGameScreen implements Screen {
         music.play();
         //////////////////////hud ////////////////////
         hud = new Hud(game.batch, player);
-        inventory = new CharacterScreen(game.batch, player);
+//        inventory = new CharacterScreen(game.batch, player);
         outOfBullets = false;
 
 
@@ -340,8 +340,10 @@ public abstract class ModelGameScreen implements Screen {
             if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
                 if (showHud) {
                     showHud = false;
+                    inventory = new CharacterScreen(game.batch, player);
                 } else {
                     showHud = true;
+                    inventory.dispose();
                 }
             }
         }

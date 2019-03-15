@@ -19,6 +19,7 @@ import com.butch.game.dialouge.DialogueBox;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.badlogic.gdx.graphics.Texture;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
@@ -32,63 +33,63 @@ public class CharacterScreen implements Disposable {
     private Label butchDamage;
     private Label butchShotSpeed;
     private Label butchAccuracy;
+    private Label gunAmmoLabel;
     private ArrayList<Label> ammoInventory = new ArrayList<Label>();
 //    private Label revolverAmmo;
 //    private Label machineGunAmmo;
 //    private Label shotgunAmmo;
 //    private Label musketAmmo;
-    private Texture revolverImage;
-    private Texture machineGunImage;
-    private Texture shotgunImage;
-    private Texture musketImage;
-    private Texture characterScreen;
+    private Image revolverImage;
+    private Image machineGunImage;
+    private Image shotgunImage;
+    private Image musketImage;
     private Image characterScreenImage;
 
     public CharacterScreen(SpriteBatch spriteBatch, Player player) {
         this.player = player;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport,spriteBatch);
-        characterScreen = ButchGame.assets.get(ButchGame.assets.characterScreen, Texture.class);
-        characterScreenImage = new Image(characterScreen);
-        characterScreenImage.setSize(characterScreen.getWidth() * 2.5f, characterScreen.getHeight() * 2.5f);
+        characterScreenImage = new Image(ButchGame.assets.get(ButchGame.assets.characterScreen, Texture.class));
+        characterScreenImage.setSize(characterScreenImage.getWidth() * 2.5f, characterScreenImage.getHeight() * 2.5f);
         characterScreenImage.setPosition(Gdx.graphics.getWidth() / 5f, Gdx.graphics.getHeight() / 5f);
+        revolverImage = new Image(ButchGame.assets.get(ButchGame.assets.revolverSilhouette, Texture.class));
+        revolverImage.setSize(revolverImage.getWidth() * 6, revolverImage.getHeight() * 6);
+        revolverImage.setPosition(Gdx.graphics.getWidth()/3.5f, Gdx.graphics.getHeight()/4.5f);
         butchLevel = new Label(String.format("LEVEL: " + player.getPlayerLevel()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         butchLevel.setPosition(Gdx.graphics.getWidth()/3f, Gdx.graphics.getHeight()/1.34f);
         butchLevel.setFontScale(2);
         butchHealth = new Label(String.format("HEALTH: " + (int)player.getHealth() + "/" + (int)player.getMaxHealth()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         butchHealth.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/1.39f);
         butchHealth.setFontScale(2);
-        butchDamage = new Label(String.format(player.getActiveWeapon().gunName.toUpperCase() + ": " + (player.getActiveWeapon().damage + ((player.getPlayerLevel() - 1) * 5))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        butchDamage.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/1.45f);
+        butchDamage = new Label(String.format(player.getActiveWeapon().gunName.toUpperCase() + " DAMAGE: " + (player.getActiveWeapon().damage + ((player.getPlayerLevel() - 1) * 5))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        butchDamage.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/1.65f);
         butchDamage.setFontScale(2);
-        butchShotSpeed = new Label(String.format(Float.toString(player.getActiveWeapon().speed + ((player.getPlayerLevel() - 1) * 3))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        butchShotSpeed = new Label(String.format("SHOT SPEED: " + (player.getActiveWeapon().speed + ((player.getPlayerLevel() - 1) * 3))), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        butchShotSpeed.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/2.0f);
+        butchShotSpeed.setFontScale(2);
         butchAccuracy = new Label(String.format(Float.toString(player.getActiveWeapon().accuracy)), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        for(Gun gun : player.getGunInventory()) {
-            Label gunLabel = new Label("Hi", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-            switch(gun.id) {
-                case 10:
-                    gunLabel.setText(String.format("Revolver Ammo: " + gun.clip + "/" + player.pistolAmmo));
-                    gunLabel.setFontScale(2);
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/3.5f);
-                    ammoInventory.add(gunLabel);
-                    break;
-                case 11:
-                    gunLabel.setText(String.format("Machine Gun Ammo: " + gun.clip + "/" + player.rifleAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.0f);
-                    ammoInventory.add(gunLabel);
-                    break;
-                case 12:
-                    gunLabel.setText(String.format("Shotgun Ammo" + gun.clip + "/" + player.shotgunAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.1f);
-                    ammoInventory.add(gunLabel);
-                    break;
-                case 13:
-                    gunLabel.setText(String.format("Musket Ammo" + gun.clip + "/" + player.musketAmmo));
-                    gunLabel.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.2f);
-                    ammoInventory.add(gunLabel);
-                    break;
-            }
+        butchAccuracy.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/2.5f);
+        butchAccuracy.setFontScale(2);
+
+        gunAmmoLabel = new Label("", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        gunAmmoLabel.setFontScale(2);
+        gunAmmoLabel.setPosition(Gdx.graphics.getWidth()/1.8f, Gdx.graphics.getHeight()/3.5f);
+
+        switch(player.getActiveWeapon().id) {
+            case(10) :
+                gunAmmoLabel.setText(String.format("REVOLVER AMMO: " + player.getActiveWeapon().clip + "/" + player.pistolAmmo));
+                break;
+            case(11) :
+                gunAmmoLabel.setText(String.format("MACHINE GUN AMMO: " + player.getActiveWeapon().clip + "/" + player.rifleAmmo));
+                break;
+            case(12) :
+                gunAmmoLabel.setText(String.format("SHOTGUN AMMO: " + player.getActiveWeapon().clip + "/" + player.shotgunAmmo));
+                break;
+            case(13) :
+                gunAmmoLabel.setText(String.format("MUSKET AMMO: " + player.getActiveWeapon().clip + "/" + player.musketAmmo));
+                break;
         }
+
 
 //        table.add(ammoInventory.get(1)).expandX().center().right();
 //        table.row();
@@ -98,13 +99,14 @@ public class CharacterScreen implements Disposable {
         stage.addActor(butchLevel);
         stage.addActor(butchHealth);
         stage.addActor(butchDamage);
-        for(Label label : ammoInventory) {
-            stage.addActor(label);
-        }
+        stage.addActor(butchShotSpeed);
+        stage.addActor(butchAccuracy);
+        stage.addActor(revolverImage);
+        stage.addActor(gunAmmoLabel);
     }
     @Override
     public void dispose() {
-        //stage.dispose();
+        stage.dispose();
     }
 
     public void render(float delta) {

@@ -30,7 +30,8 @@ public class AssetExistsExampleTest {
 
 	@Test
 	public void badlogicLogoFileExists() {
-		assertTrue("This test will only pass when the badlogic.jpg file coming with a new project setup has not been deleted.", Gdx.files
+		assertTrue("true if file still exites and hasnt been deleted.", Gdx.files
 				.internal("../core/assets/Barrel.png").exists());
 	}
+	
 }

@@ -19,7 +19,7 @@ import com.butch.game.dialouge.DialogueBox;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.badlogic.gdx.graphics.Texture;
-import org.junit.Test;
+//import org.junit.Test;
 
 import java.util.ArrayList;
 

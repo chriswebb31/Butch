@@ -20,6 +20,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.cutscenes.CutSceneScreen;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -78,7 +79,9 @@ public class MainMenuScreen implements Screen {
         InputStream inputStream = null;
 
         try {
-            inputStream = getClass().getClassLoader().getResourceAsStream("savegame.properties");
+            inputStream = new FileInputStream("Saves/savegame.properties");
+
+            System.out.println("INPUTSTREAM: " + inputStream);
             if(inputStream != null){
                 saveProgress.load(inputStream);
                 if(Integer.parseInt(saveProgress.getProperty("PROGRESS")) < 0){

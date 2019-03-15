@@ -309,6 +309,35 @@ public abstract class ModelGameScreen implements Screen {
       //  transitionScreen.transitionIn(stage);
     }
 
+    public void loadSave(){
+        player.health = Float.parseFloat(ButchGame.saveProgress.getProperty("HEALTH"));
+        player.coin = Integer.parseInt(ButchGame.saveProgress.getProperty("COINS"));
+        player.pistolAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("PISTOLAMMO"));
+        player.rifleAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("RIFLEAMMO"));
+        player.shotgunAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("SHOTGUNAMMO"));
+        player.musketAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("MUSKETAMMO"));
+        for(String gunId : ButchGame.saveProgress.getProperty("GUNINVENTORY").split(":")){
+            player.getGunInventory().add(ButchGame.itemManager.getGun(Integer.parseInt(gunId)));
+        }
+    }
+
+    public void updateSave(int progress){
+        ButchGame.saveProgress.setProperty("PROGRESS", String.valueOf(progress));
+        ButchGame.saveProgress.setProperty("HEALTH", String.valueOf(player.health));
+        ButchGame.saveProgress.setProperty("COIN", String.valueOf(player.coin));
+        ButchGame.saveProgress.setProperty("PISTOLAMMO", String.valueOf(player.pistolAmmo));
+        ButchGame.saveProgress.setProperty("RIFLEAMMO", String.valueOf(player.rifleAmmo));
+        ButchGame.saveProgress.setProperty("SHOTGUNAMMO", String.valueOf(player.shotgunAmmo));
+        ButchGame.saveProgress.setProperty("MUSKETAMMO", String.valueOf(player.musketAmmo));
+
+        String gunList = "";
+
+        for (Gun gun:player.getGunInventory()) {
+            gunList += ":"+gun.id;
+        }
+        ButchGame.saveProgress.setProperty("GUNINVENTORY", gunList);
+    }
+
     @Override
     public void render(float delta) {
 //        updateCameraPosition();

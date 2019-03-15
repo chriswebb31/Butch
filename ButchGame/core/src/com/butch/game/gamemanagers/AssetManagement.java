@@ -215,10 +215,40 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String walkingFX = "SoundFX/walking.mp3";
     public final String ammoCollection = "SoundFX/ammoCollect.mp3";
     public final String potionCollection = "SoundFX/potionFX.mp3";
+
+    //Gun Sounds
+    public final String cannonFire = "SoundFX/GunSounds/cannonFire.mp3";
+    public final String gatlingFire = "SoundFX/GunSounds/gatlingFire.mp3";
+    public final String machinegunFire = "SoundFX/GunSounds/machinegunFire.mp3";
+    public final String musketFire = "SoundFX/GunSounds/musketFire.mp3";
+    public final String revolverFire = "SoundFX/GunSounds/revolverFire.mp3";
+    public final String rifleFire = "SoundFX/GunSounds/rifleFire.mp3";
+    public final String shotgunFire = "SoundFX/GunSounds/shotgunFire.mp3";
+    public final String shotgunReloadNoise = "SoundFX/GunSounds/shotgunReload.mp3";
+
+    //Animal sounds
+    public final String maniMountNoise = "SoundFX/ManiHorse/maniMount.mp3";
+    public final String maniDismountNoise = "SoundFX/ManiHorse/maniDismount.mp3";
+    public final String maniMovingNoise = "SoundFX/ManiHorse/maniMoving.mp3";
+    public final String maniNeighingNoise = "SoundFX/ManiHorse/maniNeighing.mp3";
+    public final String maniSnortNoise = "SoundFX/ManiHorse/maniSnortNoise.mp3";
+
+    public final String chickenNoise = "SoundFX/chickenNoise.mp3";
+    public final String cowNoise = "SoundFX/cowNoise.mp3";
+    public final String goatNoise = "SoundFX/goatNoise.mp3";
+    public final String turkeyNoise = "SoundFX/turkeyNoise.mp3";
+    public final String raccoonNoise = "SoundFX/raccoonNoise.mp3";
+    public final String pigNoise = "SoundFX/pigNoise.mp3";
+
+    //Character sounds
+    public final String consumeFoodNoise = "SoundFX/CharacterNoises/consumeFoodNoise.mp3";
+    public final String drinkItemNoise = "SoundFX/CharacterNoises/DrinkItemNoise.mp3";
+
+
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
-
+    public final String prisonTheme = "Music/PrisonMusic.mp3";
 
     //PARTICLES
 
@@ -306,6 +336,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(rifleAmmo, Texture.class);
         load(shotgunAmmoIdle, Texture.class);
         load(coinItemSprite, Texture.class);
+
 
         load(healthPotion, Texture.class);
         load(butchIdleAnim, TextureAtlas.class);//FrameDuration = 0.25f
@@ -470,6 +501,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //Background Music
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
+        load(prisonTheme, Music.class);
         //SFX
         load(gunShot, Sound.class);
         load(menuClick, Sound.class);
@@ -481,5 +513,48 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(ammoCollection, Sound.class);
         load(walkingFX, Sound.class);
         load(potionCollection, Sound.class);
+
+        //Animals sound
+        load(maniMountNoise, Sound.class);
+        load(maniDismountNoise, Sound.class);
+        load(maniMovingNoise, Sound.class);
+        load(maniNeighingNoise, Sound.class);
+        load(maniSnortNoise, Sound.class);
+
+        load(chickenNoise, Sound.class);
+        load(cowNoise, Sound.class);
+        load(raccoonNoise, Sound.class);
+        load(pigNoise, Sound.class);
+        load(goatNoise, Sound.class);
+        load(turkeyNoise, Sound.class);
+
+
+        //Gun Shot SOUNDS
+        load(revolverFire, Sound.class);
+        load(musketFire, Sound.class);
+        load(shotgunFire, Sound.class);
+        load(gatlingFire, Sound.class);
+        load(machinegunFire, Sound.class);
+        load(cannonFire, Sound.class);
+        load(rifleFire, Sound.class);
+
+
+        //Gun reload SOUNDS
+        //   load(revolverReloadNoise, Sound.class);
+        //   load(musketReloadNoise, Sound.class);
+        //   load(coltReloadNoise, Sound.class);
+        load(shotgunReloadNoise, Sound.class);
+        //   load(machineGunReloadNoise, Sound.class);
+
+
+        //character noises
+        load(consumeFoodNoise, Sound.class);
+        load(drinkItemNoise, Sound.class);
+        //  load(arghNoise, Sound.class);
+        // load(gruntNoise, Sound.class)
+        //load(playerDies, Sound.class);
+
+
+
     }
 }

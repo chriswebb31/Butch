@@ -2,7 +2,7 @@ package com.butch.game.screens.MenuScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,7 +23,7 @@ public class AboutScreen implements Screen {
     private SpriteBatch batch;
     private ButchGame game;
     private OrthographicCamera camera;
-    private Sound sound;
+    private Music clickSound;
     Sprite homeButtonActive,homeButtonInactive;
     private Image backG;
     Stage stage;
@@ -37,7 +37,7 @@ public class AboutScreen implements Screen {
         camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();
         stage = new Stage(gameViewPort);
-        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
+        clickSound = ButchGame.assets.get(ButchGame.assets.menuClick, Music.class);
         backG = new Image(ButchGame.assets.get(ButchGame.assets.aboutPage, Texture.class));
         backG.setSize(game.TARGET_WIDTH,game.TARGET_HEIGHT);
     }
@@ -100,7 +100,7 @@ public class AboutScreen implements Screen {
                 homeButton.setBounds(10,10,game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/15.21126f);
             }
             public void clicked(InputEvent event, float x, float y){
-                sound.play();
+                clickSound.play();
                 transitionScreen.transitionOut(new MainMenuScreen(game, gameViewPort),stage, game);
             }
         });

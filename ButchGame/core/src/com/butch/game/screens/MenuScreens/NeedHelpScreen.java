@@ -2,7 +2,7 @@ package com.butch.game.screens.MenuScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,7 +27,7 @@ public class NeedHelpScreen implements Screen {
     private Sprite homeButtonActive,homeButtonInactive;
     public ImageButton homeButton;
     Stage stage;
-    private Sound sound;
+    private Music clickSound;
     FitViewport gameViewPort;
     Image backg;
     static TransitionScreen transitionScreen;
@@ -39,7 +39,7 @@ public class NeedHelpScreen implements Screen {
         stage = new Stage(gameViewPort);
         batch = new SpriteBatch();
         homeButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.homeButtonActive, Texture.class));
-        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
+        clickSound = ButchGame.assets.get(ButchGame.assets.menuClick, Music.class);
         batch= new SpriteBatch();
         backg = new Image(new Texture(Gdx.files.internal("needHelpPage.png")));
         backg.setSize(game.TARGET_WIDTH,game.TARGET_HEIGHT);
@@ -101,7 +101,7 @@ public class NeedHelpScreen implements Screen {
 
             }
             public void clicked(InputEvent event, float x, float y){
-                sound.play();
+                clickSound.play();
                 transitionScreen.transitionOut(new MainMenuScreen(game, gameViewPort),stage,game);
             }
 

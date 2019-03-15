@@ -504,7 +504,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(prisonTheme, Music.class);
         //SFX
         load(gunShot, Sound.class);
-        load(menuClick, Sound.class);
+        load(menuClick, Music.class);
         load(hitEffect, Sound.class);
         load(revolverReloadEeffect, Sound.class);
         load(otherReloadEffect, Sound.class);

@@ -75,7 +75,7 @@ public class Hud implements Disposable{
 //        npcText.toFront();
 //        npcText.setVisible(false);
 
-        Skin skin = new Skin(Gdx.files.internal("Data/uiskin.json"));
+        Skin skin =  ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class);
         dialogueBox = new DialogueBox(skin);
         //dialogueBox.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 

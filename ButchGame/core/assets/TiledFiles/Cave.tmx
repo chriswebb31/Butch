@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="182">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="184">
  <tileset firstgid="1" name="allTiles-5" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-5.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -370,7 +370,7 @@
   <object id="145" x="881.199" y="598.833" width="8.73299" height="87.3299"/>
   <object id="146" x="1058.04" y="595.194" width="11.644" height="90.9686"/>
   <object id="147" x="892.116" y="675.246" width="165.927" height="10.9162"/>
-  <object id="148" x="885.566" y="596.649" width="4.36649" height="3.63875"/>
+  <object id="148" x="886.316" y="595.524" width="12.1165" height="4.82625"/>
   <object id="149" x="850.634" y="560.262" width="11.644" height="3.63875"/>
   <object id="150" x="1230.03" y="431.753" width="11.7586" height="956.363"/>
   <object id="151" x="352.668" y="407.525" width="13.3797" height="967.353"/>
@@ -390,6 +390,7 @@
   <object id="168" x="900.033" y="1413.75" width="73.5054" height="25.3185"/>
   <object id="177" x="1191.51" y="1344.92" width="34.9442" height="30.6827"/>
   <object id="178" x="520.301" y="732.331" width="1.50376"/>
+  <object id="183" x="848.727" y="558.545" width="252.364" height="10.9091"/>
  </objectgroup>
  <objectgroup id="11" name="Points">
   <object id="179" name="0" x="547" y="1393"/>

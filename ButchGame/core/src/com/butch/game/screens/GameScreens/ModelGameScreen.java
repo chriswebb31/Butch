@@ -38,7 +38,9 @@ import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.weapons.GunCreator;
 import com.butch.game.screens.TransitionScreen;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public abstract class ModelGameScreen implements Screen {
 //    public int levelNumber;
@@ -84,6 +86,7 @@ public abstract class ModelGameScreen implements Screen {
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
+        this.shapeRenderer = new ShapeRenderer();
 //        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
 //        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
@@ -309,6 +312,78 @@ public abstract class ModelGameScreen implements Screen {
       //  transitionScreen.transitionIn(stage);
     }
 
+    public void loadSave(){
+        Properties saveGame = new Properties();
+        InputStream inputStream = null;
+
+        try{
+            inputStream = new FileInputStream("Saves/savegame.properties");
+            if(inputStream != null){
+                saveGame.load(inputStream);
+
+                player.health = Float.parseFloat(saveGame.getProperty("HEALTH"));
+                player.coin = Integer.parseInt(saveGame.getProperty("COINS"));
+                player.pistolAmmo = Integer.parseInt(saveGame.getProperty("PISTOLAMMO"));
+                player.rifleAmmo = Integer.parseInt(saveGame.getProperty("RIFLEAMMO"));
+                player.shotgunAmmo = Integer.parseInt(saveGame.getProperty("SHOTGUNAMMO"));
+                player.musketAmmo = Integer.parseInt(saveGame.getProperty("MUSKETAMMO"));
+                for(String gunId : saveGame.getProperty("GUNINVENTORY").split(":")){
+                    player.getGunInventory().add(ButchGame.itemManager.getGun(Integer.parseInt(gunId)));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateSave(int progress){
+        System.out.println("UPDATE SAVE");
+        Properties saveGame = new Properties();
+        InputStream inputStream = null;
+        FileOutputStream outputStream = null;
+
+        try{
+            inputStream = new FileInputStream("Saves/savegame.properties");
+            if(inputStream != null){
+                saveGame.load(inputStream);
+                System.out.println("SUCC");
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try{
+            outputStream = new FileOutputStream("Saves/savegame.properties");
+
+            saveGame.setProperty("PROGRESS", String.valueOf(progress));
+            saveGame.setProperty("HEALTH", String.valueOf(player.health));
+            saveGame.setProperty("COIN", String.valueOf(player.coin));
+            saveGame.setProperty("PISTOLAMMO", String.valueOf(player.pistolAmmo));
+            saveGame.setProperty("RIFLEAMMO", String.valueOf(player.rifleAmmo));
+            saveGame.setProperty("SHOTGUNAMMO", String.valueOf(player.shotgunAmmo));
+            saveGame.setProperty("MUSKETAMMO", String.valueOf(player.musketAmmo));
+
+            String gunList = "";
+
+            for (Gun gun:player.getGunInventory()) {
+                gunList += ":"+gun.id;
+            }
+            saveGame.setProperty("GUNINVENTORY", gunList);
+            saveGame.store(outputStream, null);
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public void render(float delta) {
 //        updateCameraPosition();
@@ -328,12 +403,14 @@ public abstract class ModelGameScreen implements Screen {
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
-        ButchGame.renderableManager.render(batch); //render all objects on screen
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        ButchGame.renderableManager.render(batch, shapeRenderer); //render all objects on screen
 
 
 
         //cursor.draw(batch);
         batch.end();
+        shapeRenderer.end();
         camera.update();
         caseBreak();
         if(!player.getButchDead()) {

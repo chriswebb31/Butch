@@ -1,6 +1,9 @@
 package com.butch.game.gamemanagers;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.butch.game.gameobjects.abstractinterface.Renderable;
 
@@ -40,11 +43,15 @@ public class RenderableManager {
         }
     }
 
-    public void render(SpriteBatch spriteBatch) {
+    public void render(SpriteBatch spriteBatch, ShapeRenderer shapeRenderer) {
         for (int i=0; i<renderableObjects.size();i++) {
             if(renderableObjects.get(i).activeForRender){
                 try{
                     renderableObjects.get(i).getSprite().draw(spriteBatch);
+                    if(renderableObjects.get(i).activeCollision){
+                        shapeRenderer.setColor(Color.PINK);
+                        shapeRenderer.rect(renderableObjects.get(i).getCollider().x, renderableObjects.get(i).getCollider().y, renderableObjects.get(i).getCollider().width, renderableObjects.get(i).getCollider().height);
+                    }
                 }catch (NullPointerException e){
                     e.printStackTrace();
                 }

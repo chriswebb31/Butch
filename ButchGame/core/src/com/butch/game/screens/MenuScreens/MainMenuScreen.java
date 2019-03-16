@@ -3,7 +3,6 @@ package com.butch.game.screens.MenuScreens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,10 +20,9 @@ import com.butch.game.ButchGame;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.cutscenes.CutSceneScreen;
 
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Properties;
 
 public class MainMenuScreen implements Screen {
@@ -32,7 +30,6 @@ public class MainMenuScreen implements Screen {
     public enum State{CLICKED, NOTCLICKED}
     private State currentState, previousState;
     private static ButchGame game;
-    private Sound sound;
     public Table table = new Table();
     OrthographicCamera camera;
     SpriteBatch batch;
@@ -41,7 +38,7 @@ public class MainMenuScreen implements Screen {
             needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive,texture_back;
     private Stage stage;
     private FitViewport gameViewPort;
-    private static Music music, playSound;
+    private static Music music, playSound, clickSound;
     public ImageButton exitButton, playButton, aboutButton, settingsButton, needHelpButton;
 
     private Animation<TextureRegion> doorsOpenAnim;
@@ -64,7 +61,8 @@ public class MainMenuScreen implements Screen {
         sprite_back.setRegionWidth((int) camera.viewportWidth);
         sprite_back.setRegionHeight((int) camera.viewportHeight);
         sprite_back.flip(false, true); // flipping y because in LibGDX y axis is reversed.
-        sound = ButchGame.assets.get(ButchGame.assets.menuClick, Sound.class);
+        clickSound = ButchGame.assets.get(ButchGame.assets.menuClick, Music.class);
+        clickSound.setVolume(0.04f);
         stage = new Stage();
         music = ButchGame.assets.get(ButchGame.assets.mainTheme, Music.class);
         music.setVolume(game.getVolume());
@@ -77,32 +75,34 @@ public class MainMenuScreen implements Screen {
         currentState = State.NOTCLICKED;
         previousState = State.NOTCLICKED;
 
-        Properties saveProgress = new Properties();
-        InputStream inputStream = null;
+//        Properties saveProgress = new Properties();
+//        InputStream inputStream = null;
 
-        try {
-            inputStream = getClass().getClassLoader().getResourceAsStream("savegame.properties");
-            if(inputStream != null){
-                saveProgress.load(inputStream);
-                if(Integer.parseInt(saveProgress.getProperty("PROGRESS")) < 0){
-                    //LOAD INTO LEVEL ETC
-                    continueGame = true;
-                    ButchGame.saveProgress = saveProgress;
-                    ButchGame.continueGame = true;
-                }
-            }
-        } catch (IOException io) {
-            io.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
+//        try {
+//            inputStream = new FileInputStream("Saves/savegame.properties");
+//
+//            System.out.println("INPUTSTREAM: " + inputStream);
+//            if(inputStream != null){
+//                saveProgress.load(inputStream);
+//                if(Integer.parseInt(saveProgress.getProperty("PROGRESS")) < 0){
+//                    //LOAD INTO LEVEL ETC
+//                    continueGame = true;
+//                    ButchGame.saveProgress = saveProgress;
+//                    ButchGame.continueGame = true;
+//                }
+//            }
+//        } catch (IOException io) {
+//            io.printStackTrace();
+//        } finally {
+//            if (inputStream != null) {
+//                try {
+//                    inputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }
     }
 
     @Override
@@ -238,7 +238,7 @@ public class MainMenuScreen implements Screen {
 
          }
          public void clicked(InputEvent event, float x, float y){
-             sound.play();
+             clickSound.play();
              TransitionScreen.transitionOut(new AboutScreen(game, gameViewPort),stage,game);
          }
      });
@@ -255,7 +255,7 @@ public class MainMenuScreen implements Screen {
 
          }
          public void clicked(InputEvent event, float x, float y){
-             sound.play();
+             clickSound.play();
              TransitionScreen.transitionOut(new NeedHelpScreen(game,gameViewPort),stage,game);
          }
 
@@ -270,7 +270,7 @@ public class MainMenuScreen implements Screen {
              settingsButton.setBounds(0,game.TARGET_HEIGHT/1.0588f,game.TARGET_WIDTH/32,game.TARGET_HEIGHT/18);
          }
          public void clicked(InputEvent event, float x, float y){
-             sound.play();
+             clickSound.play();
              TransitionScreen.transitionOut(new SettingsScreen(game, gameViewPort, returnThis()),stage,game);
          }
      });
@@ -287,7 +287,7 @@ public class MainMenuScreen implements Screen {
 
          }
          public void clicked(InputEvent event, float x, float y){
-             sound.play();
+             clickSound.play();
              stage.addAction(Actions.sequence(Actions.fadeOut(0.5f),
                      Actions.run(new Runnable(){
                          @Override

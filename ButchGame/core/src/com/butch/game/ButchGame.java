@@ -2,9 +2,6 @@ package com.butch.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -42,9 +39,8 @@ public class ButchGame extends Game {
     //public MainMenuScreen game_screen;
     public float themeVolume;
 	public SpriteBatch batch;
-	public static Properties saveProgress;
-	public static boolean continueGame;
-
+//	public static Properties saveProgress;
+//	public static boolean continueGame;
 
 	public ButchGame() {
 		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
@@ -65,11 +61,11 @@ public class ButchGame extends Game {
 //        Gdx.input.setCursorCatched(true);
 		log = new FPSLogger();
 		GSM = new GameStateManager(gameViewPort, this);
-		themeVolume = 0.3f;
+		themeVolume = 0.05f;
 
 
-        saveProgress = new Properties();
-        continueGame = false;
+//        saveProgress = new Properties();
+//        continueGame = false;
     }
   	public float getVolume(){
 		return themeVolume;

@@ -14,6 +14,7 @@ public class StartTavern extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.startTavern);
     Music tavernMusic,playSound;
     private int coinCounter;
+
     public StartTavern(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, int playerLevel, int spawnLocation) {
         super(levelNumber, game, gameViewPort, map, playerLevel, spawnLocation);
         tavernMusic = ButchGame.assets.get(ButchGame.assets.saloonBackNoise1, Music.class);
@@ -58,6 +59,7 @@ public class StartTavern extends ModelGameScreen {
                             tavernMusic.dispose();
                             playSound.dispose();
                             player.isAllowedToMove = true;
+                            updateSave(1);
                             game.setScreen( new NewGameScreen(player.coin, game, gameViewPort, NewGameScreen.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
                         }
                     });

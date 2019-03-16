@@ -26,17 +26,16 @@ public class DialogueBox extends Table{
 
     public DialogueBox(Skin skin){
         super(skin);
-        //uiskin = new Skin(Gdx.files.internal("Data/uiskin.json"));
-        this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("dialogueBox.png"))));
+        //this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("dialogueBox.png"))));
         textLabel = new Label("\n",  skin);
-        this.add(textLabel).expand().align(Align.left).pad(5f);
+        textLabel.setColor(0f,0f,0f,0.7f);
+        this.add(textLabel).expand().align(Align.left).pad(10f);
     }
     public void animateText(String text){
         targetText = text;
         animationTotalTime = targetText.length()*time_per_character;
         state= STATE.ANIMATING;
         animTimer=0f;
-        //act(0.01f);
     }
     public Boolean isFinished(){
         if (state==STATE.IDLE ){
@@ -50,6 +49,7 @@ public class DialogueBox extends Table{
         if(!text.contains("\n")){
             text+= "\n";
         }
+
         this.textLabel.setText(text);
     }
 
@@ -57,6 +57,7 @@ public class DialogueBox extends Table{
     public void act(float delta){
         super.act(delta);
         if (state==STATE.ANIMATING){
+            this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("dialogueBox.png"))));
             animTimer+= delta;
             if (animTimer> animationTotalTime){
                 state = STATE.IDLE;
@@ -76,5 +77,11 @@ public class DialogueBox extends Table{
     @Override
     public float getPrefWidth(){
         return 200f;
+    }
+
+    public void disposeBox(){
+        if (isFinished()){
+
+        }
     }
 }

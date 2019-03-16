@@ -33,5 +33,5 @@ public class AssetExistsExampleTest {
 		assertTrue("true if file still exites and hasnt been deleted.", Gdx.files
 				.internal("../core/assets/Barrel.png").exists());
 	}
-	
+
 }

@@ -39,8 +39,8 @@ public class ButchGame extends Game {
     //public MainMenuScreen game_screen;
     public float themeVolume;
 	public SpriteBatch batch;
-	public static Properties saveProgress;
-	public static boolean continueGame;
+//	public static Properties saveProgress;
+//	public static boolean continueGame;
 
 	public ButchGame() {
 		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
@@ -64,8 +64,8 @@ public class ButchGame extends Game {
 		themeVolume = 0.05f;
 
 
-        saveProgress = new Properties();
-        continueGame = false;
+//        saveProgress = new Properties();
+//        continueGame = false;
     }
   	public float getVolume(){
 		return themeVolume;

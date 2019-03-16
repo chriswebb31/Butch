@@ -75,34 +75,34 @@ public class MainMenuScreen implements Screen {
         currentState = State.NOTCLICKED;
         previousState = State.NOTCLICKED;
 
-        Properties saveProgress = new Properties();
-        InputStream inputStream = null;
+//        Properties saveProgress = new Properties();
+//        InputStream inputStream = null;
 
-        try {
-            inputStream = new FileInputStream("Saves/savegame.properties");
-
-            System.out.println("INPUTSTREAM: " + inputStream);
-            if(inputStream != null){
-                saveProgress.load(inputStream);
-                if(Integer.parseInt(saveProgress.getProperty("PROGRESS")) < 0){
-                    //LOAD INTO LEVEL ETC
-                    continueGame = true;
-                    ButchGame.saveProgress = saveProgress;
-                    ButchGame.continueGame = true;
-                }
-            }
-        } catch (IOException io) {
-            io.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
+//        try {
+//            inputStream = new FileInputStream("Saves/savegame.properties");
+//
+//            System.out.println("INPUTSTREAM: " + inputStream);
+//            if(inputStream != null){
+//                saveProgress.load(inputStream);
+//                if(Integer.parseInt(saveProgress.getProperty("PROGRESS")) < 0){
+//                    //LOAD INTO LEVEL ETC
+//                    continueGame = true;
+//                    ButchGame.saveProgress = saveProgress;
+//                    ButchGame.continueGame = true;
+//                }
+//            }
+//        } catch (IOException io) {
+//            io.printStackTrace();
+//        } finally {
+//            if (inputStream != null) {
+//                try {
+//                    inputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }
     }
 
     @Override

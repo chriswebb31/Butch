@@ -38,7 +38,9 @@ import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.weapons.GunCreator;
 import com.butch.game.screens.TransitionScreen;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public abstract class ModelGameScreen implements Screen {
 //    public int levelNumber;
@@ -310,32 +312,75 @@ public abstract class ModelGameScreen implements Screen {
     }
 
     public void loadSave(){
-        player.health = Float.parseFloat(ButchGame.saveProgress.getProperty("HEALTH"));
-        player.coin = Integer.parseInt(ButchGame.saveProgress.getProperty("COINS"));
-        player.pistolAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("PISTOLAMMO"));
-        player.rifleAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("RIFLEAMMO"));
-        player.shotgunAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("SHOTGUNAMMO"));
-        player.musketAmmo = Integer.parseInt(ButchGame.saveProgress.getProperty("MUSKETAMMO"));
-        for(String gunId : ButchGame.saveProgress.getProperty("GUNINVENTORY").split(":")){
-            player.getGunInventory().add(ButchGame.itemManager.getGun(Integer.parseInt(gunId)));
+        Properties saveGame = new Properties();
+        InputStream inputStream = null;
+
+        try{
+            inputStream = new FileInputStream("Saves/savegame.properties");
+            if(inputStream != null){
+                saveGame.load(inputStream);
+
+                player.health = Float.parseFloat(saveGame.getProperty("HEALTH"));
+                player.coin = Integer.parseInt(saveGame.getProperty("COINS"));
+                player.pistolAmmo = Integer.parseInt(saveGame.getProperty("PISTOLAMMO"));
+                player.rifleAmmo = Integer.parseInt(saveGame.getProperty("RIFLEAMMO"));
+                player.shotgunAmmo = Integer.parseInt(saveGame.getProperty("SHOTGUNAMMO"));
+                player.musketAmmo = Integer.parseInt(saveGame.getProperty("MUSKETAMMO"));
+                for(String gunId : saveGame.getProperty("GUNINVENTORY").split(":")){
+                    player.getGunInventory().add(ButchGame.itemManager.getGun(Integer.parseInt(gunId)));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public void updateSave(int progress){
-        ButchGame.saveProgress.setProperty("PROGRESS", String.valueOf(progress));
-        ButchGame.saveProgress.setProperty("HEALTH", String.valueOf(player.health));
-        ButchGame.saveProgress.setProperty("COIN", String.valueOf(player.coin));
-        ButchGame.saveProgress.setProperty("PISTOLAMMO", String.valueOf(player.pistolAmmo));
-        ButchGame.saveProgress.setProperty("RIFLEAMMO", String.valueOf(player.rifleAmmo));
-        ButchGame.saveProgress.setProperty("SHOTGUNAMMO", String.valueOf(player.shotgunAmmo));
-        ButchGame.saveProgress.setProperty("MUSKETAMMO", String.valueOf(player.musketAmmo));
+        System.out.println("UPDATE SAVE");
+        Properties saveGame = new Properties();
+        InputStream inputStream = null;
+        FileOutputStream outputStream = null;
 
-        String gunList = "";
-
-        for (Gun gun:player.getGunInventory()) {
-            gunList += ":"+gun.id;
+        try{
+            inputStream = new FileInputStream("Saves/savegame.properties");
+            if(inputStream != null){
+                saveGame.load(inputStream);
+                System.out.println("SUCC");
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        ButchGame.saveProgress.setProperty("GUNINVENTORY", gunList);
+
+        try{
+            outputStream = new FileOutputStream("Saves/savegame.properties");
+
+            saveGame.setProperty("PROGRESS", String.valueOf(progress));
+            saveGame.setProperty("HEALTH", String.valueOf(player.health));
+            saveGame.setProperty("COIN", String.valueOf(player.coin));
+            saveGame.setProperty("PISTOLAMMO", String.valueOf(player.pistolAmmo));
+            saveGame.setProperty("RIFLEAMMO", String.valueOf(player.rifleAmmo));
+            saveGame.setProperty("SHOTGUNAMMO", String.valueOf(player.shotgunAmmo));
+            saveGame.setProperty("MUSKETAMMO", String.valueOf(player.musketAmmo));
+
+            String gunList = "";
+
+            for (Gun gun:player.getGunInventory()) {
+                gunList += ":"+gun.id;
+            }
+            saveGame.setProperty("GUNINVENTORY", gunList);
+            saveGame.store(outputStream, null);
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

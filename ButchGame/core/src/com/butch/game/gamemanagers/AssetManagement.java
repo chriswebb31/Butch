@@ -36,6 +36,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String exitButtonInactive = "Buttons/exitButtonInactive.png";
     public final String homeButtonInactive = "Buttons/homeButtonInactive.png";
     public final String homeButtonActive = "Buttons/homeButtonActive.png";
+    public final String continueButtonActive = "Buttons/continueActive.png";
+    public final String continueButtonInactive = "Buttons/continueInactive.png";
     public final String barrelSprite = "Barrel.png";
     public final String sliderBack = "Buttons/sliderBack.png";
     public final String sliderKnob = "Buttons/sliderKnob.png";
@@ -298,6 +300,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
          load(playSound, Music.class);
          load(exitButtonActive,Texture.class);
          load(exitButtonInactive,Texture.class);
+         load(continueButtonActive, Texture.class);
+         load(continueButtonInactive, Texture.class);
      }
 
     public void includeAssets() {

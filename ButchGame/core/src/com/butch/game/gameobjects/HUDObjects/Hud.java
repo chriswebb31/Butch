@@ -49,8 +49,8 @@ public class Hud implements Disposable{
 //      levelLabel.setFontScale(2.0f);
         ammoCount = player.getActiveWeapon().ammoBar;
         ammoCountImage = new Image(ammoCount);
-        ammoCountImage.setPosition(Gdx.graphics.getWidth()/1.1f-ammoCountImage.getWidth()*2,Gdx.graphics.getHeight()/14-ammoCountImage.getHeight()*2);
         ammoCountImage.setSize(ammoCount.getWidth() * 6, ammoCount.getHeight() * 6);
+        ammoCountImage.setPosition(Gdx.graphics.getWidth()/1.1f-ammoCountImage.getWidth()*2,Gdx.graphics.getHeight()/14-ammoCountImage.getHeight()*2);
         weaponLabel = new Label(String.format(player.getActiveWeapon().gunName), new Label.LabelStyle(new BitmapFont(), Color.BLUE));
         weaponLabel.setFontScale(2.0f);
 //      ammoCountImage.setDrawable(new TextureRegionDrawable(new TextureRegion(ammoCount)));

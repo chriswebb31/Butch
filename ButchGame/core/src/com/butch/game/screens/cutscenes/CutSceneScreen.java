@@ -49,13 +49,13 @@ public class CutSceneScreen implements Screen {
         bubbleSpeech = new Image(ButchGame.assets.get(ButchGame.assets.bubbleSpeech, Texture.class));
         bubbleSpeech.setBounds(game.TARGET_WIDTH/1.855072464f,game.TARGET_HEIGHT/2.07293666f,game.TARGET_WIDTH/2.391033624f,game.TARGET_HEIGHT/2.720403023f);
         welcomeText = new Label (String.format("Welcome to Butch"), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
-        welcomeText.setColor(Color.BLACK);
+        welcomeText.setColor(Color.WHITE);
         welcomeText.setPosition(game.TARGET_WIDTH*0.4f, game.TARGET_HEIGHT*0.8f);
         //welcomeText.setWrap(true);
         welcomeText.setFontScale(game.TARGET_WIDTH/384);
         welcomeText.setPosition(game.TARGET_WIDTH/1.75663312f,game.TARGET_HEIGHT/1.341614907f);
-        briefText = new Label(String.format("This is an Adventure Game which will\n blow your mind"), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
-        briefText.setColor(Color.BLACK);
+        briefText = new Label(String.format("This is an Adventure Game which\nwill blow your mind"), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
+        briefText.setColor(Color.WHITE);
 //        briefText.setWrap(true);
         briefText.setAlignment(Align.center);
 //        briefText.setWidth(game.TARGET_WIDTH/4.353741497f);
@@ -63,9 +63,10 @@ public class CutSceneScreen implements Screen {
         briefText.setFontScale(game.TARGET_WIDTH/768);
         briefText.setPosition(game.TARGET_WIDTH/1.483312f,game.TARGET_HEIGHT/1.610140845f);
         //briefText.setFontScale(2.5f);
-        continueText = new Label(String.format("Click To Continue!"), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        continueText = new Label(String.format("Click To Continue!"), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         continueText.setPosition(game.TARGET_WIDTH/1.5f, game.TARGET_HEIGHT/14);
         continueText.setFontScale(2.5f);
+       // continueText.setColor(Color.WHITE);
         //        this.weaponCache = new ArrayList<Gun>();
 //        this.weaponCache.add(new GunCreator("Revolver"));
 //        this.weaponCache.add(new GunCreator("MachineGun"));
@@ -82,6 +83,27 @@ public class CutSceneScreen implements Screen {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (Gdx.input.isTouched()&& skip == true){
+//            stage.addAction(Actions.sequence(
+//                    new Action(){
+//                     float time = 0;
+//                     @Override
+//                        public boolean act(float delta ){
+//                        time += delta;
+//                        float t = time/0.5f;
+//                        t*=t;
+//                        batch.setColor(1,1,1,1-t);
+//                        return time >= 0.5f;
+//                        }
+//
+//                    },
+//                    Actions.run(new Runnable(){
+//                        @Override
+//                        public void run(){
+//                            game.setScreen(new StartTavern(0,game, gameViewPort, StartTavern.map, 1, 0));
+//                        }
+//                    })
+//            ));
+//            transitionScreen.transitionOut();
             game.setScreen(new StartTavern(0,game, gameViewPort, StartTavern.map, 1, 0));
         }
         else {
@@ -130,7 +152,7 @@ public class CutSceneScreen implements Screen {
             update(delta);
             stateTime += delta;
             batch.begin();
-            batch.draw(npcAnim.getKeyFrame(stateTime, true), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
+            batch.draw(npcAnim.getKeyFrame(0, false), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
             batch.end();
             System.out.println("briefText width size = " + briefText.getWidth() + " height is = " + briefText.getHeight());
             //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);

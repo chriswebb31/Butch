@@ -32,6 +32,22 @@ public class NewGameScreen extends ModelGameScreen {
        // dialogueBox = new DialogueBox(new Skin(Gdx.files.internal("Data/uiskin.json")));
 //        initUI();
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+//        stage.addAction(
+//                new Action() {
+//                    float time = 0;
+//                    @Override
+//                    public boolean act(float delta) {
+//                        time += delta;
+//                        float t = time / 0.25f;
+//                        t *=t;
+//                        if(t> 1.0f){
+//                            t = 1.0f;
+//                        }
+//                        batch.setColor(1,1,1,t);
+//                        return time>= 0.25f;
+//                    }
+//                }
+//        );
     }
 
     @Override

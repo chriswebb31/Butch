@@ -50,8 +50,8 @@ public class SettingsScreen implements Screen {
         fontvol = generator.generateFont(params);
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
-        stage = new Stage(gameViewPort);
         batch = new SpriteBatch();
+        stage = new Stage(gameViewPort,batch);
        // volumeLabel = new Label("Volume",new Label.LabelStyle(""));
         clickSound = ButchGame.assets.get(ButchGame.assets.menuClick, Music.class);
         sliderBack = new Sprite (ButchGame.assets.get(ButchGame.assets.sliderBack, Texture.class));

@@ -18,7 +18,9 @@ public class TransitionScreen implements Screen {
                 })));
     }
     public static void transitionIn(Stage stage){
-        stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(0.5f)));
+        stage.addAction(Actions.sequence(Actions.alpha(0),
+                Actions.fadeIn(0.5f))
+                );
     }
 
     @Override

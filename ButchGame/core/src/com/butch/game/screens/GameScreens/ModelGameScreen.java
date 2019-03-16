@@ -86,6 +86,7 @@ public abstract class ModelGameScreen implements Screen {
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
+        this.shapeRenderer = new ShapeRenderer();
 //        this.cursor = new Sprite(ButchGame.assets.get(ButchGame.assets.cursor, Texture.class));
 //        this.cursor.setScale(10);
         this.shapeRenderer = new ShapeRenderer();
@@ -402,12 +403,14 @@ public abstract class ModelGameScreen implements Screen {
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
-        ButchGame.renderableManager.render(batch); //render all objects on screen
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        ButchGame.renderableManager.render(batch, shapeRenderer); //render all objects on screen
 
 
 
         //cursor.draw(batch);
         batch.end();
+        shapeRenderer.end();
         camera.update();
         caseBreak();
         if(!player.getButchDead()) {

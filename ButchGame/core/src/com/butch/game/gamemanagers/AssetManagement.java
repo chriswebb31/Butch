@@ -51,6 +51,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String healthPotion = "healthPotion.png";
     public final String whiskyBottle = "whisky.png";
     public final String aboutPage = "Pages/aboutPage.png";
+    public final String helpPage = "Pages/needHelpPage.png";
     //HUD
     //Character Screen
     public final String characterScreen = "HUD/characterScreen.png";
@@ -313,6 +314,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(bubbleSpeech, Texture.class);
         load(introBack, Texture.class);
         //page Contents
+        load(helpPage, Texture.class);
         load(aboutPage, Texture.class);
         load(levelUpSprite, Texture.class);
         //Animals

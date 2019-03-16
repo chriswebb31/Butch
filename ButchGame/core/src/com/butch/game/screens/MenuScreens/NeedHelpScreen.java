@@ -41,7 +41,7 @@ public class NeedHelpScreen implements Screen {
         homeButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.homeButtonActive, Texture.class));
         clickSound = ButchGame.assets.get(ButchGame.assets.menuClick, Music.class);
         batch= new SpriteBatch();
-        backg = new Image(new Texture(Gdx.files.internal("needHelpPage.png")));
+        backg = new Image(new Texture(ButchGame.assets.helpPage));
         backg.setSize(game.TARGET_WIDTH,game.TARGET_HEIGHT);
     }
 

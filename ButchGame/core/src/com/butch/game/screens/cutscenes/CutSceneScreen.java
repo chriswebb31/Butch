@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.butch.game.screens.GameScreens.MazeMap;
+import com.butch.game.screens.GameScreens.Route4;
 import com.butch.game.screens.GameScreens.StartTavern;
 import com.butch.game.screens.TransitionScreen;
 
@@ -105,6 +107,7 @@ public class CutSceneScreen implements Screen {
 //            ));
 //            transitionScreen.transitionOut();
             game.setScreen(new StartTavern(game, gameViewPort, StartTavern.map, 0));
+
         }
         else {
             stage.addActor(introBack);

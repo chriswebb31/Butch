@@ -62,6 +62,7 @@ public class NewGameScreen extends ModelGameScreen {
                 if(endPoints.indexOf(endPointLoc) == 2) {
                     updateSave(2);
                     game.setScreen( new Level2(game, gameViewPort, Level2.map, 0));
+//                    game.setScreen(new MazeMap(game, gameViewPort, MazeMap.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
                     updateSave(10);
                     game.setScreen((new Warzone(game, gameViewPort, Warzone.map, 0)));

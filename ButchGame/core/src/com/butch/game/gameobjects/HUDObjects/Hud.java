@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -20,6 +21,8 @@ import com.butch.game.ButchGame;
 import com.butch.game.Dialogue.DialogueBox;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.badlogic.gdx.graphics.Texture;
+import com.butch.game.screens.transitionScreens.ScreenTransitionAction;
+import com.butch.game.screens.transitionScreens.ScreenTransitionActor;
 
 public class Hud implements Disposable{
     public Stage stage;
@@ -39,6 +42,8 @@ public class Hud implements Disposable{
     private Image coinCounterOne;
     private Label npcText;
     private DialogueBox dialogueBox;
+    public ScreenTransitionActor _transitionActor;
+
 
     public Hud(SpriteBatch spriteBatch, Player player){
         this.player = player;
@@ -99,12 +104,17 @@ public class Hud implements Disposable{
 //        table.row();
 //        table.add(coinLabel).expand().bottom().left().pad(5);
 
+
+        _transitionActor = new ScreenTransitionActor();
+
         stage.addActor(table);
         stage.addActor(ammoCountImage);
         stage.addActor(healthBarBG);
         stage.addActor(healthBarFG);
         stage.addActor(coinCounterOne);
         stage.addActor(coinCounterTen);
+        stage.addActor(_transitionActor);
+        _transitionActor.setVisible(false);
     }
     public void render(float width){
         if(player.getPlayerHealthPercent()*3 >= 100*3){
@@ -157,5 +167,12 @@ public class Hud implements Disposable{
 
     public void setDialogueBoxVisibility(boolean isVisible) {
         dialogueBox.setVisible(isVisible);
+    }
+
+    public  void addTransitionToScreen(){
+        _transitionActor.setVisible(true);
+        stage.addAction(Actions.sequence(
+                        Actions.addAction(ScreenTransitionAction.transition(
+                                ScreenTransitionAction.ScreenTransitionType.FADE_IN, 1),_transitionActor)));
     }
 }

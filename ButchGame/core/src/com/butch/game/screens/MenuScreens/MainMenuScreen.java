@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-import com.butch.game.screens.GameScreens.NewGameScreen;
+import com.butch.game.screens.GameScreens.*;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.cutscenes.CutSceneScreen;
 
@@ -279,6 +279,78 @@ public class MainMenuScreen implements Screen {
                                     @Override
                                     public void onCompletion(Music music) {
                                         TransitionScreen.transitionOut(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0), stage, game);
+                                    }
+                                });
+                                break;
+                            case (2):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new Level2(game, gameViewPort, Level2.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (3):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new Level3(game, gameViewPort, Level3.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (4):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new Route3(game, gameViewPort, Route3.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (5):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new Cave(game, gameViewPort, Cave.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (6):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new Route4(game, gameViewPort, Route4.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (7):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new PrisonLevel(game, gameViewPort, PrisonLevel.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (8):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new SnowyMountain(game, gameViewPort, SnowyMountain.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (9):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new BigTown(game, gameViewPort, BigTown.map, 0),stage,game);
+                                    }
+                                });
+                                break;
+                            case (10):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new Warzone(game, gameViewPort, Warzone.map, 0),stage,game);
                                     }
                                 });
                                 break;

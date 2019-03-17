@@ -259,7 +259,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="31" name="Collisions" visible="0">
+ <objectgroup id="31" name="Collisions">
   <object id="12" x="385" y="224" width="94.5" height="1506"/>
   <object id="13" x="386" y="225.333" width="1404.67" height="84.6667"/>
   <object id="14" x="1696.67" y="226" width="95.3333" height="1501.33"/>

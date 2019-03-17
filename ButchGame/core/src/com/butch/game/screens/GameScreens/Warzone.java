@@ -30,7 +30,7 @@ public class Warzone extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     updateSave(1);
-                    game.setScreen(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
+                    game.setScreen(new MazeMap(game, gameViewPort, MazeMap.map, 0));
                 }
             }
         }

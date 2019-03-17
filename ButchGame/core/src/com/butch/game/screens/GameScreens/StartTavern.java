@@ -3,6 +3,8 @@ package com.butch.game.screens.GameScreens;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
@@ -13,7 +15,9 @@ import java.util.ArrayList;
 public class StartTavern extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.startTavern);
     Music tavernMusic,playSound;
-
+    boolean cutSceneStart,phase2,phase3, phase4;
+    float currentPosx, currentPosy, statetime;
+    Vector2 movingpos;
     public StartTavern(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
         tavernMusic = ButchGame.assets.get(ButchGame.assets.saloonBackNoise1, Music.class);
@@ -22,6 +26,10 @@ public class StartTavern extends ModelGameScreen {
         tavernMusic.play();
         tavernMusic.setLooping(true);
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+        cutSceneStart = true;
+        currentPosx = player.getPosition().x;
+        currentPosy = player.getPosition().y;
+        statetime = 0;
     }
 
     @Override
@@ -56,7 +64,52 @@ public class StartTavern extends ModelGameScreen {
                 }
             }
         }
+            if(cutSceneStart==true) {
+            if(cutSceneStart){
+                if(player.getPosition().y <= currentPosy + 1050 ){
+                    //currentPosy = player.getPosition().y;
+                    player.getPosition().y+=10.f;
 
+                }
+                else{
+                    phase2=true;
+                }
+                if(phase2==true){
+                    if(player.getPosition().x <= currentPosx + 810 ){
+                        player.getPosition().x+=10.f;
+
+                    }
+                    else{
+                        phase2=false;
+                       phase3=true;
+                    }
+                }
+                if(phase3==true){
+                    if(player.getPosition().y <= currentPosy + 1050+ 1363 ){
+                        player.getPosition().y+=10.f;
+
+                    }
+                    else{
+                        phase3=false;
+                        phase4 = true;
+                    }
+                }
+                if(phase4==true){
+                    if(player.getPosition().x <= currentPosx + 810 + 710 ){
+                        player.getPosition().x+=10.f;
+
+                    }
+                    else{
+                        phase4=false;
+                        cutSceneStart=false;
+                    }
+                }
+
+            }
+            else{
+                cutSceneStart =false;
+            }
+            }
 
         super.render(delta);
     }

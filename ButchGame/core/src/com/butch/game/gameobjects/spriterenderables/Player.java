@@ -89,6 +89,7 @@ public class Player extends Renderable {
     private Vector2 rightHandIKoffset = new Vector2().setZero();
 
     private Rectangle intersector;
+    public boolean loaded;
 
     public Sound walkingFX;
     public Sound hitEffect;
@@ -99,9 +100,9 @@ public class Player extends Renderable {
     private int activeWeaponNumber = 0;
     public boolean isAllowedToMove = true;
 
-    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache, int playerLevel){
+    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
+        this.loaded = false;
         this.setPosition(startPosition);
-        this.playerLevel = playerLevel;
         this.maxHealth = baseHealth + ((playerLevel-1) * 10);
         this.health = maxHealth;
         this.shake = new Vector3();
@@ -119,9 +120,6 @@ public class Player extends Renderable {
         this.walkingFX.play();
         this.walkingFX.pause();
         this.gunInventory = new ArrayList<Gun>();
-        for(Gun gun : weaponCache) {
-            this.gunInventory.add(gun);
-        }
 //        this.gunInventory.addAll(weaponCache);
 
         this.itemInventory = new ArrayList<ItemPickup>();
@@ -130,15 +128,6 @@ public class Player extends Renderable {
 //        this.gunInventory.add(new GunCreator("Shotgun"));
 //        this.gunInventory.add(new GunCreator("MachineGun"));
 //        this.gunInventory.add(new GunCreator("Musket"));
-        this.activeGun = this.gunInventory.get(0);
-        System.out.println(this.gunInventory.get(0).gunName);
-        this.gunInvIterator = this.gunInventory.iterator();
-
-        for (Gun gun:gunInventory) {
-            if(gun != activeGun){
-                gun.activeForRender = false;
-            }
-        }
 
         this.rightHandIKoffset = new Vector2(-50, -20); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, -20); //how far away from sprite center is the left hand
@@ -157,7 +146,22 @@ public class Player extends Renderable {
         butchDead = false;
         ////////////////////////////
        // health = 1000;
+    }
 
+    public void loadedPing(){
+        if(gunInventory.size() > 0){
+            this.activeGun = this.gunInventory.get(0);
+            System.out.println(this.gunInventory.get(0).gunName);
+            this.gunInvIterator = this.gunInventory.iterator();
+
+            for (Gun gun:gunInventory) {
+                if(gun != activeGun){
+                    gun.activeForRender = false;
+                }
+            }
+        }
+        loaded = true;
+        System.out.println("Loaded");
     }
 
     private void inputHandler() { // handle inputs

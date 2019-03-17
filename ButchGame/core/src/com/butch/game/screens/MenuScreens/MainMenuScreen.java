@@ -17,10 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+import com.butch.game.screens.GameScreens.NewGameScreen;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.cutscenes.CutSceneScreen;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -35,11 +37,12 @@ public class MainMenuScreen implements Screen {
     SpriteBatch batch;
 
     private Sprite sprite_back, playButtonActive,playButtonInactive,aboutButtonActive,aboutButtonInactive,
-            needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive,texture_back;
+            needHelpButtonActive, needHelpButtonInactive, settingsButtonActive, exitButtonActive, exitButtonInactive,
+            texture_back, continueButtonActive, continueButtonInactive;
     private Stage stage;
     private FitViewport gameViewPort;
     private static Music music, playSound, clickSound;
-    public ImageButton exitButton, playButton, aboutButton, settingsButton, needHelpButton;
+    public ImageButton exitButton, playButton, aboutButton, settingsButton, needHelpButton,continueButton;
 
     private Animation<TextureRegion> doorsOpenAnim;
     private TextureAtlas doorsOpenAtlas;
@@ -114,6 +117,7 @@ public class MainMenuScreen implements Screen {
         stage.addActor(aboutButton);
         stage.addActor(needHelpButton);
         stage.addActor(settingsButton);
+        stage.addActor(continueButton);
         TransitionScreen.transitionIn(stage);
     }
 
@@ -166,6 +170,7 @@ public class MainMenuScreen implements Screen {
     public void hide() {
 
     }
+
     private void createButtons(){
         /** creating the Active and Inactive Sprites
          * creating the Buttons as Image Buttons
@@ -178,37 +183,43 @@ public class MainMenuScreen implements Screen {
         playButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.playButtonInactiveSprite, Texture.class));
         playButton = new ImageButton(new SpriteDrawable(playButtonInactive),new SpriteDrawable(playButtonActive));
 //        playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
-        playButton.setBounds(80,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+        playButton.setBounds(game.TARGET_WIDTH/24.0f,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+        continueButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.continueButtonActive, Texture.class));
+        continueButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.continueButtonInactive, Texture.class));
+        continueButton = new ImageButton(new SpriteDrawable(continueButtonInactive), new SpriteDrawable(continueButtonActive));
+        continueButton.setBounds(game.TARGET_WIDTH/3.99f,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class));
         aboutButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonInactiveSprite, Texture.class));
         aboutButton = new ImageButton(new SpriteDrawable(aboutButtonInactive),new SpriteDrawable(aboutButtonActive));
 //        aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
-        aboutButton.setBounds(80, game.TARGET_HEIGHT/2.4215f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+        aboutButton.setBounds(game.TARGET_WIDTH/24.0f, game.TARGET_HEIGHT/2.4215f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         needHelpButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonActiveSprite, Texture.class));
         needHelpButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.needHelpButtonInactiveSprite, Texture.class));
         needHelpButton = new ImageButton(new SpriteDrawable( needHelpButtonInactive), new SpriteDrawable(needHelpButtonActive));
 //        needHelpButton.setBounds(80, game.TARGET_HEIGHT - 821, 321, 137);
-        needHelpButton.setBounds(80, game.TARGET_HEIGHT/4.16988f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+        needHelpButton.setBounds(game.TARGET_WIDTH/24.0f, game.TARGET_HEIGHT/4.16988f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         exitButtonInactive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonInactive, Texture.class));
         exitButtonActive = new Sprite (ButchGame.assets.get(ButchGame.assets.exitButtonActive, Texture.class));
         exitButton = new ImageButton(new SpriteDrawable(exitButtonInactive), new SpriteDrawable(exitButtonActive));
         exitButton.setBounds(10,10,game.TARGET_WIDTH/7.6494f,game.TARGET_HEIGHT/15.21126f);
+
         addActions();
 
     }
+
     void addActions(){
      /** adding actions of when hovering over a button and clicking */
      playButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
 //             playButton.setBounds(75,game.TARGET_HEIGHT-540,331,147);
-             playButton.setBounds(75,game.TARGET_HEIGHT/2,game.TARGET_WIDTH/5.80060f,game.TARGET_HEIGHT/3.34693f);
+             playButton.setBounds(game.TARGET_WIDTH/25.6f,game.TARGET_HEIGHT/2,game.TARGET_WIDTH/5.80060f,game.TARGET_HEIGHT/3.34693f);
 
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
 //             playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
-             playButton.setBounds(80,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+             playButton.setBounds(game.TARGET_WIDTH/24.0f,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
 
          }
          public void clicked(InputEvent event, float x, float y){
@@ -225,16 +236,71 @@ public class MainMenuScreen implements Screen {
              });
          }
      });
+     continueButton.addListener(new ClickListener(){
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
+//             playButton.setBounds(75,game.TARGET_HEIGHT-540,331,147);
+                continueButton.setBounds(game.TARGET_WIDTH/4.0421052632f,game.TARGET_HEIGHT/2,game.TARGET_WIDTH/5.80060f,game.TARGET_HEIGHT/3.34693f);
+
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
+//             playButton.setBounds(80,game.TARGET_HEIGHT -447,321,137);
+                continueButton.setBounds(game.TARGET_WIDTH/4.0f,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+
+            }
+            public void clicked(InputEvent event, float x, float y){
+                Properties saveGame = new Properties();
+                InputStream inputStream = null;
+
+                try{
+                    inputStream = new FileInputStream("Saves/savegame.properties");
+                    if(inputStream != null){
+                        saveGame.load(inputStream);
+                        int progress = Integer.parseInt(saveGame.getProperty("PROGRESS"));
+                        music.stop();
+                        playSound.play();
+                        removeButtons();
+                        stateTimer = 0;
+                        startClicked = true;
+                        System.out.println("Progress: " + progress);
+                        inputStream.close();
+                        switch (progress){
+                            case (0):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new CutSceneScreen(game, gameViewPort),stage,game);
+                                    }
+                                });
+                                break;
+                            case (1):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0), stage, game);
+                                    }
+                                });
+                                break;
+                        }
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
      aboutButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
 //             aboutButton.setBounds(75,game.TARGET_HEIGHT-639,331,147);
-             aboutButton.setBounds(75,game.TARGET_HEIGHT/2.448979f,game.TARGET_WIDTH/5.8006f,game.TARGET_HEIGHT/7.3469f);
+             aboutButton.setBounds(game.TARGET_WIDTH/25.6f,game.TARGET_HEIGHT/2.448979f,game.TARGET_WIDTH/5.8006f,game.TARGET_HEIGHT/7.3469f);
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
 //             aboutButton.setBounds(80, game.TARGET_HEIGHT - 634, 321,137);
-             aboutButton.setBounds(80, game.TARGET_HEIGHT/2.4215f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+             aboutButton.setBounds(game.TARGET_WIDTH/24.0f, game.TARGET_HEIGHT/2.4215f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
 
          }
          public void clicked(InputEvent event, float x, float y){
@@ -246,12 +312,12 @@ public class MainMenuScreen implements Screen {
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
 //             needHelpButton.setBounds(75,game.TARGET_HEIGHT-826,331,147);
-             needHelpButton.setBounds(75,game.TARGET_HEIGHT/4.2519f,game.TARGET_WIDTH/5.8006f,game.TARGET_HEIGHT/7.346938f);
+             needHelpButton.setBounds(game.TARGET_WIDTH/25.6f,game.TARGET_HEIGHT/4.2519f,game.TARGET_WIDTH/5.8006f,game.TARGET_HEIGHT/7.346938f);
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
 //             needHelpButton.setBounds(80,game.TARGET_HEIGHT -821,321,137);
-             needHelpButton.setBounds(80, game.TARGET_HEIGHT/4.16988f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
+             needHelpButton.setBounds(game.TARGET_WIDTH/24.0f, game.TARGET_HEIGHT/4.16988f, game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
 
          }
          public void clicked(InputEvent event, float x, float y){
@@ -301,13 +367,16 @@ public class MainMenuScreen implements Screen {
 
      });
  }
+
     void removeButtons(){
         playButton.remove();
         aboutButton.remove();
         needHelpButton.remove();
         exitButton.remove();
         settingsButton.remove();
+        continueButton.remove();
     }
+
      public MainMenuScreen returnThis(){
         return this;
      }

@@ -104,7 +104,7 @@ public class CutSceneScreen implements Screen {
 //                    })
 //            ));
 //            transitionScreen.transitionOut();
-            game.setScreen(new StartTavern(0,game, gameViewPort, StartTavern.map, 1, 0));
+            game.setScreen(new StartTavern(game, gameViewPort, StartTavern.map, 0));
         }
         else {
             stage.addActor(introBack);
@@ -154,7 +154,7 @@ public class CutSceneScreen implements Screen {
             batch.begin();
             batch.draw(npcAnim.getKeyFrame(0, false), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
             batch.end();
-            System.out.println("briefText width size = " + briefText.getWidth() + " height is = " + briefText.getHeight());
+            //System.out.println("briefText width size = " + briefText.getWidth() + " height is = " + briefText.getHeight());
             //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);
             //stage.draw();
         }

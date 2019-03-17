@@ -10,10 +10,8 @@ import java.util.ArrayList;
 
 public class Route4 extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.route4);
-    private int coinCounter;
-    public Route4(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
-        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
-        coinCounter = levelNumber;
+    public Route4(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
+        super(game, gameViewPort, map, spawnLocation);
     }
 
     @Override
@@ -27,7 +25,8 @@ public class Route4 extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new Route3(player.coin, game, gameViewPort, Route3.map, player.getGunInventory(),  player.getPlayerLevel(), 1));
+                    updateSave(4);
+                    game.setScreen( new Route3(game, gameViewPort, Route3.map, 1));
                 }
             }
         }

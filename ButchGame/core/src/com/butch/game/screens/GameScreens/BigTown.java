@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class BigTown extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.bigBoyTown);
-    public BigTown(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
-        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
+    public BigTown(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
+        super(game, gameViewPort, map, spawnLocation);
     }
 
     @Override
@@ -26,9 +26,11 @@ public class BigTown extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen( new Warzone(player.coin, game, gameViewPort, Warzone.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
+                    updateSave(10);
+                    game.setScreen( new Warzone(game, gameViewPort, Warzone.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen((new SnowyMountain(player.coin, game, gameViewPort, SnowyMountain.map, player.getGunInventory(), player.getPlayerLevel(), 1)));
+                    updateSave(8);
+                    game.setScreen((new SnowyMountain(game, gameViewPort, SnowyMountain.map, 1)));
                 }
             }
         }

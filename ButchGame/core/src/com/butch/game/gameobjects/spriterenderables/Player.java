@@ -99,6 +99,7 @@ public class Player extends Renderable {
     private float stateTimer;
     private int activeWeaponNumber = 0;
     public boolean isAllowedToMove = true;
+    public boolean allowedtoPress = true;
 
     public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
         this.loaded = false;
@@ -165,7 +166,7 @@ public class Player extends Renderable {
     }
 
     private void inputHandler() { // handle inputs
-        if(isAllowedToMove) {
+        if(isAllowedToMove&& allowedtoPress) {
             if (!Gdx.input.isKeyPressed(Input.Keys.D) || !Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 xAxis = 0;
             }

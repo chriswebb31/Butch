@@ -15,9 +15,10 @@ import java.util.ArrayList;
 public class StartTavern extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.startTavern);
     Music tavernMusic,playSound;
-    boolean cutSceneStart,phase2,phase3, phase4;
+    boolean phase2,phase3, phase4;
     float currentPosx, currentPosy, statetime;
     Vector2 movingpos;
+    public static boolean cutSceneStart = true;
     public StartTavern(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
         tavernMusic = ButchGame.assets.get(ButchGame.assets.saloonBackNoise1, Music.class);
@@ -26,7 +27,7 @@ public class StartTavern extends ModelGameScreen {
         tavernMusic.play();
         tavernMusic.setLooping(true);
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
-        cutSceneStart = true;
+        //cutSceneStart = true;
         currentPosx = player.getPosition().x;
         currentPosy = player.getPosition().y;
         statetime = 0;
@@ -64,10 +65,11 @@ public class StartTavern extends ModelGameScreen {
                 }
             }
         }
-            if(cutSceneStart==true) {
+
             if(cutSceneStart){
                 if(player.getPosition().y <= currentPosy + 1050 ){
                     //currentPosy = player.getPosition().y;
+                    player.allowedtoPress = false;
                     player.getPosition().y+=10.f;
 
                 }
@@ -102,14 +104,13 @@ public class StartTavern extends ModelGameScreen {
                     else{
                         phase4=false;
                         cutSceneStart=false;
+                        player.allowedtoPress = true;
                     }
                 }
 
             }
-            else{
-                cutSceneStart =false;
-            }
-            }
+
+
 
         super.render(delta);
     }

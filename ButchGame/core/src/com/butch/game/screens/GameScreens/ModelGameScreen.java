@@ -126,6 +126,8 @@ public abstract class ModelGameScreen implements Screen {
 
         player = new Player(spawnPoints.get(spawnPointLoc), mapColliders);
         loadSave();
+        player.loadedPing();
+        System.out.println("coin: " +player.coin);
         player.setCam(camera);
         player.activeForRender = true;
 
@@ -138,7 +140,9 @@ public abstract class ModelGameScreen implements Screen {
         music.setLooping(true);
         music.play();
         //////////////////////hud ////////////////////
-        hud = new Hud(game.batch, player);
+        if(player.loaded){
+            hud = new Hud(game.batch, player);
+        }
 //        inventory = new CharacterScreen(game.batch, player);
         outOfBullets = false;
 

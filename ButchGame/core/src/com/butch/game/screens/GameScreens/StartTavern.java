@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class StartTavern extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.startTavern);
     Music tavernMusic,playSound;
-    private int coinCounter;
 
     public StartTavern(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);

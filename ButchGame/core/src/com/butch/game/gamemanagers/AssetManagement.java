@@ -46,6 +46,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String shotgunAmmoIdle = "shotgunAmmo.png";
     public final String coinItemSprite = "coin.png";
     public final String shellSprite = "shell.png";
+    public final String bloodSprite = "blood.png";
     public final String pickupSprite = "pickupIcon.png";
     public final String cursor = "cursor.png";
     public final String healthPotion = "healthPotion.png";
@@ -246,7 +247,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //Character sounds
     public final String consumeFoodNoise = "SoundFX/CharacterNoises/consumeFoodNoise.mp3";
     public final String drinkItemNoise = "SoundFX/CharacterNoises/DrinkItemNoise.mp3";
-
+    public final String oof = "SoundFX/CharacterNoises/oof.mp3";
 
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
@@ -350,6 +351,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(butchDying, TextureAtlas.class);//FrameDuration = 0.083f
 
         load(shellSprite, Texture.class);
+        load(bloodSprite, Texture.class);
         load(pickupSprite, Texture.class);
 
         //CURSOR
@@ -557,7 +559,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //character noises
         load(consumeFoodNoise, Sound.class);
         load(drinkItemNoise, Sound.class);
-
+        load(oof, Sound.class);
         //  load(arghNoise, Sound.class);
         // load(gruntNoise, Sound.class)
         //load(playerDies, Sound.class);

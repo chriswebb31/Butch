@@ -664,7 +664,7 @@
   <object id="180" x="1160" y="3010.67" width="15.3333" height="13.3333"/>
   <object id="181" x="1159.33" y="3110" width="14.6667" height="13.3333"/>
   <object id="182" x="1257.33" y="3041.33" width="44" height="43.3333"/>
-  <object id="183" x="1136.67" y="2528.66" width="78.6666" height="22.6666"/>
+  <object id="183" x="1136.67" y="2524.66" width="73.6666" height="26.6666"/>
   <object id="185" x="422.917" y="2939" width="617.75" height="38"/>
  </objectgroup>
  <objectgroup id="8" name="Points">

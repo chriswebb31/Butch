@@ -58,7 +58,7 @@ public class Hud implements Disposable{
         healthBarFG = new Image(ButchGame.assets.get(ButchGame.assets.playerHBFG, Texture.class));
         healthBarBG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth(),Gdx.graphics.getHeight()/1.1f-healthBarBG.getHeight()*2);
         healthBarFG.setPosition(Gdx.graphics.getWidth()/14-healthBarBG.getWidth() + 4,Gdx.graphics.getHeight()/1.1f-healthBarFG.getHeight()*2 + 1);
-        healthBarBG.setSize(player.getPlayerHealthPercent()*3 + 8, 54);
+        healthBarBG.setSize(100*3 + 8, 54);
         healthBarFG.setSize(player.getPlayerHealthPercent()*3, 43);
       //  hb = new HealthBar((int)player.getHealth(),20,0,0);
         coinCountImg = ButchGame.assets.get(ButchGame.assets.coinCounter0, Texture.class);
@@ -107,6 +107,12 @@ public class Hud implements Disposable{
         stage.addActor(coinCounterTen);
     }
     public void render(float width){
+        if(player.getPlayerHealthPercent()*3 >= 100*3){
+            healthBarBG.setSize(width*3+8, 54);
+        }
+        else{
+            healthBarBG.setSize(100*3+8, 54);
+        }
         healthBarFG.setSize(width*3, 43);
     }
 

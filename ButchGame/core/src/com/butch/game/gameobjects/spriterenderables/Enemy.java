@@ -77,6 +77,7 @@ public class Enemy extends Renderable  {
     /// testing
    // private Hb healthB;
     private Batch batch;
+    private Sound hitEffect;
     ///
 
     public Enemy(Vector2 position, int enemyType){
@@ -130,11 +131,13 @@ public class Enemy extends Renderable  {
         //healthB = new Hb(this);
         //healthBar = new HealthBar((int)this.health, 10, this.getPosition().x,this.getPosition().y + this.sprite.getHeight() +20 );
         batch = new SpriteBatch();
+        this.hitEffect = ButchGame.assets.get(ButchGame.assets.oof, Sound.class);
 //
     }
     public float getHealth(){
         return this.health;
     }
+
     @Override
     public void update(float delta ) {
         this.weapon.accuracy *= 3;
@@ -274,6 +277,7 @@ public class Enemy extends Renderable  {
         //healthB.update();
 
     }
+
     public void render(){
 //        healthB.render(batch);
     }
@@ -281,6 +285,7 @@ public class Enemy extends Renderable  {
     @Override
     public void takeHit(float damage) {
         this.health -= damage;
+        this.hitEffect.play();
     }
 
     public Vector2 aimDirection(){
@@ -300,7 +305,7 @@ public class Enemy extends Renderable  {
 
         Random r = new Random();
         float newRand = r.nextFloat();
-        return newRand > 0.98f;
+        return newRand > 0.88f;
     }
 
     public Vector2 getWeaponPosition(){

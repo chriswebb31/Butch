@@ -29,7 +29,7 @@ public class Level2 extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new NewGameScreen(coinCounter, game, gameViewPort, NewGameScreen.map, player.getGunInventory(), player.getPlayerLevel(), 2));
+                    game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 2));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
                     game.setScreen((new Level3(player.coin, game, gameViewPort, Level3.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
                 }

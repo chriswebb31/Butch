@@ -21,10 +21,9 @@ public class NewGameScreen extends ModelGameScreen {
 //    float currentPos, statetime;
     Music playSound;
     private int coinCounter;
-    public NewGameScreen(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation){
+    public NewGameScreen(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation){
 
-        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
-        coinCounter = levelNumber;
+        super(game, gameViewPort, map, spawnLocation);
 //        System.out.println();
         //tiledMap = ButchGame.assets.get(ButchGame.assets.route1);
 //        currentPos = player.getPosition().x;
@@ -76,7 +75,7 @@ public class NewGameScreen extends ModelGameScreen {
                             music.play();
                             playSound.dispose();
                             player.isAllowedToMove = true;
-                            game.setScreen((new StartTavern(player.coin, game, gameViewPort, StartTavern.map, player.getGunInventory(), player.getPlayerLevel(), 0)));
+                            game.setScreen((new StartTavern(game, gameViewPort, StartTavern.map, 0)));
                         }
                     });
 

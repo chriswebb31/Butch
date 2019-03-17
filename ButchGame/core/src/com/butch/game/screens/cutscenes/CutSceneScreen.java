@@ -104,7 +104,7 @@ public class CutSceneScreen implements Screen {
 //                    })
 //            ));
 //            transitionScreen.transitionOut();
-            game.setScreen(new StartTavern(0,game, gameViewPort, StartTavern.map, 1, 0));
+            game.setScreen(new StartTavern(game, gameViewPort, StartTavern.map, 0));
         }
         else {
             stage.addActor(introBack);

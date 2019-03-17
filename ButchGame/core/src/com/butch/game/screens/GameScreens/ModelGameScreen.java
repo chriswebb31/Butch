@@ -81,7 +81,7 @@ public abstract class ModelGameScreen implements Screen {
     private boolean showHud = true;
     private CharacterScreen inventory;
 
-    public ModelGameScreen(int coinCounter, ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int playerLevel, int spawnPointLoc){
+    public ModelGameScreen(ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int spawnPointLoc){
 //        this.levelNumber = levelNumber;
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -101,7 +101,6 @@ public abstract class ModelGameScreen implements Screen {
         this.animals = new ArrayList<Animal>();
         this.mapColliders = new ArrayList<Rectangle>();
         this.spawnPoint = new Vector2().setZero();
-        this.playerLevel = playerLevel;
 
         ButchGame.renderableManager.reset();
         RenderableManager.mapColliders = mapColliders;
@@ -112,7 +111,7 @@ public abstract class ModelGameScreen implements Screen {
         setupLevel();
 
         player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
-        player.coin = coinCounter;
+        loadSave();
         player.setCam(camera);
 //        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
@@ -362,7 +361,7 @@ public abstract class ModelGameScreen implements Screen {
 
             saveGame.setProperty("PROGRESS", String.valueOf(progress));
             saveGame.setProperty("HEALTH", String.valueOf(player.health));
-            saveGame.setProperty("COIN", String.valueOf(player.coin));
+            saveGame.setProperty("COINS", String.valueOf(player.coin));
             saveGame.setProperty("PISTOLAMMO", String.valueOf(player.pistolAmmo));
             saveGame.setProperty("RIFLEAMMO", String.valueOf(player.rifleAmmo));
             saveGame.setProperty("SHOTGUNAMMO", String.valueOf(player.shotgunAmmo));
@@ -371,7 +370,14 @@ public abstract class ModelGameScreen implements Screen {
             String gunList = "";
 
             for (Gun gun:player.getGunInventory()) {
-                gunList += ":"+gun.id;
+                if(gun != null){
+                    if(gunList == ""){
+                        gunList += gun.id;
+                    }
+                    else{
+                        gunList += ":" + gun.id;
+                    }
+                }
             }
             saveGame.setProperty("GUNINVENTORY", gunList);
             saveGame.store(outputStream, null);

@@ -17,8 +17,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+import com.butch.game.screens.GameScreens.NewGameScreen;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.cutscenes.CutSceneScreen;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class MainMenuScreen implements Screen {
     //Change to use actual buttons maybe? Scene2D is used for menus etc
@@ -163,6 +170,7 @@ public class MainMenuScreen implements Screen {
     public void hide() {
 
     }
+
     private void createButtons(){
         /** creating the Active and Inactive Sprites
          * creating the Buttons as Image Buttons
@@ -198,6 +206,7 @@ public class MainMenuScreen implements Screen {
         addActions();
 
     }
+
     void addActions(){
      /** adding actions of when hovering over a button and clicking */
      playButton.addListener(new ClickListener(){
@@ -227,7 +236,7 @@ public class MainMenuScreen implements Screen {
              });
          }
      });
-        continueButton.addListener(new ClickListener(){
+     continueButton.addListener(new ClickListener(){
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
 //             playButton.setBounds(75,game.TARGET_HEIGHT-540,331,147);
@@ -241,7 +250,45 @@ public class MainMenuScreen implements Screen {
 
             }
             public void clicked(InputEvent event, float x, float y){
+                Properties saveGame = new Properties();
+                InputStream inputStream = null;
 
+                try{
+                    inputStream = new FileInputStream("Saves/savegame.properties");
+                    if(inputStream != null){
+                        saveGame.load(inputStream);
+                        int progress = Integer.parseInt(saveGame.getProperty("PROGRESS"));
+                        music.stop();
+                        playSound.play();
+                        removeButtons();
+                        stateTimer = 0;
+                        startClicked = true;
+                        System.out.println("Progress: " + progress);
+                        inputStream.close();
+                        switch (progress){
+                            case (0):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new CutSceneScreen(game, gameViewPort),stage,game);
+                                    }
+                                });
+                                break;
+                            case (1):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0), stage, game);
+                                    }
+                                });
+                                break;
+                        }
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
      aboutButton.addListener(new ClickListener(){
@@ -320,6 +367,7 @@ public class MainMenuScreen implements Screen {
 
      });
  }
+
     void removeButtons(){
         playButton.remove();
         aboutButton.remove();
@@ -328,6 +376,7 @@ public class MainMenuScreen implements Screen {
         settingsButton.remove();
         continueButton.remove();
     }
+
      public MainMenuScreen returnThis(){
         return this;
      }

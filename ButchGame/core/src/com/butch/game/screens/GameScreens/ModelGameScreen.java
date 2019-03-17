@@ -18,6 +18,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
@@ -34,6 +35,7 @@ import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.weapons.GunCreator;
 import com.butch.game.screens.TransitionScreen;
+import com.butch.game.screens.transitionScreens.ScreenTransitionAction;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -453,6 +455,7 @@ public abstract class ModelGameScreen implements Screen {
 //        hud.stage.act(delta);
 //        renderHUD();
         renderEnemyHB();
+
     }
 
     public void renderEnemyHB(){
@@ -754,6 +757,15 @@ public abstract class ModelGameScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+    public void addTransitionToScreen(){
+       hud. _transitionActor.setVisible(true);
+        stage.addAction(
+                Actions.sequence(
+                        Actions.addAction(ScreenTransitionAction.transition(
+                                ScreenTransitionAction.
+                                        ScreenTransitionType.FADE_IN, 5),
+                                hud._transitionActor)));
     }
 
 }

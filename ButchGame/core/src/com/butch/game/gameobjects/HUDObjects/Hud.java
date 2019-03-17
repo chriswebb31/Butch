@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.butch.game.ButchGame;
-import com.butch.game.dialouge.DialogueBox;
+import com.butch.game.Dialogue.DialogueBox;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.badlogic.gdx.graphics.Texture;
 

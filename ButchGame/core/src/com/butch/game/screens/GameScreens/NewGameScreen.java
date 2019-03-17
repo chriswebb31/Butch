@@ -79,6 +79,7 @@ public class NewGameScreen extends ModelGameScreen {
                             playSound.dispose();
                             player.isAllowedToMove = true;
                             updateSave(0);
+                            StartTavern.cutSceneStart = false;
                             game.setScreen((new StartTavern(game, gameViewPort, StartTavern.map, 0)));
                         }
                     });

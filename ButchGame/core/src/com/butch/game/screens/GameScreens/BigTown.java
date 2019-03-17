@@ -26,11 +26,11 @@ public class BigTown extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen( new Warzone(game, gameViewPort, Warzone.map, 0));
                     updateSave(10);
+                    game.setScreen( new Warzone(game, gameViewPort, Warzone.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen((new SnowyMountain(game, gameViewPort, SnowyMountain.map, 1)));
                     updateSave(8);
+                    game.setScreen((new SnowyMountain(game, gameViewPort, SnowyMountain.map, 1)));
                 }
             }
         }

@@ -28,11 +28,11 @@ public class Level2 extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 2));
                     updateSave(1);
+                    game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 2));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Level3(game, gameViewPort, Level3.map, 0)));
                     updateSave(3);
+                    game.setScreen((new Level3(game, gameViewPort, Level3.map, 0)));
                 }
             }
         }

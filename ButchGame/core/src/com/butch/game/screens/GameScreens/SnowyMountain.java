@@ -26,8 +26,8 @@ public class SnowyMountain extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new BigTown(game, gameViewPort, BigTown.map, 0));
                     updateSave(9);
+                    game.setScreen( new BigTown(game, gameViewPort, BigTown.map, 0));
                 }
             }
         }

@@ -25,8 +25,8 @@ public class Route4 extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new Route3(game, gameViewPort, Route3.map, 1));
                     updateSave(4);
+                    game.setScreen( new Route3(game, gameViewPort, Route3.map, 1));
                 }
             }
         }

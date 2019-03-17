@@ -28,14 +28,14 @@ public class Level3 extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen( new Level2(game, gameViewPort, Level2.map, 1));
                     updateSave(2);
+                    game.setScreen( new Level2(game, gameViewPort, Level2.map, 1));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Route3(game, gameViewPort, Route3.map, 0)));
                     updateSave(4);
+                    game.setScreen((new Route3(game, gameViewPort, Route3.map, 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 2) {
-                    game.setScreen(new Cave(game, gameViewPort, Cave.map, 0));
                     updateSave(5);
+                    game.setScreen(new Cave(game, gameViewPort, Cave.map, 0));
                 }
             }
         }

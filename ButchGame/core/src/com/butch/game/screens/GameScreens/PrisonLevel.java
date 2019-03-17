@@ -36,8 +36,8 @@ public class PrisonLevel extends ModelGameScreen {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     prisonMusic.pause();
                     music.play();
-                    game.setScreen( new SnowyMountain(game, gameViewPort, SnowyMountain.map, 0));
                     updateSave(8);
+                    game.setScreen( new SnowyMountain(game, gameViewPort, SnowyMountain.map, 0));
                 }
             }
         }

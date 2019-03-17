@@ -60,11 +60,11 @@ public class NewGameScreen extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 2) {
-                    game.setScreen( new Level2(game, gameViewPort, Level2.map, 0));
                     updateSave(2);
+                    game.setScreen( new Level2(game, gameViewPort, Level2.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen((new Warzone(game, gameViewPort, Warzone.map, 0)));
                     updateSave(10);
+                    game.setScreen((new Warzone(game, gameViewPort, Warzone.map, 0)));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
@@ -77,8 +77,8 @@ public class NewGameScreen extends ModelGameScreen {
                             music.play();
                             playSound.dispose();
                             player.isAllowedToMove = true;
-                            game.setScreen((new StartTavern(game, gameViewPort, StartTavern.map, 0)));
                             updateSave(0);
+                            game.setScreen((new StartTavern(game, gameViewPort, StartTavern.map, 0)));
                         }
                     });
 

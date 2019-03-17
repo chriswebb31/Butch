@@ -99,9 +99,8 @@ public class Player extends Renderable {
     private int activeWeaponNumber = 0;
     public boolean isAllowedToMove = true;
 
-    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders, ArrayList<Gun> weaponCache, int playerLevel){
+    public Player(Vector2 startPosition, ArrayList<Rectangle>mapStaticColliders){
         this.setPosition(startPosition);
-        this.playerLevel = playerLevel;
         this.maxHealth = baseHealth + ((playerLevel-1) * 10);
         this.health = maxHealth;
         this.shake = new Vector3();
@@ -119,9 +118,6 @@ public class Player extends Renderable {
         this.walkingFX.play();
         this.walkingFX.pause();
         this.gunInventory = new ArrayList<Gun>();
-        for(Gun gun : weaponCache) {
-            this.gunInventory.add(gun);
-        }
 //        this.gunInventory.addAll(weaponCache);
 
         this.itemInventory = new ArrayList<ItemPickup>();

@@ -43,8 +43,22 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public abstract class ModelGameScreen implements Screen {
-//    public int levelNumber;
-    private int playerLevel;
+
+    /*
+    PROGRESS ID LIST
+    STARTTAVERN : 0
+    NEWGAMESCREEN : 1
+    LEVEL2 : 2
+    LEVEL3 : 3
+    ROUTE3 : 4
+    CAVE : 5
+    ROUTE4 : 6
+    PRISONLEVEL : 7
+    SNOWYMOUNTAIN : 8
+    BIGTOWN : 9
+    WARZONE : 10
+     */
+
     SpriteBatch batch;
     Pixmap cursor;
     public ArrayList<ItemPickup> itemPickups;
@@ -110,10 +124,9 @@ public abstract class ModelGameScreen implements Screen {
         this.weaponCache.add(new GunCreator("Revolver"));
         setupLevel();
 
-        player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
+        player = new Player(spawnPoints.get(spawnPointLoc), mapColliders);
         loadSave();
         player.setCam(camera);
-//        player = new Player(spawnPoint, mapColliders, weaponCache);
         player.activeForRender = true;
 
         camera.position.set(new Vector3(player.getPosition().x, player.getPosition().y, 40));
@@ -159,7 +172,6 @@ public abstract class ModelGameScreen implements Screen {
         this.animals = new ArrayList<Animal>();
         this.mapColliders = new ArrayList<Rectangle>();
         this.spawnPoint = new Vector2().setZero();
-        this.playerLevel = playerLevel;
 
         ButchGame.renderableManager.reset();
         RenderableManager.mapColliders = mapColliders;
@@ -173,7 +185,7 @@ public abstract class ModelGameScreen implements Screen {
         }
         setupLevel();
 
-        player = new Player(spawnPoints.get(spawnPointLoc), mapColliders, weaponCache, playerLevel);
+        player = new Player(spawnPoints.get(spawnPointLoc), mapColliders);
         player.coin = coinCounter;
         player.setCam(camera);
 //        player = new Player(spawnPoint, mapColliders, weaponCache);

@@ -10,10 +10,8 @@ import java.util.ArrayList;
 
 public class Cave extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.cave);
-    private int coinCounter;
-    public Cave(int levelNumber, ButchGame game, FitViewport gameViewPort, TiledMap map, ArrayList<Gun> weaponCache, int playerLevel, int spawnLocation) {
-        super(levelNumber, game, gameViewPort, map, weaponCache, playerLevel, spawnLocation);
-        coinCounter = levelNumber;
+    public Cave(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
+        super(game, gameViewPort, map, spawnLocation);
     }
 
     @Override
@@ -28,9 +26,11 @@ public class Cave extends ModelGameScreen {
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {
-                    game.setScreen( new PrisonLevel(player.coin, game, gameViewPort, PrisonLevel.map, player.getGunInventory(),  player.getPlayerLevel(), 0));
+                    game.setScreen( new PrisonLevel(game, gameViewPort, PrisonLevel.map, 0));
+                    updateSave(7);
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
-                    game.setScreen((new Level3(player.coin, game, gameViewPort, Level3.map, player.getGunInventory(), player.getPlayerLevel(), 2)));
+                    game.setScreen((new Level3(game, gameViewPort, Level3.map, 2)));
+                    updateSave(3);
                 }
             }
         }

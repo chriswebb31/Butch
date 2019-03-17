@@ -32,8 +32,9 @@ public class SnowyMountain extends ModelGameScreen {
                 }
             }
         }
-
-
+        if (player.health >0 ) {
+            player.health -= 0.05;
+        }
         super.render(delta);
     }
 

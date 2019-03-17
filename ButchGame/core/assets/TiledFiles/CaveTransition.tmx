@@ -501,7 +501,7 @@
  </layer>
  <objectgroup id="7" name="Collisions">
   <object id="1" x="360" y="580" height="4"/>
-  <object id="2" x="296" y="300" width="736" height="2670"/>
+  <object id="2" x="296.215" y="300.215" width="736" height="2670"/>
   <object id="14" x="296" y="296" width="744" height="2676"/>
   <object id="31" x="1036" y="284" width="204" height="284"/>
   <object id="34" x="1248" y="288" width="192" height="124"/>
@@ -584,7 +584,7 @@
   <object id="77" x="2854" y="3171.33" width="19.3333" height="14.6667"/>
   <object id="78" x="2824.67" y="3300" width="16" height="14"/>
   <object id="101" x="2664.67" y="3168.67" width="14" height="15.3333"/>
-  <object id="102" x="2696" y="3009.33" width="16.6667" height="15.3333"/>
+  <object id="102" x="2696" y="3014.45" width="16.6667" height="15.3333"/>
   <object id="103" x="2600.67" y="3106" width="16" height="16.6667"/>
   <object id="104" x="2600.67" y="3041.33" width="46.6667" height="46.6667"/>
   <object id="105" x="2540" y="3146.67" width="41.3333" height="34"/>
@@ -688,7 +688,6 @@
   <object id="220" name="5" x="1263.65" y="658.383"/>
   <object id="221" name="5" x="1298.49" y="634.433"/>
   <object id="222" name="4" x="1426.94" y="634.433"/>
-  <object id="223" x="2551.56" y="4442.11"/>
  </objectgroup>
  <objectgroup id="10" name="EnemyLayer">
   <object id="193" name="0" x="1139.95" y="2915">

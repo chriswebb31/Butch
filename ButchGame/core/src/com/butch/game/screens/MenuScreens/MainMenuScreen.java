@@ -21,10 +21,7 @@ import com.butch.game.screens.GameScreens.*;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.cutscenes.CutSceneScreen;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class MainMenuScreen implements Screen {
@@ -228,6 +225,44 @@ public class MainMenuScreen implements Screen {
              removeButtons();
              stateTimer = 0;
              startClicked = true;
+
+             Properties saveGame = new Properties();
+             InputStream inputStream = null;
+             FileOutputStream outputStream = null;
+
+             try{
+                 inputStream = new FileInputStream("Saves/savegame.properties");
+                 if(inputStream != null){
+                     saveGame.load(inputStream);
+                     System.out.println("SUCC");
+                     inputStream.close();
+                 }
+             } catch (FileNotFoundException e) {
+                 e.printStackTrace();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+
+             try {
+                 outputStream = new FileOutputStream("Saves/savegame.properties");
+
+                 saveGame.setProperty("PROGRESS", String.valueOf(0));
+                 saveGame.setProperty("HEALTH", String.valueOf(100));
+                 saveGame.setProperty("COINS", String.valueOf(0));
+                 saveGame.setProperty("PISTOLAMMO", String.valueOf(40));
+                 saveGame.setProperty("RIFLEAMMO", String.valueOf(20));
+                 saveGame.setProperty("SHOTGUNAMMO", String.valueOf(20));
+                 saveGame.setProperty("MUSKETAMMO", String.valueOf(5));
+                saveGame.setProperty("GUNINVENTORY", String.valueOf(10));
+
+                saveGame.store(outputStream, null);
+                outputStream.close();
+             } catch (FileNotFoundException e) {
+                 e.printStackTrace();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+
              playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                  @Override
                  public void onCompletion(Music music) {
@@ -236,6 +271,7 @@ public class MainMenuScreen implements Screen {
              });
          }
      });
+
      continueButton.addListener(new ClickListener(){
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){

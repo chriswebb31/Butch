@@ -390,7 +390,7 @@ public abstract class ModelGameScreen implements Screen {
                         gunList += gun.id;
                     }
                     else{
-                        gunList += ":" + gun.id;
+                        gunList += ":" + String.valueOf(gun.id);
                     }
                 }
             }

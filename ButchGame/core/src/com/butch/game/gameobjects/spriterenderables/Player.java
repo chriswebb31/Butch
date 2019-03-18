@@ -148,6 +148,7 @@ public class Player extends Renderable {
         butchDead = false;
         ////////////////////////////
        // health = 1000;
+
     }
 
     public void loadedPing(){

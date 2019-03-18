@@ -110,6 +110,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //Musket Ammo Bar
     public final String musketAmmoBar1 = "HUD/musketAmmoBar/musketAmmoBar_0.png";
     public final String musketAmmoBar0 = "HUD/musketAmmoBar/musketAmmoBar_1.png";
+    //Melee Ammo Bar
+    public final String meleeAmmoBar = "HUD/meleeAmmoBar.png";
     //Coin Counter
     public final String coinCounter0 = "HUD/CoinCount/coinCount-9.png";
     public final String coinCounter1 = "HUD/CoinCount/coinCount-0.png";
@@ -521,6 +523,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(meleeIdle, TextureAtlas.class);
         load(meleeWalking, TextureAtlas.class);
         load(meleeSilhoutte, Texture.class);
+        load(meleeAmmoBar, Texture.class);
         //HUD
         //Character Screen
         load(characterScreen, Texture.class);

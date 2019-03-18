@@ -783,6 +783,9 @@ public abstract class ModelGameScreen implements Screen {
                         break;
                 }
                 break;
+            case 14:
+                hud.setAmmoCount(ButchGame.assets.get(ButchGame.assets.meleeAmmoBar, Texture.class));
+                break;
         }
 
     }

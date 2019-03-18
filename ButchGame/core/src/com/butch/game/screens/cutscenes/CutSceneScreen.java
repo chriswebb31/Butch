@@ -76,35 +76,6 @@ public class CutSceneScreen extends ModelCutSceneScreen {
     public void render(float delta) {
 
         if (Gdx.input.isTouched()&& skip == true){
-
-
-            game.setScreen(new StartTavern(game, game.gameViewPort, StartTavern.map, 0));
-            this.dispose();
-            game.setScreen(new StartTavern(game, gameViewPort, StartTavern.map, 0));
-
-
-
-//            stage.addAction(Actions.sequence(
-//                    new Action(){
-//                     float time = 0;
-//                     @Override
-//                        public boolean act(float delta ){
-//                        time += delta;
-//                        float t = time/0.5f;
-//                        t*=t;
-//                        batch.setColor(1,1,1,1-t);
-//                        return time >= 0.5f;
-//                        }
-//
-//                    },
-//                    Actions.run(new Runnable(){
-//                        @Override
-//                        public void run(){
-//                            game.setScreen(new StartTavern(0,game, gameViewPort, StartTavern.map, 1, 0));
-//                        }
-//                    })
-//            ));
-//            transitionScreen.transitionOut();
             game.setScreen(new StartTavern(game, game.gameViewPort, StartTavern.map, 0));
             this.dispose();
         }
@@ -153,21 +124,12 @@ public class CutSceneScreen extends ModelCutSceneScreen {
                     )
 
             ));
-
-
-
-
             transitionScreen.transitionIn(stage);
             camera.update();
-
             update(delta);
-            //stateTime += delta;
             batch.begin();
             batch.draw(npcAnim.getKeyFrame(0, false), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
             batch.end();
-            //System.out.println("briefText width size = " + briefText.getWidth() + " height is = " + briefText.getHeight());
-            //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);
-            //stage.draw();
         }
     }
     public void update(float delta){
@@ -195,8 +157,8 @@ public class CutSceneScreen extends ModelCutSceneScreen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        stage.dispose();
+//        batch.dispose();
+//        stage.dispose();
         bubbleSpeech.clear();
         introBack.clear();
         welcomeText.clear();

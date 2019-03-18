@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import javax.xml.soap.Text;
+
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TEXTURES
     public final String levelUpSprite = "DButt.jpg"; //Placeholder LevelUpItem
@@ -389,7 +391,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(rifleSprite, Texture.class);
         load(bulletSprite, Texture.class);
 
-        load(dialougueBox, TextureAtlas.class);
+        load(dialogueTrigger, TextureAtlas.class);
 
         load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);
@@ -400,6 +402,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(rifleAmmo, Texture.class);
         load(shotgunAmmoIdle, Texture.class);
         load(coinItemSprite, Texture.class);
+
+        //Lincoln
+        load(lincolnIdle, TextureAtlas.class);
+        load(lincolnWalking, TextureAtlas.class);
 
         //Bullets
         load(friendlyBullet, Texture.class);

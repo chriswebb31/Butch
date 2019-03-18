@@ -12,7 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+<<<<<<< Updated upstream
 import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
+=======
+import com.butch.game.gameobjects.HUDObjects.Hud;
+>>>>>>> Stashed changes
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.screens.cutscenes.NewsPaperScene;
@@ -55,6 +59,7 @@ private boolean showHud = true;
 
     @Override
     public void render(float delta){
+        //Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
         updateCameraPosition();
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
@@ -63,6 +68,13 @@ private boolean showHud = true;
                     player.xAxis = 0;
                     player.yAxis = 0;
                     player.getFrame(delta, Player.State.IDLE);
+                    Hud.stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable(){
+                        @Override
+                        public void run() {
+                            Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
+                            game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
+                        }
+                    })));
                     playSound.play();
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                         @Override
@@ -73,7 +85,6 @@ private boolean showHud = true;
                             playSound.stop();
                             player.isAllowedToMove = true;
                             updateSave(1);
-                            game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
                         }
                     });
 
@@ -134,6 +145,12 @@ private boolean showHud = true;
 
 
 
+<<<<<<< Updated upstream
+=======
+
+        super.render(delta);
+    }
+>>>>>>> Stashed changes
 
     }
 void readNewsPaper(){
@@ -160,6 +177,15 @@ void readNewsPaper(){
 
     @Override
     public void dispose() {
+
+    }
+    public void fadeOut(){
+        stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable() {
+            @Override
+            public void run() {
+                game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
+            }
+        })));
 
     }
 }

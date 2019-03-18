@@ -3,8 +3,10 @@ package com.butch.game.screens.GameScreens;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
@@ -56,12 +58,36 @@ public class NewGameScreen extends ModelGameScreen {
 
     @Override
     public void render(float delta){
-
+        //Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 2) {
-                    updateSave(2);
-                    game.setScreen( new Level2(game, gameViewPort, Level2.map, 0));
+                    player.isAllowedToMove = false;
+                    player.xAxis = 0;
+                    player.yAxis = 0;
+                    player.getFrame(delta, Player.State.IDLE);
+                    Hud.stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable(){
+                        @Override
+                        public void run() {
+                            Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
+                            game.setScreen(new Level2(game, gameViewPort, Level2.map, 0));
+
+                        }
+                    })));
+                    playSound.setVolume(0);
+                    playSound.play();
+                    playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(Music music) {
+                            music.play();
+                            playSound.dispose();
+                            player.isAllowedToMove = true;
+                            updateSave(2);
+
+
+                        }
+                    });
+                    //game.setScreen( new Level2(game, gameViewPort, Level2.map, 0));
 //                    game.setScreen(new MazeMap(game, gameViewPort, MazeMap.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
                     updateSave(10);
@@ -71,6 +97,13 @@ public class NewGameScreen extends ModelGameScreen {
                     player.xAxis = 0;
                     player.yAxis = 0;
                     player.getFrame(delta, Player.State.IDLE);
+                    Hud.stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable(){
+                        @Override
+                        public void run() {
+                            Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
+                            game.setScreen(new StartTavern(game, gameViewPort, StartTavern.map, 0));
+                        }
+                    })));
                     playSound.play();
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                         @Override
@@ -80,7 +113,8 @@ public class NewGameScreen extends ModelGameScreen {
                             player.isAllowedToMove = true;
                             updateSave(0);
                             StartTavern.cutSceneStart = false;
-                            game.setScreen((new StartTavern(game, gameViewPort, StartTavern.map, 0)));
+
+
                         }
                     });
 

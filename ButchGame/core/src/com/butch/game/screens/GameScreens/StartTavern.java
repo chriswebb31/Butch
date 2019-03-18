@@ -12,8 +12,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
+<<<<<<< Updated upstream
 import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
 import com.butch.game.gameobjects.HUDObjects.Hud;
+=======
+
+import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
+import com.butch.game.gameobjects.HUDObjects.Hud;
+
+>>>>>>> Stashed changes
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.screens.cutscenes.NewsPaperScene;
@@ -28,7 +35,7 @@ public class StartTavern extends ModelGameScreen {
 //    Vector2 movingpos;
 //    Texture newspaper;
 //    Image news;
-private boolean showHud = true;
+//    private boolean showHud = true;
     private NewsPaperScene inventory;
     public static boolean cutSceneStart = true;
     public StartTavern(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
@@ -142,8 +149,17 @@ private boolean showHud = true;
 
 
 
+<<<<<<< Updated upstream
         super.render(delta);
     }
+=======
+
+        super.render(delta);
+    }
+
+
+
+>>>>>>> Stashed changes
 void readNewsPaper(){
 //        batch.begin();
 //        batch.draw(newspaper, game.TARGET_WIDTH/2, game.TARGET_HEIGHT/2, 500,500);

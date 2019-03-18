@@ -43,6 +43,7 @@ public class ButchGame extends Game {
 //	public static Properties saveProgress;
 //	public static boolean continueGame;
     public OrthographicCamera camera;
+
 	public ButchGame() {
 		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
 		assets = new AssetManagement();

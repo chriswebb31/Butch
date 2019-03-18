@@ -18,6 +18,7 @@ package de.tomgrill.gdxtesting.examples;
 
 import static org.junit.Assert.assertTrue;
 
+import com.butch.game.desktop.DesktopLauncher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,10 +29,5 @@ import de.tomgrill.gdxtesting.GdxTestRunner;
 @RunWith(GdxTestRunner.class)
 public class AssetExistsExampleTest {
 
-	@Test
-	public void badlogicLogoFileExists() {
-		assertTrue("true if file still exites and hasnt been deleted.", Gdx.files
-				.internal("../core/assets/Barrel.png").exists());
-	}
 
 }

@@ -127,3 +127,5 @@ ButchGame/gradle.properties
 ButchGame/gradle.properties
 
 ButchGame/core/assets/Saves/savegame\.properties
+
+ButchGame/core/assets/Saves/

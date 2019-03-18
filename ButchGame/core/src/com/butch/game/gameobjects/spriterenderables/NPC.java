@@ -57,7 +57,9 @@ public class NPC extends Renderable {
             this.setPosition(position);
             this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class)));
             this.getSprite().setScale(10);
-            this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width / 2.5f, this.getSprite().getBoundingRectangle().height / 1.5f));
+            System.out.println(this.getPosition().x + " + " + this.getPosition().y);
+
+            this.setCollider(new Rectangle(this.getPosition().x - 100, this.getPosition().y + this.getSprite().getBoundingRectangle().height * 100, this.getSprite().getBoundingRectangle().width / 2.5f, this.getSprite().getBoundingRectangle().height / 1.5f));
             this.activeForRender = true;
             this.activeCollision = true;
             this.speak = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);

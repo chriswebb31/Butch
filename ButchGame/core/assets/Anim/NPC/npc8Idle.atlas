@@ -1,0 +1,19 @@
+npc8Idle.png
+size: 38, 26
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+npc8Idle-0
+  rotate: false
+  xy: 1, 1
+  size: 17, 24
+  orig: 17, 24
+  offset: 0, 0
+  index: -1
+npc8Idle-1
+  rotate: false
+  xy: 20, 1
+  size: 17, 24
+  orig: 17, 24
+  offset: 0, 0
+  index: -1

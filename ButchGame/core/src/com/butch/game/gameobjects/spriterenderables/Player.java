@@ -252,7 +252,9 @@ public class Player extends Renderable {
                 }
             }
         }
-
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Gdx.app.exit();
+        }
     }
 
     private void movementHandler() {
@@ -445,7 +447,7 @@ public class Player extends Renderable {
         this.getSprite().setScale(10);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         if(isRiding) {
-            this.speed = 50;
+            this.speed = 20;
             this.activeGun.activeForRender = false;
         }
         else {

@@ -82,11 +82,11 @@ public abstract class Gun extends EquipableItem {
                     Bullet shot;
                     if(this.parent.TAG == "player") {
                         if (this.player.getAimDirection().x > 0)
-                            shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel()-1) * 3), damage + ((player.getPlayerLevel()-1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)));
+                            shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel() - 1) * 3), damage + ((player.getPlayerLevel() - 1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)), false);
                         else
-                            shot = new Bullet(new Vector2(this.getPosition().x - (6 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel()-1) * 3), damage + ((player.getPlayerLevel()-1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)));
+                            shot = new Bullet(new Vector2(this.getPosition().x - (6 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel()-1) * 3), damage + ((player.getPlayerLevel()-1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)), false);
                     } else {
-                        shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed, damage, friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.enemyBullet, Texture.class)));
+                        shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed, damage, friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.enemyBullet, Texture.class)), false);
                     }
                     Shell shell = new Shell(this.getPosition());
                     lastShot = thisShot;

@@ -57,7 +57,9 @@ public class NPC extends Renderable {
             this.setPosition(position);
             this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class)));
             this.getSprite().setScale(10);
-            this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getBoundingRectangle().width / 2.5f, this.getSprite().getBoundingRectangle().height / 1.5f));
+            System.out.println(this.getPosition().x + " + " + this.getPosition().y);
+
+            this.setCollider(new Rectangle(this.getPosition().x - 100, this.getPosition().y + this.getSprite().getBoundingRectangle().height * 100, this.getSprite().getBoundingRectangle().width / 2.5f, this.getSprite().getBoundingRectangle().height / 1.5f));
             this.activeForRender = true;
             this.activeCollision = true;
             this.speak = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
@@ -102,6 +104,37 @@ public class NPC extends Renderable {
                 case 12:
                     this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc13Idle, TextureAtlas.class).getRegions());
                     break;
+                case 20:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.deadSoldier1, TextureAtlas.class).getRegions());
+                    break;
+                case 21:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.deadSoldier2, TextureAtlas.class).getRegions());
+                    break;
+                case 22:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.soldier1Idle, TextureAtlas.class).getRegions());
+                    break;
+                case 23:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.soldier2Idle, TextureAtlas.class).getRegions());
+                    break;
+                case 24:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.woundedSoldier1Idle, TextureAtlas.class).getRegions());
+                    break;
+                case 25:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.woundedSoldier2Idle, TextureAtlas.class).getRegions());
+                    break;
+                case 30:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.prisoner1Idle, TextureAtlas.class).getRegions());
+                    break;
+                case 31:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.prisoner2Idle, TextureAtlas.class).getRegions());
+                    break;
+                case 32:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.prisoner3Idle, TextureAtlas.class).getRegions());
+                    break;
+                case 33:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.prisoner4Idle, TextureAtlas.class).getRegions());
+                    break;
+
             }
             currentState = State.IDLE;
             previousState = State.IDLE;

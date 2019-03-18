@@ -1,0 +1,61 @@
+sheriff3Walking.png
+size: 136, 27
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+sheriff3Walking-0
+  rotate: false
+  xy: 1, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+sheriff3Walking-1
+  rotate: false
+  xy: 18, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+sheriff3Walking-2
+  rotate: false
+  xy: 35, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+sheriff3Walking-3
+  rotate: false
+  xy: 52, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+sheriff3Walking-4
+  rotate: false
+  xy: 69, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+sheriff3Walking-5
+  rotate: false
+  xy: 86, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+sheriff3Walking-6
+  rotate: false
+  xy: 103, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+sheriff3Walking-7
+  rotate: false
+  xy: 120, 1
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1

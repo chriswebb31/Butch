@@ -53,6 +53,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String whiskyBottle = "whisky.png";
     public final String aboutPage = "Pages/aboutPage.png";
     public final String helpPage = "Pages/needHelpPage.png";
+    //Bullets
+    public final String friendlyBullet = "friendlyBullet.png";
+    public final String enemyBullet = "enemyBullet.png";
     //HUD
     //Character Screen
     public final String characterScreen = "HUD/characterScreen.png";
@@ -116,6 +119,13 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String coinCounter7 = "HUD/CoinCount/coinCount-6.png";
     public final String coinCounter8 = "HUD/CoinCount/coinCount-7.png";
     public final String coinCounter9 = "HUD/CoinCount/coinCount-8.png";
+    //HamburgerOptionButton
+    public final String hamburger = "HUD/hamburger.png";
+    //HUD Gun Labels
+    public final String machineGunLabel = "HUD/machineGunLabel.png";
+    public final String musketLabel = "HUD/musketLabel.png";
+    public final String shotgunLabel = "HUD/shotgunLabel.png";
+    public final String revolverLabel = "HUD/revolverLabel.png";
 
     //dialogue stuff
     public final String dialougueBox= "dialogueBox.png";
@@ -180,6 +190,35 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String npc11Idle = "Anim/NPC/npc11Idle.atlas";
     public final String npc12Idle = "Anim/NPC/npc12Idle.atlas";
     public final String npc13Idle = "Anim/NPC/npc13Idle.atlas";
+
+    //Prisoners
+    public final String prisoner1Idle = "Anim/Prisoners/prisoner1Idle.atlas";
+    public final String prisoner2Idle = "Anim/Prisoners/prisoner2Idle.atlas";
+    public final String prisoner3Idle = "Anim/Prisoners/prisoner3Idle.atlas";
+    public final String prisoner4Idle = "Anim/Prisoners/prisoner4Idle.atlas";
+    public final String prisoner1Walking = "Anim/Prisoners/prisoner1Walking.atlas";
+    public final String prisoner2Walking = "Anim/Prisoners/prisoner2Walking.atlas";
+    public final String prisoner3Walking = "Anim/Prisoners/prisoner3Walking.atlas";
+    public final String prisoner4Walking = "Anim/Prisoners/prisoner4Walking.atlas";
+
+    //Sheriffs
+    public final String sheriff1Idle = "Anim/Sheriffs/sheriff1Idle.atlas";
+    public final String sheriff2Idle = "Anim/Sheriffs/sheriff1Idle.atlas";
+    public final String sheriff3Idle = "Anim/Sheriffs/sheriff1Idle.atlas";
+    public final String sheriff1Walking = "Anim/Sheriffs/sheriff1Walking.atlas";
+    public final String sheriff2Walking = "Anim/Sheriffs/sheriff2Walking.atlas";
+    public final String sheriff3Walking = "Anim/Sheriffs/sheriff3Walking.atlas";
+
+    //Soldiers
+    public final String soldier1Idle = "Anim/Soldiers/soldier1Idle.atlas";
+    public final String soldier2Idle = "Anim/Soldiers/soldier2Idle.atlas";
+    public final String soldier3Idle = "Anim/Soldiers/soldier3Idle.atlas";
+    public final String soldier4Idle = "Anim/Soldiers/soldier4Idle.atlas";
+    public final String woundedSoldier1Idle = "Anim/Soldiers/woundedSoldier1Idle.atlas";
+    public final String woundedSoldier2Idle = "Anim/Soldiers/woundedSoldier2Idle.atlas";
+    public final String deadSoldier1 = "Anim/Soldiers/deadSoldier1.atlas";
+    public final String deadSoldier2 = "Anim/Soldiers/deadSoldier2.atlas";
+
     //Lincoln
     public final String lincolnIdle = "Anim/Lincoln/lincolnIdle.atlas";
     public final String lincolnWalking = "Anim/Lincoln/lincolnWalking.atlas";
@@ -258,6 +297,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
     public final String prisonTheme = "Music/PrisonMusic.mp3";
+    public final String endMazeMapTheme = "Music/mazeMap.mp3";
+    public final String bigCityTheme =  "Music/BigCity.mp3";
 
     //PARTICLES
 
@@ -271,7 +312,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
     public final String route1 = "TiledFiles/Route1.tmx";
     public final String caveTransition = "TiledFiles/CaveTransition.tmx";
-    public final String mazeMap = "TiledFiles/endMazeMap.tmx";
+    public final String mazeMap = "TiledFiles/endMaze.tmx";
     public final String prison = "TiledFiles/Prison.tmx";
     public final String cave = "TiledFiles/Cave.tmx";
     public final String warzone = "TiledFiles/Warzone.tmx";
@@ -284,7 +325,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //CutScenes Assets
     public final String bubbleSpeech = "CutScenes/speechBubble.png";
     public final String introBack = "CutScenes/introback.jpg";
-
+    public final String newspaper = "CutScenes/newspaperCutscene.png";
 
     public final String introBackMusic1 = "CutScenes/Audio/introBackMusic.mp3";
     public final String saloonBackNoise1 = "CutScenes/Audio/saloonBackNoise1.mp3";
@@ -320,6 +361,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(introBackMusic1, Music.class );
         load(bubbleSpeech, Texture.class);
         load(introBack, Texture.class);
+        load(newspaper, Texture.class);
         //page Contents
         load(helpPage, Texture.class);
         load(aboutPage, Texture.class);
@@ -349,6 +391,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(rifleAmmo, Texture.class);
         load(shotgunAmmoIdle, Texture.class);
         load(coinItemSprite, Texture.class);
+
+        //Bullets
+        load(friendlyBullet, Texture.class);
+        load(enemyBullet, Texture.class);
 
 
         load(healthPotion, Texture.class);
@@ -395,6 +441,34 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(npc11Idle, TextureAtlas.class);//FrameDuration = 0.25f
         load(npc12Idle, TextureAtlas.class);//FrameDuration = 0.25f
         load(npc13Idle, TextureAtlas.class);//FrameDuration = 0.25f
+
+        //Prisoners
+        load(prisoner1Idle, TextureAtlas.class);
+        load(prisoner2Idle, TextureAtlas.class);
+        load(prisoner3Idle, TextureAtlas.class);
+        load(prisoner4Idle, TextureAtlas.class);
+        load(prisoner1Walking, TextureAtlas.class);
+        load(prisoner2Walking, TextureAtlas.class);
+        load(prisoner3Walking, TextureAtlas.class);
+        load(prisoner4Walking, TextureAtlas.class);
+
+        //Sheriffs
+        load(sheriff1Idle, TextureAtlas.class);
+        load(sheriff2Idle, TextureAtlas.class);
+        load(sheriff3Idle, TextureAtlas.class);
+        load(sheriff1Walking, TextureAtlas.class);
+        load(sheriff2Walking, TextureAtlas.class);
+        load(sheriff3Walking, TextureAtlas.class);
+
+        //Soldiers
+        load(soldier1Idle, TextureAtlas.class);
+        load(soldier2Idle, TextureAtlas.class);
+        load(soldier3Idle, TextureAtlas.class);
+        load(soldier4Idle, TextureAtlas.class);
+        load(woundedSoldier1Idle, TextureAtlas.class);
+        load(woundedSoldier2Idle, TextureAtlas.class);
+        load(deadSoldier1, TextureAtlas.class);
+        load(deadSoldier2, TextureAtlas.class);
 
         //GUN ATLAS
         //Machine Gun
@@ -516,6 +590,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
         load(prisonTheme, Music.class);
+        load(endMazeMapTheme, Music.class);
+        load(bigCityTheme, Music.class);
         //SFX
         load(gunShot, Sound.class);
         load(menuClick, Music.class);

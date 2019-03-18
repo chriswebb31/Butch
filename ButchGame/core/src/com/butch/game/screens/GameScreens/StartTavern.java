@@ -22,7 +22,6 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.screens.cutscenes.NewsPaperScene;
 
-import java.util.ArrayList;
 
 public class StartTavern extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.startTavern);
@@ -166,13 +165,5 @@ public class StartTavern extends ModelGameScreen {
     public void dispose() {
 
     }
-    public void fadeOut(){
-        stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
-            }
-        })));
 
-    }
 }

@@ -235,7 +235,6 @@ public class MainMenuScreen implements Screen {
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
 //             playButton.setBounds(75,game.TARGET_HEIGHT-540,331,147);
              playButton.setBounds(game.TARGET_WIDTH/25.6f,game.TARGET_HEIGHT/2,game.TARGET_WIDTH/5.80060f,game.TARGET_HEIGHT/3.34693f);
-
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){

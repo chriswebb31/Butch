@@ -140,9 +140,10 @@ private boolean showHud = true;
             inventory.draw();
         }
 
+
+
         super.render(delta);
     }
-
 void readNewsPaper(){
 //        batch.begin();
 //        batch.draw(newspaper, game.TARGET_WIDTH/2, game.TARGET_HEIGHT/2, 500,500);

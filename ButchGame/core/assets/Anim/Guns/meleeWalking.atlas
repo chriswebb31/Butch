@@ -1,0 +1,61 @@
+meleeWalking.png
+size: 136, 8
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0
+  rotate: false
+  xy: 1, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1
+1
+  rotate: false
+  xy: 18, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 35, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 52, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 69, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 86, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 103, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 120, 1
+  size: 15, 6
+  orig: 15, 6
+  offset: 0, 0
+  index: -1

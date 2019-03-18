@@ -1,0 +1,61 @@
+soldier3Walking.png
+size: 168, 28
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+soldier3Walking-0
+  rotate: false
+  xy: 1, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+soldier3Walking-1
+  rotate: false
+  xy: 22, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+soldier3Walking-2
+  rotate: false
+  xy: 43, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+soldier3Walking-3
+  rotate: false
+  xy: 64, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+soldier3Walking-4
+  rotate: false
+  xy: 85, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+soldier3Walking-5
+  rotate: false
+  xy: 106, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+soldier3Walking-6
+  rotate: false
+  xy: 127, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+soldier3Walking-7
+  rotate: false
+  xy: 148, 1
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1

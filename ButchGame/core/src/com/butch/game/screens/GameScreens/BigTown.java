@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class BigTown extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.bigBoyTown);
-    private Music playSound;
+
 
 
     public BigTown(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {

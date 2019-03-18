@@ -341,13 +341,14 @@ public abstract class ModelGameScreen implements Screen {
             inputStream = new FileInputStream("Saves/savegame.properties");
             if(inputStream != null){
                 saveGame.load(inputStream);
-
+                player.setPlayerLevel(Integer.parseInt(saveGame.getProperty("LEVEL")));
                 player.health = Float.parseFloat(saveGame.getProperty("HEALTH"));
                 player.coin = Integer.parseInt(saveGame.getProperty("COINS"));
                 player.pistolAmmo = Integer.parseInt(saveGame.getProperty("PISTOLAMMO"));
                 player.rifleAmmo = Integer.parseInt(saveGame.getProperty("RIFLEAMMO"));
                 player.shotgunAmmo = Integer.parseInt(saveGame.getProperty("SHOTGUNAMMO"));
                 player.musketAmmo = Integer.parseInt(saveGame.getProperty("MUSKETAMMO"));
+                
                 for(String gunId : saveGame.getProperty("GUNINVENTORY").split(":")){
                     player.getGunInventory().add(ButchGame.itemManager.getGun(Integer.parseInt(gunId)));
                 }
@@ -388,6 +389,7 @@ public abstract class ModelGameScreen implements Screen {
             saveGame.setProperty("RIFLEAMMO", String.valueOf(player.rifleAmmo));
             saveGame.setProperty("SHOTGUNAMMO", String.valueOf(player.shotgunAmmo));
             saveGame.setProperty("MUSKETAMMO", String.valueOf(player.musketAmmo));
+            saveGame.setProperty("LEVEL", String.valueOf(player.getPlayerLevel()));
 
             String gunList = "";
 

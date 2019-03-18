@@ -15,9 +15,16 @@ import java.util.ArrayList;
 public class BigTown extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.bigBoyTown);
     private Music playSound;
+    Music bigCity;
+
     public BigTown(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+        bigCity =  ButchGame.assets.get(ButchGame.assets.bigCityTheme, Music.class);
+        bigCity.setVolume(1.0f);
+        music.pause();
+        bigCity.play();
+        bigCity.setLooping(true);
     }
 
     @Override
@@ -33,6 +40,8 @@ public class BigTown extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {
                     updateSave(10);
+                    bigCity.stop();
+                    music.play();
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;

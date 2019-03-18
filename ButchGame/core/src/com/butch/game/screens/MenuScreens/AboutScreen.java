@@ -30,9 +30,9 @@ public class AboutScreen implements Screen {
     public ImageButton homeButton;
     FitViewport gameViewPort;
     static TransitionScreen transitionScreen;
-    public AboutScreen(ButchGame game, FitViewport gameViewPort){
+    public AboutScreen(ButchGame game){
+        gameViewPort = new FitViewport(game.TARGET_WIDTH,game.TARGET_HEIGHT);
         this.game = game;
-        this.gameViewPort = gameViewPort;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         batch = new SpriteBatch();

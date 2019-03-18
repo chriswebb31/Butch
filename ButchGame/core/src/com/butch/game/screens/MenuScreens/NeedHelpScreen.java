@@ -31,8 +31,8 @@ public class NeedHelpScreen implements Screen {
     FitViewport gameViewPort;
     Image backg;
     static TransitionScreen transitionScreen;
-    public NeedHelpScreen(ButchGame game, FitViewport gameViewPort){
-        this.gameViewPort = gameViewPort;
+    public NeedHelpScreen(ButchGame game){
+        gameViewPort = new FitViewport(game.TARGET_WIDTH,game.TARGET_HEIGHT);
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);

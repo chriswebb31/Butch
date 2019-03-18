@@ -438,7 +438,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new AboutScreen(game, game.gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new AboutScreen(game),stage,game);
          }
      });
      needHelpButton.addListener(new ClickListener(){
@@ -455,7 +455,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new NeedHelpScreen(game,game.gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new NeedHelpScreen(game),stage,game);
          }
 
      });
@@ -470,7 +470,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new SettingsScreen(game, game.gameViewPort, returnThis()),stage,game);
+             TransitionScreen.transitionOut(new SettingsScreen(game, returnThis()),stage,game);
          }
      });
 

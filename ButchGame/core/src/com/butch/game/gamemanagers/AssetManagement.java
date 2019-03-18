@@ -584,6 +584,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(mainTheme, Music.class);
         load(townTheme, Music.class);
         load(prisonTheme, Music.class);
+        load(endMazeMapTheme, Music.class);
         //SFX
         load(gunShot, Sound.class);
         load(menuClick, Music.class);

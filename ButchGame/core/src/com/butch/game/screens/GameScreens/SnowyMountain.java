@@ -15,10 +15,16 @@ import java.util.ArrayList;
 public class SnowyMountain extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.snowyMountain);
     private Music playSound;
+    Music snowMusic;
 
     public SnowyMountain(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+        snowMusic = ButchGame.assets.get(ButchGame.assets.snowTheme, Music.class);
+        snowMusic.setVolume(1.0f);
+        music.pause();
+        snowMusic.play();
+        snowMusic.setLooping(true);
     }
 
     @Override
@@ -63,7 +69,7 @@ public class SnowyMountain extends ModelGameScreen {
             }
         }
         if (player.health >0 ) {
-            player.health -= 0.05;
+            player.health -= 0.03;
         }
         super.render(delta);
     }

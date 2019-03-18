@@ -294,6 +294,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String prisonTheme = "Music/PrisonMusic.mp3";
     public final String endMazeMapTheme = "Music/mazeMap.mp3";
     public final String bigCityTheme =  "Music/BigCity.mp3";
+    public final String snowTheme =  "Music/Snow.mp3";
 
     //PARTICLES
 
@@ -587,6 +588,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(prisonTheme, Music.class);
         load(endMazeMapTheme, Music.class);
         load(bigCityTheme, Music.class);
+        load(snowTheme, Music.class);
+
         //SFX
         load(gunShot, Sound.class);
         load(menuClick, Music.class);

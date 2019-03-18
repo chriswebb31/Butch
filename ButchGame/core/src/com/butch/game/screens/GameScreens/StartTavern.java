@@ -84,10 +84,10 @@ public class StartTavern extends ModelGameScreen {
                             tavernMusic.stop();
                             playSound.stop();
                             player.isAllowedToMove = true;
-                            updateSave(1);
+
                         }
                     });
-
+                    updateSave(1);
                 }
             }
         }

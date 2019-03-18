@@ -45,12 +45,13 @@ public abstract class Gun extends EquipableItem {
     public Animation<TextureRegion> gunReloading;
     public TextureRegion spriteImg;
     public Texture ammoBar;
-
+    private boolean isFist = false;
     public Gun() {
 
     }
 
     public boolean Shoot(){
+        Shell shell;
         if(this.parent.TAG == "player"){
             friendly = true;
         }
@@ -69,12 +70,19 @@ public abstract class Gun extends EquipableItem {
                     switch (gunType){
                         case 0:
                             this.reserve = player.pistolAmmo;
+                            break;
                         case 1:
                             this.reserve = player.rifleAmmo;
+                            break;
                         case 2:
                             this.reserve = player.shotgunAmmo;
+                            break;
                         case 3:
                             this.reserve = player.musketAmmo;
+                            break;
+                        case 4:
+                            this.reserve = player.meleeAmmo;
+                            break;
                     }
                 }else{
                     this.reserve = 100;
@@ -83,14 +91,19 @@ public abstract class Gun extends EquipableItem {
                     gunShotSound.play();
                     Bullet shot;
                     if(this.parent.TAG == "player") {
-                        if (this.player.getAimDirection().x > 0)
-                            shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel() - 1) * 3), damage + ((player.getPlayerLevel() - 1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)), false);
+                        if(this.player.getActiveWeapon().id == 14)
+                            isFist = true;
                         else
-                            shot = new Bullet(new Vector2(this.getPosition().x - (6 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel()-1) * 3), damage + ((player.getPlayerLevel()-1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)), false);
+                            isFist = false;
+                        if (this.player.getAimDirection().x > 0)
+                            shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel() - 1) * 3), damage + ((player.getPlayerLevel() - 1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)), isFist);
+                        else
+                            shot = new Bullet(new Vector2(this.getPosition().x - (6 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed + ((player.getPlayerLevel()-1) * 3), damage + ((player.getPlayerLevel()-1) * 5), friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.friendlyBullet, Texture.class)), isFist);
                     } else {
                         shot = new Bullet(new Vector2(this.getPosition().x + (2 * this.getSprite().getRegionWidth()), this.getPosition().y), this.aimDirection().nor(), speed, damage, friendly, new Sprite(ButchGame.assets.get(ButchGame.assets.enemyBullet, Texture.class)), false);
                     }
-                    Shell shell = new Shell(this.getPosition());
+                    if(!isFist)
+                        shell = new Shell(this.getPosition());
                     lastShot = thisShot;
                     clip -= 1;
                     return true;
@@ -128,6 +141,8 @@ public abstract class Gun extends EquipableItem {
                 reserve = player.shotgunAmmo;
             } else if (gunType == 3) {
                 reserve = player.musketAmmo;
+            } else if (gunType == 4) {
+                reserve = player.meleeAmmo;
             }
             System.out.println("Player RELOAD!");
             System.out.println("Player RESERVE AMMO:" + reserve);
@@ -143,6 +158,8 @@ public abstract class Gun extends EquipableItem {
                         player.shotgunAmmo += clip;
                     } else if (gunType == 3) {
                         player.musketAmmo += clip;
+                    } else if (gunType == 4) {
+                        player.meleeAmmo += clip;
                     }
 
                     clip = clipSize;
@@ -155,6 +172,8 @@ public abstract class Gun extends EquipableItem {
                         player.shotgunAmmo -= clipSize;
                     } else if (gunType == 3) {
                         player.musketAmmo -= clipSize;
+                    } else if (gunType == 4) {
+                        player.meleeAmmo -= clipSize;
                     }
                 } else {
                     clip = reserve;
@@ -167,6 +186,8 @@ public abstract class Gun extends EquipableItem {
                         player.shotgunAmmo = 0;
                     } else if (gunType == 3) {
                         player.musketAmmo = 0;
+                    } else if (gunType == 4) {
+                        player.meleeAmmo = 0;
                     }
                 }
 

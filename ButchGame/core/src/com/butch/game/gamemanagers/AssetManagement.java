@@ -150,6 +150,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String butchHandsWalking = "Anim/Butch/handsWalking.atlas";
     public final String butchHorseRiding = "Anim/Butch/butchHorseRiding.atlas";
     public final String butchHorseIdle = "Anim/Butch/butchHorseIdle.atlas";
+    public final String butchHandsIdle = "Anim/Butch/butchHandsIdle.png";
     //ENEMIES
     public final String enemy1Idle = "Anim/Enemies/enemy1Idle.atlas";
     public final String enemy1Walking = "Anim/Enemies/enemy1Walking.atlas";
@@ -176,6 +177,9 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String shotgunReload = "Anim/Guns/shotgunReload.atlas";
     public final String shotgunWalking = "Anim/Guns/shotgunWalking.atlas";
     public final String shotgunPickup = "Anim/Guns/shotgunPickup.atlas";
+    public final String meleeIdle = "Anim/Guns/meleeIdle.atlas";
+    public final String meleeWalking = "Anim/Guns/meleeWalking.atlas";
+    public final String meleeFiring = "Anim/Guns/meleeFiring.atlas";
     //NPC
     public final String npc1Idle = "Anim/NPC/npc1Idle.atlas";
     public final String npc2Idle = "Anim/NPC/npc2Idle.atlas";
@@ -396,7 +400,8 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //Bullets
         load(friendlyBullet, Texture.class);
         load(enemyBullet, Texture.class);
-
+        //
+        load(butchHandsIdle, Texture.class);
 
         load(healthPotion, Texture.class);
         load(butchIdleAnim, TextureAtlas.class);//FrameDuration = 0.25f
@@ -500,6 +505,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(musketPickup, TextureAtlas.class);
         load(musketSprite, Texture.class);
         load(musketSilhoutte, Texture.class);
+        //Melee
+        load(meleeFiring, TextureAtlas.class);
+        load(meleeIdle, TextureAtlas.class);
+        load(meleeWalking, TextureAtlas.class);
 
         //HUD
         //Character Screen

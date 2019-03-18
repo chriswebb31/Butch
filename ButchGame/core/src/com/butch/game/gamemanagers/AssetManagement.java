@@ -260,13 +260,18 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String potionCollection = "SoundFX/potionFX.mp3";
 
     //Gun Sounds
-    public final String cannonFire = "SoundFX/GunSounds/cannonFire.mp3";
-    public final String gatlingFire = "SoundFX/GunSounds/gatlingFire.mp3";
+    //public final String cannonFire = "SoundFX/GunSounds/cannonFire.mp3";
+    //public final String gatlingFire = "SoundFX/GunSounds/gatlingFire.mp3";
+    //public final String rifleFire = "SoundFX/GunSounds/rifleFire.mp3";
     public final String machinegunFire = "SoundFX/GunSounds/machinegunFire.mp3";
     public final String musketFire = "SoundFX/GunSounds/musketFire.mp3";
     public final String revolverFire = "SoundFX/GunSounds/revolverFire.mp3";
-    public final String rifleFire = "SoundFX/GunSounds/rifleFire.mp3";
     public final String shotgunFire = "SoundFX/GunSounds/shotgunFire.mp3";
+
+
+    public final String machineGunReloadNoise = "SoundFX/GunSounds/rifleReload.mp3";
+    //public final String musketReloadNoise = "SoundFX/GunSounds/musketReload.mp3";
+    public final String revolverReloadNoise = "SoundFX/GunSounds/revolverReload.mp3";
     public final String shotgunReloadNoise = "SoundFX/GunSounds/shotgunReload.mp3";
 
     //Animal sounds
@@ -621,18 +626,17 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(revolverFire, Sound.class);
         load(musketFire, Sound.class);
         load(shotgunFire, Sound.class);
-        load(gatlingFire, Sound.class);
         load(machinegunFire, Sound.class);
-        load(cannonFire, Sound.class);
-        load(rifleFire, Sound.class);
+        //load(cannonFire, Sound.class);
+        //load(rifleFire, Sound.class);
+        //load(gatlingFire, Sound.class);
 
 
         //Gun reload SOUNDS
-        //   load(revolverReloadNoise, Sound.class);
-        //   load(musketReloadNoise, Sound.class);
-        //   load(coltReloadNoise, Sound.class);
+        load(revolverReloadNoise, Sound.class);
+      //  load(musketReloadNoise, Sound.class);
         load(shotgunReloadNoise, Sound.class);
-        //   load(machineGunReloadNoise, Sound.class);
+        load(machineGunReloadNoise, Sound.class);
 
 
         //character noises

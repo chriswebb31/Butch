@@ -15,6 +15,8 @@ import java.util.Random;
 public abstract class Gun extends EquipableItem {
     /*
     gun types
+    3: musket
+    2: shotgun
     1: rifle
     0 : pistol
 

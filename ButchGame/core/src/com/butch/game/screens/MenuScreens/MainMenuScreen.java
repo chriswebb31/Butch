@@ -277,7 +277,7 @@ public class MainMenuScreen implements Screen {
                  saveGame.setProperty("SHOTGUNAMMO", String.valueOf(20));
                  saveGame.setProperty("MUSKETAMMO", String.valueOf(5));
                  saveGame.setProperty("GUNINVENTORY", String.valueOf(10));
-                 saveGame.setProperty("LEVEL", String.valueOf(0));
+                 saveGame.setProperty("LEVEL", String.valueOf(1));
 
                 saveGame.store(outputStream, null);
                 outputStream.close();
@@ -438,7 +438,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new AboutScreen(game, game.gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new AboutScreen(game),stage,game);
          }
      });
      needHelpButton.addListener(new ClickListener(){
@@ -455,7 +455,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new NeedHelpScreen(game,game.gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new NeedHelpScreen(game),stage,game);
          }
 
      });
@@ -470,7 +470,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new SettingsScreen(game, game.gameViewPort, returnThis()),stage,game);
+             TransitionScreen.transitionOut(new SettingsScreen(game, returnThis()),stage,game);
          }
      });
 

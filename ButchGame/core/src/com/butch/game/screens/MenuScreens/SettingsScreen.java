@@ -40,8 +40,8 @@ public class SettingsScreen implements Screen {
     static TransitionScreen transitionScreen;
     FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Data/HOMINIS.ttf"));
     FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
-    public SettingsScreen(final ButchGame game, FitViewport gameViewPort, final MainMenuScreen menuScreen){
-        this.gameViewPort = gameViewPort;
+    public SettingsScreen(final ButchGame game,  final MainMenuScreen menuScreen){
+        gameViewPort = new FitViewport(game.TARGET_WIDTH,game.TARGET_HEIGHT);
         this.game = game;
         this.menuScreen = menuScreen;
 

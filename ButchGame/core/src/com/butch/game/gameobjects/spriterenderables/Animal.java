@@ -45,27 +45,27 @@ public class Animal extends Renderable {
         this.previousState = State.IDLE;
         switch(this.animalType) {
             case 0 : //Chicken
-                this.animalNoise = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
+                this.animalNoise = ButchGame.assets.get(ButchGame.assets.chickenNoise, Sound.class);
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.chickenIdle, TextureAtlas.class).getRegions());
                 break;
             case 1 : //Cow
-                this.animalNoise = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
+                this.animalNoise = ButchGame.assets.get(ButchGame.assets.cowNoise, Sound.class);
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.cowIdle, TextureAtlas.class).getRegions());
                 break;
             case 2 : //Goat
-                this.animalNoise = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
+                this.animalNoise = ButchGame.assets.get(ButchGame.assets.goatNoise, Sound.class);
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.goatIdle, TextureAtlas.class).getRegions());
                 break;
             case 3 : //Pig
-                this.animalNoise = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
+                this.animalNoise = ButchGame.assets.get(ButchGame.assets.pigNoise, Sound.class);
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.pigIdle, TextureAtlas.class).getRegions());
                 break;
             case 4 : //Racoon
-                this.animalNoise = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
+                this.animalNoise = ButchGame.assets.get(ButchGame.assets.racoonIdle, Sound.class);
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.racoonIdle, TextureAtlas.class).getRegions());
                 break;
             case 5 : //Turkey
-                this.animalNoise = ButchGame.assets.get(ButchGame.assets.revolverReloadEeffect, Sound.class);
+                this.animalNoise = ButchGame.assets.get(ButchGame.assets.turkeyNoise, Sound.class);
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.turkeyIdle, TextureAtlas.class).getRegions());
                 break;
         }
@@ -79,6 +79,7 @@ public class Animal extends Renderable {
                     if (renderable.TAG == "player") {
                         if (Intersector.overlaps(this.activateRange, renderable.getCollider())) {
                             this.interactActive = true;
+                            animalNoise.play();
                         }
                     }
                 }

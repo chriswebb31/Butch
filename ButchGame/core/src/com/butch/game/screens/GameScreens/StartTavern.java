@@ -55,21 +55,21 @@ private boolean showHud = true;
     }
 
     @Override
-    public void render(float delta){
+    public void render(float delta) {
         //Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
         updateCameraPosition();
-        for(Rectangle endPointLoc : endPoints) {
-            if(player.getCollider().overlaps(endPointLoc)) {
-                if(endPoints.indexOf(endPointLoc) == 0) {
+        for (Rectangle endPointLoc : endPoints) {
+            if (player.getCollider().overlaps(endPointLoc)) {
+                if (endPoints.indexOf(endPointLoc) == 0) {
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;
                     player.getFrame(delta, Player.State.IDLE);
-                    Hud.stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable(){
+                    Hud.stage.addAction(Actions.sequence(Actions.fadeOut(1), Actions.run(new Runnable() {
                         @Override
                         public void run() {
-                            Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
-                            game.setScreen( new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
+                            Hud.stage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1)));
+                            game.setScreen(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
                         }
                     })));
                     playSound.play();
@@ -89,68 +89,60 @@ private boolean showHud = true;
             }
         }
         super.render(delta);
-            if(cutSceneStart){
-                if(player.getPosition().y <= currentPosy + 1050 ){
-                    //currentPosy = player.getPosition().y;
-                    player.allowedtoPress = false;
-                    player.getPosition().y+=10.f;
+        if (cutSceneStart) {
+            if (player.getPosition().y <= currentPosy + 1050) {
+                //currentPosy = player.getPosition().y;
+                player.allowedtoPress = false;
+                player.getPosition().y += 10.f;
 
-                }
-                else{
-                    phase2=true;
-                }
-                if(phase2==true){
-                    if(player.getPosition().x <= currentPosx + 810 ){
-                        player.getPosition().x+=10.f;
-
-                    }
-                    else{
-                        phase2=false;
-                       phase3=true;
-                    }
-                }
-                if(phase3==true){
-                    if(player.getPosition().y <= currentPosy + 1050+ 1363 ){
-                        player.getPosition().y+=10.f;
-
-                    }
-                    else{
-                        phase3=false;
-                        phase4 = true;
-                    }
-                }
-                if(phase4==true){
-                    if(player.getPosition().x <= currentPosx + 810 + 710 ){
-                        player.getPosition().x+=10.f;
-
-                    }
-                    else{
-                        phase4=false;
-                        phase5 = true;
-                        player.allowedtoPress = true;
-
-                        cutSceneStart = false;
-
-                    }
-                }
-
-
+            } else {
+                phase2 = true;
             }
+            if (phase2 == true) {
+                if (player.getPosition().x <= currentPosx + 810) {
+                    player.getPosition().x += 10.f;
+
+                } else {
+                    phase2 = false;
+                    phase3 = true;
+                }
+            }
+            if (phase3 == true) {
+                if (player.getPosition().y <= currentPosy + 1050 + 1363) {
+                    player.getPosition().y += 10.f;
+
+                } else {
+                    phase3 = false;
+                    phase4 = true;
+                }
+            }
+            if (phase4 == true) {
+                if (player.getPosition().x <= currentPosx + 810 + 710) {
+                    player.getPosition().x += 10.f;
+
+                } else {
+                    phase4 = false;
+                    phase5 = true;
+                    player.allowedtoPress = true;
+
+                    cutSceneStart = false;
+
+                }
+            }
+
+
+        }
         if (cutSceneStart == false && Gdx.input.isKeyPressed(Input.Keys.X)) {
             inventory.draw();
         }
-
-
-
-        super.render(delta);
     }
-void readNewsPaper(){
-//        batch.begin();
-//        batch.draw(newspaper, game.TARGET_WIDTH/2, game.TARGET_HEIGHT/2, 500,500);
-//        batch.end();
-//    stage.addActor(news);
-//    stage.draw();
-}
+//void readNewsPaper(){
+////        batch.begin();
+////        batch.draw(newspaper, game.TARGET_WIDTH/2, game.TARGET_HEIGHT/2, 500,500);
+////        batch.end();
+////    stage.addActor(news);
+////    stage.draw();
+//}
     @Override
     public void pause() {
 

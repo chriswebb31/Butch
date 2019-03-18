@@ -128,7 +128,8 @@ public class Hud implements Disposable{
 
     @Override
     public void dispose() {
-        //stage.dispose();
+        stage.dispose();
+
     }
 
     public Label getNpcText() { return npcText; }

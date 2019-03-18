@@ -34,6 +34,7 @@ import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.NPC;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.gameobjects.weapons.GunCreator;
+import com.butch.game.screens.MenuScreens.MainMenuScreen;
 import com.butch.game.screens.TransitionScreen;
 import com.butch.game.screens.transitionScreens.ScreenTransitionAction;
 
@@ -79,6 +80,7 @@ public abstract class ModelGameScreen implements Screen {
     public ArrayList<Rectangle> mapColliders;
     ShapeRenderer shapeRenderer;
     Music music;
+    Music tavernMusic,playSound;
     // private Stage stage;
     /////////initializing hud vars////////////////////
     Hud hud;
@@ -92,10 +94,14 @@ public abstract class ModelGameScreen implements Screen {
     static TransitionScreen transitionScreen;
     private boolean isTalking = false;
     private boolean showHud = true;
+
     private CharacterScreen inventory;
 
     public ModelGameScreen(ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int spawnPointLoc){
 //        this.levelNumber = levelNumber;
+
+        tavernMusic = ButchGame.assets.get(ButchGame.assets.saloonBackNoise1, Music.class);
+        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
@@ -155,6 +161,7 @@ public abstract class ModelGameScreen implements Screen {
 
         healthBarBG = new Sprite(ButchGame.assets.get(ButchGame.assets.enemyHBBG, Texture.class));
         healthBarFG = new Sprite (ButchGame.assets.get(ButchGame.assets.enemyHBFG, Texture.class));
+        player.isAllowedToMove = true;
     }
     public ModelGameScreen(int coinCounter, ButchGame game, FitViewport gameViewPort, TiledMap tiledMap, ArrayList<Gun> weapons, int playerLevel, int spawnPointLoc) {
 //        this.levelNumber = levelNumber;
@@ -322,7 +329,7 @@ public abstract class ModelGameScreen implements Screen {
 
     @Override
     public void show() {
-       // Gdx.input.setInputProcessor(stage);
+       Gdx.input.setInputProcessor(stage);
       //  transitionScreen.transitionIn(stage);
     }
 
@@ -448,13 +455,27 @@ public abstract class ModelGameScreen implements Screen {
         if(showHud) {
             hud.stage.act(delta);
             renderHUD();
-        } else {
+        }
+        else {
             inventory.drawStage();
         }
 
 //        hud.stage.act(delta);
 //        renderHUD();
         renderEnemyHB();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.setScreen(new MainMenuScreen(game, gameViewPort));
+            music.pause();
+            tiledMap.dispose();
+            hud.dispose();
+            stage.dispose();
+            batch.dispose();
+            tavernMusic.pause();
+            player.isAllowedToMove = false;
+            playSound.stop();
+//            cursor.dispose();
+//            Gdx.app.exit();
+        }
 
     }
 
@@ -531,6 +552,7 @@ public abstract class ModelGameScreen implements Screen {
         hud.render(player.getPlayerHealthPercent());
 
         hud.stage.draw();
+
 
     }
 

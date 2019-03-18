@@ -25,7 +25,7 @@ import com.butch.game.screens.transitionScreens.ScreenTransitionAction;
 import com.butch.game.screens.transitionScreens.ScreenTransitionActor;
 
 public class Hud implements Disposable{
-    public Stage stage;
+    public static Stage stage;
     private Viewport viewport;
     public Label levelLabel;
     public Label weaponLabel;
@@ -105,7 +105,7 @@ public class Hud implements Disposable{
 //        table.add(coinLabel).expand().bottom().left().pad(5);
 
 
-        _transitionActor = new ScreenTransitionActor();
+
 
         stage.addActor(table);
         stage.addActor(ammoCountImage);
@@ -113,8 +113,8 @@ public class Hud implements Disposable{
         stage.addActor(healthBarFG);
         stage.addActor(coinCounterOne);
         stage.addActor(coinCounterTen);
-        stage.addActor(_transitionActor);
-        _transitionActor.setVisible(false);
+
+
     }
     public void render(float width){
         if(player.getPlayerHealthPercent()*3 >= 100*3){
@@ -128,7 +128,8 @@ public class Hud implements Disposable{
 
     @Override
     public void dispose() {
-        //stage.dispose();
+        stage.dispose();
+
     }
 
     public Label getNpcText() { return npcText; }
@@ -169,10 +170,5 @@ public class Hud implements Disposable{
         dialogueBox.setVisible(isVisible);
     }
 
-    public  void addTransitionToScreen(){
-        _transitionActor.setVisible(true);
-        stage.addAction(Actions.sequence(
-                        Actions.addAction(ScreenTransitionAction.transition(
-                                ScreenTransitionAction.ScreenTransitionType.FADE_IN, 1),_transitionActor)));
-    }
+
 }

@@ -252,9 +252,7 @@ public class Player extends Renderable {
                 }
             }
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            Gdx.app.exit();
-        }
+
     }
 
     private void movementHandler() {

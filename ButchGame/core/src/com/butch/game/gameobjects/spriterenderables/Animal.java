@@ -61,7 +61,7 @@ public class Animal extends Renderable {
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.pigIdle, TextureAtlas.class).getRegions());
                 break;
             case 4 : //Racoon
-                this.animalNoise = ButchGame.assets.get(ButchGame.assets.racoonIdle, Sound.class);
+                this.animalNoise = ButchGame.assets.get(ButchGame.assets.raccoonNoise, Sound.class);
                 this.animalAnim = new Animation<TextureRegion>(0.3f, ButchGame.assets.get(ButchGame.assets.racoonIdle, TextureAtlas.class).getRegions());
                 break;
             case 5 : //Turkey

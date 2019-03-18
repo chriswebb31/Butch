@@ -16,11 +16,9 @@ import java.util.ArrayList;
 public class PrisonLevel extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.prison);
     private int coinCounter;
-    Music prisonMusic,playSound;
+
     public PrisonLevel(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
-        prisonMusic = ButchGame.assets.get(ButchGame.assets.prisonMusic1, Music.class);
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
         prisonMusic.setVolume(0.3f);
         music.pause();
         prisonMusic.play();

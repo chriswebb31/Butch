@@ -81,6 +81,10 @@ public abstract class ModelGameScreen implements Screen {
     ShapeRenderer shapeRenderer;
     Music music;
     Music tavernMusic,playSound;
+    Music prisonMusic;
+    Music mazeMusic;
+    Music bigCityMusic;
+
     // private Stage stage;
     /////////initializing hud vars////////////////////
     Hud hud;
@@ -99,9 +103,11 @@ public abstract class ModelGameScreen implements Screen {
 
     public ModelGameScreen(ButchGame game, FitViewport gameViewPort,TiledMap tiledMap, int spawnPointLoc){
 //        this.levelNumber = levelNumber;
-
+        mazeMusic = ButchGame.assets.get(ButchGame.assets.endMazeMapTheme, Music.class);
         tavernMusic = ButchGame.assets.get(ButchGame.assets.saloonBackNoise1, Music.class);
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+        prisonMusic = ButchGame.assets.get(ButchGame.assets.prisonMusic1, Music.class);
+        bigCityMusic = ButchGame.assets.get(ButchGame.assets.bigCityTheme, Music.class);
         this.game = game;
         this.gameViewPort = gameViewPort;
         this.batch = new SpriteBatch();
@@ -473,8 +479,11 @@ public abstract class ModelGameScreen implements Screen {
             stage.dispose();
             batch.dispose();
             tavernMusic.pause();
-            player.isAllowedToMove = false;
+            mazeMusic.stop();
+            bigCityMusic.stop();
             playSound.stop();
+            prisonMusic.stop();
+            player.isAllowedToMove = false;
 //            cursor.dispose();
 //            Gdx.app.exit();
         }

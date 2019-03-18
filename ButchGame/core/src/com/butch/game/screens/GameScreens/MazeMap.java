@@ -13,16 +13,14 @@ public class MazeMap extends ModelGameScreen{
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.mazeMap);
     private Music playSound;
     private int coinCounter;
-    Music mazeMusic;
+
 
     public MazeMap(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super( game, gameViewPort, map, spawnLocation);
-        mazeMusic = ButchGame.assets.get(ButchGame.assets.endMazeMapTheme, Music.class);
-        mazeMusic.setVolume(1.0f);
         music.pause();
         mazeMusic.play();
+        mazeMusic.setVolume(1.0f);
         mazeMusic.setLooping(true);
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
 
     }
 

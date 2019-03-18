@@ -70,7 +70,7 @@ public class MainMenuScreen implements Screen {
         music.setLooping(true);
         music.play();
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
-
+        playSound.setVolume(0.3f);
         doorsOpenAtlas = ButchGame.assets.get(ButchGame.assets.doorsMain, TextureAtlas.class);
         doorsOpenAnim = new Animation<TextureRegion>(0.15f, doorsOpenAtlas.getRegions());
         currentState = State.NOTCLICKED;

@@ -12,11 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
-<<<<<<< Updated upstream
 import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
-=======
 import com.butch.game.gameobjects.HUDObjects.Hud;
->>>>>>> Stashed changes
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.screens.cutscenes.NewsPaperScene;
@@ -143,16 +140,9 @@ private boolean showHud = true;
             inventory.draw();
         }
 
-
-
-<<<<<<< Updated upstream
-=======
-
         super.render(delta);
     }
->>>>>>> Stashed changes
 
-    }
 void readNewsPaper(){
 //        batch.begin();
 //        batch.draw(newspaper, game.TARGET_WIDTH/2, game.TARGET_HEIGHT/2, 500,500);

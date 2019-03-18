@@ -177,6 +177,21 @@ public class MainMenuScreen implements Screen {
          * creating the Buttons as Image Buttons
          * setting position and size with .setBounds method. */
 
+        Properties saveGame = new Properties();
+        InputStream inputStream = null;
+        int progress = 0;
+
+        try {
+            inputStream = new FileInputStream("Saves/savegame.properties");
+            if (inputStream != null) {
+                saveGame.load(inputStream);
+                progress = Integer.parseInt(saveGame.getProperty("PROGRESS"));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         settingsButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.settingsButtonActiveSprite, Texture.class));
         settingsButton = new ImageButton(new SpriteDrawable(settingsButtonActive));
         settingsButton.setBounds(0,game.TARGET_HEIGHT/1.0588f,game.TARGET_WIDTH/32,game.TARGET_HEIGHT/18);
@@ -187,7 +202,12 @@ public class MainMenuScreen implements Screen {
         playButton.setBounds(game.TARGET_WIDTH/24.0f,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         continueButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.continueButtonActive, Texture.class));
         continueButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.continueButtonInactive, Texture.class));
-        continueButton = new ImageButton(new SpriteDrawable(continueButtonInactive), new SpriteDrawable(continueButtonActive));
+        if(progress > 0){
+            continueButton = new ImageButton(new SpriteDrawable(continueButtonActive), new SpriteDrawable(continueButtonActive));
+        }
+        else{
+            continueButton = new ImageButton(new SpriteDrawable(continueButtonInactive), new SpriteDrawable(continueButtonActive));
+        }
         continueButton.setBounds(game.TARGET_WIDTH/3.99f,game.TARGET_HEIGHT/1.70616f,game.TARGET_WIDTH/5.9813f,game.TARGET_HEIGHT/7.8832f);
         aboutButtonActive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonActiveSprite, Texture.class));
         aboutButtonInactive = new Sprite(ButchGame.assets.get(ButchGame.assets.aboutButtonInactiveSprite, Texture.class));
@@ -403,6 +423,7 @@ public class MainMenuScreen implements Screen {
                 }
             }
         });
+
      aboutButton.addListener(new ClickListener(){
          @Override
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){

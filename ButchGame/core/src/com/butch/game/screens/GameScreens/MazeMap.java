@@ -17,15 +17,12 @@ public class MazeMap extends ModelGameScreen{
 
     public MazeMap(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super( game, gameViewPort, map, spawnLocation);
-<<<<<<< Updated upstream
         mazeMusic = ButchGame.assets.get(ButchGame.assets.endMazeMapTheme, Music.class);
         mazeMusic.setVolume(1.0f);
         music.pause();
         mazeMusic.play();
         mazeMusic.setLooping(true);
-=======
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
->>>>>>> Stashed changes
     }
 
 
@@ -42,11 +39,9 @@ public class MazeMap extends ModelGameScreen{
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     updateSave(1);
-<<<<<<< Updated upstream
                     mazeMusic.stop();
                     music.play();
                     game.setScreen(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
-=======
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;
@@ -72,7 +67,6 @@ public class MazeMap extends ModelGameScreen{
                         }
                     });
 
->>>>>>> Stashed changes
                 }
             }
         }

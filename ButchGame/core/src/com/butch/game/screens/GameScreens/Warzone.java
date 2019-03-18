@@ -21,7 +21,7 @@ public class Warzone extends ModelGameScreen {
         super( game, gameViewPort, map, spawnLocation);
         music.pause();
         warzoneMusic.play();
-        warzoneMusic.setVolume(1.0f);
+        warzoneMusic.setVolume(1.5f);
         warzoneMusic.setLooping(true);
     }
 

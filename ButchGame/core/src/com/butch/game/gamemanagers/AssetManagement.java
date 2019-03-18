@@ -312,7 +312,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String bigCityTheme =  "Music/BigCity.mp3";
     public final String snowTheme =  "Music/Snow.mp3";
     public final String caveTheme = "Music/Cave.mp3";
-    public final String warzoneTheme = "Music/Warzone";
+    public final String warzoneTheme = "Music/Warzone.mp3";
 
     //PARTICLES
 

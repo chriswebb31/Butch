@@ -105,7 +105,7 @@ public class Hud implements Disposable{
 //        table.add(coinLabel).expand().bottom().left().pad(5);
 
 
-        _transitionActor = new ScreenTransitionActor();
+
 
         stage.addActor(table);
         stage.addActor(ammoCountImage);
@@ -114,8 +114,7 @@ public class Hud implements Disposable{
         stage.addActor(coinCounterOne);
         stage.addActor(coinCounterTen);
 
-       // stage.addActor(_transitionActor);
-        //_transitionActor.setVisible(false);
+
     }
     public void render(float width){
         if(player.getPlayerHealthPercent()*3 >= 100*3){

@@ -23,6 +23,7 @@ public class MazeMap extends ModelGameScreen{
         mazeMusic.play();
         mazeMusic.setLooping(true);
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+
     }
 
 

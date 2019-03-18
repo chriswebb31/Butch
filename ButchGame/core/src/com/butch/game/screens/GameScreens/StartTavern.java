@@ -14,6 +14,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
 import com.butch.game.gameobjects.HUDObjects.Hud;
+
+import com.butch.game.gameobjects.HUDObjects.CharacterScreen;
+import com.butch.game.gameobjects.HUDObjects.Hud;
+
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
 import com.butch.game.screens.cutscenes.NewsPaperScene;
@@ -28,7 +32,7 @@ public class StartTavern extends ModelGameScreen {
 //    Vector2 movingpos;
 //    Texture newspaper;
 //    Image news;
-private boolean showHud = true;
+//    private boolean showHud = true;
     private NewsPaperScene inventory;
     public static boolean cutSceneStart = true;
     public StartTavern(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="91" height="76" tilewidth="32" tileheight="32" infinite="0" nextlayerid="48" nextobjectid="387">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="91" height="76" tilewidth="32" tileheight="32" infinite="0" nextlayerid="48" nextobjectid="409">
  <tileset firstgid="1" source="prisonTiles.tsx"/>
  <tileset firstgid="144" source="TileSets/Big Trees.tsx"/>
  <tileset firstgid="272" source="TileSets/Rocks.tsx"/>
@@ -651,6 +651,16 @@
  </objectgroup>
  <objectgroup id="36" name="ItemLayer">
   <object id="357" name="1" type="0" x="664" y="575"/>
+  <object id="399" name="10" x="1764.99" y="1689.85"/>
+  <object id="400" name="0" x="904.605" y="1526.32"/>
+  <object id="401" name="7" x="2572.37" y="1016.45"/>
+  <object id="402" name="5" x="743.421" y="1398.03"/>
+  <object id="403" name="5" x="726.974" y="1427.63"/>
+  <object id="404" name="5" x="740.132" y="1460.53"/>
+  <object id="405" name="5" x="333.813" y="374.101"/>
+  <object id="406" name="5" x="316.547" y="391.367"/>
+  <object id="407" name="5" x="305.036" y="417.266"/>
+  <object id="408" name="0" x="634.921" y="889.627"/>
  </objectgroup>
  <objectgroup id="37" name="EnemyLayer">
   <object id="358" name="1" x="691" y="765"/>
@@ -726,6 +736,16 @@
  </objectgroup>
  <objectgroup id="38" name="NPCLayer">
   <object id="359" name="0" x="955" y="758"/>
+  <object id="387" name="Link" x="1897.32" y="2030.42"/>
+  <object id="388" name="Sucre" x="2000.54" y="2008.69"/>
+  <object id="389" name="Jez" x="1712.62" y="2087.46"/>
+  <object id="390" name="Arun" x="1298.11" y="1655"/>
+  <object id="391" name="Vivek" x="1780.97" y="1651.5"/>
+  <object id="393" name="Theadore" x="818.754" y="1242.13"/>
+  <object id="395" name="Bag" x="857.243" y="1144.16"/>
+  <object id="396" name="cNote" x="993.702" y="811.756"/>
+  <object id="397" name="Rey" x="1917.42" y="958.712"/>
+  <object id="398" name="Scofield" x="2305.81" y="1161.65"/>
  </objectgroup>
  <objectgroup id="39" name="AnimalLayer">
   <object id="360" name="4" x="970" y="316"/>

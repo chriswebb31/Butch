@@ -26,7 +26,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Player extends Renderable {
-    private int playerLevel;
+    private int playerLevel = 1;
     private boolean followCamera = true;
     public Vector3 shake;
     public Vector3 reverseShake;

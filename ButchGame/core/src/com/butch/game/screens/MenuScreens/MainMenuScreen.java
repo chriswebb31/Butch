@@ -235,7 +235,6 @@ public class MainMenuScreen implements Screen {
          public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
 //             playButton.setBounds(75,game.TARGET_HEIGHT-540,331,147);
              playButton.setBounds(game.TARGET_WIDTH/25.6f,game.TARGET_HEIGHT/2,game.TARGET_WIDTH/5.80060f,game.TARGET_HEIGHT/3.34693f);
-
          }
          @Override
          public void exit(InputEvent event, float x, float y, int pointer, Actor toActor){
@@ -277,7 +276,8 @@ public class MainMenuScreen implements Screen {
                  saveGame.setProperty("RIFLEAMMO", String.valueOf(20));
                  saveGame.setProperty("SHOTGUNAMMO", String.valueOf(20));
                  saveGame.setProperty("MUSKETAMMO", String.valueOf(5));
-                saveGame.setProperty("GUNINVENTORY", String.valueOf(10));
+                 saveGame.setProperty("GUNINVENTORY", String.valueOf(10));
+                 saveGame.setProperty("LEVEL", String.valueOf(0));
 
                 saveGame.store(outputStream, null);
                 outputStream.close();
@@ -438,7 +438,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new AboutScreen(game, gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new AboutScreen(game, game.gameViewPort),stage,game);
          }
      });
      needHelpButton.addListener(new ClickListener(){
@@ -455,7 +455,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new NeedHelpScreen(game,gameViewPort),stage,game);
+             TransitionScreen.transitionOut(new NeedHelpScreen(game,game.gameViewPort),stage,game);
          }
 
      });
@@ -470,7 +470,7 @@ public class MainMenuScreen implements Screen {
          }
          public void clicked(InputEvent event, float x, float y){
              clickSound.play();
-             TransitionScreen.transitionOut(new SettingsScreen(game, gameViewPort, returnThis()),stage,game);
+             TransitionScreen.transitionOut(new SettingsScreen(game, game.gameViewPort, returnThis()),stage,game);
          }
      });
 

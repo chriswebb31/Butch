@@ -125,3 +125,7 @@ Thumbs.db
 /ios-moe/xcode/native/
 ButchGame/gradle.properties
 ButchGame/gradle.properties
+
+ButchGame/core/assets/Saves/savegame\.properties
+
+ButchGame/core/assets/Saves/

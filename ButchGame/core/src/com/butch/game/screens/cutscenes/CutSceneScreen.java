@@ -24,28 +24,19 @@ import com.butch.game.screens.TransitionScreen;
 import java.util.ArrayList;
 
 
-public class CutSceneScreen implements Screen {
-    Stage stage;
-    ButchGame game;
-    static TransitionScreen transitionScreen;
-    private OrthographicCamera camera;
-    FitViewport gameViewPort;
+public class CutSceneScreen extends ModelCutSceneScreen {
+
     private Animation<TextureRegion> npcAnim;
     float stateTime;
-    SpriteBatch batch;
     private Label welcomeText, briefText;
     private Label continueText;
     private Image introBack, bubbleSpeech;
     boolean skip = false;
     private ArrayList<Gun> weaponCache;
+
     public CutSceneScreen(ButchGame game){
-        this.game = game;
-        gameViewPort = new FitViewport(game.TARGET_WIDTH,game.TARGET_HEIGHT);
-        camera = new OrthographicCamera();
-        camera.setToOrtho(true, 1920, 1080);
+        super(game);
         npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc1Idle, TextureAtlas.class).getRegions());
-        batch = new SpriteBatch();
-        stage = new Stage(gameViewPort);
         introBack = new Image(ButchGame.assets.get(ButchGame.assets.introBack, Texture.class));
         introBack.setSize(game.TARGET_WIDTH, game.TARGET_HEIGHT);
         bubbleSpeech = new Image(ButchGame.assets.get(ButchGame.assets.bubbleSpeech, Texture.class));
@@ -83,33 +74,15 @@ public class CutSceneScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1f,1f,1f,1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         if (Gdx.input.isTouched()&& skip == true){
-//            stage.addAction(Actions.sequence(
-//                    new Action(){
-//                     float time = 0;
-//                     @Override
-//                        public boolean act(float delta ){
-//                        time += delta;
-//                        float t = time/0.5f;
-//                        t*=t;
-//                        batch.setColor(1,1,1,1-t);
-//                        return time >= 0.5f;
-//                        }
-//
-//                    },
-//                    Actions.run(new Runnable(){
-//                        @Override
-//                        public void run(){
-//                            game.setScreen(new StartTavern(0,game, gameViewPort, StartTavern.map, 1, 0));
-//                        }
-//                    })
-//            ));
-//            transitionScreen.transitionOut();
             game.setScreen(new StartTavern(game, game.gameViewPort, StartTavern.map, 0));
             this.dispose();
         }
+        /**
+         * running a sequence of actions to play the Cut Scene
+         *
+         */
         else {
             stage.addActor(introBack);
             stage.addAction(Actions.sequence(
@@ -151,16 +124,12 @@ public class CutSceneScreen implements Screen {
                     )
 
             ));
-
+            transitionScreen.transitionIn(stage);
             camera.update();
             update(delta);
-            stateTime += delta;
             batch.begin();
             batch.draw(npcAnim.getKeyFrame(0, false), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
             batch.end();
-            //System.out.println("briefText width size = " + briefText.getWidth() + " height is = " + briefText.getHeight());
-            //System.out.println("game.targetwidth is"+game.TARGET_WIDTH + game.TARGET_HEIGHT);
-            //stage.draw();
         }
     }
     public void update(float delta){
@@ -188,8 +157,8 @@ public class CutSceneScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        stage.dispose();
+//        batch.dispose();
+//        stage.dispose();
         bubbleSpeech.clear();
         introBack.clear();
         welcomeText.clear();

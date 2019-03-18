@@ -38,9 +38,9 @@ public class CutSceneScreen implements Screen {
     private Image introBack, bubbleSpeech;
     boolean skip = false;
     private ArrayList<Gun> weaponCache;
-    public CutSceneScreen(ButchGame game, FitViewport gameViewPort){
+    public CutSceneScreen(ButchGame game){
         this.game = game;
-        this.gameViewPort = gameViewPort;
+        gameViewPort = new FitViewport(game.TARGET_WIDTH,game.TARGET_HEIGHT);
         camera = new OrthographicCamera();
         camera.setToOrtho(true, 1920, 1080);
         npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.npc1Idle, TextureAtlas.class).getRegions());
@@ -56,7 +56,7 @@ public class CutSceneScreen implements Screen {
         //welcomeText.setWrap(true);
         welcomeText.setFontScale(game.TARGET_WIDTH/384);
         welcomeText.setPosition(game.TARGET_WIDTH/1.75663312f,game.TARGET_HEIGHT/1.341614907f);
-        briefText = new Label(String.format("This is an Adventure Game which\nwill blow your mind"), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
+        briefText = new Label(String.format("A Wild West Adventure Game with\n plot twists..."), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
         briefText.setColor(Color.WHITE);
 //        briefText.setWrap(true);
         briefText.setAlignment(Align.center);
@@ -77,7 +77,8 @@ public class CutSceneScreen implements Screen {
     }
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
+        transitionScreen.transitionIn(stage);
     }
 
     @Override
@@ -106,8 +107,8 @@ public class CutSceneScreen implements Screen {
 //                    })
 //            ));
 //            transitionScreen.transitionOut();
-            game.setScreen(new StartTavern(game, gameViewPort, StartTavern.map, 0));
-
+            game.setScreen(new StartTavern(game, game.gameViewPort, StartTavern.map, 0));
+            this.dispose();
         }
         else {
             stage.addActor(introBack);
@@ -150,7 +151,7 @@ public class CutSceneScreen implements Screen {
                     )
 
             ));
-            transitionScreen.transitionIn(stage);
+
             camera.update();
             update(delta);
             stateTime += delta;
@@ -189,5 +190,10 @@ public class CutSceneScreen implements Screen {
     public void dispose() {
         batch.dispose();
         stage.dispose();
+        bubbleSpeech.clear();
+        introBack.clear();
+        welcomeText.clear();
+        briefText.clear();
+        continueText.clear();
     }
 }

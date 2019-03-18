@@ -1,6 +1,7 @@
 package com.butch.game.screens.MenuScreens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -135,6 +136,9 @@ public class MainMenuScreen implements Screen {
         batch.end();
         update(delta);
         stage.draw();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Gdx.app.exit();
+        }
     }
 
     @Override
@@ -266,7 +270,7 @@ public class MainMenuScreen implements Screen {
              playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                  @Override
                  public void onCompletion(Music music) {
-                     TransitionScreen.transitionOut(new CutSceneScreen(game, gameViewPort),stage,game);
+                     TransitionScreen.transitionOut(new CutSceneScreen(game),stage,game);
                  }
              });
          }
@@ -306,7 +310,7 @@ public class MainMenuScreen implements Screen {
                                 playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                                     @Override
                                     public void onCompletion(Music music) {
-                                        TransitionScreen.transitionOut(new CutSceneScreen(game, gameViewPort),stage,game);
+                                        TransitionScreen.transitionOut(new CutSceneScreen(game),stage,game);
                                     }
                                 });
                                 break;

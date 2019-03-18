@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -30,7 +31,7 @@ public class ButchGame extends Game {
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final float TARGET_WIDTH = (float)screenSize.getWidth();
 	public static final float TARGET_HEIGHT = (float)screenSize.getHeight();
-	private static FitViewport gameViewPort;
+	public static FitViewport gameViewPort;
 	public static AssetManagement assets;
 	public static GameStateManager GSM;
 	public static RenderableManager renderableManager;
@@ -41,7 +42,7 @@ public class ButchGame extends Game {
 	public SpriteBatch batch;
 //	public static Properties saveProgress;
 //	public static boolean continueGame;
-
+    public OrthographicCamera camera;
 	public ButchGame() {
 		gameViewPort = new FitViewport(TARGET_WIDTH, TARGET_HEIGHT);
 		assets = new AssetManagement();
@@ -63,7 +64,7 @@ public class ButchGame extends Game {
 		log = new FPSLogger();
 		GSM = new GameStateManager(gameViewPort, this);
 		themeVolume = 0.05f;
-
+		camera = new OrthographicCamera();
 
 //        saveProgress = new Properties();
 //        continueGame = false;

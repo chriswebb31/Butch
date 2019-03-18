@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="118" height="118" tilewidth="32" tileheight="32" infinite="0" nextlayerid="29" nextobjectid="224">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="118" height="118" tilewidth="32" tileheight="32" infinite="0" nextlayerid="29" nextobjectid="226">
  <tileset firstgid="1" source="TileSets/Path.tsx"/>
  <tileset firstgid="129" source="TileSets/Path 2.tsx"/>
  <tileset firstgid="257" source="TileSets/Rocks.tsx"/>
@@ -666,6 +666,8 @@
   <object id="182" x="1257.33" y="3041.33" width="44" height="43.3333"/>
   <object id="183" x="1136.67" y="2524.66" width="73.6666" height="26.6666"/>
   <object id="185" x="422.917" y="2939" width="617.75" height="38"/>
+  <object id="224" x="1233.25" y="503.25" width="90" height="51.5"/>
+  <object id="225" x="1369.75" y="503.5" width="101" height="51.25"/>
  </objectgroup>
  <objectgroup id="8" name="Points">
   <object id="1" name="0" x="2768" y="3344"/>

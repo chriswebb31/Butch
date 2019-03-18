@@ -70,8 +70,9 @@ public class NewGameScreen extends ModelGameScreen {
                         @Override
                         public void run() {
                             Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
-                           game.setScreen(new Level2(game, gameViewPort, Level2.map, 0));
-                                                     
+                            game.setScreen(new Level2(game, gameViewPort, Level2.map, 0));
+
+
                         }
                     })));
                     playSound.setVolume(0);

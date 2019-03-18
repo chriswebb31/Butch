@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 public class SnowyMountain extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.snowyMountain);
-    private Music playSound;
-    Music snowMusic;
+
 
     public SnowyMountain(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);

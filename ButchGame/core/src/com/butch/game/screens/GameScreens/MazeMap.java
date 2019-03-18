@@ -11,7 +11,6 @@ import com.butch.game.gameobjects.spriterenderables.Player;
 
 public class MazeMap extends ModelGameScreen{
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.mazeMap);
-    private Music playSound;
     private int coinCounter;
 
 

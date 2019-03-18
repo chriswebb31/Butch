@@ -14,10 +14,14 @@ import java.util.ArrayList;
 
 public class Cave extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.cave);
-    private Music playSound;
+
+
     public Cave(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+        music.pause();
+        caveMusic.play();
+        caveMusic.setVolume(1.0f);
+        caveMusic.setLooping(true);
     }
 
     @Override
@@ -33,6 +37,8 @@ public class Cave extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {
                     updateSave(7);
+                    caveMusic.stop();
+                    music.play();
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;

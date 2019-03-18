@@ -85,6 +85,8 @@ public abstract class ModelGameScreen implements Screen {
     Music mazeMusic;
     Music bigCityMusic;
     Music snowMusic;
+    Music caveMusic;
+    Music warzoneMusic;
 
     // private Stage stage;
     /////////initializing hud vars////////////////////
@@ -110,6 +112,9 @@ public abstract class ModelGameScreen implements Screen {
         prisonMusic = ButchGame.assets.get(ButchGame.assets.prisonMusic1, Music.class);
         bigCityMusic = ButchGame.assets.get(ButchGame.assets.bigCityTheme, Music.class);
         snowMusic = ButchGame.assets.get(ButchGame.assets.snowTheme, Music.class);
+        caveMusic = ButchGame.assets.get(ButchGame.assets.caveTheme, Music.class);
+        warzoneMusic = ButchGame.assets.get(ButchGame.assets.warzoneTheme, Music.class);
+
 
         this.game = game;
         this.gameViewPort = gameViewPort;
@@ -485,6 +490,8 @@ public abstract class ModelGameScreen implements Screen {
             mazeMusic.stop();
             bigCityMusic.stop();
             snowMusic.stop();
+            caveMusic.stop();
+            warzoneMusic.stop();
             playSound.stop();
             prisonMusic.stop();
             player.isAllowedToMove = false;

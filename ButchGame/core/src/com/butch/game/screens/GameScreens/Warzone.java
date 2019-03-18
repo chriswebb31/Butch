@@ -14,12 +14,15 @@ import java.util.ArrayList;
 
 
 public class Warzone extends ModelGameScreen {
-    private Music playSound;
+
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.warzone);
     private int coinCounter;
     public Warzone(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super( game, gameViewPort, map, spawnLocation);
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+        music.pause();
+        warzoneMusic.play();
+        warzoneMusic.setVolume(1.0f);
+        warzoneMusic.setLooping(true);
     }
 
 
@@ -36,6 +39,8 @@ public class Warzone extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     updateSave(1);
+                    warzoneMusic.stop();
+                    music.play();
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;

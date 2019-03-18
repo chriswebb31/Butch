@@ -39,7 +39,7 @@ public class MazeMap extends ModelGameScreen{
                     updateSave(1);
                     mazeMusic.stop();
                     music.play();
-                    game.setScreen(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
+                    //game.setScreen(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;

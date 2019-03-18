@@ -18,7 +18,6 @@ public class SnowyMountain extends ModelGameScreen {
 
     public SnowyMountain(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
         snowMusic = ButchGame.assets.get(ButchGame.assets.snowTheme, Music.class);
         music.pause();
         snowMusic.play();

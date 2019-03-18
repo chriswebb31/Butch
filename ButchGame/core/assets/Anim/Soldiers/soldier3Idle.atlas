@@ -1,0 +1,19 @@
+soldier3Idle.png
+size: 42, 25
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+soldier3-0
+  rotate: false
+  xy: 1, 1
+  size: 19, 23
+  orig: 19, 23
+  offset: 0, 0
+  index: -1
+soldier3-1
+  rotate: false
+  xy: 22, 1
+  size: 19, 23
+  orig: 19, 23
+  offset: 0, 0
+  index: -1

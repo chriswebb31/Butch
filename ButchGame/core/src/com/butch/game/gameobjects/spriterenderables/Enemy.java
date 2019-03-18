@@ -54,6 +54,9 @@ public class Enemy extends Renderable  {
     private Animation<TextureRegion> enemy4Idle;
     private Animation<TextureRegion> enemy4Walking;
 
+    private Animation<TextureRegion> enemyIdle;
+    private Animation<TextureRegion> enemyWalking;
+
     private int enemyType;
     public ArrayList<Vector2> route;
     public Vector2 targetPos;
@@ -86,22 +89,21 @@ public class Enemy extends Renderable  {
         this.rightHandIKoffset = new Vector2(-50, 0); //how far from sprite center is the right hand
         this.leftHandIKoffset = new Vector2(50, 0);
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
-        switch(this.enemyType) {
-            case 0 :
-                this.weapon = new GunCreator("MachineGun");
-                break;
-            case 1 :
-                this.weapon = new GunCreator("MachineGun");
-                break;
-            case 2 :
-                this.weapon = new GunCreator("Shotgun");
-                break;
-            case 3 :
-                this.weapon = new GunCreator("Musket");
-                break;
-        }
-        this.weapon.parent = this;
-        this.weapon.activeForRender = true;
+//        switch(this.enemyType) {
+//            case 0 :
+//                this.weapon = new GunCreator("MachineGun");
+//                break;
+//            case 1 :
+//                this.weapon = new GunCreator("MachineGun");
+//                break;
+//            case 2 :
+//                this.weapon = new GunCreator("Shotgun");
+//                break;
+//            case 3 :
+//                this.weapon = new GunCreator("Musket");
+//                break;
+//        }
+
         this.setPosition(position);
         this.health = 100;
         this.speed = 2.5F;
@@ -119,14 +121,56 @@ public class Enemy extends Renderable  {
         this.localPos = new Vector2().setZero();
         this.iteration = 0;
 
-        enemy1Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy1Idle, TextureAtlas.class).getRegions());
-        enemy2Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy2Idle, TextureAtlas.class).getRegions());
-        enemy3Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy3Idle, TextureAtlas.class).getRegions());
-        enemy4Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy4Idle, TextureAtlas.class).getRegions());
-        enemy1Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy1Walking, TextureAtlas.class).getRegions());
-        enemy2Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
-        enemy3Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
-        enemy4Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
+        switch(this.enemyType) {
+            case 0 :
+                this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy1Idle, TextureAtlas.class).getRegions());
+                this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy1Walking, TextureAtlas.class).getRegions());
+                this.weapon = new GunCreator("MachineGun");
+                break;
+            case 1 :
+                this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy2Idle, TextureAtlas.class).getRegions());
+                this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
+                this.weapon = new GunCreator("MachineGun");
+                break;
+            case 2 :
+                this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy3Idle, TextureAtlas.class).getRegions());
+                this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
+                this.weapon = new GunCreator("Shotgun");
+                break;
+            case 3 :
+                this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy4Idle, TextureAtlas.class).getRegions());
+                this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
+                this.weapon = new GunCreator("Musket");
+                break;
+            case 10 :
+                this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.sheriff1Idle, TextureAtlas.class).getRegions());
+                this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.sheriff1Walking, TextureAtlas.class).getRegions());
+                this.weapon = new GunCreator("Musket");
+                break;
+            case 11 :
+                this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.sheriff2Idle, TextureAtlas.class).getRegions());
+                this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.sheriff2Walking, TextureAtlas.class).getRegions());
+                this.weapon = new GunCreator("MachineGun");
+                break;
+            case 12 :
+                this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.sheriff3Idle, TextureAtlas.class).getRegions());
+                this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.sheriff3Walking, TextureAtlas.class).getRegions());
+                this.weapon = new GunCreator("Shotgun");
+                break;
+            case 20 :
+        }
+        this.weapon.parent = this;
+        this.weapon.activeForRender = true;
+//        enemy1Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy1Idle, TextureAtlas.class).getRegions());
+//        enemy2Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy2Idle, TextureAtlas.class).getRegions());
+//        enemy3Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy3Idle, TextureAtlas.class).getRegions());
+//        enemy4Idle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.enemy4Idle, TextureAtlas.class).getRegions());
+//        enemy1Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy1Walking, TextureAtlas.class).getRegions());
+//        enemy2Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy2Walking, TextureAtlas.class).getRegions());
+//        enemy3Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy3Walking, TextureAtlas.class).getRegions());
+//        enemy4Walking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.enemy4Walking, TextureAtlas.class).getRegions());
+
+
      //
         //healthB = new Hb(this);
         //healthBar = new HealthBar((int)this.health, 10, this.getPosition().x,this.getPosition().y + this.sprite.getHeight() +20 );
@@ -366,36 +410,10 @@ public class Enemy extends Renderable  {
 
         switch(currentState) {
             case WALKING:
-                switch(this.enemyType) {
-                    case 0 :
-                        region = enemy1Walking.getKeyFrame(stateTimer, true);
-                        break;
-                    case 1 :
-                        region = enemy2Walking.getKeyFrame(stateTimer, true);
-                        break;
-                    case 2 :
-                        region = enemy3Walking.getKeyFrame(stateTimer, true);
-                        break;
-                    case 3 :
-                        region = enemy4Walking.getKeyFrame(stateTimer, true);
-                        break;
-                }
+                region = enemyWalking.getKeyFrame(stateTimer, true);
                 break;
             case IDLE:
-                switch(this.enemyType) {
-                    case 0 :
-                        region = enemy1Idle.getKeyFrame(stateTimer, true);
-                        break;
-                    case 1 :
-                        region = enemy2Idle.getKeyFrame(stateTimer, true);
-                        break;
-                    case 2 :
-                        region = enemy3Idle.getKeyFrame(stateTimer, true);
-                        break;
-                    case 3 :
-                        region = enemy4Idle.getKeyFrame(stateTimer, true);
-                        break;
-                }
+                region = enemyIdle.getKeyFrame(stateTimer, true);
                 break;
         }
 

@@ -1,0 +1,19 @@
+prisoner4Idle.png
+size: 34, 24
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+prisoner4Idle-0
+  rotate: false
+  xy: 1, 1
+  size: 15, 22
+  orig: 15, 22
+  offset: 0, 0
+  index: -1
+prisoner4Idle-1
+  rotate: false
+  xy: 18, 1
+  size: 15, 22
+  orig: 15, 22
+  offset: 0, 0
+  index: -1

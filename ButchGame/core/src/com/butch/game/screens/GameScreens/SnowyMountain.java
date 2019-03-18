@@ -21,9 +21,9 @@ public class SnowyMountain extends ModelGameScreen {
         super(game, gameViewPort, map, spawnLocation);
         playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
         snowMusic = ButchGame.assets.get(ButchGame.assets.snowTheme, Music.class);
-        snowMusic.setVolume(1.0f);
         music.pause();
         snowMusic.play();
+        snowMusic.setVolume(1.0f);
         snowMusic.setLooping(true);
     }
 
@@ -39,6 +39,8 @@ public class SnowyMountain extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     updateSave(9);
+                    snowMusic.stop();
+                    music.play();
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;

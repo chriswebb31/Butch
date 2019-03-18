@@ -182,6 +182,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String meleeIdle = "Anim/Guns/meleeIdle.atlas";
     public final String meleeWalking = "Anim/Guns/meleeWalking.atlas";
     public final String meleeFiring = "Anim/Guns/meleeFiring.atlas";
+    public final String meleeSilhoutte = "Anim/Guns/meleeSilhouette.png";
     //NPC
     public final String npc1Idle = "Anim/NPC/npc1Idle.atlas";
     public final String npc2Idle = "Anim/NPC/npc2Idle.atlas";
@@ -519,7 +520,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         load(meleeFiring, TextureAtlas.class);
         load(meleeIdle, TextureAtlas.class);
         load(meleeWalking, TextureAtlas.class);
-
+        load(meleeSilhoutte, Texture.class);
         //HUD
         //Character Screen
         load(characterScreen, Texture.class);

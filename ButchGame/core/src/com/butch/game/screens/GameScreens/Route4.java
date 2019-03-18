@@ -13,11 +13,14 @@ import com.butch.game.gameobjects.spriterenderables.Player;
 import java.util.ArrayList;
 
 public class Route4 extends ModelGameScreen {
-    private Music playSound;
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.route4);
+
     public Route4(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation) {
         super(game, gameViewPort, map, spawnLocation);
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+        music.pause();
+        routeMusic.play();
+        routeMusic.setVolume(2.5f);
+        routeMusic.setLooping(true);
     }
 
     @Override
@@ -32,6 +35,8 @@ public class Route4 extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     updateSave(4);
+                    routeMusic.stop();
+                    music.play();
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;

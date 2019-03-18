@@ -15,11 +15,14 @@ import java.util.ArrayList;
 
 public class Level2 extends ModelGameScreen {
     public static TiledMap map = ButchGame.assets.get(ButchGame.assets.route1);
-    private Music playSound;
     private int coinCounter;
+
     public Level2(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation){
         super(game, gameViewPort, map, spawnLocation);
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+         music.pause();
+         routeMusic.play();
+         routeMusic.setVolume(2.5f);
+         routeMusic.setLooping(true);
             }
 
     @Override
@@ -35,6 +38,8 @@ public class Level2 extends ModelGameScreen {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     updateSave(1);
+                    routeMusic.stop();
+                    music.play();
                     player.isAllowedToMove = false;
                     player.xAxis = 0;
                     player.yAxis = 0;

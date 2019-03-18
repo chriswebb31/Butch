@@ -87,6 +87,7 @@ public abstract class ModelGameScreen implements Screen {
     Music snowMusic;
     Music caveMusic;
     Music warzoneMusic;
+    Music routeMusic;
 
     // private Stage stage;
     /////////initializing hud vars////////////////////
@@ -114,6 +115,7 @@ public abstract class ModelGameScreen implements Screen {
         snowMusic = ButchGame.assets.get(ButchGame.assets.snowTheme, Music.class);
         caveMusic = ButchGame.assets.get(ButchGame.assets.caveTheme, Music.class);
         warzoneMusic = ButchGame.assets.get(ButchGame.assets.warzoneTheme, Music.class);
+        routeMusic = ButchGame.assets.get(ButchGame.assets.routeTheme, Music.class);
 
 
         this.game = game;
@@ -492,8 +494,9 @@ public abstract class ModelGameScreen implements Screen {
             snowMusic.stop();
             caveMusic.stop();
             warzoneMusic.stop();
-            playSound.stop();
             prisonMusic.stop();
+            routeMusic.stop();
+            playSound.stop();
             player.isAllowedToMove = false;
 //            cursor.dispose();
 //            Gdx.app.exit();

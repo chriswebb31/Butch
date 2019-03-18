@@ -48,6 +48,7 @@ public class MazeMap extends ModelGameScreen{
                         @Override
                         public void run() {
                             Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
+                            updateSave(1);
                             game.setScreen(new NewGameScreen(game, gameViewPort, NewGameScreen.map, 0));
                         }
                     })));

@@ -253,6 +253,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
     public final String prisonTheme = "Music/PrisonMusic.mp3";
+    public final String endMazeMapTheme = "Music/mazeMap.mp3";
 
     //PARTICLES
 

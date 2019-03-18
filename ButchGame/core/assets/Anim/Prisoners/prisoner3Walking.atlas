@@ -1,0 +1,61 @@
+prisoner3Walking.png
+size: 144, 24
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+prisoner3Walking-0
+  rotate: false
+  xy: 1, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+prisoner3Walking-1
+  rotate: false
+  xy: 19, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+prisoner3Walking-2
+  rotate: false
+  xy: 37, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+prisoner3Walking-3
+  rotate: false
+  xy: 55, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+prisoner3Walking-4
+  rotate: false
+  xy: 73, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+prisoner3Walking-5
+  rotate: false
+  xy: 91, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+prisoner3Walking-6
+  rotate: false
+  xy: 109, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+prisoner3Walking-7
+  rotate: false
+  xy: 127, 1
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1

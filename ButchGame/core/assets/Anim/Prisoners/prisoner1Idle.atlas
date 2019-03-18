@@ -1,0 +1,19 @@
+prisoner1Idle.png
+size: 15, 42
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+prisoner1Idle-0
+  rotate: false
+  xy: 1, 1
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+prisoner1Idle-1
+  rotate: false
+  xy: 1, 22
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1

@@ -17,7 +17,7 @@ public class Bullet extends Renderable {
     private Sound hitEffect;
     private long startTime;
 
-    public Bullet(Vector2 start, Vector2 velocity, float speed, float damage, boolean freindly) {
+    public Bullet(Vector2 start, Vector2 velocity, float speed, float damage, boolean freindly, Sprite bulletSprite) {
         this.setPosition(start);
         this.startTime = System.currentTimeMillis();
         this.hitEffect = ButchGame.assets.get(ButchGame.assets.hitEffect, Sound.class);
@@ -25,10 +25,11 @@ public class Bullet extends Renderable {
         this.speed = speed;
         this.damage = damage;
         this.freindly = freindly;
-        this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.bulletSprite, Texture.class)));
+        this.setSprite(bulletSprite);
         this.getSprite().setScale(10);
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getWidth(), this.getSprite().getHeight()));
         this.activeForRender = true;
+
     }
 
     @Override

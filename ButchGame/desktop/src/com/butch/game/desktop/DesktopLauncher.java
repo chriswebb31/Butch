@@ -11,6 +11,7 @@ public class DesktopLauncher {
     the launchers are different main classes which run depending on the system running the game. It also supplies the BUTCHGAME class with
     the window configs. such as a size and title
  	*/
+	private static ButchGame butchGame;
 
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
@@ -20,6 +21,12 @@ public class DesktopLauncher {
 		config.height = Math.round(ButchGame.TARGET_HEIGHT);
 		config.resizable = false;
 		config.fullscreen = true;
-		new LwjglApplication(new ButchGame(), config);
+		butchGame = new ButchGame();
+
+		new LwjglApplication(butchGame, config);
+	}
+
+	public ButchGame getButchGame(){
+		return butchGame;
 	}
 }

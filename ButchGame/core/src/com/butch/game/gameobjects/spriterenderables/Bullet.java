@@ -30,10 +30,10 @@ public class Bullet extends Renderable {
         this.getSprite().setScale(10);
         this.setCollider(new Rectangle(this.getPosition().x, this.getPosition().y, this.getSprite().getWidth(), this.getSprite().getHeight()));
         this.isFist = isFist;
-        if(!isFist)
+//        if(!isFist)
             this.activeForRender = true;
-        else
-            this.activeForRender = false;
+//        else
+//            this.activeForRender = false;
     }
 
     @Override

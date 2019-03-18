@@ -82,12 +82,14 @@ public class NewGameScreen extends ModelGameScreen {
                         public void onCompletion(Music music) {
                             music.play();
                             playSound.dispose();
+
                             player.isAllowedToMove = true;
-                            updateSave(2);
+
 
 
                         }
                     });
+                    updateSave(2);
                     //game.setScreen( new Level2(game, gameViewPort, Level2.map, 0));
 //                    game.setScreen(new MazeMap(game, gameViewPort, MazeMap.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
@@ -112,13 +114,13 @@ public class NewGameScreen extends ModelGameScreen {
                             music.play();
                             playSound.dispose();
                             player.isAllowedToMove = true;
-                            updateSave(0);
+
                             StartTavern.cutSceneStart = false;
 
 
                         }
                     });
-
+                    updateSave(0);
                 }
             }
         }

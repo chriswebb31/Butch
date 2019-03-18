@@ -37,6 +37,7 @@ public class ItemManager {
         gunList.add(new GunCreator("Revolver"));
         gunList.add(new GunCreator("Musket"));
         gunList.add(new GunCreator("Shotgun"));
+        gunList.add(new GunCreator("Melee"));
     }
 
     public Gun getGun(int id){

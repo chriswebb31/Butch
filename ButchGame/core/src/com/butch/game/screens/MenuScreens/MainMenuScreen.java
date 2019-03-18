@@ -276,7 +276,7 @@ public class MainMenuScreen implements Screen {
                  saveGame.setProperty("RIFLEAMMO", String.valueOf(20));
                  saveGame.setProperty("SHOTGUNAMMO", String.valueOf(20));
                  saveGame.setProperty("MUSKETAMMO", String.valueOf(5));
-                 saveGame.setProperty("GUNINVENTORY", String.valueOf(10));
+                 saveGame.setProperty("GUNINVENTORY", String.valueOf(14));
                  saveGame.setProperty("LEVEL", String.valueOf(1));
 
                 saveGame.store(outputStream, null);

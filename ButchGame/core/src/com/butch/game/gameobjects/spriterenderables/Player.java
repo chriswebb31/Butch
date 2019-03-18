@@ -70,6 +70,7 @@ public class Player extends Renderable {
     public int pistolAmmo = 10;
     public int shotgunAmmo = 10;
     public int musketAmmo = 10;
+    public int meleeAmmo = 99999;
     public float health = 100;
     public int coin;
 

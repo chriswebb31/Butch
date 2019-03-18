@@ -38,6 +38,7 @@ public class CharacterScreen implements Disposable {
     private Image machineGunImage;
     private Image shotgunImage;
     private Image musketImage;
+    private Image meleeImage;
     private Image characterScreenImage;
 
     public CharacterScreen(SpriteBatch spriteBatch, Player player) {
@@ -47,9 +48,27 @@ public class CharacterScreen implements Disposable {
         characterScreenImage = new Image(ButchGame.assets.get(ButchGame.assets.characterScreen, Texture.class));
         characterScreenImage.setSize(characterScreenImage.getWidth() * 2.5f, characterScreenImage.getHeight() * 2.5f);
         characterScreenImage.setPosition(Gdx.graphics.getWidth() / 5f, Gdx.graphics.getHeight() / 5f);
+
         revolverImage = new Image(ButchGame.assets.get(ButchGame.assets.revolverSilhouette, Texture.class));
         revolverImage.setSize(revolverImage.getWidth() * 6, revolverImage.getHeight() * 6);
         revolverImage.setPosition(Gdx.graphics.getWidth()/3.5f, Gdx.graphics.getHeight()/4.5f);
+
+        machineGunImage = new Image(ButchGame.assets.get(ButchGame.assets.machineGunSilhoutte, Texture.class));
+        machineGunImage.setSize(machineGunImage.getWidth() * 6, machineGunImage.getHeight() * 6);
+        machineGunImage.setPosition(Gdx.graphics.getWidth()/3.5f, Gdx.graphics.getHeight()/4.5f);
+
+        shotgunImage = new Image(ButchGame.assets.get(ButchGame.assets.shotgunSilhouette, Texture.class));
+        shotgunImage.setSize(shotgunImage.getWidth() * 6, shotgunImage.getHeight() * 6);
+        shotgunImage.setPosition(Gdx.graphics.getWidth()/3.5f, Gdx.graphics.getHeight()/4.5f);
+
+        musketImage = new Image(ButchGame.assets.get(ButchGame.assets.musketSilhoutte, Texture.class));
+        musketImage.setSize(musketImage.getWidth() * 6, musketImage.getHeight() * 6);
+        musketImage.setPosition(Gdx.graphics.getWidth()/3.5f, Gdx.graphics.getHeight()/4.5f);
+
+        meleeImage = new Image(ButchGame.assets.get(ButchGame.assets.meleeSilhoutte, Texture.class));
+        meleeImage.setSize(meleeImage.getWidth() * 6, meleeImage.getHeight() * 6);
+        meleeImage.setPosition(Gdx.graphics.getWidth()/3.5f, Gdx.graphics.getHeight()/4.5f);
+
         butchLevel = new Label(String.format("LEVEL: " + player.getPlayerLevel()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         butchLevel.setPosition(Gdx.graphics.getWidth()/3f, Gdx.graphics.getHeight()/1.34f);
         butchLevel.setFontScale(2);
@@ -83,6 +102,9 @@ public class CharacterScreen implements Disposable {
             case(13) :
                 gunAmmoLabel.setText(String.format("MUSKET AMMO: " + player.getActiveWeapon().clip + "/" + player.musketAmmo));
                 break;
+            case(14) :
+                gunAmmoLabel.setText(String.format("MELEE"));
+                break;
         }
 
 
@@ -96,7 +118,24 @@ public class CharacterScreen implements Disposable {
         stage.addActor(butchDamage);
         stage.addActor(butchShotSpeed);
         stage.addActor(butchAccuracy);
-        stage.addActor(revolverImage);
+        switch(player.getActiveWeapon().id) {
+            case(10) :
+                stage.addActor(revolverImage);
+                break;
+            case(11) :
+                stage.addActor(machineGunImage);
+                break;
+            case(12) :
+                stage.addActor(shotgunImage);
+                break;
+            case(13) :
+                stage.addActor(musketImage);
+                break;
+            case(14) :
+                stage.addActor(meleeImage);
+                break;
+        }
+
         stage.addActor(gunAmmoLabel);
     }
     @Override

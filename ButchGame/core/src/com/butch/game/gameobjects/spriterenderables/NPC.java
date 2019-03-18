@@ -134,7 +134,12 @@ public class NPC extends Renderable {
                 case 33:
                     this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.prisoner4Idle, TextureAtlas.class).getRegions());
                     break;
-
+                case 99:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.dialogueTrigger, TextureAtlas.class).getRegions());
+                    break;
+                case 100:
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.lincolnWalking, TextureAtlas.class).getRegions());
+                    break;
             }
             currentState = State.IDLE;
             previousState = State.IDLE;

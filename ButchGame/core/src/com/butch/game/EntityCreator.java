@@ -11,9 +11,9 @@ public class EntityCreator {
         Properties prop = new Properties();
         OutputStream output = null;
         //i.e. Gun, Item, Enemy, Player
-        String propertyType = "NPC" + "/";
+        String propertyType = "Gun" + "/";
         //Name of the entity
-        String propertyName = "Judas";
+        String propertyName = "Rey";
 
         try {
             output = new FileOutputStream(propertyType + propertyName + ".properties");
@@ -22,21 +22,21 @@ public class EntityCreator {
             //Comment all the ones that aren't required
 
             // Gun
-//            prop.setProperty("id", "13");
-//            prop.setProperty("gunName", "Musket");
-//            prop.setProperty("gunType", "0");
-//            prop.setProperty("accuracy", "15");
-//            prop.setProperty("clip", "1");
-//            prop.setProperty("clipSize", "1");
-//            prop.setProperty("damage", "100");
-//            prop.setProperty("oneHanded", "false");
-//            prop.setProperty("fireRate", "1");
-//            prop.setProperty("reloadSpeed", "3");
-//            prop.setProperty("speed", "15");
+            prop.setProperty("id", "14");
+            prop.setProperty("gunName", "Melee");
+            prop.setProperty("gunType", "4");
+            prop.setProperty("accuracy", "15");
+            prop.setProperty("clip", "9999");
+            prop.setProperty("clipSize", "9999");
+            prop.setProperty("damage", "10");
+            prop.setProperty("oneHanded", "false");
+            prop.setProperty("fireRate", "0.5f");
+            prop.setProperty("reloadSpeed", "3");
+            prop.setProperty("speed", "15");
 
             // NPC
-            prop.setProperty("type", "11");
-            prop.setProperty("speech","Lincoln ran off north Butch! Go! Chase him!");
+            prop.setProperty("type", "30");
+            prop.setProperty("speech","You've been good to me Butch... go north-east, I'm hearing there's a gap to escape from this mess");
             prop.setProperty("speechFollowup", "Stop Talking To Me");
             //Item
             //Breakable

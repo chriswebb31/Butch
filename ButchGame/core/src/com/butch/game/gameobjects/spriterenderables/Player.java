@@ -26,6 +26,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Player extends Renderable {
+    /*
+        CLASS : PLAYER
+
+        Used to create a playable character
+     */
     private int playerLevel = 1;
     private boolean followCamera = true;
     public Vector3 shake;

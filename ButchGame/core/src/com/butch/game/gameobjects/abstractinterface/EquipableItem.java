@@ -20,9 +20,9 @@ public abstract class EquipableItem extends Renderable {
     private State currentState, previousState;
     private float stateTimer = 0;
     //Comment this line out when testing
-//    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
+    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
     //Uncomment this line when testing
-    private Sprite sprite = new Sprite();
+//    private Sprite sprite = new Sprite();
 
 
     public EquipableItem(){
@@ -68,16 +68,27 @@ public abstract class EquipableItem extends Renderable {
                             this.getSprite().setPosition(player.getSprite().getX() + 10, player.getSprite().getY() - 80);
                     } else if (ButchGame.mousePosition().x < player.getPosition().x){ //if direction is left or not right
                         //this.getSprite().setFlip(true, false);
+                        if(this.oneHanded)
+                            if(player.getState() == Player.State.IDLE)
+                                this.getSprite().setPosition(player.getSprite().getX() - 120, player.getSprite().getY() - 80);
+                            else
+                                this.getSprite().setPosition(player.getSprite().getX() - 120, player.getSprite().getY() - 40);
+                        else
+                            if(player.getState() == Player.State.IDLE)
+                                this.getSprite().setPosition(player.getSprite().getX() - 120, player.getSprite().getY() - 90);
+                            else
+                                this.getSprite().setPosition(player.getSprite().getX() - 120, player.getSprite().getY() - 50);
                         this.getSprite().setFlip(false, true); //
-                        this.getSprite().setPosition(player.getSprite().getX() - 80, player.getSprite().getY() - 60);
+
                     }
                 } catch (NullPointerException e){
                     System.out.println(e);
                 }
             } else if(parent.TAG == "enemy"){
                 sprite.setRegion(getFrame(delta));
+                sprite.setSize(getFrame(delta).getRegionWidth(), getFrame(delta).getRegionHeight());
                 this.setSprite(sprite);
-                this.getSprite().setScale(10);
+                this.getSprite().setScale(8);
                 if(this.oneHanded){
                     this.setPosition(enemy.getWeaponPosition());
                 }else{

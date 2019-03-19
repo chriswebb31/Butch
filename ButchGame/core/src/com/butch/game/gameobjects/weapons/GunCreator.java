@@ -78,7 +78,7 @@ public class GunCreator extends Gun {
                     this.gunWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.meleeWalking, TextureAtlas.class).getRegions());
                     this.gunReloading = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.musketReload, TextureAtlas.class).getRegions());
                     this.gunShooting = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.meleeFiring, TextureAtlas.class).getRegions());
-                    this.spriteImg = new TextureRegion(ButchGame.assets.get(ButchGame.assets.butchHandsIdle, Texture.class), 0, 0,14, 7);
+                    this.spriteImg = new TextureRegion(ButchGame.assets.get(ButchGame.assets.butchHandsIdle, Texture.class), 0, 0,13, 7);
                     this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
                     this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
                     this.ammoBar = ButchGame.assets.get(ButchGame.assets.musketAmmoBar1, Texture.class);

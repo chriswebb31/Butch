@@ -324,7 +324,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //TileMapData
     public final String startTavern = "TiledFiles/TavernInterior.tmx";
     public final String tilemap1 = "TiledFiles/REALTOWNMAPCLEAN.tmx";
-    public final String tilemap1Tilseset = "TiledFiles/desertdoodles.png";
     public final String route1 = "TiledFiles/Route1.tmx";
     public final String caveTransition = "TiledFiles/CaveTransition.tmx";
     public final String mazeMap = "TiledFiles/endMaze.tmx";
@@ -400,7 +399,6 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
         load(dialogueTrigger, TextureAtlas.class);
 
-        load(tilemap1Tilseset, Texture.class);
         load(enemySprite, Texture.class);
         load(homeButtonInactive,Texture.class);
         load(homeButtonActive,Texture.class);

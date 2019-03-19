@@ -312,7 +312,7 @@
  </objectgroup>
  <objectgroup id="9" name="NPCLayer">
   <object id="57" name="Angie" x="560" y="1216"/>
-  <object id="74" name="Timbo" x="1873.96" y="287.452"/>
+  <object id="74" name="Timbo" x="1875.31" y="387.25"/>
  </objectgroup>
  <objectgroup id="10" name="AnimalLayer">
   <object id="58" name="2" x="899" y="1281"/>

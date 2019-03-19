@@ -32,7 +32,7 @@ public class Cave extends ModelGameScreen {
     @Override
     public void render(float delta){
         updateCameraPosition();
-
+        routeMusic.setVolume(0);
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {

@@ -39,6 +39,7 @@ public class Level3 extends ModelGameScreen {
                 if(endPoints.indexOf(endPointLoc) == 0) {
                     updateSave(2);
                     routeMusic.stop();
+                    routeMusic.setVolume(0);
                     music.play();
                     player.isAllowedToMove = false;
                     player.xAxis = 0;

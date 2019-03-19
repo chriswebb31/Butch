@@ -12,6 +12,8 @@ import com.badlogic.gdx.utils.Array;
 
 public class GifDecoder {
     /**
+     * CLASS : GIFDECODER
+     *
      * File read status: No errors.
      */
     public static final int STATUS_OK = 0;

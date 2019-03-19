@@ -4,7 +4,10 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.util.Random;
 /*
-    https://carelesslabs.wordpress.com/2017/08/14/making-a-libgdx-roguelike-survival-game-part-9-screen-shake-inventory-gamedev/
+    CLASS : RUMBLE
+
+    Used to add random units for a rumble effect for the camera
+    Credit: https://carelesslabs.wordpress.com/2017/08/14/making-a-libgdx-roguelike-survival-game-part-9-screen-shake-inventory-gamedev/
  */
 public class Rumble {
     private static float time = 0;

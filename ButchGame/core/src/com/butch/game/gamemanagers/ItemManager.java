@@ -7,6 +7,11 @@ import com.butch.game.gameobjects.weapons.GunCreator;
 import java.util.ArrayList;
 
 public class ItemManager {
+    /*
+    CLASS : ITEMMANAGER
+
+    Used to create assets and load them into the game
+     */
     static ArrayList<Gun> gunList;
     static ArrayList<Item> itemList;
 

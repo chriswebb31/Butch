@@ -10,6 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import javax.xml.soap.Text;
 
 public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
+    /*
+        CLASS : ASSETMANAGEMENT
+
+        used to load in relevant external assets for other classes, including images, sounds
+     */
     //TEXTURES
     public final String levelUpSprite = "DButt.jpg"; //Placeholder LevelUpItem
     public final String gunSprite = "weapon.png"; //Placeholder Gun

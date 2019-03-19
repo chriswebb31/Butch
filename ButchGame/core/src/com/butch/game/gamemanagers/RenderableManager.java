@@ -12,6 +12,11 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class RenderableManager {
+    /*
+    CLASS : RENDERABLEMANAGER
+
+    Used to render all renderable objects in the correct perspective and order based on layer and y position
+     */
     public static ArrayList<Rectangle> mapColliders;
     public static ArrayList<Renderable> renderableObjects;
     public static ArrayList<Renderable> renderableObjectsToRemove;
@@ -23,18 +28,17 @@ public class RenderableManager {
     }
 
     public void update(float delta) {
-
         Collections.sort(renderableObjects, new Comparator<Renderable>() { //lamda not in this version :(
             @Override
             public int compare(Renderable o1, Renderable o2) {
-                return Float.compare(o2.getPosition().y, o1.getPosition().y) ;
+                return Float.compare(o2.getPosition().y, o1.getPosition().y) ; //compare the y position of both objects
             }
         });
 
-        renderableObjects.removeAll(renderableObjectsToRemove);
+        renderableObjects.removeAll(renderableObjectsToRemove); //avoid concurrent modification issues
         renderableObjectsToRemove.clear();
 
-        for (int i=0; i<renderableObjects.size();i++) {
+        for (int i=0; i<renderableObjects.size();i++) { //find what to remove next
             if(renderableObjects.get(i).activeForRender){
                 renderableObjects.get(i).update(delta);
             } else if(renderableObjects.get(i).destroy){
@@ -43,15 +47,11 @@ public class RenderableManager {
         }
     }
 
-    public void render(SpriteBatch spriteBatch, ShapeRenderer shapeRenderer) {
+    public void render(SpriteBatch spriteBatch) {
         for (int i=0; i<renderableObjects.size();i++) {
             if(renderableObjects.get(i).activeForRender){
                 try{
                     renderableObjects.get(i).getSprite().draw(spriteBatch);
-                    if(renderableObjects.get(i).activeCollision){
-                        shapeRenderer.setColor(Color.PINK);
-                        shapeRenderer.rect(renderableObjects.get(i).getCollider().x, renderableObjects.get(i).getCollider().y, renderableObjects.get(i).getCollider().width, renderableObjects.get(i).getCollider().height);
-                    }
                 }catch (NullPointerException e){
                     e.printStackTrace();
                 }

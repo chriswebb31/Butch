@@ -451,7 +451,7 @@ public abstract class ModelGameScreen implements Screen {
         //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        ButchGame.renderableManager.render(batch, shapeRenderer); //render all objects on screen
+        ButchGame.renderableManager.render(batch); //render all objects on screen
 
 
 

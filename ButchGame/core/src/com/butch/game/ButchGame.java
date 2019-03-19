@@ -11,13 +11,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.gamemanagers.AssetManagement;
-import com.butch.game.gamemanagers.GameStateManager;
 import com.butch.game.gamemanagers.ItemManager;
 import com.butch.game.gamemanagers.RenderableManager;
 import com.butch.game.screens.LoadingScreen;
 
 import java.awt.*;
-import java.util.Properties;
 
 public class ButchGame extends Game {
     /*
@@ -27,21 +25,17 @@ public class ButchGame extends Game {
         all game constants go here. Such as managers and viewports
 
      */
-	public static final boolean DEBUG = true;
-	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final float TARGET_WIDTH = (float)screenSize.getWidth();
 	public static final float TARGET_HEIGHT = (float)screenSize.getHeight();
 	public static FitViewport gameViewPort;
 	public static AssetManagement assets;
-	public static GameStateManager GSM;
 	public static RenderableManager renderableManager;
 	public static ItemManager itemManager;
 	private static FPSLogger log;
-    //public MainMenuScreen game_screen;
     public float themeVolume;
 	public SpriteBatch batch;
-//	public static Properties saveProgress;
-//	public static boolean continueGame;
     public OrthographicCamera camera;
 
 	public ButchGame() {
@@ -61,15 +55,12 @@ public class ButchGame extends Game {
 		assets.load(assets.bigBoyTown, TiledMap.class);
 		assets.load(assets.mazeMap, TiledMap.class);
 		renderableManager = new RenderableManager();
-//        Gdx.input.setCursorCatched(true);
 		log = new FPSLogger();
-		GSM = new GameStateManager(gameViewPort, this);
 		themeVolume = 0.05f;
 		camera = new OrthographicCamera();
 
-//        saveProgress = new Properties();
-//        continueGame = false;
     }
+
   	public float getVolume(){
 		return themeVolume;
 	}
@@ -86,7 +77,6 @@ public class ButchGame extends Game {
 	@Override
         public void render () {
 		log.log();
-		GSM.update();
 		super.render();
 	}
 
@@ -96,6 +86,7 @@ public class ButchGame extends Game {
 		assets.dispose();
 	}
 
+	//Returns mouse position in world space
     public static Vector3 mousePosition(){
         return gameViewPort.getCamera().unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
     }

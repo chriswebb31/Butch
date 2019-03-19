@@ -345,6 +345,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 //    public final String tavernInteriorTwo = "TiledFiles/TavernInteriroTwo.tmx";
     public final String gunStoreInterior = "TiledFiles/GunStoreInterior.tmx";
     public final String enemySprite = "enemy.png";
+    public final String punchSound = "SoundFX/Punch.mp3";
 
     //CutScenes Assets
     public final String bubbleSpeech = "CutScenes/speechBubble.png";
@@ -379,6 +380,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
      }
 
     public void includeAssets() {
+        load(punchSound, Sound.class);
         //cutScenes loading
         load(prisonMusic1, Music.class );
         load(saloonBackNoise1, Music.class );

@@ -19,7 +19,7 @@ public class BackStoryScene extends ModelCutSceneScreen{
     float statetime = 0;
     public BackStoryScene(ButchGame game){
         super(game);
-        butchAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchIdleAnim, TextureAtlas.class).getRegions());
+        butchAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.butchIdleCutscene, TextureAtlas.class).getRegions());
         abAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.lincolnIdleNPC, TextureAtlas.class).getRegions());
         introBack = new Image(ButchGame.assets.get(ButchGame.assets.introBack, Texture.class));
         introBack.setSize(game.TARGET_WIDTH, game.TARGET_HEIGHT);

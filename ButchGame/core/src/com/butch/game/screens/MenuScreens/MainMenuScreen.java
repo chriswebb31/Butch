@@ -291,8 +291,8 @@ public class MainMenuScreen implements Screen {
              playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                  @Override
                  public void onCompletion(Music music) {
-//                     TransitionScreen.transitionOut(new CutSceneScreen(game),stage,game);
-                     TransitionScreen.transitionOut(new BackStoryScene(game), stage, game);
+                     TransitionScreen.transitionOut(new CutSceneScreen(game),stage,game);
+//                     TransitionScreen.transitionOut(new BackStoryScene(game), stage, game);
                  }
              });
          }

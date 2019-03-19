@@ -38,8 +38,8 @@ public class BackStoryScene extends ModelCutSceneScreen{
     statetime += delta;
 //    abAnim.getKeyFrame(statetime, true).flip(true, false);
     batch.begin();
-    batch.draw(butchAnim.getKeyFrame(statetime,true), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
-    batch.draw(abAnim.getKeyFrame(statetime,true), game.TARGET_WIDTH / 2f, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
+    batch.draw(butchAnim.getKeyFrame(statetime,true), game.TARGET_WIDTH / 19.0f, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
+    batch.draw(abAnim.getKeyFrame(statetime,true), game.TARGET_WIDTH / 1.4f, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
     batch.end();
     if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
         Gdx.app.exit();

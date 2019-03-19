@@ -9,6 +9,7 @@ import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.HUDObjects.Hud;
 import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.gameobjects.spriterenderables.Player;
+import com.butch.game.screens.cutscenes.CaveScene;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class Cave extends ModelGameScreen {
                         @Override
                         public void run() {
                             Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
-                            game.setScreen(new PrisonLevel(game, gameViewPort, PrisonLevel.map, 0));
+                            game.setScreen(new CaveScene(game));
                         }
                     })));
                     playSound.setVolume(0);

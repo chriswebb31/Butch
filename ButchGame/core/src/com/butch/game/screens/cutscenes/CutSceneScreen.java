@@ -19,6 +19,7 @@ import com.butch.game.gameobjects.abstractinterface.Gun;
 import com.butch.game.screens.GameScreens.MazeMap;
 import com.butch.game.screens.GameScreens.Route4;
 import com.butch.game.screens.GameScreens.StartTavern;
+import com.butch.game.screens.MenuScreens.MainMenuScreen;
 import com.butch.game.screens.TransitionScreen;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class CutSceneScreen extends ModelCutSceneScreen {
     public void render(float delta) {
 
         if (Gdx.input.isTouched()&& skip == true){
-            game.setScreen(new StartTavern(game, game.gameViewPort, StartTavern.map, 0));
+            game.setScreen(new MainMenuScreen(game, game.gameViewPort));
             this.dispose();
         }
         /**

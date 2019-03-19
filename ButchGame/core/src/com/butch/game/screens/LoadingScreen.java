@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.gamemanagers.AssetManagement;
 import com.butch.game.screens.MenuScreens.MainMenuScreen;
+import com.butch.game.screens.cutscenes.CutSceneScreen;
 
 public class LoadingScreen implements Screen {
     private ButchGame game;
@@ -41,7 +42,7 @@ public class LoadingScreen implements Screen {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             if (game.assets.update()) {
-                    game.setScreen(new MainMenuScreen(game, gameViewPort));
+                    game.setScreen(new CutSceneScreen(game));
         }
             else{
                 batch.begin();

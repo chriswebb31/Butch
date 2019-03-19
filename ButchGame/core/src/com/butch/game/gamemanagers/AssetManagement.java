@@ -285,7 +285,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String musketFire = "SoundFX/GunSounds/musketFire.mp3";
     public final String revolverFire = "SoundFX/GunSounds/revolverFire.mp3";
     public final String shotgunFire = "SoundFX/GunSounds/shotgunFire.mp3";
-
+    public final String shotgunFire2 = "CutScenes/Audio/shotgunFire.mp3";
 
     public final String machineGunReloadNoise = "SoundFX/GunSounds/rifleReload.mp3";
     //public final String musketReloadNoise = "SoundFX/GunSounds/musketReload.mp3";
@@ -357,6 +357,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     public final String saloonBackNoise2 = "CutScenes/Audio/saloonBackNoise2.mp3";
     public final String prisonMusic1 = "CutScenes/Audio/prisonMusic.mp3";
 
+    public final String narration = "CutScenes/narration.png";
+    public final String caveBack = "CutScenes/caveBack.png";
+    public final String caveAbDialogue = "CutScenes/caveAbDialogue.png";
+
     public AssetManagement() {
         includeAssets();
         includeGunAssets();
@@ -380,6 +384,10 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
      }
 
     public void includeAssets() {
+        load(caveBack, Texture.class);
+        load(caveAbDialogue, Texture.class);
+        load(narration, Texture.class);
+        load(shotgunFire2, Music.class);
         load(punchSound, Sound.class);
         //cutScenes loading
         load(prisonMusic1, Music.class );

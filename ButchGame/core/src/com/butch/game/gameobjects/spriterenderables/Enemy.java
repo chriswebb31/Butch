@@ -168,18 +168,22 @@ public class Enemy extends Renderable  {
                 this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.soldier3Idle, TextureAtlas.class).getRegions());
                 this.enemyWalking = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.soldier3Idle, TextureAtlas.class).getRegions());
                 this.weapon = new GunCreator("MachineGun");
+                break;
             case 21 :
                 this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.soldier4Idle, TextureAtlas.class).getRegions());
                 this.enemyWalking = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.soldier4Idle, TextureAtlas.class).getRegions());
                 this.weapon = new GunCreator("Shotgun");
+                break;
             case 100 :
                 this.enemyIdle = new Animation<TextureRegion>(0.75f, ButchGame.assets.get(ButchGame.assets.lincolnIdle, TextureAtlas.class).getRegions());
                 this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.lincolnWalking, TextureAtlas.class).getRegions());
                 this.weapon = new GunCreator("Shotgun");
+                break;
             case 99 :
                 this.enemyIdle = new Animation<TextureRegion>(1, new TextureRegion());
                 this.enemyWalking = new Animation<TextureRegion>(1, new TextureRegion());
                 this.weapon = new GunCreator("TestWeapon");
+                break;
         }
         this.weapon.parent = this;
         this.weapon.activeForRender = true;

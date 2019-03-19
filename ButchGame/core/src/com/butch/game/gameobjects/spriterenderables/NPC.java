@@ -138,7 +138,8 @@ public class NPC extends Renderable {
                     this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.dialogueTrigger, TextureAtlas.class).getRegions());
                     break;
                 case 100:
-                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.lincolnWalking, TextureAtlas.class).getRegions());
+                    this.npcAnim = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.lincolnIdle, TextureAtlas.class).getRegions());
+
                     break;
             }
             currentState = State.IDLE;
@@ -216,8 +217,7 @@ public class NPC extends Renderable {
     private TextureRegion getFrame (float dt) {
         TextureRegion region = null;
         currentState = getState();
-
-        region = npcAnim.getKeyFrame(stateTimer, true);
+            region = npcAnim.getKeyFrame(stateTimer, true);
 
         stateTimer = currentState == previousState ? stateTimer + dt : 0;
         previousState = currentState;

@@ -473,7 +473,6 @@
   <object id="187" x="351.792" y="382.358" width="32.175" height="64.3501"/>
   <object id="188" x="383.162" y="350.987" width="31.3707" height="63.5457"/>
   <object id="189" x="1272.33" y="351.723" width="8.52411" height="31.661"/>
-  <object id="229" x="904.667" y="234.667" width="110.667" height="26"/>
  </objectgroup>
  <objectgroup id="19" name="Points">
   <object id="225" name="0" x="927.983" y="1687.84"/>

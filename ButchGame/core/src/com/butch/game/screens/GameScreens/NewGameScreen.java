@@ -21,7 +21,7 @@ public class NewGameScreen extends ModelGameScreen {
 //    boolean cutsceneStart = true;
 //    Vector2 movingpos;
 //    float currentPos, statetime;
-    Music playSound;
+
     private int coinCounter;
     public NewGameScreen(ButchGame game, FitViewport gameViewPort, TiledMap map, int spawnLocation){
 
@@ -32,7 +32,7 @@ public class NewGameScreen extends ModelGameScreen {
 //        statetime = 0;
        // dialogueBox = new DialogueBox(new Skin(Gdx.files.internal("Data/uiskin.json")));
 //        initUI();
-        playSound = ButchGame.assets.get(ButchGame.assets.playSound, Music.class);
+
 //        stage.addAction(
 //                new Action() {
 //                    float time = 0;
@@ -70,7 +70,8 @@ public class NewGameScreen extends ModelGameScreen {
                         @Override
                         public void run() {
                             Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
-                            game.setScreen(new Level2(game, gameViewPort, Level2.map, 0));
+                           // game.setScreen(new Level2(game, gameViewPort, Level2.map, 0));
+                            game.setScreen(new Warzone(game, gameViewPort, Warzone.map, 0));
 
 
                         }

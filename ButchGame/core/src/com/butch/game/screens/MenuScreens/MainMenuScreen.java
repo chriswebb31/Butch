@@ -414,6 +414,14 @@ public class MainMenuScreen implements Screen {
                                     }
                                 });
                                 break;
+                            case (11):
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new MazeMap(game, gameViewPort, MazeMap.map, 0),stage,game);
+                                    }
+                                });
+                                break;
                         }
                     }
                 } catch (FileNotFoundException e) {

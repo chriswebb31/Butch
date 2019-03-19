@@ -57,6 +57,7 @@ public abstract class ModelGameScreen implements Screen {
     SNOWYMOUNTAIN : 8
     BIGTOWN : 9
     WARZONE : 10
+    MAZEMAP : 11
      */
 
     SpriteBatch batch;

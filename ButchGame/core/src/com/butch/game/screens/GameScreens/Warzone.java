@@ -37,8 +37,8 @@ public class Warzone extends ModelGameScreen {
 
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
-                if(endPoints.indexOf(endPointLoc) == 0) {
-                    updateSave(1);
+                if(endPoints.indexOf(endPointLoc) == 1) {
+                    updateSave(11);
                     warzoneMusic.stop();
                     music.play();
                     player.isAllowedToMove = false;

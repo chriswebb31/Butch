@@ -7,17 +7,18 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.butch.game.ButchGame;
 import com.butch.game.gameobjects.abstractinterface.Gun;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+
 public class GunCreator extends Gun {
     public GunCreator(String gunName) {
         Properties prop = new Properties();
         InputStream input = null;
-
         try {
 
             input = new FileInputStream("Gun/" + gunName + ".properties");
@@ -81,6 +82,15 @@ public class GunCreator extends Gun {
                     this.gunShotSound = ButchGame.assets.get(ButchGame.assets.gunShot, Sound.class);
                     this.reloadSoundEffect = ButchGame.assets.get(ButchGame.assets.otherReloadEffect, Sound.class);
                     this.ammoBar = ButchGame.assets.get(ButchGame.assets.musketAmmoBar1, Texture.class);
+                    break;
+                case 20:
+                    this.gunWalking = new Animation<TextureRegion>(1, new TextureRegion());
+                    this.gunReloading = new Animation<TextureRegion>(0.25f, new TextureRegion());
+                    this.gunShooting = new Animation<TextureRegion>(0.25f, new TextureRegion());
+                    this.spriteImg = new TextureRegion();
+                    this.gunShotSound = null;
+                    this.reloadSoundEffect = null;
+                    this.ammoBar = null;
                     break;
             }
 

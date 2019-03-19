@@ -18,7 +18,7 @@ package de.tomgrill.gdxtesting.examples;
 
 import static org.junit.Assert.assertTrue;
 
-import com.butch.game.desktop.DesktopLauncher;
+//import com.butch.game.desktop.DesktopLauncher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

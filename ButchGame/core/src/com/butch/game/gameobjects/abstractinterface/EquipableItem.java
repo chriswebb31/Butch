@@ -19,7 +19,10 @@ public abstract class EquipableItem extends Renderable {
     public Player player;
     private State currentState, previousState;
     private float stateTimer = 0;
-    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
+    //Comment this line out when testing
+//    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
+    //Uncomment this line when testing
+    private Sprite sprite = new Sprite();
 
 
     public EquipableItem(){

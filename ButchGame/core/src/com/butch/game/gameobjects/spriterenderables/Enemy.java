@@ -1,6 +1,7 @@
 package com.butch.game.gameobjects.spriterenderables;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Circle;
@@ -28,7 +29,8 @@ import java.util.Random;
 
 public class Enemy extends Renderable  {
     public enum State {IDLE, WALKING}
-    private Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
+//    private Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
+    private Sound fx = null;
     public float health;
     public Gun weapon;
     public Player target;
@@ -42,7 +44,10 @@ public class Enemy extends Renderable  {
     public int pistolAmmo = 100000;
     public int shotgunAmmo = 100000;
     public int musketAmmo = 100000;
-    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
+    //Comment this line out when testing
+//    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
+    //Uncomment this line when testing
+    private Sprite sprite = new Sprite();
     private boolean movingRight = false;
 
     private Animation<TextureRegion> enemy1Idle;
@@ -157,7 +162,10 @@ public class Enemy extends Renderable  {
                 this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.sheriff3Walking, TextureAtlas.class).getRegions());
                 this.weapon = new GunCreator("Shotgun");
                 break;
-            case 20 :
+            case 99 :
+                this.enemyIdle = new Animation<TextureRegion>(1, new TextureRegion());
+                this.enemyWalking = new Animation<TextureRegion>(1, new TextureRegion());
+                this.weapon = new GunCreator("TestWeapon");
         }
         this.weapon.parent = this;
         this.weapon.activeForRender = true;

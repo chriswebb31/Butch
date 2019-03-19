@@ -45,9 +45,9 @@ public class Enemy extends Renderable  {
     public int shotgunAmmo = 100000;
     public int musketAmmo = 100000;
     //Comment this line out when testing
-//    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
+    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
     //Uncomment this line when testing
-    private Sprite sprite = new Sprite();
+//    private Sprite sprite = new Sprite();
     private boolean movingRight = false;
 
     private Animation<TextureRegion> enemy1Idle;
@@ -87,6 +87,7 @@ public class Enemy extends Renderable  {
     private Batch batch;
     private Sound hitEffect;
     ///
+    private Rectangle colliderRect;
 
     public Enemy(Vector2 position, int enemyType){
         this.TAG = "enemy";
@@ -115,7 +116,8 @@ public class Enemy extends Renderable  {
         this.activeForRender = true;
         this.activeCollision = true;
         this.setSprite(sprite);
-        this.setCollider(new Rectangle(this.getPosition().x - (this.getSprite().getWidth()), this.getPosition().y - (this.getSprite().getHeight()), this.getSprite().getBoundingRectangle().width/2.5f * 10, this.getSprite().getBoundingRectangle().height/1.5f * 10));
+        colliderRect = new Rectangle(this.getPosition().x - (this.getSprite().getWidth()), this.getPosition().x - (this.getSprite().getHeight()), this.getSprite().getBoundingRectangle().width/2.5f * 10, this.getSprite().getBoundingRectangle().height/1.5f * 10);
+        this.setCollider(colliderRect);
         this.state = ENEMYSTATE.IDLE;
         this.checkRate = 5;
         this.shootCheckRate = 3;
@@ -207,6 +209,7 @@ public class Enemy extends Renderable  {
 
         this.setPosition(new Vector2(this.getPosition().x + this.newDirection.x * speed,this.getPosition().y + this.newDirection.y * speed ));
         this.getCollider().setPosition(new Vector2(this.getPosition().x - (this.getSprite().getWidth() * 100), this.getPosition().y - (this.getSprite().getHeight() * 10)));
+//        this.getCollider().setPosition(this.getPosition());
         state = getState();
 
         switch (state){
@@ -314,6 +317,7 @@ public class Enemy extends Renderable  {
         this.getSprite().setScale(10);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getCollider().setPosition(new Vector2(this.getPosition().x - this.getSprite().getWidth() * 3, this.getPosition().y - this.getSprite().getHeight() * 3.5f));
+//        this.getCollider().setPosition(this.getPosition());
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
 //
         if (this.health <= 0) {

@@ -104,11 +104,12 @@ public abstract class EquipableItem extends Renderable {
                         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
                         if (targetDir.x >= this.getPosition().x) { // if direction is right
                             //this.getSprite().setFlip(false, false);
+                            this.getSprite().setPosition(enemy.getSprite().getX() + 10, enemy.getSprite().getY() - 80);
                             this.getSprite().setFlip(false, false);
                         } else if (targetDir.x < this.getPosition().x) { //if direction is left or not right
                             //this.getSprite().setFlip(true, false);
                             this.getSprite().setFlip(false, true); //
-                            this.getSprite().setPosition(this.getSprite().getX(), this.getSprite().getY() + 15);
+                            this.getSprite().setPosition(enemy.getSprite().getX() - 120, enemy.getSprite().getY() - 50);
                         }
 
                     } catch (NullPointerException e) {

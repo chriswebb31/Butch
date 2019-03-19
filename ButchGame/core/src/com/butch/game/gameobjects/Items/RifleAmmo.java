@@ -14,7 +14,7 @@ public class RifleAmmo extends Item {
         super(position);
         this.id = 1;
         this.setSprite(new Sprite(ButchGame.assets.get(ButchGame.assets.rifleAmmo, Texture.class)));
-        this.quantity = 20;
+        this.quantity = 24;
         this.type = 2;
         this.activeForRender = true;
         this.itemAnim = new Animation<TextureRegion>(0.5f, ButchGame.assets.get(ButchGame.assets.machineGunAmmo, TextureAtlas.class).getRegions());

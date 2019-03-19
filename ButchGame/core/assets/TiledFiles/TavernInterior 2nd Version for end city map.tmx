@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="46" height="36" tilewidth="32" tileheight="32" infinite="0" nextlayerid="23" nextobjectid="77">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="46" height="36" tilewidth="32" tileheight="32" infinite="0" nextlayerid="23" nextobjectid="83">
  <tileset firstgid="1" source="TileSets/Indoors.tsx"/>
  <tileset firstgid="3601" source="allTiles-17.tsx"/>
  <tileset firstgid="3729" source="TileSets/Tavern_Gunstore_1.tsx"/>
@@ -218,10 +218,12 @@
   <object id="61" name="0" x="737" y="853"/>
  </objectgroup>
  <objectgroup id="7" name="ItemLayer">
-  <object id="65" name="5" x="1155" y="527"/>
-  <object id="66" name="5" x="1167" y="541"/>
-  <object id="67" name="5" x="1148" y="537"/>
-  <object id="68" name="5" x="1127" y="527"/>
+  <object id="65" name="5" x="1087.66" y="348.128"/>
+  <object id="66" name="5" x="979.71" y="334.771"/>
+  <object id="67" name="5" x="1049.09" y="330.771"/>
+  <object id="68" name="5" x="1015.47" y="329.189"/>
+  <object id="81" name="7" x="1115.32" y="780.724"/>
+  <object id="82" name="0" x="500.842" y="553.451"/>
  </objectgroup>
  <objectgroup id="8" name="EnemyLayer">
   <object id="64" name="0" x="1827" y="510" visible="0">
@@ -229,10 +231,9 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="NPCLayer">
-  <object id="63" name="Evian" x="524.224" y="691.3"/>
-  <object id="74" name="Barman" x="885.478" y="546.141"/>
-  <object id="75" name="Jen" x="368.467" y="810.141"/>
-  <object id="76" name="Carlos" x="1038.26" y="811.5"/>
+  <object id="77" name="Justin" x="812.29" y="723.906"/>
+  <object id="78" name="Barman2" x="869.108" y="542.929"/>
+  <object id="79" name="Elizabetha" x="515.572" y="717.593"/>
  </objectgroup>
  <objectgroup id="10" name="AnimalLayer">
   <object id="62" name="0" x="1804" y="713" visible="0"/>

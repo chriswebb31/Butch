@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="58" height="58" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="194">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="58" height="58" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="195">
  <tileset firstgid="1" name="allTiles-5" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-5.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -465,6 +465,7 @@
  </objectgroup>
  <objectgroup id="14" name="NPC Layer">
   <object id="176" name="Fear" x="559.93" y="1449.3"/>
+  <object id="194" name="Abe" x="780.282" y="463.38"/>
  </objectgroup>
  <objectgroup id="15" name="Animal Layer">
   <object id="175" name="2" x="782.274" y="559.93"/>

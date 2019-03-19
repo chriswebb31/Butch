@@ -222,7 +222,7 @@
   <object id="66" name="5" x="1167" y="541"/>
   <object id="67" name="5" x="1148" y="537"/>
   <object id="68" name="5" x="1127" y="527"/>
-  <object id="78" name="4" x="883.191" y="576.923"/>
+  <object id="78" name="4" x="888.427" y="577.796"/>
  </objectgroup>
  <objectgroup id="8" name="EnemyLayer">
   <object id="64" name="0" x="1827" y="510" visible="0">
@@ -231,7 +231,7 @@
  </objectgroup>
  <objectgroup id="9" name="NPCLayer">
   <object id="63" name="Evian" x="513.249" y="771.783"/>
-  <object id="74" name="Barman" x="885.478" y="546.141"/>
+  <object id="74" name="Barman" x="888.969" y="546.141"/>
   <object id="75" name="Jen" x="556.87" y="566.863"/>
   <object id="76" name="Carlos" x="1089.48" y="621.268"/>
   <object id="77" name="Benny" x="462.777" y="554.234"/>

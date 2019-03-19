@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="48" nextobjectid="110">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="48" nextobjectid="113">
  <tileset firstgid="1" source="Snow floor.tsx"/>
  <tileset firstgid="129" source="Snow Trees.tsx"/>
  <tileset firstgid="257" source="Snow Logs.tsx"/>
@@ -272,13 +272,11 @@
  <objectgroup id="24" name="ItemLayer">
   <object id="106" name="7" x="590" y="452"/>
  </objectgroup>
- <objectgroup id="25" name="EnemyLayer">
-  <object id="107" name="2" x="957" y="350">
-   <polygon points="0,0 -106,34 -11,41 70,31 69,-5"/>
-  </object>
- </objectgroup>
+ <objectgroup id="25" name="EnemyLayer"/>
  <objectgroup id="26" name="NPCLayer">
-  <object id="108" name="John" x="431" y="404"/>
+  <object id="110" name="Ghost1" x="785.351" y="349.28"/>
+  <object id="111" name="Ghost2" x="1443.69" y="508.044"/>
+  <object id="112" name="Ghost3" x="1202.37" y="912.362"/>
  </objectgroup>
  <objectgroup id="27" name="AnimalLayer">
   <object id="109" name="1" x="703" y="253" visible="0"/>

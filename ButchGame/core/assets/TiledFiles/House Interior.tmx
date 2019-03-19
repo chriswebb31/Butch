@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="42">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="47">
  <tileset firstgid="1" source="Indoors.tsx"/>
  <layer id="10" name="Ground" width="60" height="50">
   <data encoding="csv">
@@ -256,4 +256,15 @@
   <object id="40" x="1120" y="1115.09" width="63.8182" height="30"/>
   <object id="41" x="1088.5" y="1247.75" width="128.25" height="41"/>
  </objectgroup>
+ <objectgroup id="20" name="Points"/>
+ <objectgroup id="17" name="Item Layer">
+  <object id="45" name="4" x="1143.53" y="1139.27"/>
+  <object id="46" name="0" x="821.976" y="1115.84"/>
+ </objectgroup>
+ <objectgroup id="19" name="Enemy Layer"/>
+ <objectgroup id="18" name="NPC Layer">
+  <object id="43" name="Curley" x="981.687" y="971.039"/>
+  <object id="44" name="CurleyWife" x="534.497" y="839.012"/>
+ </objectgroup>
+ <objectgroup id="21" name="Animal Layer"/>
 </map>

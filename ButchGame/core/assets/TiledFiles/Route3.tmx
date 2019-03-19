@@ -227,11 +227,11 @@
  </objectgroup>
  <objectgroup id="12" name="EnemyLayer">
   <object id="31" name="0" x="1268" y="427">
-   <polygon points="0,0 -47,110 63,84 79,39 105,24 91,6"/>
+   <polygon points="0,0 -47,247.588 63,189.067 79,87.7811 105,54.0192 91,13.5048"/>
   </object>
  </objectgroup>
  <objectgroup id="13" name="NPCLayer">
-  <object id="32" name="John" x="403" y="913"/>
+  <object id="32" name="Manzi" x="733.796" y="664.171"/>
  </objectgroup>
  <objectgroup id="14" name="AnimalLayer">
   <object id="33" name="4" x="453" y="452"/>

@@ -16,6 +16,11 @@ import java.util.Properties;
 
 
 public class GunCreator extends Gun {
+    /*
+    CLASS : GUNCREATOR
+
+    Used to create relevant gun classes from property files
+     */
     public GunCreator(String gunName) {
         Properties prop = new Properties();
         InputStream input = null;

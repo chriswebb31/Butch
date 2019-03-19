@@ -43,8 +43,11 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public abstract class ModelGameScreen implements Screen {
-
     /*
+    CLASS : MODELGAMESCREEN
+
+    Used to create all playable levels within the game.
+
     PROGRESS ID LIST
     STARTTAVERN : 0
     NEWGAMESCREEN : 1

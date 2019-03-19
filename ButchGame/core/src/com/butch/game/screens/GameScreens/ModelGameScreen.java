@@ -433,9 +433,6 @@ public abstract class ModelGameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-//        updateCameraPosition();
-
-
         Gdx.gl.glClearColor(205 / 255f, 105 / 255f, 105 / 255f, 1); //set clear colour of screen (sandy)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // This cryptic line clears the screen.
 
@@ -448,14 +445,10 @@ public abstract class ModelGameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);//update view of renderers to camera
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        //cursor.setPosition(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
         batch.begin();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         ButchGame.renderableManager.render(batch); //render all objects on screen
 
-
-
-        //cursor.draw(batch);
         batch.end();
         shapeRenderer.end();
         camera.update();
@@ -479,9 +472,8 @@ public abstract class ModelGameScreen implements Screen {
             inventory.drawStage();
         }
 
-//        hud.stage.act(delta);
-//        renderHUD();
         renderEnemyHB();
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.setScreen(new MainMenuScreen(game, gameViewPort));
             music.pause();
@@ -499,8 +491,6 @@ public abstract class ModelGameScreen implements Screen {
             routeMusic.stop();
             playSound.stop();
             player.isAllowedToMove = false;
-//            cursor.dispose();
-//            Gdx.app.exit();
         }
 
     }
@@ -521,13 +511,6 @@ public abstract class ModelGameScreen implements Screen {
                 batch.end();
             }
         }
-    }
-
-    void updateCameraPosition() {
-        Vector2 mousePosition = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y); //get mouse pos
-        float newX = mousePosition.x + (player.getPosition().x - mousePosition.x) / distanceDivisor; //gets position  divirsor percentage) along vector instead of midpoint
-        float newY = mousePosition.y + (player.getPosition().y - mousePosition.y) / distanceDivisor; //gets position  divirsor percentage) along vector instad of midpoint
-        camera.position.slerp(new Vector3(newX, newY, camera.position.z), 0.1f);
     }
 
     void renderHUD(){

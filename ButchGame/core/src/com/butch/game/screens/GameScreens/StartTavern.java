@@ -60,7 +60,6 @@ public class StartTavern extends ModelGameScreen {
     @Override
     public void render(float delta) {
         //Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
-        updateCameraPosition();
         for (Rectangle endPointLoc : endPoints) {
             if (player.getCollider().overlaps(endPointLoc)) {
                 if (endPoints.indexOf(endPointLoc) == 0) {

@@ -30,8 +30,6 @@ public class BigTown extends ModelGameScreen {
 
     @Override
     public void render(float delta){
-        updateCameraPosition();
-
         for(Rectangle endPointLoc : endPoints) {
             if(player.getCollider().overlaps(endPointLoc)) {
                 if(endPoints.indexOf(endPointLoc) == 1) {

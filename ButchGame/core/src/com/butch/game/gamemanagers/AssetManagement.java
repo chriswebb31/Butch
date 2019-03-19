@@ -231,6 +231,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
     //Lincoln
     public final String lincolnIdle = "Anim/Lincoln/lincolnIdle.atlas";
     public final String lincolnWalking = "Anim/Lincoln/lincolnWalking.atlas";
+    public final String lincolnIdleNPC = "Anim/Lincoln/lincolnIdleNPC.atlas";
     //Coin
     public final String coinSpin = "Anim/Coin/coin.atlas";
     //Whisky
@@ -411,6 +412,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         //Lincoln
         load(lincolnIdle, TextureAtlas.class);
         load(lincolnWalking, TextureAtlas.class);
+        load(lincolnIdleNPC, TextureAtlas.class);
 
         //Bullets
         load(friendlyBullet, Texture.class);

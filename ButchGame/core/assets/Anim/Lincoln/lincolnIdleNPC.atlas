@@ -1,0 +1,33 @@
+lincolnIdleNPC.png
+size: 112, 28
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+abrahamLincolnIdleNPC-0
+  rotate: false
+  xy: 1, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+abrahamLincolnIdleNPC-1
+  rotate: false
+  xy: 29, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+abrahamLincolnIdleNPC-2
+  rotate: false
+  xy: 57, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+abrahamLincolnIdleNPC-3
+  rotate: false
+  xy: 85, 1
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1

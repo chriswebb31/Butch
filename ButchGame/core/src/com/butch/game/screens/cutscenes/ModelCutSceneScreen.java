@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.butch.game.ButchGame;
 import com.butch.game.screens.TransitionScreen;
 
-public class ModelCutSceneScreen implements Screen {
+public abstract class ModelCutSceneScreen implements Screen {
     Stage stage;
     ButchGame game;
     static TransitionScreen transitionScreen;
@@ -36,6 +36,7 @@ public class ModelCutSceneScreen implements Screen {
         Gdx.gl.glClearColor(1f,1f,1f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+        stage.act(delta);
     }
 
     @Override

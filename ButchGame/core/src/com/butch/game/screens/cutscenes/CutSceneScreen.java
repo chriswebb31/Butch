@@ -44,27 +44,16 @@ public class CutSceneScreen extends ModelCutSceneScreen {
         welcomeText = new Label (String.format("Welcome to Butch"), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
         welcomeText.setColor(Color.WHITE);
         welcomeText.setPosition(game.TARGET_WIDTH*0.4f, game.TARGET_HEIGHT*0.8f);
-        //welcomeText.setWrap(true);
         welcomeText.setFontScale(game.TARGET_WIDTH/384);
         welcomeText.setPosition(game.TARGET_WIDTH/1.75663312f,game.TARGET_HEIGHT/1.341614907f);
         briefText = new Label(String.format("A Wild West Adventure Game with\n plot twists..."), ButchGame.assets.get(ButchGame.assets.uiskin, Skin.class));
         briefText.setColor(Color.WHITE);
-//        briefText.setWrap(true);
         briefText.setAlignment(Align.center);
-//        briefText.setWidth(game.TARGET_WIDTH/4.353741497f);
-//        briefText.setHeight(game.TARGET_HEIGHT/13.01204819f);
         briefText.setFontScale(game.TARGET_WIDTH/768);
         briefText.setPosition(game.TARGET_WIDTH/1.483312f,game.TARGET_HEIGHT/1.610140845f);
-        //briefText.setFontScale(2.5f);
         continueText = new Label(String.format("Click To Continue!"), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         continueText.setPosition(game.TARGET_WIDTH/1.5f, game.TARGET_HEIGHT/14);
         continueText.setFontScale(2.5f);
-       // continueText.setColor(Color.WHITE);
-        //        this.weaponCache = new ArrayList<Gun>();
-//        this.weaponCache.add(new GunCreator("Revolver"));
-//        this.weaponCache.add(new GunCreator("MachineGun"));
-//        this.weaponCache.add(new GunCreator("Musket"));
-//        this.weaponCache.add(new GunCreator("Shotgun"));
     }
     @Override
     public void show() {
@@ -125,15 +114,16 @@ public class CutSceneScreen extends ModelCutSceneScreen {
 
             ));
             transitionScreen.transitionIn(stage);
-            camera.update();
-            update(delta);
+            //camera.update();
+           // update(delta);
+            super.render(delta);
             batch.begin();
             batch.draw(npcAnim.getKeyFrame(0, false), game.TARGET_WIDTH / 10, game.TARGET_HEIGHT / 10, game.TARGET_WIDTH/3.84f, game.TARGET_HEIGHT/1.8f);
             batch.end();
         }
     }
     public void update(float delta){
-        stage.act(delta);
+
     }
     @Override
     public void resize(int width, int height) {

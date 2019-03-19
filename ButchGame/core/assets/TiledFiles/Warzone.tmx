@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="61" height="61" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="227">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="61" height="61" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="231">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-4.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -319,8 +319,8 @@
   <object id="26" x="1694.24" y="318.026" width="31.7181" height="1059.03"/>
   <object id="27" x="1280.14" y="319.789" width="415.859" height="29.9559"/>
   <object id="28" x="992.096" y="319.354" width="286.786" height="31.2695"/>
-  <object id="29" x="995.669" y="261.282" width="19.6551" height="51.8181"/>
-  <object id="30" x="903.648" y="259.495" width="17.8683" height="56.2852"/>
+  <object id="29" x="995.669" y="261.282" width="19.6551" height="62.4848"/>
+  <object id="30" x="903.648" y="259.495" width="17.8683" height="67.6185"/>
   <object id="31" x="223.613" y="318.645" width="703.231" height="32.5821"/>
   <object id="32" x="479.234" y="1661.87" width="62.8743" height="32.9341"/>
   <object id="33" x="446.299" y="1598.99" width="63.8723" height="31.9361"/>
@@ -473,10 +473,12 @@
   <object id="187" x="351.792" y="382.358" width="32.175" height="64.3501"/>
   <object id="188" x="383.162" y="350.987" width="31.3707" height="63.5457"/>
   <object id="189" x="1272.33" y="351.723" width="8.52411" height="31.661"/>
+  <object id="229" x="904.667" y="234.667" width="110.667" height="26"/>
  </objectgroup>
- <objectgroup id="19" name="Points" visible="0">
+ <objectgroup id="19" name="Points">
   <object id="225" name="0" x="927.983" y="1687.84"/>
   <object id="226" name="1" x="899.03" y="1719.75" width="59.7956" height="17.8427"/>
+  <object id="228" name="2" x="928.667" y="263.667" width="61.6667" height="22.3333"/>
  </objectgroup>
  <objectgroup id="17" name="Item Layer" visible="0"/>
  <objectgroup id="18" name="Enemy Layer" visible="0">

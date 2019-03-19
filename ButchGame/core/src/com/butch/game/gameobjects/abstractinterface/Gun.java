@@ -14,6 +14,11 @@ import java.util.Random;
 
 public abstract class Gun extends EquipableItem {
     /*
+
+    CLASS : GUN
+
+    Used to create weapon classes which shoot
+
     gun types
     3: musket
     2: shotgun
@@ -46,12 +51,13 @@ public abstract class Gun extends EquipableItem {
     public TextureRegion spriteImg;
     public Texture ammoBar;
     private boolean isFist = false;
+
     public Gun() {
 
     }
 
     public boolean Shoot(){
-        Shell shell;
+        Shell shell; //drop shells when shooting
         if(this.parent.TAG == "player"){
             friendly = true;
         }
@@ -63,8 +69,7 @@ public abstract class Gun extends EquipableItem {
         }
 
         long thisShot = System.currentTimeMillis();
-        if ((thisShot - lastShot) >= (long) (fireRate * 1000)) {
-
+        if ((thisShot - lastShot) >= (long) (fireRate * 1000)) { //fire rate calculations
             try {
                 if(friendly){
                     switch (gunType){
@@ -144,8 +149,9 @@ public abstract class Gun extends EquipableItem {
             } else if (gunType == 4) {
                 reserve = player.meleeAmmo;
             }
+
             System.out.println("Player RELOAD!");
-            System.out.println("Player RESERVE AMMO:" + reserve);
+
             long thisReload = System.currentTimeMillis();
             if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000) && reserve > 0) {
                 reloadSoundEffect.play(1);
@@ -206,7 +212,7 @@ public abstract class Gun extends EquipableItem {
                 reserve = enemy.musketAmmo;
             }
             System.out.println("Enemy RELOAD!");
-            System.out.println("Enemy RESERVE AMMO:" + reserve);
+
             long thisReload = System.currentTimeMillis();
             if ((thisReload - lastReload) >= (long) (reloadSpeed * 1000)) {
                 reloadSoundEffect.play(1);
@@ -243,7 +249,6 @@ public abstract class Gun extends EquipableItem {
     }
 
     public Vector2 aimDirection(){
-
         if(parent.TAG == "player"){
             Vector2 aimDir = player.getAimDirection();
             Random random = new Random();

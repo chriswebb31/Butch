@@ -11,6 +11,12 @@ import com.butch.game.gameobjects.spriterenderables.Enemy;
 import com.butch.game.gameobjects.spriterenderables.Player;
 
 public abstract class EquipableItem extends Renderable {
+    /*
+        CLASS : EQUIPABLEITEM
+
+        Used to create objects that go in inventory space, such as weapons.
+        works for Enemies and Players
+     */
     public enum State {MOVING, IDLE, SHOOTING, RELOADING}
     public boolean oneHanded;
     public Renderable parent;
@@ -19,11 +25,7 @@ public abstract class EquipableItem extends Renderable {
     public Player player;
     private State currentState, previousState;
     private float stateTimer = 0;
-    //Comment this line out when testing
     private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.machineGunSprite, Texture.class));
-    //Uncomment this line when testing
-//    private Sprite sprite = new Sprite();
-
 
     public EquipableItem(){
 
@@ -37,8 +39,6 @@ public abstract class EquipableItem extends Renderable {
             }else{
                 enemy = (Enemy) parent;
             }
-
-
 
             if(parent.TAG == "player"){
                 sprite.setRegion(getFrame(delta));
@@ -126,12 +126,6 @@ public abstract class EquipableItem extends Renderable {
     public TextureRegion getFrame(float dt) {
         TextureRegion region = null;
         currentState = GetState();
-
-//        switch(currentState) {
-//            case MOVING:
-//                region = player.getActiveWeapon().gunWalking.getKeyFrame(stateTimer, true);
-//                break;
-//        }
         if(parent.TAG == "player")
             switch(currentState) {
                 case RELOADING:
@@ -169,31 +163,5 @@ public abstract class EquipableItem extends Renderable {
         } else
             return State.IDLE;
     }
-
-
-//    public boolean oneHanded;
-//    private Player player;
-//
-//    public EquipableItem(Player player){
-//        this.player = player;
-//    }
-//
-//    @Override
-//    public void update(float delta) {
-//        Vector2 targetDir = new Vector2(ButchGame.mousePosition().x, ButchGame.mousePosition().y);
-//        float angle = (float) Math.atan2(targetDir.y - this.sprite.getY(), targetDir.x - this.sprite.getX());
-//        angle = (float) Math.toDegrees(angle);
-//        if(this.oneHanded)
-//            position = player.getWeaponPosition();
-//        else{
-//            position = player.position;
-//        }
-//        try{
-//            this.sprite.setRotation(angle);
-//            this.sprite.setPosition(position.x, position.y);
-//        } catch (NullPointerException e){
-//            System.out.println(e);
-//        }
-//    }
 }
 

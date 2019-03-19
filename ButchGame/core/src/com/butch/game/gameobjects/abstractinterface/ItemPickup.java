@@ -11,6 +11,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 
 public abstract class ItemPickup extends Renderable{
+    /*
+    CLASS : ITEMPICKUP
+
+    used to create objects which are collectibleW
+     */
     public enum State {ACTIVE}
     public State currentState = State.ACTIVE;
     public State previousState = State.ACTIVE;

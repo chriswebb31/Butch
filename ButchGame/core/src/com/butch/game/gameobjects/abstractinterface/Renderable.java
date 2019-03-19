@@ -7,6 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.gamemanagers.RenderableManager;
 
 public abstract class Renderable {
+    /*
+    CLASS : RENDERABLE
+
+    Used to create anything which is to be rendered on screen
+     */
     public boolean activeForRender = false;
     public boolean destroy = false;
     public boolean activeCollision = false;

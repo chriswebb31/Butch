@@ -8,10 +8,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.butch.game.ButchGame;
 
 public abstract class Item extends ItemPickup {
+    /*
+        CLASS : ITEM
 
+        Used to create items which can be picked up
+     */
     public int quantity;
     public boolean autoPickup = false;
-    public String messageCheck;
 
     public Item(Vector2 position) {
         super(position);

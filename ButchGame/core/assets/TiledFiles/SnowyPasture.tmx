@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="48" nextobjectid="113">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="48" nextobjectid="116">
  <tileset firstgid="1" source="Snow floor.tsx"/>
  <tileset firstgid="129" source="Snow Trees.tsx"/>
  <tileset firstgid="257" source="Snow Logs.tsx"/>
@@ -271,6 +271,9 @@
  </objectgroup>
  <objectgroup id="24" name="ItemLayer">
   <object id="106" name="7" x="590" y="452"/>
+  <object id="113" name="5" x="1453.7" y="641.49"/>
+  <object id="114" name="5" x="1433.01" y="664.77"/>
+  <object id="115" name="5" x="1479.57" y="651.837"/>
  </objectgroup>
  <objectgroup id="25" name="EnemyLayer"/>
  <objectgroup id="26" name="NPCLayer">

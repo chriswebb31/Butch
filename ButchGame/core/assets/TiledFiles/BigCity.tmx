@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="68" height="64" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="189">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="68" height="64" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="190">
  <tileset firstgid="1" source="Ground 1.tsx"/>
  <tileset firstgid="129" source="Rocks.tsx"/>
  <tileset firstgid="257" source="Warzone Path.tsx"/>
@@ -417,6 +417,14 @@
   <object id="169" name="5" x="999.658" y="1557.69"/>
   <object id="170" name="5" x="1013.35" y="1578.23"/>
   <object id="171" name="0" x="1335.16" y="1461.83"/>
+  <object id="179" x="1022.9" y="1267.18"/>
+  <object id="180" name="7" x="1022.9" y="1267.18"/>
+  <object id="184" name="0" x="469.726" y="1273.42"/>
+  <object id="185" name="7" x="496.739" y="1745.55"/>
+  <object id="186" name="5" x="1275.84" y="1111.11"/>
+  <object id="187" name="5" x="1314.6" y="1111.11"/>
+  <object id="188" name="5" x="1340.44" y="1111.11"/>
+  <object id="189" name="5" x="1372.74" y="1114.34"/>
  </objectgroup>
  <objectgroup id="8" name="EnemyLayer">
   <object id="155" name="1" x="802.667" y="330.667" visible="0">
@@ -448,6 +456,9 @@
   <object id="161" name="Mary" x="643.615" y="1561.11"/>
   <object id="162" name="Yeehaw" x="318.384" y="948.305"/>
   <object id="163" name="Deserter" x="1023.62" y="581.992"/>
+  <object id="181" name="Barman2" x="699.746" y="1421.02"/>
+  <object id="182" name="Justin" x="762.38" y="1421.02"/>
+  <object id="183" name="Beth" x="426.283" y="1267.99"/>
  </objectgroup>
  <objectgroup id="10" name="AnimalLayer">
   <object id="157" name="2" x="486.301" y="626.394"/>

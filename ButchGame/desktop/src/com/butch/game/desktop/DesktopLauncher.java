@@ -9,7 +9,7 @@ public class DesktopLauncher {
     CLASS : DESKTOP LAUNCHER
 
     the launchers are different main classes which run depending on the system running the game. It also supplies the BUTCHGAME class with
-    the window configs. such as a size and title
+    the window configs. such as a size and title.
  	*/
 	private static ButchGame butchGame;
 

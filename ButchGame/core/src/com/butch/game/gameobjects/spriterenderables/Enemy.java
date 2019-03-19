@@ -1,6 +1,7 @@
 package com.butch.game.gameobjects.spriterenderables;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Circle;
@@ -28,7 +29,8 @@ import java.util.Random;
 
 public class Enemy extends Renderable  {
     public enum State {IDLE, WALKING}
-    private Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
+//    private Sound fx = ButchGame.assets.get(ButchGame.assets.coinCollection, Sound.class);
+    private Sound fx = null;
     public float health;
     public Gun weapon;
     public Player target;
@@ -42,7 +44,10 @@ public class Enemy extends Renderable  {
     public int pistolAmmo = 100000;
     public int shotgunAmmo = 100000;
     public int musketAmmo = 100000;
-    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
+    //Comment this line out when testing
+//    private Sprite sprite = new Sprite(ButchGame.assets.get(ButchGame.assets.enemySprite, Texture.class));
+    //Uncomment this line when testing
+    private Sprite sprite = new Sprite();
     private boolean movingRight = false;
 
     private Animation<TextureRegion> enemy1Idle;
@@ -110,7 +115,7 @@ public class Enemy extends Renderable  {
         this.activeForRender = true;
         this.activeCollision = true;
         this.setSprite(sprite);
-        this.setCollider(new Rectangle(this.getPosition().x - (this.getSprite().getWidth() /3), this.getPosition().y - (this.getSprite().getHeight() / 5), this.getSprite().getBoundingRectangle().width/2.5f * 10, this.getSprite().getBoundingRectangle().height/1.5f * 10));
+        this.setCollider(new Rectangle(this.getPosition().x - (this.getSprite().getWidth()), this.getPosition().y - (this.getSprite().getHeight()), this.getSprite().getBoundingRectangle().width/2.5f * 10, this.getSprite().getBoundingRectangle().height/1.5f * 10));
         this.state = ENEMYSTATE.IDLE;
         this.checkRate = 5;
         this.shootCheckRate = 3;
@@ -157,7 +162,10 @@ public class Enemy extends Renderable  {
                 this.enemyWalking = new Animation<TextureRegion>(0.25f, ButchGame.assets.get(ButchGame.assets.sheriff3Walking, TextureAtlas.class).getRegions());
                 this.weapon = new GunCreator("Shotgun");
                 break;
-            case 20 :
+            case 99 :
+                this.enemyIdle = new Animation<TextureRegion>(1, new TextureRegion());
+                this.enemyWalking = new Animation<TextureRegion>(1, new TextureRegion());
+                this.weapon = new GunCreator("TestWeapon");
         }
         this.weapon.parent = this;
         this.weapon.activeForRender = true;
@@ -198,7 +206,7 @@ public class Enemy extends Renderable  {
         }
 
         this.setPosition(new Vector2(this.getPosition().x + this.newDirection.x * speed,this.getPosition().y + this.newDirection.y * speed ));
-        this.getCollider().setPosition(this.getPosition());
+        this.getCollider().setPosition(new Vector2(this.getPosition().x - (this.getSprite().getWidth() * 100), this.getPosition().y - (this.getSprite().getHeight() * 10)));
         state = getState();
 
         switch (state){
@@ -305,7 +313,7 @@ public class Enemy extends Renderable  {
 
         this.getSprite().setScale(10);
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
-        this.getCollider().setPosition(this.getPosition());
+        this.getCollider().setPosition(new Vector2(this.getPosition().x - this.getSprite().getWidth() * 3, this.getPosition().y - this.getSprite().getHeight() * 3.5f));
         this.activateRange = new Circle(this.getPosition().x, this.getPosition().y, 1600);
 //
         if (this.health <= 0) {

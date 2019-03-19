@@ -5,6 +5,11 @@ import com.butch.game.gamemanagers.RenderableManager;
 import java.util.ArrayList;
 
 public abstract class Breakable extends Renderable {
+    /*
+        CLASS  : BREAKABLE
+
+        This is a class used to create items which can be broken. Barrels.
+     */
     ArrayList<Breakable> breakables;
     public float health;
 

@@ -409,7 +409,6 @@
  <objectgroup id="7" name="ItemLayer">
   <object id="164" name="12" x="417.665" y="1420.75"/>
   <object id="165" name="2" x="794.249" y="1105.79"/>
-  <object id="167" x="390.277" y="948.305" height="3.42349"/>
   <object id="168" name="5" x="1006.5" y="1530.3"/>
   <object id="169" name="5" x="999.658" y="1557.69"/>
   <object id="170" name="5" x="1013.35" y="1578.23"/>

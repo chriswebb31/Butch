@@ -70,8 +70,8 @@ public class NewGameScreen extends ModelGameScreen {
                         @Override
                         public void run() {
                             Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
-                           // game.setScreen(new Level2(game, gameViewPort, Level2.map, 0));
-                            game.setScreen(new Warzone(game, gameViewPort, Warzone.map, 0));
+                            game.setScreen(new Level2(game, gameViewPort, Level2.map, 0));
+
 
 
                         }
@@ -95,7 +95,7 @@ public class NewGameScreen extends ModelGameScreen {
 //                    game.setScreen(new MazeMap(game, gameViewPort, MazeMap.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 1) {
                     updateSave(10);
-                    game.setScreen((new Warzone(game, gameViewPort, Warzone.map, 0)));
+                    game.setScreen( new BigTown(game, gameViewPort, BigTown.map, 0));
                 } else if (endPoints.indexOf(endPointLoc) == 0) {
                     player.isAllowedToMove = false;
                     player.xAxis = 0;

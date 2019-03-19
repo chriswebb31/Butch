@@ -56,6 +56,7 @@ public class Level3 extends ModelGameScreen {
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                         @Override
                         public void onCompletion(Music music) {
+                            routeMusic.stop();
                             music.play();
                             playSound.dispose();
                             player.isAllowedToMove = true;
@@ -83,6 +84,7 @@ public class Level3 extends ModelGameScreen {
                     playSound.setOnCompletionListener(new Music.OnCompletionListener() {
                         @Override
                         public void onCompletion(Music music) {
+                            routeMusic.stop();
                             music.play();
                             playSound.dispose();
                             player.isAllowedToMove = true;

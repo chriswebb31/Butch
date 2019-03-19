@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="72">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="74">
  <tileset firstgid="1" name="allTiles-4" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-4.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -306,6 +306,7 @@
   <object id="53" name="5" x="1241" y="943"/>
   <object id="66" name="5" x="1241" y="960"/>
   <object id="67" name="5" x="1230" y="923"/>
+  <object id="72" name="7" x="1295.54" y="780.341"/>
  </objectgroup>
  <objectgroup id="9" name="Enemy Layer">
   <object id="40" name="0" x="1245.5" y="1007.5">

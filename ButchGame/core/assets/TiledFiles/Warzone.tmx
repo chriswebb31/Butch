@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="61" height="61" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="231">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="61" height="61" tilewidth="32" tileheight="32" infinite="0" nextlayerid="24" nextobjectid="253">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32" tilecount="128" columns="8">
   <image source="allTiles/allTiles-4.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
@@ -479,66 +479,81 @@
   <object id="226" name="1" x="899.03" y="1719.75" width="59.7956" height="17.8427"/>
   <object id="228" name="3" x="929.667" y="304.667" width="61.6667" height="22.3333"/>
  </objectgroup>
- <objectgroup id="17" name="Item Layer"/>
+ <objectgroup id="17" name="Item Layer">
+  <object id="231" name="7" x="477.187" y="1358.35"/>
+  <object id="232" name="13" x="897.578" y="1544.65"/>
+  <object id="233" name="12" x="897.578" y="1565.91"/>
+  <object id="234" x="897.578" y="1588.09" height="0.924385"/>
+  <object id="235" name="11" x="897.578" y="1583.47"/>
+  <object id="236" name="1" x="903.124" y="1518.77"/>
+  <object id="237" name="2" x="924.096" y="1515.85"/>
+  <object id="238" name="3" x="946.571" y="1515.07"/>
+  <object id="239" name="10" x="1306.52" y="1439.42"/>
+  <object id="240" name="3" x="450.098" y="1171.72"/>
+  <object id="241" name="2" x="1284.25" y="1179.06"/>
+  <object id="242" name="4" x="817.025" y="985.812"/>
+  <object id="243" name="5" x="1364.97" y="839.041"/>
+  <object id="244" name="5" x="454.99" y="819.472"/>
+ </objectgroup>
  <objectgroup id="18" name="Enemy Layer">
-  <object id="201" name="0" x="350.902" y="1048.94">
+  <object id="201" name="20" x="350.902" y="1048.94">
    <polygon points="0,0 28.7582,65.3595 69.281,62.7451 111.111,66.6667 79.7386,-11.7647"/>
   </object>
-  <object id="202" name="2" x="551.19" y="1076.3">
+  <object id="202" name="21" x="551.19" y="1076.3">
    <polygon points="0,0 20.4485,88.8889 68.1618,107.19 80.431,50.9804 101.561,-31.3725"/>
   </object>
-  <object id="203" name="1" x="809.725" y="1062.47">
+  <object id="203" name="20" x="809.725" y="1062.47">
    <polygon points="0,0 146.405,-12.2185 207.843,48.8739 -11.7647,52.5395"/>
   </object>
-  <object id="204" name="1" x="941.752" y="1059.4">
+  <object id="204" name="21" x="941.752" y="1059.4">
    <polygon points="0,0 134.641,124.183 71.8954,206.536 11.7647,115.033 33.9869,79.7386"/>
   </object>
-  <object id="205" name="2" x="1258.09" y="1086.32">
+  <object id="205" name="21" x="1258.09" y="1086.32">
    <polygon points="0,0 98.0392,-94.8993 181.699,69.5928 87.5817,29.1024 -90.1961,26.5718"/>
   </object>
-  <object id="206" name="0" x="1149.59" y="1045.02">
+  <object id="206" name="21" x="1149.59" y="1045.02">
    <polygon points="0,0 118.954,-57.5163 139.869,65.3595 -37.9085,75.817"/>
   </object>
-  <object id="207" name="3" x="805.804" y="924.758">
+  <object id="207" name="20" x="805.804" y="924.758">
    <polygon points="0,0 66.6667,0 67.9739,28.7582 1.30719,31.3725"/>
   </object>
-  <object id="208" name="3" x="892.078" y="926.065">
+  <object id="208" name="20" x="892.078" y="926.065">
    <polygon points="0,0 2.61438,23.5294 67.9739,26.1438 65.3595,1.30719"/>
   </object>
-  <object id="209" name="2" x="519.747" y="755.15">
+  <object id="209" name="21" x="519.747" y="755.15">
    <polygon points="0,0 -20.2564,128.147 214.292,126.846 212.16,24.7187 9.59516,19.5148"/>
   </object>
-  <object id="210" name="2" x="997.961" y="784.531">
+  <object id="210" name="21" x="997.961" y="784.531">
    <polygon points="0,0 0,93.7875 152.941,101.511 224.837,30.343 121.569,1.10338"/>
   </object>
-  <object id="211" name="3" x="558.827" y="674.01">
+  <object id="211" name="21" x="558.827" y="674.01">
    <polygon points="0,0 2.09424,23.0366 52.356,25.1309 48.1675,-6.28272"/>
   </object>
-  <object id="212" name="3" x="971.393" y="671.916">
+  <object id="212" name="20" x="971.393" y="671.916">
    <polygon points="0,0 2.09424,18.8482 60.733,23.0366 52.356,0"/>
   </object>
-  <object id="213" name="1" x="704.779" y="674.01">
+  <object id="213" name="20" x="704.779" y="674.01">
    <polygon points="0,0 -9.82566,20.9424 90.3961,27.2251 84.5007,2.09424"/>
   </object>
-  <object id="214" name="0" x="1071.92" y="667.728">
+  <object id="214" name="21" x="1071.92" y="667.728">
    <polygon points="0,0 15.6978,31.4136 111.847,31.4136 103.998,6.28272"/>
   </object>
-  <object id="215" name="2" x="528.457" y="401.395">
+  <object id="215" name="21" x="528.457" y="401.395">
    <polygon points="0,0 -4.45831,91.3955 173.874,95.8538 162.728,-6.68747"/>
   </object>
-  <object id="216" name="2" x="911.872" y="399.165">
+  <object id="216" name="21" x="911.872" y="399.165">
    <polygon points="0,0 -2.22916,95.8538 176.103,89.1663 164.958,-4.45831"/>
   </object>
-  <object id="217" name="1" x="722.393" y="513.621">
+  <object id="217" name="20" x="722.393" y="513.621">
    <polygon points="0,0 15.0211,128.904 134.034,134.899 114.391,-2.99776"/>
   </object>
-  <object id="221" name="3" x="332.481" y="491.237">
+  <object id="221" name="20" x="332.481" y="491.237">
    <polygon points="0,0 147.206,5.82771 127.024,142.779 2.37429,115.097"/>
   </object>
-  <object id="222" name="3" x="1241.85" y="548.526">
+  <object id="222" name="21" x="1241.85" y="548.526">
    <polygon points="0,0 25.7176,96.5063 92.9152,82.0858 38.9912,-11.0927"/>
   </object>
-  <object id="223" name="1" x="990.186" y="549.293">
+  <object id="223" name="20" x="990.186" y="549.293">
    <polygon points="0,0 195.646,-45.4671 194.268,75.7785 -28.9336,79.9118"/>
   </object>
  </objectgroup>
@@ -551,10 +566,17 @@
   <object id="195" name="West" x="930.646" y="1341.53"/>
   <object id="196" name="Mik" x="1133.94" y="1344.39"/>
   <object id="197" name="Sarg" x="1189.77" y="1344.39"/>
-  <object id="198" name="Vivek" x="748.827" y="1347.25"/>
+  <object id="198" name="Aaron" x="748.827" y="1347.25"/>
   <object id="199" name="Zach" x="836.157" y="1342.96"/>
   <object id="200" name="Layide" x="1030.86" y="1341.53"/>
   <object id="219" name="Judas" x="345.433" y="742.259"/>
+  <object id="245" name="Baldwin" x="421.077" y="1173.49"/>
+  <object id="246" name="Doug" x="1258.63" y="1176.94"/>
+  <object id="247" name="Earl" x="1333.67" y="844.376"/>
+  <object id="249" name="Harold" x="458.176" y="786.448"/>
+  <object id="250" name="Dazza" x="590.646" y="1353.23"/>
+  <object id="251" name="Dave" x="988.864" y="1428.95"/>
+  <object id="252" name="Richard" x="1132.8" y="1248.22"/>
  </objectgroup>
  <objectgroup id="16" name="Animal Layer">
   <object id="218" name="2" x="1561.42" y="611.873"/>

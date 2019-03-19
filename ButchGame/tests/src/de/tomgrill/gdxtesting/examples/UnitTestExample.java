@@ -73,21 +73,21 @@ public class UnitTestExample {
 //        }
 //        return false;
 //    }
-    private void enemyLoader() {
-//        batch.begin();
+//    private void enemyLoader() {
+////        batch.begin();
+//
+//        enemy = new Enemy(new Vector2(0,0), 99);
+////        batch.draw(enemy.getSprite().getTexture(), 1, 1);
+////        batch.end();
+//        enemy.setSprite(new Sprite(new Texture(getPixmapRectangle(1, 1, Color.BLACK)) ) );
+//    }
 
-        enemy = new Enemy(new Vector2(0,0), 99);
-//        batch.draw(enemy.getSprite().getTexture(), 1, 1);
-//        batch.end();
-        enemy.setSprite(new Sprite(new Texture(getPixmapRectangle(1, 1, Color.BLACK)) ) );
-    }
-
-    @Test
-    public void testEnemyHealth() {
-        enemyLoader();
-
-        assertEquals(100, enemy.getHealth(), 0);
-    }
+//    @Test
+//    public void testEnemyHealth() {
+//        enemyLoader();
+//
+//        assertEquals(100, enemy.getHealth(), 0);
+//    }
 
     @Test
     public void testGunId() {
@@ -107,6 +107,11 @@ public class UnitTestExample {
     @Test
     public void testGunFireRate() {
         assertEquals(0.5f, gun.fireRate, 0);
+    }
+
+    @Test
+    public void testGunShotSpeed() {
+        assertEquals(15, gun.speed, 0);
     }
 
     @Test
@@ -130,6 +135,11 @@ public class UnitTestExample {
         assertEquals(3f, gun.reloadSpeed, 0);
     }
 
+    @Test
+    public void testLevelSpeed() {
+        int playerLevel = 3;
+        assertEquals(21, gun.speed + (3 * (playerLevel - 1)), 0);
+    }
 
 	private boolean setupGame(){
 //		if(desktopLauncher != null){

@@ -54,6 +54,9 @@ public class ButchGame extends Game {
 		assets.load(assets.snowyMountain, TiledMap.class);
 		assets.load(assets.bigBoyTown, TiledMap.class);
 		assets.load(assets.mazeMap, TiledMap.class);
+		assets.load(assets.gunStoreInterior, TiledMap.class);
+//		assets.load(assets.tavernInteriorTwo, TiledMap.class);
+		assets.load(assets.houseInterior, TiledMap.class);
 		renderableManager = new RenderableManager();
 		log = new FPSLogger();
 		themeVolume = 0.05f;

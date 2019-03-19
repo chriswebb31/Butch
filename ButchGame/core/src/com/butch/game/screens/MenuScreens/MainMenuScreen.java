@@ -424,6 +424,20 @@ public class MainMenuScreen implements Screen {
                                     }
                                 });
                                 break;
+                            case (12) :
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new GunStore(game, gameViewPort, GunStore.map, 0),stage,game);
+                                    }
+                                });
+                            case (13) :
+                                playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(Music music) {
+                                        TransitionScreen.transitionOut(new HouseInterior(game, gameViewPort, HouseInterior.map, 0),stage,game);
+                                    }
+                                });
                         }
                     }
                 } catch (FileNotFoundException e) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="68" height="64" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="179">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="68" height="64" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="189">
  <tileset firstgid="1" source="Ground 1.tsx"/>
  <tileset firstgid="129" source="Rocks.tsx"/>
  <tileset firstgid="257" source="Warzone Path.tsx"/>
@@ -405,6 +405,10 @@
   <object id="151" name="1" x="1809.33" y="1534.67" width="14.6667" height="65.3333"/>
   <object id="152" name="2" x="1026" y="288.667"/>
   <object id="153" name="3" x="987.333" y="237.333" width="74" height="13.3333"/>
+  <object id="180" name="5" x="304.333" y="1744" width="15.3333" height="10"/>
+  <object id="182" name="7" x="1175" y="1070" width="17.5" height="9.5"/>
+  <object id="185" name="6" x="1184.67" y="1111.5"/>
+  <object id="186" name="4" x="310.667" y="1778"/>
  </objectgroup>
  <objectgroup id="7" name="ItemLayer">
   <object id="164" name="12" x="417.665" y="1420.75"/>

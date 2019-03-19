@@ -88,9 +88,66 @@ public class BigTown extends ModelGameScreen {
                         }
                     });
 
+                } else if (endPoints.indexOf(endPointLoc) == 2) {
+                    updateSave(13);
+                    player.isAllowedToMove = false;
+                    player.xAxis = 0;
+                    player.yAxis = 0;
+                    player.getFrame(delta, Player.State.IDLE);
+                    Hud.stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable(){
+                        @Override
+                        public void run() {
+                            Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
+                            game.setScreen(new HouseInterior(game, gameViewPort, HouseInterior.map, 0));
+                        }
+                    })));
+                    playSound.play();
+                    playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(Music music) {
+                            music.play();
+                            playSound.dispose();
+                            player.isAllowedToMove = true;
+
+                            StartTavern.cutSceneStart = false;
+
+
+                        }
+                    });
+
+                } else if (endPoints.indexOf(endPointLoc) == 3) {
+                    updateSave(12);
+                    player.isAllowedToMove = false;
+                    player.xAxis = 0;
+                    player.yAxis = 0;
+                    player.getFrame(delta, Player.State.IDLE);
+                    Hud.stage.addAction(Actions.sequence(Actions.fadeOut(1),Actions.run(new Runnable(){
+                        @Override
+                        public void run() {
+                            Hud.stage.addAction(Actions.sequence(Actions.alpha(0),Actions.fadeIn(1)));
+                            game.setScreen(new GunStore(game, gameViewPort, GunStore.map, 0));
+                        }
+                    })));
+                    playSound.play();
+                    playSound.setOnCompletionListener(new Music.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(Music music) {
+                            music.play();
+                            playSound.dispose();
+                            player.isAllowedToMove = true;
+
+                            StartTavern.cutSceneStart = false;
+
+
+                        }
+                    });
+
+
                 }
             }
+
         }
+
         super.render(delta);
     }
 

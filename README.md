@@ -4,6 +4,9 @@ Code dump for team 3's project
 # IDE
 > Intellij
 
+# How To Run The Game
+* Go To ButchGame/core/assets and run ButchGame.exe
+
 # How to Import the Project on Intellij
 
 * Open File

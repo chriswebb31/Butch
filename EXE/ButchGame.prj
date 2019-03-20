@@ -1,0 +1,45 @@
+%%Excelsior JET v15.3 project file
+
+-jpiiproject=F:\Butch\EXE\ButchGame.jpn
+
+-compilewithfixedheap+
+-genstackalloc+
+-genstacktrace-
+-global-
+-gui-
+-ignoreclassduplication+
+-ignorememberabsence+
+-inline+
+-jetcpenablemanualsettings+
+-multiapp-
+-pgo+
+-splashgetfrommanifest-
+
+-apptype=Plain
+-classabsence=HANDLE
+-compilerheap=1744830464
+-inlinelimit=100
+-inlinetolimit=1000
+-jetcplastpage:=PageCompile
+-jetrt=Desktop
+-jetvmprop=-Djet.gc.heaplimit:0 -Djet.stack.trace
+-jprofile=./ButchGame.jprof
+-main=com/butch/game/desktop/DesktopLauncher
+-outputdir=../ButchGame/core/assets
+-outputname=ButchGame
+-saprofmode=JETCPONLY
+-saproftimeout=20
+-stacklimit=900000
+-startupprofile=./ButchGame.startup
+
+
+
+
+!classpathentry ../ButchGame/desktop/build/libs/desktop-1.0.jar
+  -pack=noncompiled
+  -protect=all
+  -optimize=all
+!end
+
+!module ./ButchGame.usg
+

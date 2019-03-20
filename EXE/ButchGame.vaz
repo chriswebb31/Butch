@@ -1,0 +1,17 @@
+LONGLONGTIME: net/java/games/input/LinuxNativeTypesMap.reInit()V
+LONGLONGTIME: net/java/games/input/KeyboardUsage.<clinit>()V
+LONGLONGTIME: org/lwjgl/opencl/CLCapabilities.<clinit>()V
+LONGLONGTIME: com/badlogic/gdx/utils/compression/lzma/Encoder.GetOptimum(I)I
+LONGLONGTIME: com/badlogic/gdx/graphics/g3d/shaders/DefaultShader$Inputs.<clinit>()V
+LONGLONGTIME: com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassReader.accept(Lcom/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassVisitor;[Lcom/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Attribute;I)V
+LONGLONGTIME: javazoom/jl/decoder/LayerIIDecoder$SubbandLayer2.<clinit>()V
+LONGLONGTIME: javazoom/jl/decoder/huffcodetab.<clinit>()V
+LONGLONGTIME: javazoom/jl/decoder/LayerIIIDecoder.<clinit>()V
+LONGLONGTIME: javazoom/jl/decoder/Header.<clinit>()V
+LONGLONGTIME: com/jcraft/jorbis/Floor1.<clinit>()V
+LONGLONGTIME: com/jcraft/jorbis/Lookup.<clinit>()V
+LONGLONGTIME: net/java/games/input/Component$Identifier$Button.<clinit>()V
+LONGLONGTIME: net/java/games/input/Component$Identifier$Key.<clinit>()V
+LONGLONGTIME: org/lwjgl/opengl/ContextCapabilities.EXT_direct_state_access_initNativeFunctionAddresses(ZLjava/util/Set;)Z
+LONGLONGTIME: org/lwjgl/opengl/ContextCapabilities.GL11_initNativeFunctionAddresses(Z)Z
+LONGLONGTIME: org/lwjgl/opengl/ContextCapabilities.initAllStubs(Z)Ljava/util/Set;

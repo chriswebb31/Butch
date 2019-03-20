@@ -1,0 +1,38 @@
+
+-arch=amd64
+-PIC
+-jetcomponent=15.30
+-jetedition=Evaluation
+-vcode=108181
+-sys=C
+-nosmart
+-zimer=0
+-stack=900000
+-LargeAddressAware
+-config=VMProperty:-Djet.gc.heaplimit:0 -Djet.stack.trace
+-config=ClassPath:*{exe.dir}\desktop-1.0.jar
+-config=JREHome:C:\jet15.3-eval-amd64\bin\..\profile1.8.0_181o\jre
+-config=JETProfile:108181
+-config=JETProfileName:1.8.0_181o
+-config=RuntimeKind:DESKTOP
+-EmbeddedFileSys=F:/Butch/EXE/ButchGame_jetpdb/ButchGame.efs
+-config=MainClass:com/butch/game/desktop/DesktopLauncher
+-config=VersionInfo:jet-1530-release (eval, en)
+-config=CompatibilityString:OpenJDK version: 1.8.0_181; JET update level: 0; CPU architecture: amd64
+-name=..\ButchGame\core\assets\ButchGame.exe
+
+-entry=ExeEntryPoint
+
+-LinkFileAsRData=LINK_SplashPicture:C:\jet15.3-eval-amd64\lib\x86\dummysplash.lib
+C:\jet15.3-eval-amd64\lib\x86\startup-exe-normal.zip
+-GenExceptionInfo=JR_SystemExceptionHandler
+-config=PackagingOptions:dlls=net;nio;awt component_microversions=BC-0
+-ReadLinkInfo=F:\Butch\EXE\ButchGame_jetpdb\reorder.li
+F:\Butch\EXE\ButchGame_jetpdb\obj.zip
+-Config=RTComponent:XKRN1530108181.dll
+C:\jet15.3-eval-amd64\lib\x86\startup-rtlink.zip
+C:\jet15.3-eval-amd64\lib\x86\import32.lib
+C:\jet15.3-eval-amd64\lib\x86\app.res
+-StrictLinkToDLL
+
+

@@ -308,13 +308,13 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     //Character sounds
     public final String consumeFoodNoise = "SoundFX/CharacterNoises/consumeFoodNoise.mp3";
-    public final String drinkItemNoise = "SoundFX/CharacterNoises/DrinkItemNoise.mp3";
+    public final String drinkItemNoise = "SoundFX/CharacterNoises/drinkItemNoise.mp3";
     public final String oof = "SoundFX/CharacterNoises/oof.mp3";
 
     //MUSIC
     public final String townTheme = "Music/Town1.mp3";
     public final String mainTheme = "Music/TitleScreen.mp3";
-    public final String prisonTheme = "Music/PrisonMusic.mp3";
+    public final String prisonTheme = "Music/prisonMusic.mp3";
     public final String endMazeMapTheme = "Music/mazeMap.mp3";
     public final String bigCityTheme =  "Music/BigCity.mp3";
     public final String snowTheme =  "Music/Snow.mp3";
@@ -349,7 +349,7 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
     //CutScenes Assets
     public final String bubbleSpeech = "CutScenes/speechBubble.png";
-    public final String introBack = "CutScenes/introback.jpg";
+    public final String introBack = "CutScenes/introBack.jpg";
     public final String newspaper = "CutScenes/newspaperCutscene.png";
 
     public final String introBackMusic1 = "CutScenes/Audio/introBackMusic.mp3";

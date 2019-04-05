@@ -55,7 +55,7 @@ public class DialogueBox extends Table{
     public void act(float delta){
         super.act(delta);
         if (state==STATE.ANIMATING){
-            this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("dialogueBox.png"))));
+            this.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("core/assets/dialogueBox.png"))));
             animTimer+= delta;
             if (animTimer> animationTotalTime){
                 state = STATE.IDLE;

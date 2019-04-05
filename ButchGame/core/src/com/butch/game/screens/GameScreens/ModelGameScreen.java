@@ -358,7 +358,7 @@ public abstract class ModelGameScreen implements Screen {
         InputStream inputStream = null;
 
         try{
-            inputStream = new FileInputStream("Saves/savegame.properties");
+            inputStream = new FileInputStream("core/assets/Saves/savegame.properties");
             if(inputStream != null){
                 saveGame.load(inputStream);
                 player.setPlayerLevel(Integer.parseInt(saveGame.getProperty("LEVEL")));
@@ -387,7 +387,7 @@ public abstract class ModelGameScreen implements Screen {
         FileOutputStream outputStream = null;
 
         try{
-            inputStream = new FileInputStream("Saves/savegame.properties");
+            inputStream = new FileInputStream("core/assets/Saves/savegame.properties");
             if(inputStream != null){
                 saveGame.load(inputStream);
                 System.out.println("SUCC");
@@ -400,7 +400,7 @@ public abstract class ModelGameScreen implements Screen {
         }
 
         try{
-            outputStream = new FileOutputStream("Saves/savegame.properties");
+            outputStream = new FileOutputStream("core/assets/Saves/savegame.properties");
 
             saveGame.setProperty("PROGRESS", String.valueOf(progress));
             saveGame.setProperty("HEALTH", String.valueOf(player.health));

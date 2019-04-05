@@ -26,7 +26,7 @@ public class GunCreator extends Gun {
         InputStream input = null;
         try {
 
-            input = new FileInputStream("Gun/" + gunName + ".properties");
+            input = new FileInputStream("core/assets/Gun/" + gunName + ".properties");
 
             // load a properties file
             prop.load(input);

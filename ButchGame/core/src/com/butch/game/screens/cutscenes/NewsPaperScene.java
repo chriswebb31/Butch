@@ -18,7 +18,7 @@ public class NewsPaperScene implements Disposable {
     public NewsPaperScene(SpriteBatch batch){
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport,batch);
-        newspaper = new Texture("CutScenes/newspaperCutscene.png");
+        newspaper = new Texture("core/assets/CutScenes/newspaperCutscene.png");
         news = new Image(newspaper);
         news.setBounds(Gdx.graphics.getWidth()/2-news.getWidth()/2, 0-news.getHeight()/3-50,
                 Gdx.graphics.getWidth()/1.5f,Gdx.graphics.getHeight()/0.664200f);

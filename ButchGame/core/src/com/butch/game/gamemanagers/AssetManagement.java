@@ -16,311 +16,311 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
         used to load in relevant external assets for other classes, including images, sounds
      */
     //TEXTURES
-    public final String levelUpSprite = "DButt.jpg"; //Placeholder LevelUpItem
-    public final String gunSprite = "weapon.png"; //Placeholder Gun
-    public final String bulletSprite = "bullet.png"; //Standard Bullet
+    public final String levelUpSprite = "core/assets/DButt.jpg"; //Placeholder LevelUpItem
+    public final String gunSprite = "core/assets/weapon.png"; //Placeholder Gun
+    public final String bulletSprite = "core/assets/bullet.png"; //Standard Bullet
     //Idle Gun Textures
-    public final String coltSprite = "Anim/Guns/revolverIdle.png";
-    public final String machineGunSprite = "Anim/Guns/machinegunIdle.png";
-    public final String rifleSprite = "Rifle.png";
-    public final String shotgunSprite = "Anim/Guns/shotgunIdle.png";
-    public final String musketSprite = "Anim/Guns/musketIdle.png";
+    public final String coltSprite = "core/assets/Anim/Guns/revolverIdle.png";
+    public final String machineGunSprite = "core/assets/Anim/Guns/machinegunIdle.png";
+    public final String rifleSprite = "core/assets/Rifle.png";
+    public final String shotgunSprite = "core/assets/Anim/Guns/shotgunIdle.png";
+    public final String musketSprite = "core/assets/Anim/Guns/musketIdle.png";
     //Gun Silhouettes
-    public final String machineGunSilhoutte = "Anim/Guns/machineGunSilhouette.png";
-    public final String musketSilhoutte = "Anim/Guns/musketSilhouette.png";
-    public final String revolverSilhouette = "Anim/Guns/revolverSilhouette.png";
-    public final String shotgunSilhouette = "Anim/Guns/shotgunSilhouette.png";
+    public final String machineGunSilhoutte = "core/assets/Anim/Guns/machineGunSilhouette.png";
+    public final String musketSilhoutte = "core/assets/Anim/Guns/musketSilhouette.png";
+    public final String revolverSilhouette = "core/assets/Anim/Guns/revolverSilhouette.png";
+    public final String shotgunSilhouette = "core/assets/Anim/Guns/shotgunSilhouette.png";
 
-    public final String backgroundTexture = "Anim/doorAtlas/mainDoors-0.png";
-    public final String playButtonActiveSprite = "Buttons/playButtonActive.png";
-    public final String playButtonInactiveSprite = "Buttons/playButtonInactive.png";
-    public final String aboutButtonActiveSprite = "Buttons/aboutButtonActive.png";
-    public final String aboutButtonInactiveSprite = "Buttons/aboutButtonInactive.png";
-    public final String needHelpButtonActiveSprite = "Buttons/helpButtonActive.png";
-    public final String needHelpButtonInactiveSprite = "Buttons/helpButtonInactive.png";
-    public final String settingsButtonActiveSprite = "Buttons/settingsButton.png";
-    public final String exitButtonActive = "Buttons/exitButtonActive.png";
-    public final String exitButtonInactive = "Buttons/exitButtonInactive.png";
-    public final String homeButtonInactive = "Buttons/homeButtonInactive.png";
-    public final String homeButtonActive = "Buttons/homeButtonActive.png";
-    public final String continueButtonActive = "Buttons/continueActive.png";
-    public final String continueButtonInactive = "Buttons/continueInactive.png";
-    public final String barrelSprite = "Barrel.png";
-    public final String sliderBack = "Buttons/sliderBack.png";
-    public final String sliderKnob = "Buttons/sliderKnob.png";
-    public final String pistolAmmo = "pistolAmmo.png";
-    public final String rifleAmmo = "rifleAmmo.png";
-    public final String shotgunAmmoIdle = "shotgunAmmo.png";
-    public final String coinItemSprite = "coin.png";
-    public final String shellSprite = "shell.png";
-    public final String bloodSprite = "blood.png";
-    public final String pickupSprite = "pickupIcon.png";
-    public final String cursor = "cursor.png";
-    public final String healthPotion = "healthPotion.png";
-    public final String whiskyBottle = "whisky.png";
-    public final String aboutPage = "Pages/aboutPage.png";
-    public final String helpPage = "Pages/needHelpPage.png";
+    public final String backgroundTexture = "core/assets/Anim/doorAtlas/mainDoors-0.png";
+    public final String playButtonActiveSprite = "core/assets/Buttons/playButtonActive.png";
+    public final String playButtonInactiveSprite = "core/assets/Buttons/playButtonInactive.png";
+    public final String aboutButtonActiveSprite = "core/assets/Buttons/aboutButtonActive.png";
+    public final String aboutButtonInactiveSprite = "core/assets/Buttons/aboutButtonInactive.png";
+    public final String needHelpButtonActiveSprite = "core/assets/Buttons/helpButtonActive.png";
+    public final String needHelpButtonInactiveSprite = "core/assets/Buttons/helpButtonInactive.png";
+    public final String settingsButtonActiveSprite = "core/assets/Buttons/settingsButton.png";
+    public final String exitButtonActive = "core/assets/Buttons/exitButtonActive.png";
+    public final String exitButtonInactive = "core/assets/Buttons/exitButtonInactive.png";
+    public final String homeButtonInactive = "core/assets/Buttons/homeButtonInactive.png";
+    public final String homeButtonActive = "core/assets/Buttons/homeButtonActive.png";
+    public final String continueButtonActive = "core/assets/Buttons/continueActive.png";
+    public final String continueButtonInactive = "core/assets/Buttons/continueInactive.png";
+    public final String barrelSprite = "core/assets/Barrel.png";
+    public final String sliderBack = "core/assets/Buttons/sliderBack.png";
+    public final String sliderKnob = "core/assets/Buttons/sliderKnob.png";
+    public final String pistolAmmo = "core/assets/pistolAmmo.png";
+    public final String rifleAmmo = "core/assets/rifleAmmo.png";
+    public final String shotgunAmmoIdle = "core/assets/shotgunAmmo.png";
+    public final String coinItemSprite = "core/assets/coin.png";
+    public final String shellSprite = "core/assets/shell.png";
+    public final String bloodSprite = "core/assets/blood.png";
+    public final String pickupSprite = "core/assets/pickupIcon.png";
+    public final String cursor = "core/assets/cursor.png";
+    public final String healthPotion = "core/assets/healthPotion.png";
+    public final String whiskyBottle = "core/assets/whisky.png";
+    public final String aboutPage = "core/assets/Pages/aboutPage.png";
+    public final String helpPage = "core/assets/Pages/needHelpPage.png";
     //Bullets
-    public final String friendlyBullet = "friendlyBullet.png";
-    public final String enemyBullet = "enemyBullet.png";
+    public final String friendlyBullet = "core/assets/friendlyBullet.png";
+    public final String enemyBullet = "core/assets/enemyBullet.png";
     //HUD
     //Character Screen
-    public final String characterScreen = "HUD/characterScreen.png";
+    public final String characterScreen = "core/assets/HUD/characterScreen.png";
     //Skin
-    public final String uiskin = "Data/uiskin.json";
+    public final String uiskin = "core/assets/Data/uiskin.json";
     //Health Bars
-    public final String enemyHBBG = "HUD/bars/enemyHealthBarBG.png";
-    public final String enemyHBFG = "HUD/bars/enemyHealthBarFG.png";
-    public final String playerHBBG = "HUD/bars/playerHealthBarBG.png";
-    public final String playerHBFG = "HUD/bars/playerHealthBarFG.png";
-    public final String loadingBarBack = "HUD/bars/loadingBarBack.png";
+    public final String enemyHBBG = "core/assets/HUD/bars/enemyHealthBarBG.png";
+    public final String enemyHBFG = "core/assets/HUD/bars/enemyHealthBarFG.png";
+    public final String playerHBBG = "core/assets/HUD/bars/playerHealthBarBG.png";
+    public final String playerHBFG = "core/assets/HUD/bars/playerHealthBarFG.png";
+    public final String loadingBarBack = "core/assets/HUD/bars/loadingBarBack.png";
     //Revolver Ammo Bar
-    public final String revolverAmmoBar6 = "HUD/RevolverAmmo/revolverAmmoBar-0.png";
-    public final String revolverAmmoBar5 = "HUD/RevolverAmmo/revolverAmmoBar-1.png";
-    public final String revolverAmmoBar4 = "HUD/RevolverAmmo/revolverAmmoBar-2.png";
-    public final String revolverAmmoBar3 = "HUD/RevolverAmmo/revolverAmmoBar-3.png";
-    public final String revolverAmmoBar2 = "HUD/RevolverAmmo/revolverAmmoBar-4.png";
-    public final String revolverAmmoBar1 = "HUD/RevolverAmmo/revolverAmmoBar-5.png";
-    public final String revolverAmmoBar0 = "HUD/RevolverAmmo/revolverAmmoBar-6.png";
+    public final String revolverAmmoBar6 = "core/assets/HUD/RevolverAmmo/revolverAmmoBar-0.png";
+    public final String revolverAmmoBar5 = "core/assets/HUD/RevolverAmmo/revolverAmmoBar-1.png";
+    public final String revolverAmmoBar4 = "core/assets/HUD/RevolverAmmo/revolverAmmoBar-2.png";
+    public final String revolverAmmoBar3 = "core/assets/HUD/RevolverAmmo/revolverAmmoBar-3.png";
+    public final String revolverAmmoBar2 = "core/assets/HUD/RevolverAmmo/revolverAmmoBar-4.png";
+    public final String revolverAmmoBar1 = "core/assets/HUD/RevolverAmmo/revolverAmmoBar-5.png";
+    public final String revolverAmmoBar0 = "core/assets/HUD/RevolverAmmo/revolverAmmoBar-6.png";
     //Machine Gun Ammo Bar
-    public final String machineGunAmmoBar24 = "HUD/machineGunAmmoBar/machineGunAmmoBar_00.png";
-    public final String machineGunAmmoBar23 = "HUD/machineGunAmmoBar/machineGunAmmoBar_01.png";
-    public final String machineGunAmmoBar22 = "HUD/machineGunAmmoBar/machineGunAmmoBar_02.png";
-    public final String machineGunAmmoBar21 = "HUD/machineGunAmmoBar/machineGunAmmoBar_03.png";
-    public final String machineGunAmmoBar20 = "HUD/machineGunAmmoBar/machineGunAmmoBar_04.png";
-    public final String machineGunAmmoBar19 = "HUD/machineGunAmmoBar/machineGunAmmoBar_05.png";
-    public final String machineGunAmmoBar18 = "HUD/machineGunAmmoBar/machineGunAmmoBar_06.png";
-    public final String machineGunAmmoBar17 = "HUD/machineGunAmmoBar/machineGunAmmoBar_07.png";
-    public final String machineGunAmmoBar16 = "HUD/machineGunAmmoBar/machineGunAmmoBar_08.png";
-    public final String machineGunAmmoBar15 = "HUD/machineGunAmmoBar/machineGunAmmoBar_09.png";
-    public final String machineGunAmmoBar14 = "HUD/machineGunAmmoBar/machineGunAmmoBar_10.png";
-    public final String machineGunAmmoBar13 = "HUD/machineGunAmmoBar/machineGunAmmoBar_11.png";
-    public final String machineGunAmmoBar12 = "HUD/machineGunAmmoBar/machineGunAmmoBar_12.png";
-    public final String machineGunAmmoBar11 = "HUD/machineGunAmmoBar/machineGunAmmoBar_13.png";
-    public final String machineGunAmmoBar10 = "HUD/machineGunAmmoBar/machineGunAmmoBar_14.png";
-    public final String machineGunAmmoBar9 = "HUD/machineGunAmmoBar/machineGunAmmoBar_15.png";
-    public final String machineGunAmmoBar8 = "HUD/machineGunAmmoBar/machineGunAmmoBar_16.png";
-    public final String machineGunAmmoBar7 = "HUD/machineGunAmmoBar/machineGunAmmoBar_17.png";
-    public final String machineGunAmmoBar6 = "HUD/machineGunAmmoBar/machineGunAmmoBar_18.png";
-    public final String machineGunAmmoBar5 = "HUD/machineGunAmmoBar/machineGunAmmoBar_19.png";
-    public final String machineGunAmmoBar4 = "HUD/machineGunAmmoBar/machineGunAmmoBar_20.png";
-    public final String machineGunAmmoBar3 = "HUD/machineGunAmmoBar/machineGunAmmoBar_21.png";
-    public final String machineGunAmmoBar2 = "HUD/machineGunAmmoBar/machineGunAmmoBar_22.png";
-    public final String machineGunAmmoBar1 = "HUD/machineGunAmmoBar/machineGunAmmoBar_23.png";
-    public final String machineGunAmmoBar0 = "HUD/machineGunAmmoBar/machineGunAmmoBar_24.png";
+    public final String machineGunAmmoBar24 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_00.png";
+    public final String machineGunAmmoBar23 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_01.png";
+    public final String machineGunAmmoBar22 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_02.png";
+    public final String machineGunAmmoBar21 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_03.png";
+    public final String machineGunAmmoBar20 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_04.png";
+    public final String machineGunAmmoBar19 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_05.png";
+    public final String machineGunAmmoBar18 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_06.png";
+    public final String machineGunAmmoBar17 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_07.png";
+    public final String machineGunAmmoBar16 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_08.png";
+    public final String machineGunAmmoBar15 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_09.png";
+    public final String machineGunAmmoBar14 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_10.png";
+    public final String machineGunAmmoBar13 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_11.png";
+    public final String machineGunAmmoBar12 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_12.png";
+    public final String machineGunAmmoBar11 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_13.png";
+    public final String machineGunAmmoBar10 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_14.png";
+    public final String machineGunAmmoBar9 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_15.png";
+    public final String machineGunAmmoBar8 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_16.png";
+    public final String machineGunAmmoBar7 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_17.png";
+    public final String machineGunAmmoBar6 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_18.png";
+    public final String machineGunAmmoBar5 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_19.png";
+    public final String machineGunAmmoBar4 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_20.png";
+    public final String machineGunAmmoBar3 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_21.png";
+    public final String machineGunAmmoBar2 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_22.png";
+    public final String machineGunAmmoBar1 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_23.png";
+    public final String machineGunAmmoBar0 = "core/assets/HUD/machineGunAmmoBar/machineGunAmmoBar_24.png";
     //Shotgun Ammo Bar
-    public final String shotgunAmmoBar2 = "HUD/shotgunAmmoBar/shotgunAmmoBar-0.png";
-    public final String shotgunAmmoBar1 = "HUD/shotgunAmmoBar/shotgunAmmoBar-1.png";
-    public final String shotgunAmmoBar0 = "HUD/shotgunAmmoBar/shotgunAmmoBar-2.png";
+    public final String shotgunAmmoBar2 = "core/assets/HUD/shotgunAmmoBar/shotgunAmmoBar-0.png";
+    public final String shotgunAmmoBar1 = "core/assets/HUD/shotgunAmmoBar/shotgunAmmoBar-1.png";
+    public final String shotgunAmmoBar0 = "core/assets/HUD/shotgunAmmoBar/shotgunAmmoBar-2.png";
     //Musket Ammo Bar
-    public final String musketAmmoBar1 = "HUD/musketAmmoBar/musketAmmoBar_0.png";
-    public final String musketAmmoBar0 = "HUD/musketAmmoBar/musketAmmoBar_1.png";
+    public final String musketAmmoBar1 = "core/assets/HUD/musketAmmoBar/musketAmmoBar_0.png";
+    public final String musketAmmoBar0 = "core/assets/HUD/musketAmmoBar/musketAmmoBar_1.png";
     //Melee Ammo Bar
-    public final String meleeAmmoBar = "HUD/meleeAmmoBar.png";
+    public final String meleeAmmoBar = "core/assets/HUD/meleeAmmoBar.png";
     //Coin Counter
-    public final String coinCounter0 = "HUD/CoinCount/coinCount-9.png";
-    public final String coinCounter1 = "HUD/CoinCount/coinCount-0.png";
-    public final String coinCounter2 = "HUD/CoinCount/coinCount-1.png";
-    public final String coinCounter3 = "HUD/CoinCount/coinCount-2.png";
-    public final String coinCounter4 = "HUD/CoinCount/coinCount-3.png";
-    public final String coinCounter5 = "HUD/CoinCount/coinCount-4.png";
-    public final String coinCounter6 = "HUD/CoinCount/coinCount-5.png";
-    public final String coinCounter7 = "HUD/CoinCount/coinCount-6.png";
-    public final String coinCounter8 = "HUD/CoinCount/coinCount-7.png";
-    public final String coinCounter9 = "HUD/CoinCount/coinCount-8.png";
+    public final String coinCounter0 = "core/assets/HUD/CoinCount/coinCount-9.png";
+    public final String coinCounter1 = "core/assets/HUD/CoinCount/coinCount-0.png";
+    public final String coinCounter2 = "core/assets/HUD/CoinCount/coinCount-1.png";
+    public final String coinCounter3 = "core/assets/HUD/CoinCount/coinCount-2.png";
+    public final String coinCounter4 = "core/assets/HUD/CoinCount/coinCount-3.png";
+    public final String coinCounter5 = "core/assets/HUD/CoinCount/coinCount-4.png";
+    public final String coinCounter6 = "core/assets/HUD/CoinCount/coinCount-5.png";
+    public final String coinCounter7 = "core/assets/HUD/CoinCount/coinCount-6.png";
+    public final String coinCounter8 = "core/assets/HUD/CoinCount/coinCount-7.png";
+    public final String coinCounter9 = "core/assets/HUD/CoinCount/coinCount-8.png";
     //HamburgerOptionButton
-    public final String hamburger = "HUD/hamburger.png";
+    public final String hamburger = "core/assets/HUD/hamburger.png";
     //HUD Gun Labels
-    public final String machineGunLabel = "HUD/machineGunLabel.png";
-    public final String musketLabel = "HUD/musketLabel.png";
-    public final String shotgunLabel = "HUD/shotgunLabel.png";
-    public final String revolverLabel = "HUD/revolverLabel.png";
+    public final String machineGunLabel = "core/assets/HUD/machineGunLabel.png";
+    public final String musketLabel = "core/assets/HUD/musketLabel.png";
+    public final String shotgunLabel = "core/assets/HUD/shotgunLabel.png";
+    public final String revolverLabel = "core/assets/HUD/revolverLabel.png";
 
     //dialogue stuff
-    public final String dialougueBox= "dialogueBox.png";
+    public final String dialougueBox= "core/assets/dialogueBox.png";
 
     //TEXTUREATLAS
     //MAIN MENU
-    public final String doorsMain = "Anim/doorAtlas/mainDoors.atlas";
+    public final String doorsMain = "core/assets/Anim/doorAtlas/mainDoors.atlas";
     //ANIMALS
-    public final String chickenIdle = "Anim/Animals/chickenIdle.atlas";
-    public final String cowIdle = "Anim/Animals/cowIdle.atlas";
-    public final String goatIdle = "Anim/Animals/goatIdle.atlas";
-    public final String horseWalking = "Anim/Animals/horseWalking.atlas";
-    public final String pigIdle = "Anim/Animals/pigIdle.atlas";
-    public final String racoonIdle = "Anim/Animals/racoonIdle.atlas";
-    public final String turkeyIdle = "Anim/Animals/turkeyIdle.atlas";
+    public final String chickenIdle = "core/assets/Anim/Animals/chickenIdle.atlas";
+    public final String cowIdle = "core/assets/Anim/Animals/cowIdle.atlas";
+    public final String goatIdle = "core/assets/Anim/Animals/goatIdle.atlas";
+    public final String horseWalking = "core/assets/Anim/Animals/horseWalking.atlas";
+    public final String pigIdle = "core/assets/Anim/Animals/pigIdle.atlas";
+    public final String racoonIdle = "core/assets/Anim/Animals/racoonIdle.atlas";
+    public final String turkeyIdle = "core/assets/Anim/Animals/turkeyIdle.atlas";
     //BUTCH
-    public final String butchIdleAnim = "Anim/Butch/butchIdle.atlas";
-    public final String butchDying = "Anim/Butch/butchDying.atlas";
-    public final String butchWalking = "Anim/Butch/butchWalking.atlas";
-    public final String butchGhost = "Anim/Butch/butchGhost.atlas";
-    public final String butchDoorTransition = "Anim/Butch/butchDoorTransition.atlas";
-    public final String butchHandsWalking = "Anim/Butch/handsWalking.atlas";
-    public final String butchHorseRiding = "Anim/Butch/butchHorseRiding.atlas";
-    public final String butchHorseIdle = "Anim/Butch/butchHorseIdle.atlas";
-    public final String butchHandsIdle = "Anim/Butch/butchHandsIdle.png";
-    public final String butchIdleCutscene = "Anim/Butch/butchIdleCutscene.atlas";
+    public final String butchIdleAnim = "core/assets/Anim/Butch/butchIdle.atlas";
+    public final String butchDying = "core/assets/Anim/Butch/butchDying.atlas";
+    public final String butchWalking = "core/assets/Anim/Butch/butchWalking.atlas";
+    public final String butchGhost = "core/assets/Anim/Butch/butchGhost.atlas";
+    public final String butchDoorTransition = "core/assets/Anim/Butch/butchDoorTransition.atlas";
+    public final String butchHandsWalking = "core/assets/Anim/Butch/handsWalking.atlas";
+    public final String butchHorseRiding = "core/assets/Anim/Butch/butchHorseRiding.atlas";
+    public final String butchHorseIdle = "core/assets/Anim/Butch/butchHorseIdle.atlas";
+    public final String butchHandsIdle = "core/assets/Anim/Butch/butchHandsIdle.png";
+    public final String butchIdleCutscene = "core/assets/Anim/Butch/butchIdleCutscene.atlas";
     //ENEMIES
-    public final String enemy1Idle = "Anim/Enemies/enemy1Idle.atlas";
-    public final String enemy1Walking = "Anim/Enemies/enemy1Walking.atlas";
-    public final String enemy2Idle = "Anim/Enemies/enemy2Idle.atlas";
-    public final String enemy2Walking = "Anim/Enemies/enemy2Walking.atlas";
-    public final String enemy3Idle = "Anim/Enemies/enemy3Idle.atlas";
-    public final String enemy3Walking = "Anim/Enemies/enemy3Walking.atlas";
-    public final String enemy4Idle = "Anim/Enemies/enemy4Idle.atlas";
-    public final String enemy4Walking = "Anim/Enemies/enemy4Walking.atlas";
+    public final String enemy1Idle = "core/assets/Anim/Enemies/enemy1Idle.atlas";
+    public final String enemy1Walking = "core/assets/Anim/Enemies/enemy1Walking.atlas";
+    public final String enemy2Idle = "core/assets/Anim/Enemies/enemy2Idle.atlas";
+    public final String enemy2Walking = "core/assets/Anim/Enemies/enemy2Walking.atlas";
+    public final String enemy3Idle = "core/assets/Anim/Enemies/enemy3Idle.atlas";
+    public final String enemy3Walking = "core/assets/Anim/Enemies/enemy3Walking.atlas";
+    public final String enemy4Idle = "core/assets/Anim/Enemies/enemy4Idle.atlas";
+    public final String enemy4Walking = "core/assets/Anim/Enemies/enemy4Walking.atlas";
     //GUNS
-    public final String machineGunFiring = "Anim/Guns/machineGunFiring.atlas";
-    public final String machineGunReload = "Anim/Guns/machineGunReload.atlas";
-    public final String machineGunWalking = "Anim/Guns/machineGunWalking.atlas";
-    public final String machineGunPickup = "Anim/Guns/machineGunPickup.atlas";
-    public final String musketFiring = "Anim/Guns/musketFiring.atlas";
-    public final String musketReload = "Anim/Guns/musketReload.atlas";
-    public final String musketWalking = "Anim/Guns/musketWalking.atlas";
-    public final String musketPickup = "Anim/Guns/musketPickup.atlas";
-    public final String revolverFiring = "Anim/Guns/revolverFiring.atlas";
-    public final String revolverReload = "Anim/Guns/revolverReload.atlas";
-    public final String revolverWalking = "Anim/Guns/revolverWalking.atlas";
-    public final String revolverPickup = "Anim/Guns/revolverPickup.atlas";
-    public final String shotgunFiring = "Anim/Guns/shotgunFiring.atlas";
-    public final String shotgunReload = "Anim/Guns/shotgunReload.atlas";
-    public final String shotgunWalking = "Anim/Guns/shotgunWalking.atlas";
-    public final String shotgunPickup = "Anim/Guns/shotgunPickup.atlas";
-    public final String meleeIdle = "Anim/Guns/meleeIdle.atlas";
-    public final String meleeWalking = "Anim/Guns/meleeWalking.atlas";
-    public final String meleeFiring = "Anim/Guns/meleeFiring.atlas";
-    public final String meleeSilhoutte = "Anim/Guns/meleeSilhouette.png";
+    public final String machineGunFiring = "core/assets/Anim/Guns/machineGunFiring.atlas";
+    public final String machineGunReload = "core/assets/Anim/Guns/machineGunReload.atlas";
+    public final String machineGunWalking = "core/assets/Anim/Guns/machineGunWalking.atlas";
+    public final String machineGunPickup = "core/assets/Anim/Guns/machineGunPickup.atlas";
+    public final String musketFiring = "core/assets/Anim/Guns/musketFiring.atlas";
+    public final String musketReload = "core/assets/Anim/Guns/musketReload.atlas";
+    public final String musketWalking = "core/assets/Anim/Guns/musketWalking.atlas";
+    public final String musketPickup = "core/assets/Anim/Guns/musketPickup.atlas";
+    public final String revolverFiring = "core/assets/Anim/Guns/revolverFiring.atlas";
+    public final String revolverReload = "core/assets/Anim/Guns/revolverReload.atlas";
+    public final String revolverWalking = "core/assets/Anim/Guns/revolverWalking.atlas";
+    public final String revolverPickup = "core/assets/Anim/Guns/revolverPickup.atlas";
+    public final String shotgunFiring = "core/assets/Anim/Guns/shotgunFiring.atlas";
+    public final String shotgunReload = "core/assets/Anim/Guns/shotgunReload.atlas";
+    public final String shotgunWalking = "core/assets/Anim/Guns/shotgunWalking.atlas";
+    public final String shotgunPickup = "core/assets/Anim/Guns/shotgunPickup.atlas";
+    public final String meleeIdle = "core/assets/Anim/Guns/meleeIdle.atlas";
+    public final String meleeWalking = "core/assets/Anim/Guns/meleeWalking.atlas";
+    public final String meleeFiring = "core/assets/Anim/Guns/meleeFiring.atlas";
+    public final String meleeSilhoutte = "core/assets/Anim/Guns/meleeSilhouette.png";
     //NPC
-    public final String npc1Idle = "Anim/NPC/npc1Idle.atlas";
-    public final String npc2Idle = "Anim/NPC/npc2Idle.atlas";
-    public final String npc3Idle = "Anim/NPC/npc3Idle.atlas";
-    public final String npc4Idle = "Anim/NPC/npc4Idle.atlas";
-    public final String npc5Idle = "Anim/NPC/npc5Idle.atlas";
-    public final String npc6Walking = "Anim/NPC/npc6Walking.atlas";
-    public final String npc7Walking = "Anim/NPC/npc7Walking.atlas";
-    public final String npc8Walking = "Anim/NPC/npc8Walking.atlas";
-    public final String npc9Idle = "Anim/NPC/npc9Idle.atlas";
-    public final String npc10Idle = "Anim/NPC/npc10Idle.atlas";
-    public final String npc11Idle = "Anim/NPC/npc11Idle.atlas";
-    public final String npc12Idle = "Anim/NPC/npc12Idle.atlas";
-    public final String npc13Idle = "Anim/NPC/npc13Idle.atlas";
+    public final String npc1Idle = "core/assets/Anim/NPC/npc1Idle.atlas";
+    public final String npc2Idle = "core/assets/Anim/NPC/npc2Idle.atlas";
+    public final String npc3Idle = "core/assets/Anim/NPC/npc3Idle.atlas";
+    public final String npc4Idle = "core/assets/Anim/NPC/npc4Idle.atlas";
+    public final String npc5Idle = "core/assets/Anim/NPC/npc5Idle.atlas";
+    public final String npc6Walking = "core/assets/Anim/NPC/npc6Walking.atlas";
+    public final String npc7Walking = "core/assets/Anim/NPC/npc7Walking.atlas";
+    public final String npc8Walking = "core/assets/Anim/NPC/npc8Walking.atlas";
+    public final String npc9Idle = "core/assets/Anim/NPC/npc9Idle.atlas";
+    public final String npc10Idle = "core/assets/Anim/NPC/npc10Idle.atlas";
+    public final String npc11Idle = "core/assets/Anim/NPC/npc11Idle.atlas";
+    public final String npc12Idle = "core/assets/Anim/NPC/npc12Idle.atlas";
+    public final String npc13Idle = "core/assets/Anim/NPC/npc13Idle.atlas";
 
     //Prisoners
-    public final String prisoner1Idle = "Anim/Prisoners/prisoner1Idle.atlas";
-    public final String prisoner2Idle = "Anim/Prisoners/prisoner2Idle.atlas";
-    public final String prisoner3Idle = "Anim/Prisoners/prisoner3Idle.atlas";
-    public final String prisoner4Idle = "Anim/Prisoners/prisoner4Idle.atlas";
-    public final String prisoner1Walking = "Anim/Prisoners/prisoner1Walking.atlas";
-    public final String prisoner2Walking = "Anim/Prisoners/prisoner2Walking.atlas";
-    public final String prisoner3Walking = "Anim/Prisoners/prisoner3Walking.atlas";
-    public final String prisoner4Walking = "Anim/Prisoners/prisoner4Walking.atlas";
+    public final String prisoner1Idle = "core/assets/Anim/Prisoners/prisoner1Idle.atlas";
+    public final String prisoner2Idle = "core/assets/Anim/Prisoners/prisoner2Idle.atlas";
+    public final String prisoner3Idle = "core/assets/Anim/Prisoners/prisoner3Idle.atlas";
+    public final String prisoner4Idle = "core/assets/Anim/Prisoners/prisoner4Idle.atlas";
+    public final String prisoner1Walking = "core/assets/Anim/Prisoners/prisoner1Walking.atlas";
+    public final String prisoner2Walking = "core/assets/Anim/Prisoners/prisoner2Walking.atlas";
+    public final String prisoner3Walking = "core/assets/Anim/Prisoners/prisoner3Walking.atlas";
+    public final String prisoner4Walking = "core/assets/Anim/Prisoners/prisoner4Walking.atlas";
 
     //Sheriffs
-    public final String sheriff1Idle = "Anim/Sheriffs/sheriff1Idle.atlas";
-    public final String sheriff2Idle = "Anim/Sheriffs/sheriff1Idle.atlas";
-    public final String sheriff3Idle = "Anim/Sheriffs/sheriff1Idle.atlas";
-    public final String sheriff1Walking = "Anim/Sheriffs/sheriff1Walking.atlas";
-    public final String sheriff2Walking = "Anim/Sheriffs/sheriff2Walking.atlas";
-    public final String sheriff3Walking = "Anim/Sheriffs/sheriff3Walking.atlas";
+    public final String sheriff1Idle = "core/assets/Anim/Sheriffs/sheriff1Idle.atlas";
+    public final String sheriff2Idle = "core/assets/Anim/Sheriffs/sheriff1Idle.atlas";
+    public final String sheriff3Idle = "core/assets/Anim/Sheriffs/sheriff1Idle.atlas";
+    public final String sheriff1Walking = "core/assets/Anim/Sheriffs/sheriff1Walking.atlas";
+    public final String sheriff2Walking = "core/assets/Anim/Sheriffs/sheriff2Walking.atlas";
+    public final String sheriff3Walking = "core/assets/Anim/Sheriffs/sheriff3Walking.atlas";
 
     //Soldiers
-    public final String soldier1Idle = "Anim/Soldiers/soldier1Idle.atlas";
-    public final String soldier2Idle = "Anim/Soldiers/soldier2Idle.atlas";
-    public final String soldier3Idle = "Anim/Soldiers/soldier3Idle.atlas";
-    public final String soldier4Idle = "Anim/Soldiers/soldier4Idle.atlas";
-    public final String woundedSoldier1Idle = "Anim/Soldiers/woundedSoldier1Idle.atlas";
-    public final String woundedSoldier2Idle = "Anim/Soldiers/woundedSoldier2Idle.atlas";
-    public final String deadSoldier1 = "Anim/Soldiers/deadSoldier1.atlas";
-    public final String deadSoldier2 = "Anim/Soldiers/deadSoldier2.atlas";
+    public final String soldier1Idle = "core/assets/Anim/Soldiers/soldier1Idle.atlas";
+    public final String soldier2Idle = "core/assets/Anim/Soldiers/soldier2Idle.atlas";
+    public final String soldier3Idle = "core/assets/Anim/Soldiers/soldier3Idle.atlas";
+    public final String soldier4Idle = "core/assets/Anim/Soldiers/soldier4Idle.atlas";
+    public final String woundedSoldier1Idle = "core/assets/Anim/Soldiers/woundedSoldier1Idle.atlas";
+    public final String woundedSoldier2Idle = "core/assets/Anim/Soldiers/woundedSoldier2Idle.atlas";
+    public final String deadSoldier1 = "core/assets/Anim/Soldiers/deadSoldier1.atlas";
+    public final String deadSoldier2 = "core/assets/Anim/Soldiers/deadSoldier2.atlas";
 
     //Lincoln
-    public final String lincolnIdle = "Anim/Lincoln/lincolnIdle.atlas";
-    public final String lincolnWalking = "Anim/Lincoln/lincolnWalking.atlas";
-    public final String lincolnIdleNPC = "Anim/Lincoln/lincolnIdleNPC.atlas";
+    public final String lincolnIdle = "core/assets/Anim/Lincoln/lincolnIdle.atlas";
+    public final String lincolnWalking = "core/assets/Anim/Lincoln/lincolnWalking.atlas";
+    public final String lincolnIdleNPC = "core/assets/Anim/Lincoln/lincolnIdleNPC.atlas";
     //Coin
-    public final String coinSpin = "Anim/Coin/coin.atlas";
+    public final String coinSpin = "core/assets/Anim/Coin/coin.atlas";
     //Whisky
-    public final String whisky = "Anim/Items/whisky.atlas";
-    public final String whiskySpin = "Anim/Items/whiskySpin.atlas";
+    public final String whisky = "core/assets/Anim/Items/whisky.atlas";
+    public final String whiskySpin = "core/assets/Anim/Items/whiskySpin.atlas";
     //Level Up Item
-    public final String lvlItem = "Anim/Items/lvlItem.atlas";
+    public final String lvlItem = "core/assets/Anim/Items/lvlItem.atlas";
     //AMMO
     //Machine Gun Ammo
-    public final String machineGunAmmo = "Anim/Items/machineGunAmmo.atlas";
+    public final String machineGunAmmo = "core/assets/Anim/Items/machineGunAmmo.atlas";
     //Revolver Ammo
-    public final String revolverAmmo = "Anim/Items/revolverAmmo.atlas";
+    public final String revolverAmmo = "core/assets/Anim/Items/revolverAmmo.atlas";
     //Shotgun Ammo
-    public final String shotgunAmmo = "Anim/Items/shotgunAmmo.atlas";
+    public final String shotgunAmmo = "core/assets/Anim/Items/shotgunAmmo.atlas";
     //Musket Ammo
-    public final String musketAmmo = "Anim/Items/musketAmmo.atlas";
+    public final String musketAmmo = "core/assets/Anim/Items/musketAmmo.atlas";
 
     //Cannon
-    public final String cannonFiring = "Anim/Cannon/cannonFiring.atlas";
-    public final String cannonIdle = "Anim/Cannon/cannonIdle.png";
+    public final String cannonFiring = "core/assets/Anim/Cannon/cannonFiring.atlas";
+    public final String cannonIdle = "core/assets/Anim/Cannon/cannonIdle.png";
 
-    public final String dialogueTrigger = "Anim/dialogueTrigger.atlas";
+    public final String dialogueTrigger = "core/assets/Anim/dialogueTrigger.atlas";
 
     //SOUNDS
-    public final String gunShot = "SoundFX/gunShot1.mp3";
-    public final String menuClick = "SoundFX/clickingSound.mp3";
+    public final String gunShot = "core/assets/SoundFX/gunShot1.mp3";
+    public final String menuClick = "core/assets/SoundFX/clickingSound.mp3";
 
-    public final String otherReloadEffect = "SoundFX/OtherReload.mp3";
-    public final String hitEffect = "SoundFX/hit.mp3";
-    public final String revolverReloadEeffect = "SoundFX/revolverReload.mp3";
+    public final String otherReloadEffect = "core/assets/SoundFX/OtherReload.mp3";
+    public final String hitEffect = "core/assets/SoundFX/hit.mp3";
+    public final String revolverReloadEeffect = "core/assets/SoundFX/revolverReload.mp3";
 
-    public final String shellBounceEffect = "SoundFX/shellBounce.mp3";
+    public final String shellBounceEffect = "core/assets/SoundFX/shellBounce.mp3";
 
-    public final String playSound = "SoundFX/playSound.mp3";
-    public final String coinCollection = "SoundFX/coinCollect.mp3";
-    public final String walkingFX = "SoundFX/walking.mp3";
-    public final String ammoCollection = "SoundFX/ammoCollect.mp3";
-    public final String potionCollection = "SoundFX/potionFX.mp3";
+    public final String playSound = "core/assets/SoundFX/playSound.mp3";
+    public final String coinCollection = "core/assets/SoundFX/coinCollect.mp3";
+    public final String walkingFX = "core/assets/SoundFX/walking.mp3";
+    public final String ammoCollection = "core/assets/SoundFX/ammoCollect.mp3";
+    public final String potionCollection = "core/assets/SoundFX/potionFX.mp3";
 
     //Gun Sounds
     //public final String cannonFire = "SoundFX/GunSounds/cannonFire.mp3";
     //public final String gatlingFire = "SoundFX/GunSounds/gatlingFire.mp3";
     //public final String rifleFire = "SoundFX/GunSounds/rifleFire.mp3";
-    public final String machinegunFire = "SoundFX/GunSounds/machinegunFire.mp3";
-    public final String musketFire = "SoundFX/GunSounds/musketFire.mp3";
-    public final String revolverFire = "SoundFX/GunSounds/revolverFire.mp3";
-    public final String shotgunFire = "SoundFX/GunSounds/shotgunFire.mp3";
-    public final String shotgunFire2 = "CutScenes/Audio/shotgunFire.mp3";
+    public final String machinegunFire = "core/assets/SoundFX/GunSounds/machinegunFire.mp3";
+    public final String musketFire = "core/assets/SoundFX/GunSounds/musketFire.mp3";
+    public final String revolverFire = "core/assets/SoundFX/GunSounds/revolverFire.mp3";
+    public final String shotgunFire = "core/assets/SoundFX/GunSounds/shotgunFire.mp3";
+    public final String shotgunFire2 = "core/assets/CutScenes/Audio/shotgunFire.mp3";
 
-    public final String machineGunReloadNoise = "SoundFX/GunSounds/rifleReload.mp3";
+    public final String machineGunReloadNoise = "core/assets/SoundFX/GunSounds/rifleReload.mp3";
     //public final String musketReloadNoise = "SoundFX/GunSounds/musketReload.mp3";
-    public final String revolverReloadNoise = "SoundFX/GunSounds/revolverReload.mp3";
-    public final String shotgunReloadNoise = "SoundFX/GunSounds/shotgunReload.mp3";
+    public final String revolverReloadNoise = "core/assets/SoundFX/GunSounds/revolverReload.mp3";
+    public final String shotgunReloadNoise = "core/assets/SoundFX/GunSounds/shotgunReload.mp3";
 
     //Animal sounds
-    public final String maniMountNoise = "SoundFX/ManiHorse/maniMount.mp3";
-    public final String maniDismountNoise = "SoundFX/ManiHorse/maniDismount.mp3";
-    public final String maniMovingNoise = "SoundFX/ManiHorse/maniMoving.mp3";
-    public final String maniNeighingNoise = "SoundFX/ManiHorse/maniNeighing.mp3";
-    public final String maniSnortNoise = "SoundFX/ManiHorse/maniSnortNoise.mp3";
+    public final String maniMountNoise = "core/assets/SoundFX/ManiHorse/maniMount.mp3";
+    public final String maniDismountNoise = "core/assets/SoundFX/ManiHorse/maniDismount.mp3";
+    public final String maniMovingNoise = "core/assets/SoundFX/ManiHorse/maniMoving.mp3";
+    public final String maniNeighingNoise = "core/assets/SoundFX/ManiHorse/maniNeighing.mp3";
+    public final String maniSnortNoise = "core/assets/SoundFX/ManiHorse/maniSnortNoise.mp3";
 
-    public final String chickenNoise = "SoundFX/chickenNoise.mp3";
-    public final String cowNoise = "SoundFX/cowNoise.mp3";
-    public final String goatNoise = "SoundFX/goatNoise.mp3";
-    public final String turkeyNoise = "SoundFX/turkeyNoise.mp3";
-    public final String raccoonNoise = "SoundFX/raccoonNoise.mp3";
-    public final String pigNoise = "SoundFX/pigNoise.mp3";
+    public final String chickenNoise = "core/assets/SoundFX/chickenNoise.mp3";
+    public final String cowNoise = "core/assets/SoundFX/cowNoise.mp3";
+    public final String goatNoise = "core/assets/SoundFX/goatNoise.mp3";
+    public final String turkeyNoise = "core/assets/SoundFX/turkeyNoise.mp3";
+    public final String raccoonNoise = "core/assets/SoundFX/raccoonNoise.mp3";
+    public final String pigNoise = "core/assets/SoundFX/pigNoise.mp3";
 
     //Character sounds
-    public final String consumeFoodNoise = "SoundFX/CharacterNoises/consumeFoodNoise.mp3";
-    public final String drinkItemNoise = "SoundFX/CharacterNoises/drinkItemNoise.mp3";
-    public final String oof = "SoundFX/CharacterNoises/oof.mp3";
+    public final String consumeFoodNoise = "core/assets/SoundFX/CharacterNoises/consumeFoodNoise.mp3";
+    public final String drinkItemNoise = "core/assets/SoundFX/CharacterNoises/drinkItemNoise.mp3";
+    public final String oof = "core/assets/SoundFX/CharacterNoises/oof.mp3";
 
     //MUSIC
-    public final String townTheme = "Music/Town1.mp3";
-    public final String mainTheme = "Music/TitleScreen.mp3";
-    public final String prisonTheme = "Music/prisonMusic.mp3";
-    public final String endMazeMapTheme = "Music/mazeMap.mp3";
-    public final String bigCityTheme =  "Music/BigCity.mp3";
-    public final String snowTheme =  "Music/Snow.mp3";
-    public final String caveTheme = "Music/Cave.mp3";
-    public final String warzoneTheme = "Music/Warzone.mp3";
-    public final String routeTheme = "Music/Routes.mp3";
+    public final String townTheme = "core/assets/Music/Town1.mp3";
+    public final String mainTheme = "core/assets/Music/TitleScreen.mp3";
+    public final String prisonTheme = "core/assets/Music/prisonMusic.mp3";
+    public final String endMazeMapTheme = "core/assets/Music/mazeMap.mp3";
+    public final String bigCityTheme =  "core/assets/Music/BigCity.mp3";
+    public final String snowTheme =  "core/assets/Music/Snow.mp3";
+    public final String caveTheme = "core/assets/Music/Cave.mp3";
+    public final String warzoneTheme = "core/assets/Music/Warzone.mp3";
+    public final String routeTheme = "core/assets/Music/Routes.mp3";
 
     //PARTICLES
 
@@ -329,37 +329,37 @@ public class AssetManagement extends com.badlogic.gdx.assets.AssetManager {
 
 
     //TileMapData
-    public final String startTavern = "TiledFiles/TavernInterior.tmx";
-    public final String tilemap1 = "TiledFiles/REALTOWNMAPCLEAN.tmx";
-    public final String route1 = "TiledFiles/Route1.tmx";
-    public final String caveTransition = "TiledFiles/CaveTransition.tmx";
-    public final String mazeMap = "TiledFiles/endMaze.tmx";
-    public final String prison = "TiledFiles/Prison.tmx";
-    public final String cave = "TiledFiles/Cave.tmx";
-    public final String warzone = "TiledFiles/Warzone.tmx";
-    public final String route3 = "TiledFiles/Route3.tmx";
-    public final String route4 = "TiledFiles/Route4.tmx";
-    public final String snowyMountain = "TiledFiles/SnowyPasture.tmx";
-    public final String bigBoyTown = "TiledFiles/BigCity.tmx";
-    public final String houseInterior = "TiledFiles/HouseInterior.tmx";
+    public final String startTavern = "core/assets/TiledFiles/TavernInterior.tmx";
+    public final String tilemap1 = "core/assets/TiledFiles/REALTOWNMAPCLEAN.tmx";
+    public final String route1 = "core/assets/TiledFiles/Route1.tmx";
+    public final String caveTransition = "core/assets/TiledFiles/CaveTransition.tmx";
+    public final String mazeMap = "core/assets/TiledFiles/endMaze.tmx";
+    public final String prison = "core/assets/TiledFiles/Prison.tmx";
+    public final String cave = "core/assets/TiledFiles/Cave.tmx";
+    public final String warzone = "core/assets/TiledFiles/Warzone.tmx";
+    public final String route3 = "core/assets/TiledFiles/Route3.tmx";
+    public final String route4 = "core/assets/TiledFiles/Route4.tmx";
+    public final String snowyMountain = "core/assets/TiledFiles/SnowyPasture.tmx";
+    public final String bigBoyTown = "core/assets/TiledFiles/BigCity.tmx";
+    public final String houseInterior = "core/assets/TiledFiles/HouseInterior.tmx";
 //    public final String tavernInteriorTwo = "TiledFiles/TavernInteriroTwo.tmx";
-    public final String gunStoreInterior = "TiledFiles/GunStoreInterior.tmx";
-    public final String enemySprite = "enemy.png";
-    public final String punchSound = "SoundFX/Punch.mp3";
+    public final String gunStoreInterior = "core/assets/TiledFiles/GunStoreInterior.tmx";
+    public final String enemySprite = "core/assets/enemy.png";
+    public final String punchSound = "core/assets/SoundFX/Punch.mp3";
 
     //CutScenes Assets
-    public final String bubbleSpeech = "CutScenes/speechBubble.png";
-    public final String introBack = "CutScenes/introBack.jpg";
-    public final String newspaper = "CutScenes/newspaperCutscene.png";
+    public final String bubbleSpeech = "core/assets/CutScenes/speechBubble.png";
+    public final String introBack = "core/assets/CutScenes/introBack.jpg";
+    public final String newspaper = "core/assets/CutScenes/newspaperCutscene.png";
 
-    public final String introBackMusic1 = "CutScenes/Audio/introBackMusic.mp3";
-    public final String saloonBackNoise1 = "CutScenes/Audio/saloonBackNoise1.mp3";
-    public final String saloonBackNoise2 = "CutScenes/Audio/saloonBackNoise2.mp3";
-    public final String prisonMusic1 = "CutScenes/Audio/prisonMusic.mp3";
+    public final String introBackMusic1 = "core/assets/CutScenes/Audio/introBackMusic.mp3";
+    public final String saloonBackNoise1 = "core/assets/CutScenes/Audio/saloonBackNoise1.mp3";
+    public final String saloonBackNoise2 = "core/assets/CutScenes/Audio/saloonBackNoise2.mp3";
+    public final String prisonMusic1 = "core/assets/CutScenes/Audio/prisonMusic.mp3";
 
-    public final String narration = "CutScenes/narration.png";
-    public final String caveBack = "CutScenes/caveBack.png";
-    public final String caveAbDialogue = "CutScenes/caveAbDialogue.png";
+    public final String narration = "core/assets/CutScenes/narration.png";
+    public final String caveBack = "core/assets/CutScenes/caveBack.png";
+    public final String caveAbDialogue = "core/assets/CutScenes/caveAbDialogue.png";
 
     public AssetManagement() {
         includeAssets();

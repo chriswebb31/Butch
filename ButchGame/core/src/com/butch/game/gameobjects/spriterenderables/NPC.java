@@ -43,7 +43,7 @@ public class NPC extends Renderable {
 
         try {
 
-            input = new FileInputStream("NPC/" + npcName + ".properties");
+            input = new FileInputStream("core/assets/NPC/" + npcName + ".properties");
 
             // load a properties file
             prop.load(input);

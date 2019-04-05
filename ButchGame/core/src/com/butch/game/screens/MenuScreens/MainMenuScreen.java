@@ -183,7 +183,7 @@ public class MainMenuScreen implements Screen {
         int progress = 0;
 
         try {
-            inputStream = new FileInputStream("Saves/savegame.properties");
+            inputStream = new FileInputStream("core/assets/Saves/savegame.properties");
             if (inputStream != null) {
                 saveGame.load(inputStream);
                 progress = Integer.parseInt(saveGame.getProperty("PROGRESS"));
@@ -255,7 +255,7 @@ public class MainMenuScreen implements Screen {
              FileOutputStream outputStream = null;
 
              try{
-                 inputStream = new FileInputStream("Saves/savegame.properties");
+                 inputStream = new FileInputStream("core/assets/Saves/savegame.properties");
                  if(inputStream != null){
                      saveGame.load(inputStream);
                      System.out.println("SUCC");
@@ -268,7 +268,7 @@ public class MainMenuScreen implements Screen {
              }
 
              try {
-                 outputStream = new FileOutputStream("Saves/savegame.properties");
+                 outputStream = new FileOutputStream("core/assets/Saves/savegame.properties");
 
                  saveGame.setProperty("PROGRESS", String.valueOf(0));
                  saveGame.setProperty("HEALTH", String.valueOf(100));
@@ -316,7 +316,7 @@ public class MainMenuScreen implements Screen {
                 InputStream inputStream = null;
 
                 try{
-                    inputStream = new FileInputStream("Saves/savegame.properties");
+                    inputStream = new FileInputStream("core/assets/Saves/savegame.properties");
                     if(inputStream != null){
                         saveGame.load(inputStream);
                         int progress = Integer.parseInt(saveGame.getProperty("PROGRESS"));

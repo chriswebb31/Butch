@@ -1,11 +1,12 @@
 # Butch
-Code dump for team 3's project
+Code for team 3's project
 
 # IDE
 > Intellij
 
 # How To Run The Game
-* Go To ButchGame/core/assets and run ButchGame.exe
+* Go To the ButchGame folder and extract the ButchGame.jar.zip to the ButchGame folder
+* Double click ButchGame.jar after the the file has been extracted
 
 # How to Import the Project on Intellij
 
